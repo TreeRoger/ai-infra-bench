@@ -180,6 +180,17 @@ jobs:
             'cd /tmp && python -I /curator/fixture_probe.py /probe-tests /evidence/fixture-probe.json' \
             | tee "$EVIDENCE/fixture-probe.txt"
 
+      - name: VFR fixture recipe variants (curator)
+        run: |
+          set -euo pipefail
+          docker run --rm --network none --user root \
+            --mount "type=bind,src=$PWD/curator,dst=/curator,readonly" \
+            --mount "type=bind,src=$PWD/tasks/$TASK_NAME/tests,dst=/probe-tests,readonly" \
+            --mount "type=bind,src=$EVIDENCE,dst=/evidence" \
+            --entrypoint bash "$IMAGE_ID" -lc \
+            'cd /tmp && python -I /curator/vfr_variants_probe.py /probe-tests /evidence/vfr-variants.json' \
+            | tee "$EVIDENCE/vfr-variants.txt"
+
       - name: OpenCV stream-capture release() crash probe (curator)
         run: |
           set -euo pipefail
@@ -190,6 +201,7 @@ jobs:
             'cd /tmp && python /curator/opencv_release_probe.py /evidence/opencv-release-probe.json'
 
       - name: Run every declared case through Harbor (task CI script)
+        if: hashFiles('curator/PROBE_ONLY') == ''
         env:
           AI_INFRA_LOCAL_IMAGE: ${{ env.IMAGE_ID }}
           PUBLISH_IMAGE: "false"
@@ -198,7 +210,7 @@ jobs:
           bash .github/scripts/run_task_validation.sh 2>&1 | tee "$EVIDENCE/task-validation.log"
 
       - name: Repeat Base, Oracle, alternative and crash controls through Harbor
-        if: always()
+        if: always() && hashFiles('curator/PROBE_ONLY') == ''
         run: |
           set -uo pipefail
           for i in $(seq 2 "$REPEATS"); do
