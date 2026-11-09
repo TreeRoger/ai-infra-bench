@@ -169,6 +169,17 @@ jobs:
             'cd /tmp && python /curator/instruction_probe.py /evidence/instruction-probe.json' \
             2>&1 | tail -60
 
+      - name: Fixture construction probe (curator)
+        run: |
+          set -euo pipefail
+          docker run --rm --network none --user root \
+            --mount "type=bind,src=$PWD/curator,dst=/curator,readonly" \
+            --mount "type=bind,src=$PWD/tasks/$TASK_NAME/tests,dst=/probe-tests,readonly" \
+            --mount "type=bind,src=$EVIDENCE,dst=/evidence" \
+            --entrypoint bash "$IMAGE_ID" -lc \
+            'cd /tmp && python -I /curator/fixture_probe.py /probe-tests /evidence/fixture-probe.json' \
+            | tee "$EVIDENCE/fixture-probe.txt"
+
       - name: OpenCV stream-capture release() crash probe (curator)
         run: |
           set -euo pipefail
