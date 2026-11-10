@@ -45,7 +45,8 @@ def main():
     work = Path(tempfile.mkdtemp())
     scratch = work / "scratch"
     scratch.mkdir()
-    out = {"files": {}, "pairs": {}}
+    out = {"files": {}, "pairs": {}, "raw": {}}
+    excluded = {"-".join(p) for p in C.BASE_INCORRECT_PRESERVED}
     for name in C.NORMAL:
         path = work / f"normal_{name}{C.NORMAL_EXT.get(name, '.mp4')}"
         V.make_normal(name, path, scratch)
@@ -63,10 +64,28 @@ def main():
                 frames, meta = conn.fetch_video(path.as_uri()).media
                 labels = [V.read_label(f) for f in frames]
                 problems = verdict(labels, visible, n, dict(meta), uniform=loader == "opencv")
+                if problems or key in excluded:
+                    # Raw evidence: what Base returned, next to the clip's own timeline.
+                    idx = [int(i) for i in meta.get("frames_indices", [])]
+                    out["raw"][key] = {
+                        "excluded_from_scoring": key in excluded,
+                        "problems": problems,
+                        "returned_labels": labels,
+                        "frames_indices": idx,
+                        "labels_at_indices": [visible[i] if 0 <= i < len(visible) else None for i in idx],
+                        "positions_of_returned": [visible.index(x) if x in visible else None for x in labels],
+                        "total_num_frames": meta.get("total_num_frames"),
+                        "fps": meta.get("fps"),
+                        "duration": meta.get("duration"),
+                        "plays": len(visible),
+                        "visible_labels": visible,
+                    }
             except Exception as exc:
                 problems = [f"raised {type(exc).__name__}: {exc}"[:200]]
             out["pairs"][key] = problems
             print(f"{key:48s} {'OK' if not problems else 'BAD ' + '; '.join(problems)}", flush=True)
+    missing = excluded - set(out["raw"])
+    assert not missing, missing
     Path(sys.argv[2]).write_text(json.dumps(out, indent=1))
 
 
