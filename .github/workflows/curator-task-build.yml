@@ -191,6 +191,17 @@ jobs:
             'cd /tmp && python /curator/preserved_probe.py /probe-tests /evidence/preserved-probe.json' \
             2>&1 | grep -E " OK$| BAD " | tee "$EVIDENCE/preserved-probe.txt"
 
+      - name: Backend-distinguishing fixture candidates (curator)
+        run: |
+          set -euo pipefail
+          docker run --rm --network none --user root \
+            --mount "type=bind,src=$PWD/curator,dst=/curator,readonly" \
+            --mount "type=bind,src=$PWD/tasks/$TASK_NAME/tests,dst=/probe-tests,readonly" \
+            --mount "type=bind,src=$EVIDENCE,dst=/evidence" \
+            --entrypoint bash "$IMAGE_ID" -lc \
+            'cd /tmp && ffmpeg -hide_banner -encoders 2>/dev/null | grep -iE "av1|vp9|prores" ; python -c "import cv2; print(cv2.getBuildInformation())" | grep -A8 "Video I/O"; python /curator/backend_fixture_probe.py /probe-tests /evidence/backend-fixture-probe.json' \
+            2>&1 | grep -vE "^Svt|^\[" | tee "$EVIDENCE/backend-fixture-probe.txt"
+
       - name: VFR fixture recipe variants (curator)
         run: |
           set -euo pipefail
