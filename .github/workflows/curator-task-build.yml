@@ -180,6 +180,17 @@ jobs:
             'cd /tmp && python -I /curator/fixture_probe.py /probe-tests /evidence/fixture-probe.json' \
             | tee "$EVIDENCE/fixture-probe.txt"
 
+      - name: Base on every preserved pair, against labels (curator)
+        run: |
+          set -euo pipefail
+          docker run --rm --network none --user root \
+            --mount "type=bind,src=$PWD/curator,dst=/curator,readonly" \
+            --mount "type=bind,src=$PWD/tasks/$TASK_NAME/tests,dst=/probe-tests,readonly" \
+            --mount "type=bind,src=$EVIDENCE,dst=/evidence" \
+            --entrypoint bash "$IMAGE_ID" -lc \
+            'cd /tmp && python /curator/preserved_probe.py /probe-tests /evidence/preserved-probe.json' \
+            2>&1 | grep -E " OK$| BAD " | tee "$EVIDENCE/preserved-probe.txt"
+
       - name: VFR fixture recipe variants (curator)
         run: |
           set -euo pipefail
@@ -214,7 +225,7 @@ jobs:
         run: |
           set -uo pipefail
           for i in $(seq 2 "$REPEATS"); do
-            for case in base oracle alternative-decode-count oracle-segfault-mid-run oracle-segfault-at-exit; do
+            for case in base oracle alternative-decode-count alternative-pyav-nth-frame oracle-segfault-mid-run oracle-segfault-at-exit; do
               dir=$(mktemp -d)
               agent=$(python3 .github/scripts/task_ci.py prepare-case --task "$TASK_NAME" --image "$IMAGE_ID" --case "$case" --output "$dir")
               expected=$(python3 .github/scripts/task_ci.py cases --task "$TASK_NAME" | jq -r --arg c "$case" '.[] | select(.name == $c) | .expected_reward')
