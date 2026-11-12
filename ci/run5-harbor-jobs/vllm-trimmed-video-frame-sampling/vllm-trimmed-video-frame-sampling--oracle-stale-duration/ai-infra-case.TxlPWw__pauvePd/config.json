@@ -1,0 +1,14 @@
+{
+    "task": {
+        "path": "/home/runner/work/_temp/ai-infra-case.TxlPWw"
+    },
+    "trial_name": "ai-infra-case.TxlPWw__pauvePd",
+    "trials_dir": "/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-frame-sampling/vllm-trimmed-video-frame-sampling--oracle-stale-duration",
+    "environment": {
+        "type": "docker",
+        "cpu_enforcement_policy": "limit",
+        "memory_enforcement_policy": "limit",
+        "override_cpus": 4
+    },
+    "job_id": "a3f4950e-1e87-427e-9a8c-5eb70e31112e"
+}

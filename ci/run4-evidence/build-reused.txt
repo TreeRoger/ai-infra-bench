@@ -1,0 +1,1 @@
+reused ghcr.io/treeroger/ai-infra-bench-task-envs:vllm-trimmed-video-frame-sampling-1f6b47c98978b53fd5eabc09575c18f3b7d53ab300a217e978f0075d40fb08fe (sha256:46c3557c0f9e09bd0f4ca888ac4b3db4c5888b2d7b9135287597f80063cad227)

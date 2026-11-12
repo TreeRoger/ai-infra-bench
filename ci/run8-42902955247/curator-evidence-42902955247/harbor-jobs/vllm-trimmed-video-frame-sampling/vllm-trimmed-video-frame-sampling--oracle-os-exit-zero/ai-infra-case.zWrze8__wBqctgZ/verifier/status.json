@@ -1,0 +1,4 @@
+{
+ "phase": "assertions",
+ "candidate_problem": "worker out-candidate-opencv did not start loading (exit status 0; see worker log); worker out-candidate-pyav did not start loading (exit status 0; see worker log)"
+}

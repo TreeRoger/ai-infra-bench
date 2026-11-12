@@ -1,0 +1,14 @@
+{
+    "task": {
+        "path": "/home/runner/work/_temp/ai-infra-case.4e19py"
+    },
+    "trial_name": "ai-infra-case.4e19py__699yvGg",
+    "trials_dir": "/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-frame-sampling/vllm-trimmed-video-frame-sampling--oracle-os-exit-zero",
+    "environment": {
+        "type": "docker",
+        "cpu_enforcement_policy": "limit",
+        "memory_enforcement_policy": "limit",
+        "override_cpus": 4
+    },
+    "job_id": "753d17e7-0c74-46be-9a44-03d749d5ebdd"
+}

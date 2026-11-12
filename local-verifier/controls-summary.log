@@ -1,0 +1,13 @@
+alternative-decode-count           171 passed in 21.74s (rerun after buffer-lifetime fix; first run segfaulted)
+upstream-48608-as-merged           19 failed, 152 passed in 21.83s
+oracle-opencv-only                 41 failed, 130 passed in 24.28s
+oracle-pyav-only                   49 failed, 122 passed in 22.07s
+dedupe-repeated-frames             94 failed, 77 passed in 24.72s
+clamp-to-last-presentable          86 failed, 85 passed in 24.73s
+hidden-lead-in-frames              125 failed, 46 passed in 22.35s
+special-case-statement-example     69 failed, 102 passed in 23.99s
+opencv-counts-with-pyav            3 failed, 168 passed in 21.91s
+skip-all-conftest                  90 failed, 81 passed in 24.84s
+forged-success-report              90 failed, 81 passed in 25.07s
+oracle-systemexit-zero             170 failed, 1 passed in 19.10s
+oracle-os-exit-zero                170 failed, 1 passed in 17.61s

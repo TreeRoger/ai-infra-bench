@@ -1,0 +1,14 @@
+{
+    "task": {
+        "path": "/tmp/tmp.GCxjiBMd7b"
+    },
+    "trial_name": "tmp.GCxjiBMd7b__kGnjdbk",
+    "trials_dir": "/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-frame-sampling/vllm-trimmed-video-frame-sampling--alternative-decode-count-repeat-2",
+    "environment": {
+        "type": "docker",
+        "cpu_enforcement_policy": "limit",
+        "memory_enforcement_policy": "limit",
+        "override_cpus": 4
+    },
+    "job_id": "50ad2e23-4547-4f6a-bc89-529c4a4d93aa"
+}

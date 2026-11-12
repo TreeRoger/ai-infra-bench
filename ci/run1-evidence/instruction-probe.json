@@ -1,0 +1,44 @@
+{
+ "ffprobe": {
+  "duration": "2.133984",
+  "nb_frames": "272",
+  "nb_read_frames": "62"
+ },
+ "ffmpeg_version": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+ "opencv": {
+  "returned": 2,
+  "distinct": 2,
+  "labels": [
+   210,
+   248
+  ],
+  "total_num_frames": 272,
+  "duration": 9.067
+ },
+ "pyav": {
+  "returned": 2,
+  "distinct": 2,
+  "labels": [
+   210,
+   248
+  ],
+  "total_num_frames": 272,
+  "duration": 2.134
+ },
+ "torchcodec": {
+  "returned": 8,
+  "distinct": 8,
+  "labels": [
+   210,
+   218,
+   227,
+   236,
+   244,
+   253,
+   262,
+   273
+  ],
+  "total_num_frames": 62,
+  "duration": 2.133
+ }
+}

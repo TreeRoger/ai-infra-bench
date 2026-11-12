@@ -1,0 +1,77 @@
+--- curator-material scan
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getopts-0.2.24/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/smartstring-1.0.1/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rustls-webpki-0.103.9/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/r-efi-5.3.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rustfft-6.4.1/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ciborium-0.2.2/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pin-project-lite-0.2.17/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clap-4.5.60/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pcre2-sys-0.2.10/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/itertools-0.10.5/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/paste-1.0.15/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64ct-1.8.3/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/enum-as-inner-0.7.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libm-0.2.16/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ndarray-0.17.2/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/matrixmultiply-0.3.10/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/winnow-1.0.2/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dary_heap-0.3.8/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/malachite-0.4.22/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/riptoken-0.3.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/weezl-0.1.12/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-1.0.27/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num_cpus-1.17.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/env_logger-0.11.10/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-ext-derive-0.3.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_repr-0.1.20/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/security-framework-3.7.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_datetime-1.1.1+spec-1.1.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tracing-futures-0.2.5/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wit-parser-0.244.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/openai-protocol-1.6.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_utils-0.15.1/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pulldown-cmark-0.13.3/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/itertools-0.11.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fastrand-2.3.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_path_to_error-0.1.20/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pin-project-1.1.11/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/smallvec-1.15.1/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tonic-health-0.14.6/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gif-0.14.2/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_with-3.18.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clap_builder-4.5.60/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasm-encoder-0.244.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/redox_syscall-0.5.18/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_chacha-0.3.1/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-format-riff-0.6.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer_data-2.1.1/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tempfile-3.27.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/prometheus-client-0.24.0/Cargo.toml.orig
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/anstyle-wincon-3.0.11/Cargo.toml.orig
+--- git
+11baa0ebd88480b0a3e30138e4ee189420cd33be 2026-08-20T11:52:42+08:00
+20185
+count: 0
+size: 0
+in-pack: 244283
+packs: 1
+size-pack: 266110
+prune-packable: 0
+garbage: 0
+size-garbage: 0
+pack-ba6747a5da2d2a42512aedbb1d0be317c9702f31.idx
+pack-ba6747a5da2d2a42512aedbb1d0be317c9702f31.pack
+pack-ba6747a5da2d2a42512aedbb1d0be317c9702f31.rev
+--- future source check
+future fix commit absent
+no fix text in decoders
+--- tools
+ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers
+ffprobe version 7.1.5-0+deb13u1 Copyright (c) 2007-2026 the FFmpeg developers
+cv2 5.0.0 av 18.1.0 numpy 2.3.5 torch 2.13.0+cpu
+torchcodec 0.16.0+cpu
+pytest 9.1.1
+uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
+/usr/bin/setpriv
+root

@@ -1,0 +1,14 @@
+{
+    "task": {
+        "path": "/tmp/tmp.R0Y64aQCLN"
+    },
+    "trial_name": "tmp.R0Y64aQCLN__DLRdthk",
+    "trials_dir": "/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-frame-sampling/vllm-trimmed-video-frame-sampling--oracle-segfault-mid-run-repeat-2",
+    "environment": {
+        "type": "docker",
+        "cpu_enforcement_policy": "limit",
+        "memory_enforcement_policy": "limit",
+        "override_cpus": 4
+    },
+    "job_id": "b3ae5dcb-5664-44f7-9aaa-d7abeb4628f2"
+}

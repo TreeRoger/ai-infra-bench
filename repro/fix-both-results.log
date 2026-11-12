@@ -1,0 +1,72 @@
+normal_10s_gop60.mp4             opencv          opencv     n=  8 {'n_frames': 8, 'distinct': 8, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 42, 85, 128, 170, 213, 256, 299]
+normal_10s_gop60.mp4             opencv          opencv     n= -1 {'n_frames': 300, 'distinct': 300, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 1, 2, '...', 297, 298, 299]
+normal_10s_gop60.mp4             opencv          pyav       n=  8 {'n_frames': 8, 'distinct': 8, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 42, 85, 128, 170, 213, 256, 299]
+normal_10s_gop60.mp4             opencv          pyav       n= -1 {'n_frames': 300, 'distinct': 300, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 1, 2, '...', 297, 298, 299]
+normal_10s_gop60.mp4             qwen2_vl        opencv     n=  8 {'n_frames': 20, 'distinct': 20, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 15, 30, '...', 255, 270, 285]
+normal_10s_gop60.mp4             qwen2_vl        opencv     n= -1 {'n_frames': 20, 'distinct': 20, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 15, 30, '...', 255, 270, 285]
+raw.h264                         opencv          opencv     n=  8 {'n_frames': 8, 'distinct': 8, 'total_num_frames': 300, 'duration': 12.0, 'error': None} labels=[0, 42, 85, 128, 170, 213, 256, 299]
+raw.h264                         opencv          opencv     n= -1 {'n_frames': 300, 'distinct': 300, 'total_num_frames': 300, 'duration': 12.0, 'error': None} labels=[0, 1, 2, '...', 297, 298, 299]
+raw.h264                         opencv          pyav       n=  8 {'n_frames': None, 'distinct': None, 'total_num_frames': None, 'duration': None, 'error': 'PermissionError: [Errno 1] Operation not permitted'} labels=[]
+raw.h264                         opencv          pyav       n= -1 {'n_frames': None, 'distinct': None, 'total_num_frames': None, 'duration': None, 'error': 'PermissionError: [Errno 1] Operation not permitted'} labels=[]
+raw.h264                         qwen2_vl        opencv     n=  8 {'n_frames': 24, 'distinct': 24, 'total_num_frames': 300, 'duration': 12.0, 'error': None} labels=[0, 12, 25, '...', 262, 275, 287]
+raw.h264                         qwen2_vl        opencv     n= -1 {'n_frames': 24, 'distinct': 24, 'total_num_frames': 300, 'duration': 12.0, 'error': None} labels=[0, 12, 25, '...', 262, 275, 287]
+seekable_vp9.webm                opencv          opencv     n=  8 {'n_frames': 8, 'distinct': 8, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 42, 85, 128, 170, 213, 256, 299]
+seekable_vp9.webm                opencv          opencv     n= -1 {'n_frames': 300, 'distinct': 300, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 1, 2, '...', 297, 298, 299]
+seekable_vp9.webm                opencv          pyav       n=  8 {'n_frames': 1, 'distinct': 1, 'total_num_frames': 0, 'duration': 0.0, 'error': None} labels=[0]
+seekable_vp9.webm                opencv          pyav       n= -1 {'n_frames': 1, 'distinct': 1, 'total_num_frames': 0, 'duration': 0.0, 'error': None} labels=[0]
+seekable_vp9.webm                qwen2_vl        opencv     n=  8 {'n_frames': 20, 'distinct': 20, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 15, 30, '...', 255, 270, 285]
+seekable_vp9.webm                qwen2_vl        opencv     n= -1 {'n_frames': 20, 'distinct': 20, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 15, 30, '...', 255, 270, 285]
+streamed_h264.mkv                opencv          opencv     n=  8 {'n_frames': 8, 'distinct': 8, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 42, 85, 128, 170, 213, 256, 299]
+streamed_h264.mkv                opencv          opencv     n= -1 {'n_frames': 300, 'distinct': 300, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 1, 2, '...', 297, 298, 299]
+streamed_h264.mkv                opencv          pyav       n=  8 {'n_frames': 1, 'distinct': 1, 'total_num_frames': 0, 'duration': 0.0, 'error': None} labels=[0]
+streamed_h264.mkv                opencv          pyav       n= -1 {'n_frames': 1, 'distinct': 1, 'total_num_frames': 0, 'duration': 0.0, 'error': None} labels=[0]
+streamed_h264.mkv                qwen2_vl        opencv     n=  8 {'n_frames': 20, 'distinct': 20, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 15, 30, '...', 255, 270, 285]
+streamed_h264.mkv                qwen2_vl        opencv     n= -1 {'n_frames': 20, 'distinct': 20, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 15, 30, '...', 255, 270, 285]
+streamed_vp9.webm                opencv          opencv     n=  8 {'n_frames': 8, 'distinct': 8, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 42, 85, 128, 170, 213, 256, 299]
+streamed_vp9.webm                opencv          opencv     n= -1 {'n_frames': 300, 'distinct': 300, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 1, 2, '...', 297, 298, 299]
+streamed_vp9.webm                opencv          pyav       n=  8 {'n_frames': 1, 'distinct': 1, 'total_num_frames': 0, 'duration': 0.0, 'error': None} labels=[0]
+streamed_vp9.webm                opencv          pyav       n= -1 {'n_frames': 1, 'distinct': 1, 'total_num_frames': 0, 'duration': 0.0, 'error': None} labels=[0]
+streamed_vp9.webm                qwen2_vl        opencv     n=  8 {'n_frames': 20, 'distinct': 20, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 15, 30, '...', 255, 270, 285]
+streamed_vp9.webm                qwen2_vl        opencv     n= -1 {'n_frames': 20, 'distinct': 20, 'total_num_frames': 300, 'duration': 10.0, 'error': None} labels=[0, 15, 30, '...', 255, 270, 285]
+[opencv.py:121] Video header claims 99 frames but only 64 are presentable; sampling over the true frame count.
+trim_mid_ss3.3_t2.5.mp4          opencv          opencv     n=  8 {'n_frames': 8, 'distinct': 8, 'total_num_frames': 64, 'duration': 2.56, 'error': None} labels=[83, 92, 101, 110, 119, 128, 137, 146]
+[opencv.py:121] Video header claims 99 frames but only 64 are presentable; sampling over the true frame count.
+trim_mid_ss3.3_t2.5.mp4          opencv          opencv     n= -1 {'n_frames': 64, 'distinct': 64, 'total_num_frames': 64, 'duration': 2.56, 'error': None} labels=[83, 84, 85, '...', 144, 145, 146]
+trim_mid_ss3.3_t2.5.mp4          opencv          pyav       n=  8 {'n_frames': 8, 'distinct': 8, 'total_num_frames': 64, 'duration': 2.58, 'error': None} labels=[83, 92, 101, 110, 119, 128, 137, 146]
+trim_mid_ss3.3_t2.5.mp4          opencv          pyav       n= -1 {'n_frames': 64, 'distinct': 64, 'total_num_frames': 64, 'duration': 2.58, 'error': None} labels=[83, 84, 85, '...', 144, 145, 146]
+[opencv.py:121] Video header claims 99 frames but only 64 are presentable; sampling over the true frame count.
+trim_mid_ss3.3_t2.5.mp4          qwen2_vl        opencv     n=  8 {'n_frames': 4, 'distinct': 4, 'total_num_frames': 64, 'duration': 2.56, 'error': None} labels=[83, 99, 115, 131]
+[opencv.py:121] Video header claims 99 frames but only 64 are presentable; sampling over the true frame count.
+trim_mid_ss3.3_t2.5.mp4          qwen2_vl        opencv     n= -1 {'n_frames': 4, 'distinct': 4, 'total_num_frames': 64, 'duration': 2.56, 'error': None} labels=[83, 99, 115, 131]
+[opencv.py:121] Video header claims 107 frames but only 92 are presentable; sampling over the true frame count.
+trim_mild_ss2.5_t3.mp4           opencv          opencv     n=  8 {'n_frames': 8, 'distinct': 8, 'total_num_frames': 92, 'duration': 3.067, 'error': None} labels=[75, 88, 101, 114, 127, 140, 153, 168]
+[opencv.py:121] Video header claims 107 frames but only 92 are presentable; sampling over the true frame count.
+trim_mild_ss2.5_t3.mp4           opencv          opencv     n= -1 {'n_frames': 92, 'distinct': 92, 'total_num_frames': 92, 'duration': 3.067, 'error': None} labels=[75, 76, 77, '...', 164, 165, 168]
+trim_mild_ss2.5_t3.mp4           opencv          pyav       n=  8 {'n_frames': 8, 'distinct': 8, 'total_num_frames': 94, 'duration': 3.133, 'error': None} labels=[75, 88, 101, 114, 128, 141, 154, 168]
+trim_mild_ss2.5_t3.mp4           opencv          pyav       n= -1 {'n_frames': 94, 'distinct': 92, 'total_num_frames': 94, 'duration': 3.133, 'error': None} labels=[75, 76, 77, '...', 168, 168, 168]
+[opencv.py:121] Video header claims 107 frames but only 92 are presentable; sampling over the true frame count.
+trim_mild_ss2.5_t3.mp4           qwen2_vl        opencv     n=  8 {'n_frames': 6, 'distinct': 6, 'total_num_frames': 92, 'duration': 3.067, 'error': None} labels=[75, 90, 105, 121, 136, 151]
+[opencv.py:121] Video header claims 107 frames but only 92 are presentable; sampling over the true frame count.
+trim_mild_ss2.5_t3.mp4           qwen2_vl        opencv     n= -1 {'n_frames': 6, 'distinct': 6, 'total_num_frames': 92, 'duration': 3.067, 'error': None} labels=[75, 90, 105, 121, 136, 151]
+[opencv.py:297] Video loading completed with 1 broken/unreadable frames. Expected 8 frames but only loaded 7 frames.
+[opencv.py:335] Video loading completed with 1 broken/unreadable frames. Expected to sample 8 frames but only loaded 7 frames.
+[video.py:275] opencv video loading: expected 8 frames but got 7.
+trim_one_frame_ss2.0333_t3.mp4   opencv          opencv     n=  8 {'n_frames': 7, 'distinct': 7, 'total_num_frames': 93, 'duration': 3.1, 'error': None} labels=[61, 74, 87, 100, 113, 126, 139]
+[opencv.py:297] Video loading completed with 1 broken/unreadable frames. Expected 93 frames but only loaded 92 frames.
+[opencv.py:335] Video loading completed with 1 broken/unreadable frames. Expected to sample 93 frames but only loaded 92 frames.
+[video.py:275] opencv video loading: expected 93 frames but got 92.
+trim_one_frame_ss2.0333_t3.mp4   opencv          opencv     n= -1 {'n_frames': 92, 'distinct': 92, 'total_num_frames': 93, 'duration': 3.1, 'error': None} labels=[61, 62, 63, '...', 150, 151, 153]
+trim_one_frame_ss2.0333_t3.mp4   opencv          pyav       n=  8 {'n_frames': 8, 'distinct': 8, 'total_num_frames': 93, 'duration': 3.1, 'error': None} labels=[61, 74, 87, 100, 113, 126, 139, 153]
+trim_one_frame_ss2.0333_t3.mp4   opencv          pyav       n= -1 {'n_frames': 93, 'distinct': 92, 'total_num_frames': 93, 'duration': 3.1, 'error': None} labels=[61, 62, 63, '...', 151, 153, 153]
+trim_one_frame_ss2.0333_t3.mp4   qwen2_vl        opencv     n=  8 {'n_frames': 6, 'distinct': 6, 'total_num_frames': 93, 'duration': 3.1, 'error': None} labels=[61, 76, 92, 107, 123, 138]
+trim_one_frame_ss2.0333_t3.mp4   qwen2_vl        opencv     n= -1 {'n_frames': 6, 'distinct': 6, 'total_num_frames': 93, 'duration': 3.1, 'error': None} labels=[61, 76, 92, 107, 123, 138]
+[opencv.py:121] Video header claims 272 frames but only 62 are presentable; sampling over the true frame count.
+trim_severe_ss7_t2.mp4           opencv          opencv     n=  8 {'n_frames': 8, 'distinct': 8, 'total_num_frames': 62, 'duration': 2.067, 'error': None} labels=[210, 218, 227, 236, 244, 253, 262, 273]
+[opencv.py:121] Video header claims 272 frames but only 62 are presentable; sampling over the true frame count.
+trim_severe_ss7_t2.mp4           opencv          opencv     n= -1 {'n_frames': 62, 'distinct': 62, 'total_num_frames': 62, 'duration': 2.067, 'error': None} labels=[210, 211, 212, '...', 269, 270, 273]
+trim_severe_ss7_t2.mp4           opencv          pyav       n=  8 {'n_frames': 8, 'distinct': 8, 'total_num_frames': 64, 'duration': 2.133, 'error': None} labels=[210, 219, 228, 237, 246, 255, 264, 273]
+trim_severe_ss7_t2.mp4           opencv          pyav       n= -1 {'n_frames': 64, 'distinct': 62, 'total_num_frames': 64, 'duration': 2.133, 'error': None} labels=[210, 211, 212, '...', 273, 273, 273]
+[opencv.py:121] Video header claims 272 frames but only 62 are presentable; sampling over the true frame count.
+trim_severe_ss7_t2.mp4           qwen2_vl        opencv     n=  8 {'n_frames': 4, 'distinct': 4, 'total_num_frames': 62, 'duration': 2.067, 'error': None} labels=[210, 225, 241, 256]
+[opencv.py:121] Video header claims 272 frames but only 62 are presentable; sampling over the true frame count.
+trim_severe_ss7_t2.mp4           qwen2_vl        opencv     n= -1 {'n_frames': 4, 'distinct': 4, 'total_num_frames': 62, 'duration': 2.067, 'error': None} labels=[210, 225, 241, 256]

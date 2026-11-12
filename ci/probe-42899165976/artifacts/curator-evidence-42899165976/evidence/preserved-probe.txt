@@ -1,0 +1,96 @@
+mp4_bf2-opencv-opencv-8                          OK
+mp4_bf2-opencv-opencv-all                        OK
+mp4_bf2-opencv-pyav-8                            OK
+mp4_bf2-opencv-pyav-all                          OK
+mp4_bf2-opencv_dynamic-opencv-8                  OK
+mp4_bf2-qwen3_vl-pyav-8                          OK
+mp4_bf0-opencv-opencv-8                          OK
+mp4_bf0-opencv-opencv-all                        OK
+mp4_bf0-opencv-pyav-8                            OK
+mp4_bf0-opencv-pyav-all                          OK
+mp4_bf0-opencv_dynamic-opencv-8                  OK
+mp4_bf0-qwen3_vl-pyav-8                          OK
+mp4_29_97-opencv-opencv-8                        OK
+mp4_29_97-opencv-opencv-all                      OK
+mp4_29_97-opencv-pyav-8                          OK
+mp4_29_97-opencv-pyav-all                        OK
+mp4_29_97-opencv_dynamic-opencv-8                OK
+mp4_29_97-qwen3_vl-pyav-8                        OK
+mp4_with_audio-opencv-opencv-8                   OK
+mp4_with_audio-opencv-opencv-all                 OK
+mp4_with_audio-opencv-pyav-8                     OK
+mp4_with_audio-opencv-pyav-all                   OK
+mp4_with_audio-opencv_dynamic-opencv-8           OK
+mp4_with_audio-qwen3_vl-pyav-8                   OK
+mov_h264-opencv-opencv-8                         OK
+mov_h264-opencv-opencv-all                       OK
+mov_h264-opencv-pyav-8                           OK
+mov_h264-opencv-pyav-all                         OK
+mov_h264-opencv_dynamic-opencv-8                 OK
+mov_h264-qwen3_vl-pyav-8                         OK
+mp4_fragmented-opencv-opencv-8                   OK
+mp4_fragmented-opencv-opencv-all                 OK
+mp4_fragmented-opencv-pyav-8                     BAD frames_indices do not match returned frames
+mp4_fragmented-opencv-pyav-all                   BAD repeated/out-of-order (300 returned, 298 distinct)
+mp4_fragmented-opencv_dynamic-opencv-8           OK
+mp4_fragmented-qwen3_vl-pyav-8                   BAD frames_indices do not match returned frames
+mp4_faststart-opencv-opencv-8                    OK
+mp4_faststart-opencv-opencv-all                  OK
+mp4_faststart-opencv-pyav-8                      OK
+mp4_faststart-opencv-pyav-all                    OK
+mp4_faststart-opencv_dynamic-opencv-8            OK
+mp4_faststart-qwen3_vl-pyav-8                    OK
+mp4_hevc-opencv-opencv-8                         OK
+mp4_hevc-opencv-opencv-all                       OK
+mp4_hevc-opencv-pyav-8                           OK
+mp4_hevc-opencv-pyav-all                         OK
+mp4_hevc-opencv_dynamic-opencv-8                 OK
+mp4_hevc-qwen3_vl-pyav-8                         OK
+mp4_mpeg4-opencv-opencv-8                        OK
+mp4_mpeg4-opencv-opencv-all                      OK
+mp4_mpeg4-opencv-pyav-8                          OK
+mp4_mpeg4-opencv-pyav-all                        OK
+mp4_mpeg4-opencv_dynamic-opencv-8                OK
+mp4_mpeg4-qwen3_vl-pyav-8                        OK
+avi_mpeg4-opencv-opencv-8                        OK
+avi_mpeg4-opencv-opencv-all                      OK
+avi_mpeg4-opencv-pyav-8                          OK
+avi_mpeg4-opencv-pyav-all                        BAD repeated/out-of-order (300 returned, 298 distinct)
+avi_mpeg4-opencv_dynamic-opencv-8                OK
+avi_mpeg4-qwen3_vl-pyav-8                        OK
+mp4_mpdecimate-opencv-opencv-8                   OK
+mp4_mpdecimate-opencv-opencv-all                 OK
+mp4_mpdecimate-opencv-pyav-8                     BAD frames_indices do not match returned frames
+mp4_mpdecimate-opencv-pyav-all                   BAD repeated/out-of-order (240 returned, 192 distinct)
+mp4_mpdecimate-opencv_dynamic-opencv-8           OK
+mp4_mpdecimate-qwen3_vl-pyav-8                   BAD repeated/out-of-order (20 returned, 17 distinct)
+mp4_vfr_30_then_10-opencv-opencv-8               OK
+mp4_vfr_30_then_10-opencv-opencv-all             OK
+mp4_vfr_30_then_10-opencv-pyav-8                 BAD frames_indices do not match returned frames
+mp4_vfr_30_then_10-opencv-pyav-all               BAD repeated/out-of-order (120 returned, 91 distinct)
+mp4_vfr_30_then_10-opencv_dynamic-opencv-8       OK
+mp4_vfr_30_then_10-qwen3_vl-pyav-8               BAD frames_indices do not match returned frames
+mp4_vfr_gap-opencv-opencv-8                      OK
+mp4_vfr_gap-opencv-opencv-all                    OK
+mp4_vfr_gap-opencv-pyav-8                        BAD repeated/out-of-order (8 returned, 7 distinct)
+mp4_vfr_gap-opencv-pyav-all                      BAD repeated/out-of-order (89 returned, 66 distinct)
+mp4_vfr_gap-opencv_dynamic-opencv-8              OK
+mp4_vfr_gap-qwen3_vl-pyav-8                      BAD repeated/out-of-order (7 returned, 6 distinct)
+mp4_reencoded_cut-opencv-opencv-8                OK
+mp4_reencoded_cut-opencv-opencv-all              OK
+mp4_reencoded_cut-opencv-pyav-8                  OK
+mp4_reencoded_cut-opencv-pyav-all                OK
+mp4_reencoded_cut-opencv_dynamic-opencv-8        OK
+mp4_reencoded_cut-qwen3_vl-pyav-8                OK
+mp4_copy_cut_on_keyframe-opencv-opencv-8         OK
+mp4_copy_cut_on_keyframe-opencv-opencv-all       OK
+mp4_copy_cut_on_keyframe-opencv-pyav-8           OK
+mp4_copy_cut_on_keyframe-opencv-pyav-all         OK
+mp4_copy_cut_on_keyframe-opencv_dynamic-opencv-8 OK
+mp4_copy_cut_on_keyframe-qwen3_vl-pyav-8         OK
+mp4_remuxed_from_mkv-opencv-opencv-8             OK
+mp4_remuxed_from_mkv-opencv-opencv-all           OK
+mp4_remuxed_from_mkv-opencv-pyav-8               BAD frames_indices do not match returned frames
+mp4_remuxed_from_mkv-opencv-pyav-all             BAD repeated/out-of-order (300 returned, 200 distinct)
+mp4_remuxed_from_mkv-opencv_dynamic-opencv-8     OK
+mp4_remuxed_from_mkv-qwen3_vl-pyav-8             BAD frames_indices do not match returned frames

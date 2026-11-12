@@ -1,0 +1,1097 @@
+{
+ "vllm_file": "/Users/rogerjin/infrabench-work/vllm-oracle/vllm/__init__.py",
+ "recovery": false,
+ "runs": [
+  {
+   "n_frames": 4,
+   "labels": [
+    123,
+    138,
+    153,
+    168
+   ],
+   "distinct": 4,
+   "total_num_frames": 60,
+   "fps": 30.0,
+   "duration": 2.0,
+   "frames_indices": [
+    0,
+    15,
+    30,
+    45
+   ],
+   "video_backend": "opencv_dynamic",
+   "file": "trim_bf0_ss4.1_t2.mp4",
+   "loader": "opencv_dynamic",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    123,
+    138,
+    153,
+    168
+   ],
+   "distinct": 4,
+   "total_num_frames": 60,
+   "fps": 30.0,
+   "duration": 2.0,
+   "frames_indices": [
+    0,
+    15,
+    30,
+    45
+   ],
+   "video_backend": "opencv",
+   "file": "trim_bf0_ss4.1_t2.mp4",
+   "loader": "qwen2_vl",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    123,
+    143,
+    162,
+    182
+   ],
+   "distinct": 4,
+   "total_num_frames": 60,
+   "fps": 30.0,
+   "duration": 2.0,
+   "frames_indices": [
+    0,
+    20,
+    39,
+    59
+   ],
+   "video_backend": "opencv",
+   "file": "trim_bf0_ss4.1_t2.mp4",
+   "loader": "qwen3_vl",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    123,
+    138,
+    153,
+    168
+   ],
+   "distinct": 4,
+   "total_num_frames": 60,
+   "fps": 30.0,
+   "duration": 2.0,
+   "frames_indices": [
+    0,
+    15,
+    30,
+    45
+   ],
+   "video_backend": "opencv",
+   "file": "trim_bf0_ss4.1_t2.mp4",
+   "loader": "qwen2_vl",
+   "backend": "pyav",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    123,
+    143,
+    162,
+    182
+   ],
+   "distinct": 4,
+   "total_num_frames": 60,
+   "fps": 30.0,
+   "duration": 2.0,
+   "frames_indices": [
+    0,
+    20,
+    39,
+    59
+   ],
+   "video_backend": "opencv",
+   "file": "trim_bf0_ss4.1_t2.mp4",
+   "loader": "qwen3_vl",
+   "backend": "pyav",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 8,
+   "labels": [
+    123,
+    131,
+    139,
+    148,
+    156,
+    165,
+    173,
+    182
+   ],
+   "distinct": 8,
+   "total_num_frames": 60,
+   "fps": 30.0,
+   "duration": 2.0,
+   "frames_indices": [
+    0,
+    8,
+    16,
+    25,
+    33,
+    42,
+    50,
+    59
+   ],
+   "video_backend": "opencv",
+   "file": "trim_bf0_ss4.1_t2.mp4",
+   "loader": "opencv",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 5,
+   "labels": [
+    83,
+    96,
+    108,
+    121,
+    133
+   ],
+   "distinct": 5,
+   "total_num_frames": 64,
+   "fps": 25.0,
+   "duration": 2.56,
+   "frames_indices": [
+    0,
+    13,
+    25,
+    38,
+    50
+   ],
+   "video_backend": "opencv_dynamic",
+   "file": "trim_mid_ss3.3_t2.5.mp4",
+   "loader": "opencv_dynamic",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    83,
+    99,
+    115,
+    131
+   ],
+   "distinct": 4,
+   "total_num_frames": 64,
+   "fps": 25.0,
+   "duration": 2.56,
+   "frames_indices": [
+    0,
+    16,
+    32,
+    48
+   ],
+   "video_backend": "opencv",
+   "file": "trim_mid_ss3.3_t2.5.mp4",
+   "loader": "qwen2_vl",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 5,
+   "labels": [
+    83,
+    99,
+    115,
+    130,
+    146
+   ],
+   "distinct": 5,
+   "total_num_frames": 64,
+   "fps": 25.0,
+   "duration": 2.56,
+   "frames_indices": [
+    0,
+    16,
+    32,
+    47,
+    63
+   ],
+   "video_backend": "opencv",
+   "file": "trim_mid_ss3.3_t2.5.mp4",
+   "loader": "qwen3_vl",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    83,
+    99,
+    115,
+    131
+   ],
+   "distinct": 4,
+   "total_num_frames": 64,
+   "fps": 25.0,
+   "duration": 2.56,
+   "frames_indices": [
+    0,
+    16,
+    32,
+    48
+   ],
+   "video_backend": "opencv",
+   "file": "trim_mid_ss3.3_t2.5.mp4",
+   "loader": "qwen2_vl",
+   "backend": "pyav",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 5,
+   "labels": [
+    83,
+    99,
+    115,
+    130,
+    146
+   ],
+   "distinct": 5,
+   "total_num_frames": 64,
+   "fps": 25.0,
+   "duration": 2.56,
+   "frames_indices": [
+    0,
+    16,
+    32,
+    47,
+    63
+   ],
+   "video_backend": "opencv",
+   "file": "trim_mid_ss3.3_t2.5.mp4",
+   "loader": "qwen3_vl",
+   "backend": "pyav",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 8,
+   "labels": [
+    83,
+    92,
+    101,
+    110,
+    119,
+    128,
+    137,
+    146
+   ],
+   "distinct": 8,
+   "total_num_frames": 64,
+   "fps": 25.0,
+   "duration": 2.56,
+   "frames_indices": [
+    0,
+    9,
+    18,
+    27,
+    36,
+    45,
+    54,
+    63
+   ],
+   "video_backend": "opencv",
+   "file": "trim_mid_ss3.3_t2.5.mp4",
+   "loader": "opencv",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 6,
+   "labels": [
+    75,
+    90,
+    105,
+    120,
+    135,
+    150
+   ],
+   "distinct": 6,
+   "total_num_frames": 92,
+   "fps": 30.0,
+   "duration": 3.067,
+   "frames_indices": [
+    0,
+    15,
+    30,
+    45,
+    60,
+    75
+   ],
+   "video_backend": "opencv_dynamic",
+   "file": "trim_mild_ss2.5_t3.mp4",
+   "loader": "opencv_dynamic",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 6,
+   "labels": [
+    75,
+    90,
+    105,
+    121,
+    136,
+    151
+   ],
+   "distinct": 6,
+   "total_num_frames": 92,
+   "fps": 30.0,
+   "duration": 3.067,
+   "frames_indices": [
+    0,
+    15,
+    30,
+    46,
+    61,
+    76
+   ],
+   "video_backend": "opencv",
+   "file": "trim_mild_ss2.5_t3.mp4",
+   "loader": "qwen2_vl",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 6,
+   "labels": [
+    75,
+    93,
+    111,
+    130,
+    148,
+    168
+   ],
+   "distinct": 6,
+   "total_num_frames": 92,
+   "fps": 30.0,
+   "duration": 3.067,
+   "frames_indices": [
+    0,
+    18,
+    36,
+    55,
+    73,
+    91
+   ],
+   "video_backend": "opencv",
+   "file": "trim_mild_ss2.5_t3.mp4",
+   "loader": "qwen3_vl",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 6,
+   "labels": [
+    75,
+    90,
+    105,
+    121,
+    136,
+    151
+   ],
+   "distinct": 6,
+   "total_num_frames": 92,
+   "fps": 30.0,
+   "duration": 3.067,
+   "frames_indices": [
+    0,
+    15,
+    30,
+    46,
+    61,
+    76
+   ],
+   "video_backend": "opencv",
+   "file": "trim_mild_ss2.5_t3.mp4",
+   "loader": "qwen2_vl",
+   "backend": "pyav",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 6,
+   "labels": [
+    75,
+    93,
+    111,
+    130,
+    148,
+    168
+   ],
+   "distinct": 6,
+   "total_num_frames": 92,
+   "fps": 30.0,
+   "duration": 3.067,
+   "frames_indices": [
+    0,
+    18,
+    36,
+    55,
+    73,
+    91
+   ],
+   "video_backend": "opencv",
+   "file": "trim_mild_ss2.5_t3.mp4",
+   "loader": "qwen3_vl",
+   "backend": "pyav",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 8,
+   "labels": [
+    75,
+    88,
+    101,
+    114,
+    127,
+    140,
+    153,
+    168
+   ],
+   "distinct": 8,
+   "total_num_frames": 92,
+   "fps": 30.0,
+   "duration": 3.067,
+   "frames_indices": [
+    0,
+    13,
+    26,
+    39,
+    52,
+    65,
+    78,
+    91
+   ],
+   "video_backend": "opencv",
+   "file": "trim_mild_ss2.5_t3.mp4",
+   "loader": "opencv",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 3,
+   "labels": [
+    111,
+    126,
+    141
+   ],
+   "distinct": 3,
+   "total_num_frames": 47,
+   "fps": 30.0,
+   "duration": 1.567,
+   "frames_indices": [
+    0,
+    15,
+    30
+   ],
+   "video_backend": "opencv_dynamic",
+   "file": "trim_of_trim.mp4",
+   "loader": "opencv_dynamic",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    111,
+    122,
+    134,
+    146
+   ],
+   "distinct": 4,
+   "total_num_frames": 47,
+   "fps": 30.0,
+   "duration": 1.567,
+   "frames_indices": [
+    0,
+    11,
+    23,
+    35
+   ],
+   "video_backend": "opencv",
+   "file": "trim_of_trim.mp4",
+   "loader": "qwen2_vl",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    111,
+    126,
+    142,
+    159
+   ],
+   "distinct": 4,
+   "total_num_frames": 47,
+   "fps": 30.0,
+   "duration": 1.567,
+   "frames_indices": [
+    0,
+    15,
+    31,
+    46
+   ],
+   "video_backend": "opencv",
+   "file": "trim_of_trim.mp4",
+   "loader": "qwen3_vl",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    111,
+    122,
+    134,
+    146
+   ],
+   "distinct": 4,
+   "total_num_frames": 47,
+   "fps": 30.0,
+   "duration": 1.567,
+   "frames_indices": [
+    0,
+    11,
+    23,
+    35
+   ],
+   "video_backend": "opencv",
+   "file": "trim_of_trim.mp4",
+   "loader": "qwen2_vl",
+   "backend": "pyav",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    111,
+    126,
+    142,
+    159
+   ],
+   "distinct": 4,
+   "total_num_frames": 47,
+   "fps": 30.0,
+   "duration": 1.567,
+   "frames_indices": [
+    0,
+    15,
+    31,
+    46
+   ],
+   "video_backend": "opencv",
+   "file": "trim_of_trim.mp4",
+   "loader": "qwen3_vl",
+   "backend": "pyav",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 8,
+   "labels": [
+    111,
+    117,
+    124,
+    130,
+    137,
+    143,
+    150,
+    159
+   ],
+   "distinct": 8,
+   "total_num_frames": 47,
+   "fps": 30.0,
+   "duration": 1.567,
+   "frames_indices": [
+    0,
+    6,
+    13,
+    19,
+    26,
+    32,
+    39,
+    46
+   ],
+   "video_backend": "opencv",
+   "file": "trim_of_trim.mp4",
+   "loader": "opencv",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 6,
+   "labels": [
+    61,
+    76,
+    91,
+    106,
+    121,
+    136
+   ],
+   "distinct": 6,
+   "total_num_frames": 92,
+   "fps": 30.0,
+   "duration": 3.067,
+   "frames_indices": [
+    0,
+    15,
+    30,
+    45,
+    60,
+    75
+   ],
+   "video_backend": "opencv_dynamic",
+   "file": "trim_one_frame_ss2.0333_t3.mp4",
+   "loader": "opencv_dynamic",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 6,
+   "labels": [
+    61,
+    76,
+    91,
+    107,
+    122,
+    137
+   ],
+   "distinct": 6,
+   "total_num_frames": 92,
+   "fps": 30.0,
+   "duration": 3.067,
+   "frames_indices": [
+    0,
+    15,
+    30,
+    46,
+    61,
+    76
+   ],
+   "video_backend": "opencv",
+   "file": "trim_one_frame_ss2.0333_t3.mp4",
+   "loader": "qwen2_vl",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 6,
+   "labels": [
+    61,
+    79,
+    97,
+    116,
+    134,
+    153
+   ],
+   "distinct": 6,
+   "total_num_frames": 92,
+   "fps": 30.0,
+   "duration": 3.067,
+   "frames_indices": [
+    0,
+    18,
+    36,
+    55,
+    73,
+    91
+   ],
+   "video_backend": "opencv",
+   "file": "trim_one_frame_ss2.0333_t3.mp4",
+   "loader": "qwen3_vl",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 6,
+   "labels": [
+    61,
+    76,
+    91,
+    107,
+    122,
+    137
+   ],
+   "distinct": 6,
+   "total_num_frames": 92,
+   "fps": 30.0,
+   "duration": 3.067,
+   "frames_indices": [
+    0,
+    15,
+    30,
+    46,
+    61,
+    76
+   ],
+   "video_backend": "opencv",
+   "file": "trim_one_frame_ss2.0333_t3.mp4",
+   "loader": "qwen2_vl",
+   "backend": "pyav",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 6,
+   "labels": [
+    61,
+    79,
+    97,
+    116,
+    134,
+    153
+   ],
+   "distinct": 6,
+   "total_num_frames": 92,
+   "fps": 30.0,
+   "duration": 3.067,
+   "frames_indices": [
+    0,
+    18,
+    36,
+    55,
+    73,
+    91
+   ],
+   "video_backend": "opencv",
+   "file": "trim_one_frame_ss2.0333_t3.mp4",
+   "loader": "qwen3_vl",
+   "backend": "pyav",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 8,
+   "labels": [
+    61,
+    74,
+    87,
+    100,
+    113,
+    126,
+    139,
+    153
+   ],
+   "distinct": 8,
+   "total_num_frames": 92,
+   "fps": 30.0,
+   "duration": 3.067,
+   "frames_indices": [
+    0,
+    13,
+    26,
+    39,
+    52,
+    65,
+    78,
+    91
+   ],
+   "video_backend": "opencv",
+   "file": "trim_one_frame_ss2.0333_t3.mp4",
+   "loader": "opencv",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    210,
+    225,
+    240,
+    255
+   ],
+   "distinct": 4,
+   "total_num_frames": 62,
+   "fps": 30.0,
+   "duration": 2.067,
+   "frames_indices": [
+    0,
+    15,
+    30,
+    45
+   ],
+   "video_backend": "opencv_dynamic",
+   "file": "trim_severe_ss7_t2.mp4",
+   "loader": "opencv_dynamic",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    210,
+    225,
+    241,
+    256
+   ],
+   "distinct": 4,
+   "total_num_frames": 62,
+   "fps": 30.0,
+   "duration": 2.067,
+   "frames_indices": [
+    0,
+    15,
+    31,
+    46
+   ],
+   "video_backend": "opencv",
+   "file": "trim_severe_ss7_t2.mp4",
+   "loader": "qwen2_vl",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    210,
+    230,
+    251,
+    273
+   ],
+   "distinct": 4,
+   "total_num_frames": 62,
+   "fps": 30.0,
+   "duration": 2.067,
+   "frames_indices": [
+    0,
+    20,
+    41,
+    61
+   ],
+   "video_backend": "opencv",
+   "file": "trim_severe_ss7_t2.mp4",
+   "loader": "qwen3_vl",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    210,
+    225,
+    241,
+    256
+   ],
+   "distinct": 4,
+   "total_num_frames": 62,
+   "fps": 30.0,
+   "duration": 2.067,
+   "frames_indices": [
+    0,
+    15,
+    31,
+    46
+   ],
+   "video_backend": "opencv",
+   "file": "trim_severe_ss7_t2.mp4",
+   "loader": "qwen2_vl",
+   "backend": "pyav",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    210,
+    230,
+    251,
+    273
+   ],
+   "distinct": 4,
+   "total_num_frames": 62,
+   "fps": 30.0,
+   "duration": 2.067,
+   "frames_indices": [
+    0,
+    20,
+    41,
+    61
+   ],
+   "video_backend": "opencv",
+   "file": "trim_severe_ss7_t2.mp4",
+   "loader": "qwen3_vl",
+   "backend": "pyav",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 8,
+   "labels": [
+    210,
+    218,
+    227,
+    236,
+    244,
+    253,
+    262,
+    273
+   ],
+   "distinct": 8,
+   "total_num_frames": 62,
+   "fps": 30.0,
+   "duration": 2.067,
+   "frames_indices": [
+    0,
+    8,
+    17,
+    26,
+    34,
+    43,
+    52,
+    61
+   ],
+   "video_backend": "opencv",
+   "file": "trim_severe_ss7_t2.mp4",
+   "loader": "opencv",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "error": "ValueError: max() iterable argument is empty",
+   "file": "trim_veryshort_ss3_t0.4.mp4",
+   "loader": "opencv_dynamic",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    90,
+    93,
+    97,
+    100
+   ],
+   "distinct": 4,
+   "total_num_frames": 14,
+   "fps": 30.0,
+   "duration": 0.467,
+   "frames_indices": [
+    0,
+    3,
+    7,
+    10
+   ],
+   "video_backend": "opencv",
+   "file": "trim_veryshort_ss3_t0.4.mp4",
+   "loader": "qwen2_vl",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    90,
+    94,
+    99,
+    103
+   ],
+   "distinct": 4,
+   "total_num_frames": 14,
+   "fps": 30.0,
+   "duration": 0.467,
+   "frames_indices": [
+    0,
+    4,
+    9,
+    13
+   ],
+   "video_backend": "opencv",
+   "file": "trim_veryshort_ss3_t0.4.mp4",
+   "loader": "qwen3_vl",
+   "backend": "opencv",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    90,
+    93,
+    97,
+    100
+   ],
+   "distinct": 4,
+   "total_num_frames": 14,
+   "fps": 30.0,
+   "duration": 0.467,
+   "frames_indices": [
+    0,
+    3,
+    7,
+    10
+   ],
+   "video_backend": "opencv",
+   "file": "trim_veryshort_ss3_t0.4.mp4",
+   "loader": "qwen2_vl",
+   "backend": "pyav",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 4,
+   "labels": [
+    90,
+    94,
+    99,
+    103
+   ],
+   "distinct": 4,
+   "total_num_frames": 14,
+   "fps": 30.0,
+   "duration": 0.467,
+   "frames_indices": [
+    0,
+    4,
+    9,
+    13
+   ],
+   "video_backend": "opencv",
+   "file": "trim_veryshort_ss3_t0.4.mp4",
+   "loader": "qwen3_vl",
+   "backend": "pyav",
+   "num_frames": 8
+  },
+  {
+   "n_frames": 8,
+   "labels": [
+    90,
+    91,
+    93,
+    95,
+    97,
+    99,
+    101,
+    103
+   ],
+   "distinct": 8,
+   "total_num_frames": 14,
+   "fps": 30.0,
+   "duration": 0.467,
+   "frames_indices": [
+    0,
+    1,
+    3,
+    5,
+    7,
+    9,
+    11,
+    13
+   ],
+   "video_backend": "opencv",
+   "file": "trim_veryshort_ss3_t0.4.mp4",
+   "loader": "opencv",
+   "backend": "opencv",
+   "num_frames": 8
+  }
+ ]
+}

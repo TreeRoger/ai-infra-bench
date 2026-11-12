@@ -1,0 +1,17 @@
+{
+    "task": {
+        "path": "/home/runner/work/_temp/ai-infra-case.AybaoJ"
+    },
+    "trial_name": "ai-infra-case.AybaoJ__G3w7Shg",
+    "trials_dir": "/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-frame-sampling/vllm-trimmed-video-frame-sampling--base",
+    "agent": {
+        "name": "nop"
+    },
+    "environment": {
+        "type": "docker",
+        "cpu_enforcement_policy": "limit",
+        "memory_enforcement_policy": "limit",
+        "override_cpus": 4
+    },
+    "job_id": "d1b380d4-f9e1-44dc-b38b-14d97177fd83"
+}

@@ -1,0 +1,100 @@
+[
+    {
+        "Id": "sha256:46c3557c0f9e09bd0f4ca888ac4b3db4c5888b2d7b9135287597f80063cad227",
+        "RepoTags": [
+            "curator/vllm-trimmed-video-frame-sampling:build",
+            "ghcr.io/treeroger/ai-infra-bench-task-envs:vllm-trimmed-video-frame-sampling-1f6b47c98978b53fd5eabc09575c18f3b7d53ab300a217e978f0075d40fb08fe"
+        ],
+        "RepoDigests": [
+            "ghcr.io/treeroger/ai-infra-bench-task-envs@sha256:1c52d2c6c71cdab50b25d2ab71d4af93afab9fc78a8120a496fc9c2a51019316"
+        ],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-11-09T03:12:23.187430757Z",
+        "DockerVersion": "",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/root/.cargo/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+                "PYTHON_VERSION=3.12.14",
+                "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a",
+                "DEBIAN_FRONTEND=noninteractive",
+                "PIP_DISABLE_PIP_VERSION_CHECK=1",
+                "UV_LINK_MODE=copy",
+                "UV_HTTP_TIMEOUT=500",
+                "CARGO_HOME=/root/.cargo",
+                "RUSTUP_HOME=/root/.rustup",
+                "CARGO_BUILD_JOBS=4",
+                "CARGO_INCREMENTAL=0",
+                "CC=/usr/bin/gcc",
+                "CXX=/usr/bin/g++",
+                "CCACHE_DIR=/root/.cache/ccache",
+                "CMAKE_CXX_COMPILER_LAUNCHER=ccache",
+                "MAX_JOBS=8",
+                "SETUPTOOLS_SCM_PRETEND_VERSION=0.0.0+g11baa0ebd88480b0a3e30138e4ee189420cd33be",
+                "SETUPTOOLS_SCM_PRETEND_VERSION_FOR_VLLM=0.0.0+g11baa0ebd88480b0a3e30138e4ee189420cd33be"
+            ],
+            "Cmd": [
+                "sleep",
+                "infinity"
+            ],
+            "ArgsEscaped": true,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "/workspace/vllm",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "ai.infra.bench.base-commit": "11baa0ebd88480b0a3e30138e4ee189420cd33be",
+                "ai.infra.bench.cache-namespace": "11baa0ebd88480b0a3e30138e4ee189420cd33be-4e0bd3490ff5c031",
+                "ai.infra.bench.dependency-cutoff": "2026-08-20T03:52:42Z",
+                "ai.infra.bench.environment-template": "vllm-harbor-all-in-one"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 8684739141,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/7e4788f8cebfa651fa7ba1e4d5304dd6158eaf5633d24f2e6bdab85bbec1b801/diff:/var/lib/docker/overlay2/2e80ac0563f37d422e00d38bc5aac70a3fbcdc13d78bd0620191c3bb473b9e0d/diff:/var/lib/docker/overlay2/9256d81021683986ed5055e3a8e67bf952d917f35fa2bb7fdff7acb56dada6ed/diff:/var/lib/docker/overlay2/6066e6368e161ea60424b71924fd6d119f55e25b9f2bd8e5c4ed0e6f218f541c/diff:/var/lib/docker/overlay2/ebffa65294fdd73e32fdf7c53be09d0af62cd7a2bddeed03c656147d0c950b83/diff:/var/lib/docker/overlay2/8be73fe6e2535051621fb5507aea7727bd03c060799eedf981ea71eb0918f05d/diff:/var/lib/docker/overlay2/bd374f5cc7da4ed3a9c8f86cf31e72d5180407a5a9006dca3f3978fa8516a22e/diff:/var/lib/docker/overlay2/0571d5c854eaba66add8efe13cf1017dbc423f3d9e0c212f44f32ec8a0dc8150/diff:/var/lib/docker/overlay2/fcc04801513290afa054c13feb646f792116d76781d7e5075a8fcd64bcd48bce/diff:/var/lib/docker/overlay2/1f5b8651f899ad726ecab1734daddceeac5f638a9860dc0d0ac76b4e7d34ed87/diff:/var/lib/docker/overlay2/4b399d495263b91feb690bb74d4c99574b2936901e7fae1a2ca0a242cc7f1fb6/diff:/var/lib/docker/overlay2/3ef8836aeeb21d02c36e837b4972b7d3698a70f48be7ee158345f8526e42e0d2/diff:/var/lib/docker/overlay2/1494e9a484a39ea38fc1bc5e8b639b49a6a4867e4b652171532b687c96a1bf8b/diff",
+                "MergedDir": "/var/lib/docker/overlay2/320302817ce632c40f2ad6d84eba33dadbfd51ca5c798fa68ab523381aec7eaa/merged",
+                "UpperDir": "/var/lib/docker/overlay2/320302817ce632c40f2ad6d84eba33dadbfd51ca5c798fa68ab523381aec7eaa/diff",
+                "WorkDir": "/var/lib/docker/overlay2/320302817ce632c40f2ad6d84eba33dadbfd51ca5c798fa68ab523381aec7eaa/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:411a86676185cb54d695a805b238194a64e9b77e0c723f3802fbb87d333ea0b3",
+                "sha256:ebad55931d5b35d9cf64ab801f5b6f4e96821c5fcd17f4109e5774b039114014",
+                "sha256:f19f6d6c86377e4b77a2a5b5d8f56e7ecb205193e6f6b68aa74f61e382427936",
+                "sha256:6fdca0968d0fffb99492a80150c0c18077f7452fe77b70e950c3aefaf85dfe54",
+                "sha256:3193639a886b3c78100f68a04612b7508f02465e0bbc37981bb30bd8f8391e88",
+                "sha256:0325e9184170ac63b1d550a04225f5e4833766dac647cb9642644d348ec17e51",
+                "sha256:dbced86403af7a35a522cb52970d0ac97db97937249f303f3082a46106b8f0e2",
+                "sha256:f81379e4ee0c24676ab913de37c71a4861944897e8d96f1ec69de028a82b545a",
+                "sha256:d6f92b8c6cdd5796b271d6dd6d9286e17a43470b9b91231aa91bd273bed045ba",
+                "sha256:5af703d96eca70685ccc7af4667db74198f11c71949dc2dec92e732af6b68e7d",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:1710876e566959f59e1d9e57387219e882222139a302e2cd89304eba30c2c3fe",
+                "sha256:d909a85dceae2849672d2fd0127cdf221fff48bc7fcce79014983e213d6f3347",
+                "sha256:1cd8c7dc2273fdc1271d306ec16f6f7da99e96d30019205e55f9daae01e3d67d"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-11-09T03:44:00.72695616Z"
+        }
+    }
+]

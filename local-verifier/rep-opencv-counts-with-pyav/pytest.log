@@ -1,0 +1,87 @@
+........................................................................ [ 42%]
+........................................................................ [ 84%]
+................FFF........                                              [100%]
+=================================== FAILURES ===================================
+__________________ test_opencv_without_pyav[severe-opencv-8] ___________________
+
+trim = 'severe', loader = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,loader,count", C.no_pyav_params(), ids=lambda p: str(p))
+    def test_opencv_without_pyav(trim, loader, count):
+        lab, _, _, noav = environment()
+>       frames, meta = noav.get(f"noav-{trim}-{loader}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:398: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10af8d340>
+rid = 'noav-severe-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: noav-severe-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:226: AssertionError
+____________ test_opencv_without_pyav[one_frame_lead_in-opencv-all] ____________
+
+trim = 'one_frame_lead_in', loader = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,loader,count", C.no_pyav_params(), ids=lambda p: str(p))
+    def test_opencv_without_pyav(trim, loader, count):
+        lab, _, _, noav = environment()
+>       frames, meta = noav.get(f"noav-{trim}-{loader}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:398: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10af8d340>
+rid = 'noav-one_frame_lead_in-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: noav-one_frame_lead_in-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:226: AssertionError
+______________ test_opencv_without_pyav[severe-opencv_dynamic-8] _______________
+
+trim = 'severe', loader = 'opencv_dynamic', count = '8'
+
+    @pytest.mark.parametrize("trim,loader,count", C.no_pyav_params(), ids=lambda p: str(p))
+    def test_opencv_without_pyav(trim, loader, count):
+        lab, _, _, noav = environment()
+>       frames, meta = noav.get(f"noav-{trim}-{loader}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:398: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10af8d340>
+rid = 'noav-severe-opencv_dynamic-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: noav-severe-opencv_dynamic-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:226: AssertionError
+=========================== short test summary info ============================
+FAILED test_trimmed_video.py::test_opencv_without_pyav[severe-opencv-8] - Ass...
+FAILED test_trimmed_video.py::test_opencv_without_pyav[one_frame_lead_in-opencv-all]
+FAILED test_trimmed_video.py::test_opencv_without_pyav[severe-opencv_dynamic-8]
+3 failed, 168 passed in 22.58s

@@ -1,0 +1,5 @@
+{
+ "phase": "assertions",
+ "candidate_problem": "worker out-candidate did not start loading (exit status 0; see worker log)",
+ "no_pyav_problem": "worker out-candidate-no-pyav did not start loading (exit status 0; see worker log)"
+}

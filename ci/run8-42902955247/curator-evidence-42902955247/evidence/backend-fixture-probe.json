@@ -1,0 +1,1059 @@
+{
+ "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+ "av": "18.1.0",
+ "cv2": "5.0.0",
+ "mp4_av1_svt": {
+  "header": 300,
+  "plays": 300,
+  "distinct": 300,
+  "stream": {
+   "avg_frame_rate": "30/1",
+   "duration": "10.000000",
+   "nb_frames": "300"
+  },
+  "opencv-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [],
+    "do_sample_frames": false
+   },
+   "problems": [
+    "no frames"
+   ]
+  },
+  "opencv--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [],
+    "do_sample_frames": false
+   },
+   "problems": [
+    "no frames"
+   ]
+  },
+  "pyav-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "pyav--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "identical-8": false,
+  "identical--1": false,
+  "opencv_cannot_load": true,
+  "pyav_correct": true
+ },
+ "mp4_av1_aom": {
+  "header": 300,
+  "plays": 300,
+  "distinct": 300,
+  "stream": {
+   "avg_frame_rate": "30/1",
+   "duration": "10.000000",
+   "nb_frames": "300"
+  },
+  "opencv-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [],
+    "do_sample_frames": false
+   },
+   "problems": [
+    "no frames"
+   ]
+  },
+  "opencv--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [],
+    "do_sample_frames": false
+   },
+   "problems": [
+    "no frames"
+   ]
+  },
+  "pyav-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "pyav--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "identical-8": false,
+  "identical--1": false,
+  "opencv_cannot_load": true,
+  "pyav_correct": true
+ },
+ "webm_av1_svt": {
+  "header": 0,
+  "plays": 300,
+  "distinct": 300,
+  "stream": {
+   "avg_frame_rate": "30/1"
+  },
+  "opencv-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [],
+    "do_sample_frames": false
+   },
+   "problems": [
+    "no frames"
+   ]
+  },
+  "opencv--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [],
+    "do_sample_frames": false
+   },
+   "problems": [
+    "no frames"
+   ]
+  },
+  "pyav-8": {
+   "meta": {
+    "total_num_frames": 0,
+    "fps": 30.0,
+    "duration": 0.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0
+    ],
+    "do_sample_frames": false
+   },
+   "problems": [
+    "returned 1, expected 8",
+    "total 0 vs plays 300"
+   ]
+  },
+  "pyav--1": {
+   "meta": {
+    "total_num_frames": 0,
+    "fps": 30.0,
+    "duration": 0.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0
+    ],
+    "do_sample_frames": false
+   },
+   "problems": [
+    "returned 1, expected 300",
+    "total 0 vs plays 300"
+   ]
+  },
+  "identical-8": false,
+  "identical--1": false,
+  "opencv_cannot_load": true,
+  "pyav_correct": false
+ },
+ "webm_vp9": {
+  "header": 0,
+  "plays": 300,
+  "distinct": 300,
+  "stream": {
+   "avg_frame_rate": "30/1"
+  },
+  "opencv-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "opencv--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "pyav-8": {
+   "meta": {
+    "total_num_frames": 0,
+    "fps": 30.0,
+    "duration": 0.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0
+    ],
+    "do_sample_frames": false
+   },
+   "problems": [
+    "returned 1, expected 8",
+    "total 0 vs plays 300"
+   ]
+  },
+  "pyav--1": {
+   "meta": {
+    "total_num_frames": 0,
+    "fps": 30.0,
+    "duration": 0.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0
+    ],
+    "do_sample_frames": false
+   },
+   "problems": [
+    "returned 1, expected 300",
+    "total 0 vs plays 300"
+   ]
+  },
+  "identical-8": false,
+  "identical--1": false,
+  "opencv_cannot_load": false,
+  "pyav_correct": false
+ },
+ "mp4_vp9": {
+  "header": 300,
+  "plays": 300,
+  "distinct": 300,
+  "stream": {
+   "avg_frame_rate": "30/1",
+   "duration": "10.000000",
+   "nb_frames": "300"
+  },
+  "opencv-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "opencv--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "pyav-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "pyav--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "identical-8": true,
+  "max_abs_diff-8": 0,
+  "identical--1": true,
+  "max_abs_diff--1": 0,
+  "opencv_cannot_load": false,
+  "pyav_correct": true
+ },
+ "mov_prores": {
+  "header": 300,
+  "plays": 300,
+  "distinct": 300,
+  "stream": {
+   "avg_frame_rate": "30/1",
+   "duration": "10.000000",
+   "nb_frames": "300"
+  },
+  "opencv-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "opencv--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "pyav-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "pyav--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "identical-8": false,
+  "max_abs_diff-8": 3,
+  "identical--1": false,
+  "max_abs_diff--1": 4,
+  "opencv_cannot_load": false,
+  "pyav_correct": true
+ },
+ "mp4_h264_fullrange": {
+  "header": 300,
+  "plays": 300,
+  "distinct": 300,
+  "stream": {
+   "avg_frame_rate": "30/1",
+   "duration": "10.000000",
+   "nb_frames": "300"
+  },
+  "opencv-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "opencv--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "pyav-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "pyav--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "identical-8": true,
+  "max_abs_diff-8": 0,
+  "identical--1": true,
+  "max_abs_diff--1": 0,
+  "opencv_cannot_load": false,
+  "pyav_correct": true
+ },
+ "mp4_h264_bt709": {
+  "header": 300,
+  "plays": 300,
+  "distinct": 300,
+  "stream": {
+   "avg_frame_rate": "30/1",
+   "duration": "10.000000",
+   "nb_frames": "300"
+  },
+  "opencv-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "opencv--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "pyav-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "pyav--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "identical-8": true,
+  "max_abs_diff-8": 0,
+  "identical--1": true,
+  "max_abs_diff--1": 0,
+  "opencv_cannot_load": false,
+  "pyav_correct": true
+ },
+ "mp4_h264_yuv444": {
+  "header": 300,
+  "plays": 300,
+  "distinct": 300,
+  "stream": {
+   "avg_frame_rate": "30/1",
+   "duration": "10.000000",
+   "nb_frames": "300"
+  },
+  "opencv-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "opencv--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "pyav-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "pyav--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "identical-8": true,
+  "max_abs_diff-8": 0,
+  "identical--1": true,
+  "max_abs_diff--1": 0,
+  "opencv_cannot_load": false,
+  "pyav_correct": true
+ },
+ "mp4_h264_10bit": {
+  "header": 300,
+  "plays": 300,
+  "distinct": 300,
+  "stream": {
+   "avg_frame_rate": "30/1",
+   "duration": "10.000000",
+   "nb_frames": "300"
+  },
+  "opencv-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "opencv--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "pyav-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "pyav--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "identical-8": false,
+  "max_abs_diff-8": 27,
+  "identical--1": false,
+  "max_abs_diff--1": 39,
+  "opencv_cannot_load": false,
+  "pyav_correct": true
+ },
+ "mp4_hevc_10bit": {
+  "header": 300,
+  "plays": 300,
+  "distinct": 300,
+  "stream": {
+   "avg_frame_rate": "30/1",
+   "duration": "10.000000",
+   "nb_frames": "300"
+  },
+  "opencv-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "opencv--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "opencv",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "pyav-8": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     42,
+     85,
+     128,
+     170,
+     213,
+     256,
+     299
+    ],
+    "do_sample_frames": false
+   },
+   "problems": []
+  },
+  "pyav--1": {
+   "meta": {
+    "total_num_frames": 300,
+    "fps": 30.0,
+    "duration": 10.0,
+    "video_backend": "pyav",
+    "frames_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "do_sample_frames": true
+   },
+   "problems": []
+  },
+  "identical-8": false,
+  "max_abs_diff-8": 26,
+  "identical--1": false,
+  "max_abs_diff--1": 39,
+  "opencv_cannot_load": false,
+  "pyav_correct": true
+ }
+}

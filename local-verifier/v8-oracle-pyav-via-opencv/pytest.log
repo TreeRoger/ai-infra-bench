@@ -1,0 +1,607 @@
+........................................................................ [ 44%]
+..................FF..FF..FF..FF..FF....FF..FF..FF..F........FF..FF..FF. [ 89%]
+F.F..F...........                                                        [100%]
+=================================== FAILURES ===================================
+______ test_untrimmed_and_correct_videos_unchanged[mp4_bf2-opencv-pyav-8] ______
+
+name = 'mp4_bf2', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((8, 120, 160, 3) == (8, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [124, 124, 124],\n         [125, 125, 125],\n         ...,\n         [ 55,   1, 155],\n...,\n         [186,  55,  63],\n         [188,  56,  65],\n         [188,  56,  65]]]], shape=(8, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [126, 126, 126],\n         [127, 127, 127],\n         ...,\n         [ 57,   1, 157],\n...,\n         [187,  56,  64],\n         [190,  56,  65],\n         [190,  56,  65]]]], shape=(8, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mp4_bf2-opencv-pyav-all] _____
+
+name = 'mp4_bf2', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((300, 120, 160, 3) == (300, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [124, 124, 124],\n         [125, 125, 125],\n         ...,\n         [ 55,   1, 155],\n...         [186,  55,  63],\n         [188,  56,  65],\n         [188,  56,  65]]]], shape=(300, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [126, 126, 126],\n         [127, 127, 127],\n         ...,\n         [ 57,   1, 157],\n...         [187,  56,  64],\n         [190,  56,  65],\n         [190,  56,  65]]]], shape=(300, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+______ test_untrimmed_and_correct_videos_unchanged[mp4_bf0-opencv-pyav-8] ______
+
+name = 'mp4_bf0', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((8, 120, 160, 3) == (8, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [124, 124, 124],\n         [125, 125, 125],\n         ...,\n         [ 55,   2, 153],\n...,\n         [182,  58,  63],\n         [182,  58,  63],\n         [182,  58,  63]]]], shape=(8, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [126, 126, 126],\n         [127, 127, 127],\n         ...,\n         [ 57,   2, 155],\n...,\n         [184,  58,  64],\n         [184,  58,  64],\n         [184,  58,  64]]]], shape=(8, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mp4_bf0-opencv-pyav-all] _____
+
+name = 'mp4_bf0', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((300, 120, 160, 3) == (300, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [124, 124, 124],\n         [125, 125, 125],\n         ...,\n         [ 55,   2, 153],\n...         [182,  58,  63],\n         [182,  58,  63],\n         [182,  58,  63]]]], shape=(300, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [126, 126, 126],\n         [127, 127, 127],\n         ...,\n         [ 57,   2, 155],\n...         [184,  58,  64],\n         [184,  58,  64],\n         [184,  58,  64]]]], shape=(300, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mp4_29_97-opencv-pyav-8] _____
+
+name = 'mp4_29_97', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((8, 120, 160, 3) == (8, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [124, 124, 124],\n         [125, 125, 125],\n         ...,\n         [ 55,   1, 155],\n...,\n         [186,  58,  65],\n         [186,  58,  65],\n         [186,  58,  65]]]], shape=(8, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [126, 126, 126],\n         [127, 127, 127],\n         ...,\n         [ 57,   1, 157],\n...,\n         [187,  58,  65],\n         [187,  58,  65],\n         [187,  58,  65]]]], shape=(8, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mp4_29_97-opencv-pyav-all] ____
+
+name = 'mp4_29_97', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((300, 120, 160, 3) == (300, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [124, 124, 124],\n         [125, 125, 125],\n         ...,\n         [ 55,   1, 155],\n...         [186,  58,  65],\n         [186,  58,  65],\n         [186,  58,  65]]]], shape=(300, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [126, 126, 126],\n         [127, 127, 127],\n         ...,\n         [ 57,   1, 157],\n...         [187,  58,  65],\n         [187,  58,  65],\n         [187,  58,  65]]]], shape=(300, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+__ test_untrimmed_and_correct_videos_unchanged[mp4_with_audio-opencv-pyav-8] ___
+
+name = 'mp4_with_audio', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((8, 120, 160, 3) == (8, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [124, 124, 124],\n         [125, 125, 125],\n         ...,\n         [ 55,   1, 155],\n...,\n         [183,  59,  65],\n         [183,  59,  65],\n         [185,  60,  66]]]], shape=(8, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [126, 126, 126],\n         [127, 127, 127],\n         ...,\n         [ 57,   1, 157],\n...,\n         [185,  59,  65],\n         [185,  59,  65],\n         [186,  60,  66]]]], shape=(8, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_with_audio-opencv-pyav-all] __
+
+name = 'mp4_with_audio', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((300, 120, 160, 3) == (300, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [124, 124, 124],\n         [125, 125, 125],\n         ...,\n         [ 55,   1, 155],\n...         [183,  59,  65],\n         [183,  59,  65],\n         [185,  60,  66]]]], shape=(300, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [126, 126, 126],\n         [127, 127, 127],\n         ...,\n         [ 57,   1, 157],\n...         [185,  59,  65],\n         [185,  59,  65],\n         [186,  60,  66]]]], shape=(300, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mov_h264-opencv-pyav-8] ______
+
+name = 'mov_h264', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((8, 120, 160, 3) == (8, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [124, 124, 124],\n         [125, 125, 125],\n         ...,\n         [ 55,   1, 155],\n...,\n         [183,  59,  65],\n         [183,  59,  65],\n         [185,  60,  66]]]], shape=(8, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [126, 126, 126],\n         [127, 127, 127],\n         ...,\n         [ 57,   1, 157],\n...,\n         [185,  59,  65],\n         [185,  59,  65],\n         [186,  60,  66]]]], shape=(8, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mov_h264-opencv-pyav-all] _____
+
+name = 'mov_h264', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((300, 120, 160, 3) == (300, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [124, 124, 124],\n         [125, 125, 125],\n         ...,\n         [ 55,   1, 155],\n...         [183,  59,  65],\n         [183,  59,  65],\n         [185,  60,  66]]]], shape=(300, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [126, 126, 126],\n         [127, 127, 127],\n         ...,\n         [ 57,   1, 157],\n...         [185,  59,  65],\n         [185,  59,  65],\n         [186,  60,  66]]]], shape=(300, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+___ test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-pyav-8] ___
+
+name = 'mp4_faststart', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((8, 120, 160, 3) == (8, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [124, 124, 124],\n         [125, 125, 125],\n         ...,\n         [ 55,   1, 155],\n...,\n         [183,  59,  65],\n         [183,  59,  65],\n         [185,  60,  66]]]], shape=(8, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [126, 126, 126],\n         [127, 127, 127],\n         ...,\n         [ 57,   1, 157],\n...,\n         [185,  59,  65],\n         [185,  59,  65],\n         [186,  60,  66]]]], shape=(8, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+__ test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-pyav-all] __
+
+name = 'mp4_faststart', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((300, 120, 160, 3) == (300, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [124, 124, 124],\n         [125, 125, 125],\n         ...,\n         [ 55,   1, 155],\n...         [183,  59,  65],\n         [183,  59,  65],\n         [185,  60,  66]]]], shape=(300, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [126, 126, 126],\n         [127, 127, 127],\n         ...,\n         [ 57,   1, 157],\n...         [185,  59,  65],\n         [185,  59,  65],\n         [186,  60,  66]]]], shape=(300, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-pyav-8] ______
+
+name = 'mp4_hevc', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((8, 120, 160, 3) == (8, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[127, 127, 127],\n         [126, 126, 126],\n         [126, 126, 126],\n         ...,\n         [ 55,   1, 155],\n...,\n         [185,  56,  63],\n         [187,  55,  63],\n         [187,  55,  63]]]], shape=(8, 120, 160, 3), dtype=uint8), array([[[[129, 129, 129],\n         [128, 128, 128],\n         [128, 128, 128],\n         ...,\n         [ 57,   1, 157],\n...,\n         [186,  57,  64],\n         [189,  55,  64],\n         [189,  55,  64]]]], shape=(8, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-pyav-all] _____
+
+name = 'mp4_hevc', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((300, 120, 160, 3) == (300, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[127, 127, 127],\n         [126, 126, 126],\n         [126, 126, 126],\n         ...,\n         [ 55,   1, 155],\n...         [185,  56,  63],\n         [187,  55,  63],\n         [187,  55,  63]]]], shape=(300, 120, 160, 3), dtype=uint8), array([[[[129, 129, 129],\n         [128, 128, 128],\n         [128, 128, 128],\n         ...,\n         [ 57,   1, 157],\n...         [186,  57,  64],\n         [189,  55,  64],\n         [189,  55,  64]]]], shape=(300, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-pyav-8] _____
+
+name = 'mp4_mpeg4', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((8, 120, 160, 3) == (8, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[127, 127, 127],\n         [124, 124, 124],\n         [131, 131, 131],\n         ...,\n         [ 55,   2, 153],\n...,\n         [185,  56,  61],\n         [185,  56,  61],\n         [186,  58,  62]]]], shape=(8, 120, 160, 3), dtype=uint8), array([[[[129, 129, 129],\n         [126, 126, 126],\n         [133, 133, 133],\n         ...,\n         [ 57,   2, 155],\n...,\n         [186,  57,  62],\n         [186,  57,  62],\n         [187,  58,  63]]]], shape=(8, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-pyav-all] ____
+
+name = 'mp4_mpeg4', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((300, 120, 160, 3) == (300, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[127, 127, 127],\n         [124, 124, 124],\n         [131, 131, 131],\n         ...,\n         [ 55,   2, 153],\n...         [185,  56,  61],\n         [185,  56,  61],\n         [186,  58,  62]]]], shape=(300, 120, 160, 3), dtype=uint8), array([[[[129, 129, 129],\n         [126, 126, 126],\n         [133, 133, 133],\n         ...,\n         [ 57,   2, 155],\n...         [186,  57,  62],\n         [186,  57,  62],\n         [187,  58,  63]]]], shape=(300, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[avi_mpeg4-opencv-pyav-8] _____
+
+name = 'avi_mpeg4', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((8, 120, 160, 3) == (8, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[127, 127, 127],\n         [124, 124, 124],\n         [131, 131, 131],\n         ...,\n         [ 55,   2, 153],\n...,\n         [185,  56,  61],\n         [185,  56,  61],\n         [186,  58,  62]]]], shape=(8, 120, 160, 3), dtype=uint8), array([[[[129, 129, 129],\n         [126, 126, 126],\n         [133, 133, 133],\n         ...,\n         [ 57,   2, 155],\n...,\n         [186,  57,  62],\n         [186,  57,  62],\n         [187,  58,  63]]]], shape=(8, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-pyav-8] _
+
+name = 'mp4_reencoded_cut', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((8, 120, 160, 3) == (8, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[124, 124, 124],\n         [126, 126, 126],\n         [125, 125, 125],\n         ...,\n         [ 23, 123, 168],\n...,\n         [ 37, 148, 143],\n         [ 41, 146, 145],\n         [ 41, 146, 145]]]], shape=(8, 120, 160, 3), dtype=uint8), array([[[[126, 126, 126],\n         [128, 128, 128],\n         [127, 127, 127],\n         ...,\n         [ 23, 123, 169],\n...,\n         [ 38, 149, 143],\n         [ 43, 147, 146],\n         [ 43, 147, 146]]]], shape=(8, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-pyav-all] _
+
+name = 'mp4_reencoded_cut', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((90, 120, 160, 3) == (90, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[124, 124, 124],\n         [126, 126, 126],\n         [125, 125, 125],\n         ...,\n         [ 23, 123, 168],\n...\n         [ 37, 148, 143],\n         [ 41, 146, 145],\n         [ 41, 146, 145]]]], shape=(90, 120, 160, 3), dtype=uint8), array([[[[126, 126, 126],\n         [128, 128, 128],\n         [127, 127, 127],\n         ...,\n         [ 23, 123, 169],\n...\n         [ 38, 149, 143],\n         [ 43, 147, 146],\n         [ 43, 147, 146]]]], shape=(90, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-pyav-8] _
+
+name = 'mp4_copy_cut_on_keyframe', loader = 'opencv', codec = 'pyav'
+count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((8, 120, 160, 3) == (8, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[125, 125, 125],\n         [126, 126, 126],\n         [125, 125, 125],\n         ...,\n         [236,  44,  63],\n...,\n         [255,  87,  53],\n         [  3,  87,  56],\n         [  3,  87,  56]]]], shape=(8, 120, 160, 3), dtype=uint8), array([[[[127, 127, 127],\n         [128, 128, 128],\n         [127, 127, 127],\n         ...,\n         [237,  45,  64],\n...,\n         [255,  88,  54],\n         [  5,  87,  57],\n         [  5,  87,  57]]]], shape=(8, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-pyav-all] _
+
+name = 'mp4_copy_cut_on_keyframe', loader = 'opencv', codec = 'pyav'
+count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((92, 120, 160, 3) == (92, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[125, 125, 125],\n         [126, 126, 126],\n         [125, 125, 125],\n         ...,\n         [236,  44,  63],\n...\n         [255,  87,  53],\n         [  3,  87,  56],\n         [  3,  87,  56]]]], shape=(92, 120, 160, 3), dtype=uint8), array([[[[127, 127, 127],\n         [128, 128, 128],\n         [127, 127, 127],\n         ...,\n         [237,  45,  64],\n...\n         [255,  88,  54],\n         [  5,  87,  57],\n         [  5,  87,  57]]]], shape=(92, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+______ test_untrimmed_and_correct_videos_unchanged[mp4_av1-opencv-pyav-8] ______
+
+name = 'mp4_av1', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((8, 120, 160, 3) == (8, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [126, 126, 126],\n         [125, 125, 125],\n         ...,\n         [ 56,   0, 158],\n...,\n         [185,  54,  62],\n         [187,  55,  63],\n         [187,  55,  63]]]], shape=(8, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [128, 128, 128],\n         [127, 127, 127],\n         ...,\n         [ 58,   1, 159],\n...,\n         [186,  55,  63],\n         [189,  55,  64],\n         [189,  55,  64]]]], shape=(8, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mp4_av1-opencv-pyav-all] _____
+
+name = 'mp4_av1', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((300, 120, 160, 3) == (300, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [126, 126, 126],\n         [125, 125, 125],\n         ...,\n         [ 56,   0, 158],\n...         [185,  54,  62],\n         [187,  55,  63],\n         [187,  55,  63]]]], shape=(300, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [128, 128, 128],\n         [127, 127, 127],\n         ...,\n         [ 58,   1, 159],\n...         [186,  55,  63],\n         [189,  55,  64],\n         [189,  55,  64]]]], shape=(300, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mp4_bf2-qwen3_vl-pyav-8] _____
+
+name = 'mp4_bf2', loader = 'qwen3_vl', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((20, 120, 160, 3) == (20, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [124, 124, 124],\n         [125, 125, 125],\n         ...,\n         [ 55,   1, 155],\n...\n         [186,  55,  63],\n         [188,  56,  65],\n         [188,  56,  65]]]], shape=(20, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [126, 126, 126],\n         [127, 127, 127],\n         ...,\n         [ 57,   1, 157],\n...\n         [187,  56,  64],\n         [190,  56,  65],\n         [190,  56,  65]]]], shape=(20, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mp4_29_97-qwen3_vl-pyav-8] ____
+
+name = 'mp4_29_97', loader = 'qwen3_vl', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((20, 120, 160, 3) == (20, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[126, 126, 126],\n         [124, 124, 124],\n         [125, 125, 125],\n         ...,\n         [ 55,   1, 155],\n...\n         [186,  58,  65],\n         [186,  58,  65],\n         [186,  58,  65]]]], shape=(20, 120, 160, 3), dtype=uint8), array([[[[128, 128, 128],\n         [126, 126, 126],\n         [127, 127, 127],\n         ...,\n         [ 57,   1, 157],\n...\n         [187,  58,  65],\n         [187,  58,  65],\n         [187,  58,  65]]]], shape=(20, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-qwen3_vl-pyav-8] _
+
+name = 'mp4_copy_cut_on_keyframe', loader = 'qwen3_vl', codec = 'pyav'
+count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        meta = {k: v for k, v in meta.items() if k != "av_imported"}
+        ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
+        assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
+>       assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
+E       AssertionError: frames changed
+E       assert ((6, 120, 160, 3) == (6, 120, 160, 3)
+E         
+E         Use -v to get more diff and False)
+E        +  where False = <function array_equal at 0x10733ea30>(array([[[[125, 125, 125],\n         [126, 126, 126],\n         [125, 125, 125],\n         ...,\n         [236,  44,  63],\n...,\n         [255,  87,  53],\n         [  3,  87,  56],\n         [  3,  87,  56]]]], shape=(6, 120, 160, 3), dtype=uint8), array([[[[127, 127, 127],\n         [128, 128, 128],\n         [127, 127, 127],\n         ...,\n         [237,  45,  64],\n...,\n         [255,  88,  54],\n         [  5,  87,  57],\n         [  5,  87,  57]]]], shape=(6, 120, 160, 3), dtype=uint8))
+E        +    where <function array_equal at 0x10733ea30> = np.array_equal
+
+test_trimmed_video.py:548: AssertionError
+=========================== short test summary info ============================
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf2-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf2-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf0-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf0-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_29_97-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_29_97-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_with_audio-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_with_audio-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mov_h264-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mov_h264-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[avi_mpeg4-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_av1-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_av1-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf2-qwen3_vl-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_29_97-qwen3_vl-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-qwen3_vl-pyav-8]
+26 failed, 135 passed in 23.46s

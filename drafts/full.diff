@@ -1,0 +1,3648 @@
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/environment/Dockerfile b/tasks/vllm-trimmed-video-frame-sampling/environment/Dockerfile
+new file mode 100644
+index 0000000..d275368
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/environment/Dockerfile
+@@ -0,0 +1,724 @@
++# syntax=docker/dockerfile:1
++# Template inputs below are replaced from task.toml by generate.py. Generated
++# task Dockerfiles are self-contained and differ only in their frozen inputs.
++
++ARG VLLM_BASE_SHA=11baa0ebd88480b0a3e30138e4ee189420cd33be
++ARG VLLM_DEPENDENCY_CUTOFF=2026-08-20T03:52:42Z
++ARG VLLM_CACHE_NAMESPACE=11baa0ebd88480b0a3e30138e4ee189420cd33be-4e0bd3490ff5c031
++ARG VLLM_REPO=https://github.com/vllm-project/vllm.git
++
++######################### PINNED SOURCE #########################
++FROM alpine:3.20@sha256:d9e853e87e55526f6b2917df91a2115c36dd7c696a35be12163d44e6e2a4b6bc AS source
++ARG VLLM_BASE_SHA
++ARG VLLM_REPO
++RUN test -n "$VLLM_BASE_SHA" \
++ && apk add --no-cache ca-certificates git \
++ && mkdir -p /src/vllm \
++ && git -C /src/vllm init -q \
++ && git -C /src/vllm config core.logAllRefUpdates false \
++ && git -C /src/vllm remote add origin "$VLLM_REPO" \
++ && git -C /src/vllm fetch --no-tags origin "$VLLM_BASE_SHA" \
++ && git -C /src/vllm checkout -q -b main "$VLLM_BASE_SHA" \
++ && test "$(git -C /src/vllm rev-parse HEAD)" = "$VLLM_BASE_SHA" \
++ && git -C /src/vllm remote remove origin \
++ && rm -rf /src/vllm/.git/logs \
++ && rm -f /src/vllm/.git/FETCH_HEAD /src/vllm/.git/ORIG_HEAD \
++ && test "$(git -C /src/vllm branch --show-current)" = main \
++ && test "$(git -C /src/vllm rev-list --all --count)" -gt 1 \
++ && test ! -e /src/vllm/.git/shallow \
++ && test -z "$(git -C /src/vllm remote)" \
++ && test -z "$(git -C /src/vllm for-each-ref --format='%(refname)' refs/remotes refs/tags)" \
++ && test ! -e /src/vllm/.git/logs \
++ && test ! -e /src/vllm/.git/FETCH_HEAD \
++ && test ! -e /src/vllm/.git/ORIG_HEAD \
++ && test -z "$(git -C /src/vllm fsck --full --no-reflogs --unreachable --no-progress 2>/dev/null)" \
++ && test -z "$(git -C /src/vllm status --porcelain)"
++
++######################### ALL-IN-ONE CPU ENVIRONMENT #########################
++FROM python:3.12-slim-trixie@sha256:09f7da3bc104798d0afb40bc08d23ab2da20a76130cec1f2ef170848f5d85217
++ARG TARGETARCH
++ENV DEBIAN_FRONTEND=noninteractive \
++    PIP_DISABLE_PIP_VERSION_CHECK=1 \
++    UV_LINK_MODE=copy \
++    UV_HTTP_TIMEOUT=500 \
++    CARGO_HOME=/root/.cargo \
++    RUSTUP_HOME=/root/.rustup \
++    PATH=/root/.cargo/bin:$PATH \
++    CARGO_BUILD_JOBS=4 \
++    CARGO_INCREMENTAL=0 \
++    CC=/usr/bin/gcc \
++    CXX=/usr/bin/g++ \
++    CCACHE_DIR=/root/.cache/ccache \
++    CMAKE_CXX_COMPILER_LAUNCHER=ccache \
++    MAX_JOBS=8
++
++RUN apt-get update \
++ && apt-get install -y --no-install-recommends \
++      bash build-essential ca-certificates ccache curl ffmpeg \
++      git jq libgl1 libnuma-dev libsm6 libssl-dev libtcmalloc-minimal4 \
++      libxext6 lsof make pkg-config sudo unzip wget xz-utils \
++ && rm -rf /var/lib/apt/lists/*
++
++RUN pip install --no-cache-dir uv==0.11.28
++
++RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
++      | sh -s -- -y --profile minimal --default-toolchain none \
++ && rustup toolchain install 1.95 --profile minimal --component rustfmt,clippy \
++ && rustup default 1.95
++
++RUN case "$TARGETARCH" in \
++      amd64) nextest_platform=linux ;; \
++      arm64) nextest_platform=linux-arm ;; \
++      *) echo "Unsupported architecture: $TARGETARCH" >&2; exit 1 ;; \
++    esac \
++ && curl --http1.1 -L --retry 10 --retry-all-errors --connect-timeout 30 --max-time 600 \
++      --proto '=https' --tlsv1.2 -sSf \
++      "https://get.nexte.st/0.9.143/$nextest_platform" \
++      -o /tmp/cargo-nextest.tar.gz \
++ && tar -xzf /tmp/cargo-nextest.tar.gz -C /root/.cargo/bin \
++ && rm -f /tmp/cargo-nextest.tar.gz \
++ && cargo nextest --version
++
++ARG VLLM_DEPENDENCY_CUTOFF
++# Exact task dependency lock (sha256:4e0bd3490ff5c03119d2c2363ef3e2089f026c7ea88fe5e54f01bb4def040687) is embedded so this
++# Dockerfile remains independently buildable with an empty context.
++RUN --mount=type=cache,id=vllm-uv-downloads-v3,target=/root/.cache/uv,sharing=locked <<'VLLM_INSTALL_EOF'
++set -eu
++cat > /tmp/vllm-requirements.lock <<'VLLM_REQUIREMENTS_EOF'
++# Generated with uv 0.11.28 from the pinned base requirements and task
++# extras for CPython 3.12 on x86_64 manylinux_2_28. Packages newer than
++# 2026-08-20T03:52:42Z were excluded during resolution.
++aiohappyeyeballs==2.7.1
++    # via aiohttp
++aiohttp==3.14.3
++    # via -r requirements/common.txt
++aiosignal==1.4.0
++    # via aiohttp
++annotated-doc==0.0.5
++    # via
++    #   fastapi
++    #   typer
++annotated-types==0.8.0
++    # via pydantic
++anthropic==0.125.0
++    # via -r requirements/common.txt
++anyio==4.14.2
++    # via
++    #   anthropic
++    #   httpx
++    #   httpx2
++    #   mcp
++    #   openai
++    #   sse-starlette
++    #   starlette
++    #   watchfiles
++apache-tvm-ffi==0.1.13.post3
++    # via xgrammar
++astor==0.8.1
++    # via depyf
++attrs==26.1.0
++    # via
++    #   aiohttp
++    #   jsonschema
++    #   referencing
++av==18.1.0
++    # via -r extras.in
++blake3==1.0.9
++    # via -r requirements/common.txt
++cachetools==7.1.7
++    # via -r requirements/common.txt
++cbor2==6.1.4
++    # via -r requirements/common.txt
++certifi==2026.7.22
++    # via
++    #   httpcore
++    #   httpx
++    #   requests
++    #   sentry-sdk
++cffi==2.1.1
++    # via
++    #   cryptography
++    #   soundfile
++charset-normalizer==3.5.1
++    # via requests
++click==8.4.2
++    # via
++    #   huggingface-hub
++    #   rich-toolkit
++    #   uvicorn
++cloudpickle==3.1.2
++    # via -r requirements/common.txt
++cmake==4.4.2
++    # via -r requirements/build/cpu.txt
++compressed-tensors==0.17.0
++    # via -r requirements/common.txt
++coverage==7.15.4
++    # via pytest-cov
++cryptography==50.0.0
++    # via pyjwt
++depyf==0.20.0
++    # via -r requirements/common.txt
++detect-installer==0.1.0
++    # via fastapi-cloud-cli
++dill==0.4.1
++    # via depyf
++distro==1.9.0
++    # via anthropic
++dnspython==2.8.0
++    # via email-validator
++docstring-parser==0.18.0
++    # via anthropic
++einops==0.8.2
++    # via -r requirements/common.txt
++email-validator==2.3.0
++    # via
++    #   fastapi
++    #   pydantic
++fastapi==0.136.3
++    # via
++    #   -r requirements/common.txt
++    #   model-hosting-container-standards
++fastapi-cli==0.0.32
++    # via fastapi
++fastapi-cloud-cli==0.23.0
++    # via fastapi-cli
++fastar==0.11.0
++    # via
++    #   fastapi
++    #   fastapi-cloud-cli
++filelock==3.32.3
++    # via
++    #   -r requirements/common.txt
++    #   huggingface-hub
++    #   torch
++frozenlist==1.8.0
++    # via
++    #   aiohttp
++    #   aiosignal
++fsspec==2026.7.0
++    # via
++    #   huggingface-hub
++    #   torch
++googleapis-common-protos==1.75.1
++    # via
++    #   opentelemetry-exporter-otlp-proto-grpc
++    #   opentelemetry-exporter-otlp-proto-http
++grpcio==1.83.0
++    # via opentelemetry-exporter-otlp-proto-grpc
++h11==0.16.0
++    # via
++    #   httpcore
++    #   httpcore2
++    #   uvicorn
++hf-xet==1.6.0
++    # via huggingface-hub
++httpcore==1.0.9
++    # via httpx
++httpcore2==2.12.0
++    # via httpx2
++httptools==0.8.0
++    # via uvicorn
++httpx==0.28.1
++    # via
++    #   anthropic
++    #   fastapi
++    #   fastapi-cloud-cli
++    #   huggingface-hub
++    #   model-hosting-container-standards
++httpx2==2.12.0
++    # via
++    #   mcp
++    #   openai
++huggingface-hub==1.28.0
++    # via
++    #   -r requirements/common.txt
++    #   tokenizers
++    #   transformers
++idna==3.19
++    # via
++    #   anyio
++    #   email-validator
++    #   httpx
++    #   httpx2
++    #   requests
++    #   yarl
++ijson==3.5.1
++    # via -r requirements/common.txt
++iniconfig==2.3.0
++    # via pytest
++intel-cmplr-lib-ur==2024.2.1
++    # via intel-openmp
++intel-openmp==2024.2.1
++    # via -r requirements/cpu.txt
++interegular==0.3.3
++    # via lm-format-enforcer
++jinja2==3.1.6
++    # via
++    #   -r requirements/build/cpu.txt
++    #   fastapi
++    #   torch
++jiter==0.16.0
++    # via
++    #   anthropic
++    #   openai
++jmespath==1.1.0
++    # via model-hosting-container-standards
++jsonschema==4.26.0
++    # via
++    #   -r requirements/common.txt
++    #   mcp
++    #   mistral-common
++jsonschema-specifications==2025.9.1
++    # via jsonschema
++lark==1.2.2
++    # via -r requirements/common.txt
++llguidance==1.7.6
++    # via -r requirements/common.txt
++llvmlite==0.47.0
++    # via numba
++lm-format-enforcer==0.11.3
++    # via -r requirements/common.txt
++loguru==0.7.3
++    # via compressed-tensors
++markdown-it-py==4.2.0
++    # via rich
++markupsafe==3.0.3
++    # via jinja2
++mcp==2.0.0
++    # via -r requirements/common.txt
++mcp-types==2.0.0
++    # via mcp
++mdurl==0.1.2
++    # via markdown-it-py
++mistral-common==1.11.7
++    # via -r requirements/common.txt
++model-hosting-container-standards==0.1.16
++    # via -r requirements/common.txt
++mpmath==1.3.0
++    # via sympy
++msgspec==0.21.1
++    # via -r requirements/common.txt
++multidict==6.7.1
++    # via
++    #   aiohttp
++    #   yarl
++networkx==3.6.1
++    # via torch
++ninja==1.13.0
++    # via
++    #   -r requirements/build/cpu.txt
++    #   -r requirements/common.txt
++numba==0.65.0
++    # via -r requirements/cpu.txt
++numpy==2.3.5
++    # via
++    #   -r requirements/common.txt
++    #   mistral-common
++    #   numba
++    #   opencv-python-headless
++    #   soundfile
++    #   torchvision
++    #   transformers
++    #   xgrammar
++openai==3.3.1
++    # via -r requirements/common.txt
++openai-harmony==0.0.8
++    # via -r requirements/common.txt
++opencv-python-headless==5.0.0.93
++    # via
++    #   -r requirements/common.txt
++    #   mistral-common
++opentelemetry-api==1.44.0
++    # via
++    #   -r requirements/common.txt
++    #   mcp
++    #   opentelemetry-exporter-otlp-proto-grpc
++    #   opentelemetry-exporter-otlp-proto-http
++    #   opentelemetry-sdk
++    #   opentelemetry-semantic-conventions
++opentelemetry-exporter-otlp==1.44.0
++    # via -r requirements/common.txt
++opentelemetry-exporter-otlp-proto-common==1.44.0
++    # via
++    #   opentelemetry-exporter-otlp-proto-grpc
++    #   opentelemetry-exporter-otlp-proto-http
++opentelemetry-exporter-otlp-proto-grpc==1.44.0
++    # via opentelemetry-exporter-otlp
++opentelemetry-exporter-otlp-proto-http==1.44.0
++    # via opentelemetry-exporter-otlp
++opentelemetry-proto==1.44.0
++    # via
++    #   opentelemetry-exporter-otlp-proto-common
++    #   opentelemetry-exporter-otlp-proto-grpc
++    #   opentelemetry-exporter-otlp-proto-http
++opentelemetry-sdk==1.44.0
++    # via
++    #   -r requirements/common.txt
++    #   opentelemetry-exporter-otlp-proto-grpc
++    #   opentelemetry-exporter-otlp-proto-http
++    #   opentelemetry-semantic-conventions-ai
++opentelemetry-semantic-conventions==0.65b0
++    # via
++    #   opentelemetry-sdk
++    #   opentelemetry-semantic-conventions-ai
++opentelemetry-semantic-conventions-ai==0.5.1
++    # via -r requirements/common.txt
++outlines-core==0.2.14
++    # via -r requirements/common.txt
++packaging==26.3
++    # via
++    #   -r requirements/build/cpu.txt
++    #   huggingface-hub
++    #   lm-format-enforcer
++    #   pytest
++    #   pytest-rerunfailures
++    #   setuptools-scm
++    #   transformers
++    #   vcs-versioning
++    #   wheel
++partial-json-parser==0.2.1.1.post7
++    # via -r requirements/common.txt
++pillow==12.3.0
++    # via
++    #   -r requirements/common.txt
++    #   mistral-common
++    #   torchvision
++pluggy==1.6.0
++    # via
++    #   pytest
++    #   pytest-cov
++prometheus-client==0.26.0
++    # via
++    #   -r requirements/common.txt
++    #   prometheus-fastapi-instrumentator
++prometheus-fastapi-instrumentator==8.1.0
++    # via -r requirements/common.txt
++propcache==0.5.2
++    # via
++    #   aiohttp
++    #   yarl
++protobuf==7.35.1
++    # via
++    #   -r requirements/common.txt
++    #   googleapis-common-protos
++    #   opentelemetry-proto
++psutil==7.2.2
++    # via -r requirements/common.txt
++py-cpuinfo==9.0.0
++    # via -r requirements/common.txt
++pybase64==1.5.0
++    # via -r requirements/common.txt
++pycountry==26.2.16
++    # via pydantic-extra-types
++pycparser==3.0
++    # via cffi
++pydantic==2.13.4
++    # via
++    #   -r requirements/common.txt
++    #   anthropic
++    #   compressed-tensors
++    #   fastapi
++    #   fastapi-cloud-cli
++    #   lm-format-enforcer
++    #   mcp
++    #   mcp-types
++    #   mistral-common
++    #   model-hosting-container-standards
++    #   openai
++    #   openai-harmony
++    #   pydantic-extra-types
++    #   pydantic-settings
++    #   xgrammar
++pydantic-core==2.46.4
++    # via pydantic
++pydantic-extra-types==2.11.1
++    # via
++    #   fastapi
++    #   mistral-common
++pydantic-settings==2.15.0
++    # via fastapi
++pygments==2.21.0
++    # via
++    #   pytest
++    #   rich
++pyjwt==2.13.0
++    # via mcp
++pytest==9.1.1
++    # via
++    #   -r extras.in
++    #   pytest-asyncio
++    #   pytest-cov
++    #   pytest-forked
++    #   pytest-rerunfailures
++    #   pytest-shard
++    #   pytest-timeout
++pytest-asyncio==1.4.0
++    # via -r extras.in
++pytest-cov==7.1.0
++    # via -r extras.in
++pytest-forked==1.7.5
++    # via -r extras.in
++pytest-rerunfailures==16.6
++    # via -r extras.in
++pytest-shard==0.1.2
++    # via -r extras.in
++pytest-timeout==2.4.0
++    # via -r extras.in
++python-dotenv==1.2.3
++    # via
++    #   pydantic-settings
++    #   uvicorn
++python-json-logger==4.2.0
++    # via -r requirements/common.txt
++python-multipart==0.0.32
++    # via
++    #   fastapi
++    #   mcp
++pyyaml==6.0.3
++    # via
++    #   -r requirements/common.txt
++    #   huggingface-hub
++    #   lm-format-enforcer
++    #   transformers
++    #   uvicorn
++pyzmq==27.1.0
++    # via -r requirements/common.txt
++referencing==0.37.0
++    # via
++    #   jsonschema
++    #   jsonschema-specifications
++regex==2026.7.19
++    # via
++    #   -r requirements/build/cpu.txt
++    #   -r requirements/common.txt
++    #   tiktoken
++    #   transformers
++requests==2.34.2
++    # via
++    #   -r requirements/common.txt
++    #   mistral-common
++    #   opentelemetry-exporter-otlp-proto-http
++    #   tiktoken
++rich==15.0.0
++    # via
++    #   rich-toolkit
++    #   typer
++rich-toolkit==0.20.3
++    # via
++    #   fastapi-cli
++    #   fastapi-cloud-cli
++rignore==0.8.1
++    # via fastapi-cloud-cli
++rpds-py==2026.6.3
++    # via
++    #   jsonschema
++    #   referencing
++safetensors==0.8.0
++    # via
++    #   -r requirements/common.txt
++    #   transformers
++semantic-version==2.10.0
++    # via setuptools-rust
++sentencepiece==0.2.2
++    # via -r requirements/common.txt
++sentry-sdk==2.68.0
++    # via fastapi-cloud-cli
++setproctitle==1.3.7
++    # via -r requirements/common.txt
++setuptools==77.0.3
++    # via
++    #   -r requirements/build/cpu.txt
++    #   -r requirements/common.txt
++    #   -r requirements/cpu.txt
++    #   model-hosting-container-standards
++    #   setuptools-rust
++    #   setuptools-scm
++    #   torch
++setuptools-rust==1.13.0
++    # via -r requirements/build/cpu.txt
++setuptools-scm==10.2.1
++    # via -r requirements/build/cpu.txt
++shellingham==1.5.4
++    # via typer
++six==1.17.0
++    # via -r requirements/common.txt
++sniffio==1.3.1
++    # via
++    #   anthropic
++    #   openai
++soundfile==0.14.0
++    # via -r extras.in
++sse-starlette==3.4.8
++    # via mcp
++starlette==1.6.0
++    # via
++    #   -r requirements/common.txt
++    #   fastapi
++    #   mcp
++    #   model-hosting-container-standards
++    #   prometheus-fastapi-instrumentator
++    #   sse-starlette
++supervisor==4.3.0
++    # via model-hosting-container-standards
++sympy==1.14.0
++    # via torch
++tblib==3.2.2
++    # via -r extras.in
++tiktoken==0.14.0
++    # via
++    #   -r requirements/common.txt
++    #   mistral-common
++tokenizers==0.22.2
++    # via
++    #   -r requirements/common.txt
++    #   transformers
++torch==2.13.0+cpu
++    # via
++    #   -r requirements/build/cpu.txt
++    #   -r requirements/cpu.txt
++    #   compressed-tensors
++    #   torchvision
++    #   xgrammar
++torchaudio==2.11.0+cpu
++    # via -r requirements/cpu.txt
++torchcodec==0.16.0+cpu
++    # via -r requirements/cpu.txt
++torchvision==0.28.0+cpu
++    # via -r requirements/cpu.txt
++tqdm==4.70.0
++    # via
++    #   -r requirements/common.txt
++    #   huggingface-hub
++    #   transformers
++transformers==5.15.1
++    # via
++    #   -r requirements/common.txt
++    #   compressed-tensors
++    #   xgrammar
++triton==3.7.1
++    # via xgrammar
++truststore==0.10.4
++    # via
++    #   httpcore2
++    #   httpx2
++typer==0.27.1
++    # via
++    #   fastapi-cli
++    #   fastapi-cloud-cli
++    #   transformers
++typing-extensions==4.16.0
++    # via
++    #   -r requirements/common.txt
++    #   aiohttp
++    #   aiosignal
++    #   anthropic
++    #   anyio
++    #   apache-tvm-ffi
++    #   fastapi
++    #   grpcio
++    #   httpx2
++    #   huggingface-hub
++    #   mcp
++    #   mcp-types
++    #   mistral-common
++    #   openai
++    #   opentelemetry-api
++    #   opentelemetry-exporter-otlp-proto-grpc
++    #   opentelemetry-exporter-otlp-proto-http
++    #   opentelemetry-sdk
++    #   opentelemetry-semantic-conventions
++    #   pydantic
++    #   pydantic-core
++    #   pydantic-extra-types
++    #   pytest-asyncio
++    #   referencing
++    #   rich-toolkit
++    #   soundfile
++    #   starlette
++    #   torch
++    #   typing-inspection
++    #   xgrammar
++typing-inspection==0.4.4
++    # via
++    #   fastapi
++    #   mcp
++    #   pydantic
++    #   pydantic-settings
++urllib3==2.7.0
++    # via
++    #   requests
++    #   sentry-sdk
++uvicorn==0.52.4
++    # via
++    #   fastapi
++    #   fastapi-cli
++    #   fastapi-cloud-cli
++    #   mcp
++uvloop==0.22.1
++    # via uvicorn
++vcs-versioning==2.3.1
++    # via setuptools-scm
++watchfiles==1.2.0
++    # via
++    #   -r requirements/common.txt
++    #   uvicorn
++websockets==17.0.1
++    # via uvicorn
++wheel==0.48.0
++    # via -r requirements/build/cpu.txt
++xgrammar==0.2.3
++    # via -r requirements/common.txt
++yarl==1.24.5
++    # via aiohttp
++VLLM_REQUIREMENTS_EOF
++uv pip install --system --index-strategy first-index \
++  --torch-backend cpu -r /tmp/vllm-requirements.lock
++rm -f /tmp/vllm-requirements.lock
++VLLM_INSTALL_EOF
++
++COPY --from=source /src/vllm/ /workspace/vllm/
++WORKDIR /workspace/vllm
++ARG VLLM_BASE_SHA
++ARG VLLM_CACHE_NAMESPACE
++ENV SETUPTOOLS_SCM_PRETEND_VERSION=0.0.0+g${VLLM_BASE_SHA} \
++    SETUPTOOLS_SCM_PRETEND_VERSION_FOR_VLLM=0.0.0+g${VLLM_BASE_SHA}
++
++RUN --mount=type=cache,id=vllm-uv-downloads-v3,target=/root/.cache/uv,sharing=locked \
++    --mount=type=cache,id=vllm-ccache-${VLLM_CACHE_NAMESPACE},target=/root/.cache/ccache,sharing=locked \
++    --mount=type=cache,id=vllm-fetchcontent-${VLLM_CACHE_NAMESPACE},target=/workspace/vllm/.deps,sharing=locked \
++    python -c "import importlib.metadata as m; assert not any((d.metadata.get('Name') or '').lower() == 'vllm' for d in m.distributions())" \
++ && \
++    VLLM_TARGET_DEVICE=cpu \
++      uv pip install --system --no-build-isolation --no-deps -e . --torch-backend cpu \
++ && if [ -f tests/vllm_test_utils/setup.py ]; then \
++      uv pip install --system --no-deps -e tests/vllm_test_utils; \
++    fi \
++ && python -c "from pathlib import Path; import vllm; assert Path(vllm.__file__).resolve().is_relative_to(Path('/workspace/vllm'))"
++
++RUN if [ -f rust/Cargo.toml ]; then \
++      if [ -x tools/install_protoc.sh ]; then tools/install_protoc.sh; fi; \
++      cargo fetch --manifest-path rust/Cargo.toml --locked; \
++    fi
++
++# Keep .git and every commit reachable from the pinned base on local main.
++# Remove fetch-only metadata and reject any hidden, unreachable Git objects.
++RUN find . -type d -name __pycache__ -prune -exec rm -rf {} + \
++ && find . -type d \( -name '*.egg-info' -o -name '.pytest_cache' \) -prune -exec rm -rf {} + \
++ && test "$(git rev-parse HEAD)" = "$VLLM_BASE_SHA" \
++ && test "$(git branch --show-current)" = main \
++ && test "$(git rev-list --all --count)" -gt 1 \
++ && test ! -e .git/shallow \
++ && test -z "$(git remote)" \
++ && test -z "$(git for-each-ref --format='%(refname)' refs/remotes refs/tags)" \
++ && test ! -e .git/logs \
++ && test ! -e .git/FETCH_HEAD \
++ && test ! -e .git/ORIG_HEAD \
++ && test -z "$(git fsck --full --no-reflogs --unreachable --no-progress 2>/dev/null)" \
++ && test -z "$(git status --porcelain)"
++
++LABEL ai.infra.bench.environment-template=vllm-harbor-all-in-one \
++      ai.infra.bench.base-commit=$VLLM_BASE_SHA \
++      ai.infra.bench.dependency-cutoff=$VLLM_DEPENDENCY_CUTOFF \
++      ai.infra.bench.cache-namespace=$VLLM_CACHE_NAMESPACE
++ENTRYPOINT []
++CMD ["sleep", "infinity"]
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/environment/image-manifest.json b/tasks/vllm-trimmed-video-frame-sampling/environment/image-manifest.json
+new file mode 100644
+index 0000000..94afa59
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/environment/image-manifest.json
+@@ -0,0 +1,8 @@
++{
++  "image_id": "sha256:46c3557c0f9e09bd0f4ca888ac4b3db4c5888b2d7b9135287597f80063cad227",
++  "files": {
++    "Dockerfile": "d94f25abc8ad790b58b5e1017dc68331fe1bda1fe12440ea0fa075b208409fc4",
++    "lock/requirements.txt": "4e0bd3490ff5c03119d2c2363ef3e2089f026c7ea88fe5e54f01bb4def040687",
++    "lock/manifest.json": "a05bd002ac73240a7cc76d1a0617a97bf54051af85f3fd82c12e14f7cd0666f5"
++  }
++}
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/environment/lock/extras.in b/tasks/vllm-trimmed-video-frame-sampling/environment/lock/extras.in
+new file mode 100644
+index 0000000..da5ea91
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/environment/lock/extras.in
+@@ -0,0 +1,10 @@
++pytest
++pytest-asyncio
++pytest-forked
++pytest-rerunfailures
++pytest-shard
++pytest-timeout
++pytest-cov
++tblib
++soundfile
++av
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/environment/lock/manifest.json b/tasks/vllm-trimmed-video-frame-sampling/environment/lock/manifest.json
+new file mode 100644
+index 0000000..1c6c1ea
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/environment/lock/manifest.json
+@@ -0,0 +1,38 @@
++{
++  "schema_version": "vllm_dependency_lock.v1",
++  "resolver": "uv 0.11.28",
++  "base_commit": "11baa0ebd88480b0a3e30138e4ee189420cd33be",
++  "dependency_cutoff": "2026-08-20T03:52:42Z",
++  "dependency_cutoff_overrides": [],
++  "python_version": "3.12",
++  "python_platform": "x86_64-manylinux_2_28",
++  "torch_backend": "cpu",
++  "index_strategy": "first-index",
++  "inputs": {
++    "requirements/cpu.txt": {
++      "source_sha256": "f565b1b986215c7e73e5ded866d6c34bb1e42b768180a9dec7afa4e214d8d67c",
++      "resolver_input_sha256": "f565b1b986215c7e73e5ded866d6c34bb1e42b768180a9dec7afa4e214d8d67c"
++    },
++    "requirements/common.txt": {
++      "source_sha256": "9bbcc3566e63b84fdf04e9fb5685d41fded989b66679d715a72f3ca342f436ed",
++      "resolver_input_sha256": "9bbcc3566e63b84fdf04e9fb5685d41fded989b66679d715a72f3ca342f436ed"
++    },
++    "requirements/build/cpu.txt": {
++      "source_sha256": "25f2116b482f4105354dd75ebc7e3703a90b2365d4b78cab25658bd8347d6fba",
++      "resolver_input_sha256": "25f2116b482f4105354dd75ebc7e3703a90b2365d4b78cab25658bd8347d6fba"
++    },
++    "extras.in": {
++      "sha256": "191038cfea3da73e94299a5143f7f31ec619c01e7d23962b692eb92a92f4616d"
++    }
++  },
++  "normalization": {
++    "removed_line": "--extra-index-url https://download.pytorch.org/whl/cpu",
++    "reason": "uv --torch-backend cpu scopes the PyTorch index to torch packages; removing the generic extra index prevents unrelated packages without upload timestamps from bypassing the cutoff"
++  },
++  "command": "uv pip compile requirements/cpu.txt requirements/build/cpu.txt extras.in --python-version 3.12 --python-platform x86_64-manylinux_2_28 --exclude-newer 2026-08-20T03:52:42Z --torch-backend cpu --index-strategy first-index --output-file requirements.txt",
++  "output": {
++    "path": "environment/lock/requirements.txt",
++    "packages": 168,
++    "sha256": "4e0bd3490ff5c03119d2c2363ef3e2089f026c7ea88fe5e54f01bb4def040687"
++  }
++}
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/environment/lock/requirements.txt b/tasks/vllm-trimmed-video-frame-sampling/environment/lock/requirements.txt
+new file mode 100644
+index 0000000..439fb97
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/environment/lock/requirements.txt
+@@ -0,0 +1,585 @@
++# Generated with uv 0.11.28 from the pinned base requirements and task
++# extras for CPython 3.12 on x86_64 manylinux_2_28. Packages newer than
++# 2026-08-20T03:52:42Z were excluded during resolution.
++aiohappyeyeballs==2.7.1
++    # via aiohttp
++aiohttp==3.14.3
++    # via -r requirements/common.txt
++aiosignal==1.4.0
++    # via aiohttp
++annotated-doc==0.0.5
++    # via
++    #   fastapi
++    #   typer
++annotated-types==0.8.0
++    # via pydantic
++anthropic==0.125.0
++    # via -r requirements/common.txt
++anyio==4.14.2
++    # via
++    #   anthropic
++    #   httpx
++    #   httpx2
++    #   mcp
++    #   openai
++    #   sse-starlette
++    #   starlette
++    #   watchfiles
++apache-tvm-ffi==0.1.13.post3
++    # via xgrammar
++astor==0.8.1
++    # via depyf
++attrs==26.1.0
++    # via
++    #   aiohttp
++    #   jsonschema
++    #   referencing
++av==18.1.0
++    # via -r extras.in
++blake3==1.0.9
++    # via -r requirements/common.txt
++cachetools==7.1.7
++    # via -r requirements/common.txt
++cbor2==6.1.4
++    # via -r requirements/common.txt
++certifi==2026.7.22
++    # via
++    #   httpcore
++    #   httpx
++    #   requests
++    #   sentry-sdk
++cffi==2.1.1
++    # via
++    #   cryptography
++    #   soundfile
++charset-normalizer==3.5.1
++    # via requests
++click==8.4.2
++    # via
++    #   huggingface-hub
++    #   rich-toolkit
++    #   uvicorn
++cloudpickle==3.1.2
++    # via -r requirements/common.txt
++cmake==4.4.2
++    # via -r requirements/build/cpu.txt
++compressed-tensors==0.17.0
++    # via -r requirements/common.txt
++coverage==7.15.4
++    # via pytest-cov
++cryptography==50.0.0
++    # via pyjwt
++depyf==0.20.0
++    # via -r requirements/common.txt
++detect-installer==0.1.0
++    # via fastapi-cloud-cli
++dill==0.4.1
++    # via depyf
++distro==1.9.0
++    # via anthropic
++dnspython==2.8.0
++    # via email-validator
++docstring-parser==0.18.0
++    # via anthropic
++einops==0.8.2
++    # via -r requirements/common.txt
++email-validator==2.3.0
++    # via
++    #   fastapi
++    #   pydantic
++fastapi==0.136.3
++    # via
++    #   -r requirements/common.txt
++    #   model-hosting-container-standards
++fastapi-cli==0.0.32
++    # via fastapi
++fastapi-cloud-cli==0.23.0
++    # via fastapi-cli
++fastar==0.11.0
++    # via
++    #   fastapi
++    #   fastapi-cloud-cli
++filelock==3.32.3
++    # via
++    #   -r requirements/common.txt
++    #   huggingface-hub
++    #   torch
++frozenlist==1.8.0
++    # via
++    #   aiohttp
++    #   aiosignal
++fsspec==2026.7.0
++    # via
++    #   huggingface-hub
++    #   torch
++googleapis-common-protos==1.75.1
++    # via
++    #   opentelemetry-exporter-otlp-proto-grpc
++    #   opentelemetry-exporter-otlp-proto-http
++grpcio==1.83.0
++    # via opentelemetry-exporter-otlp-proto-grpc
++h11==0.16.0
++    # via
++    #   httpcore
++    #   httpcore2
++    #   uvicorn
++hf-xet==1.6.0
++    # via huggingface-hub
++httpcore==1.0.9
++    # via httpx
++httpcore2==2.12.0
++    # via httpx2
++httptools==0.8.0
++    # via uvicorn
++httpx==0.28.1
++    # via
++    #   anthropic
++    #   fastapi
++    #   fastapi-cloud-cli
++    #   huggingface-hub
++    #   model-hosting-container-standards
++httpx2==2.12.0
++    # via
++    #   mcp
++    #   openai
++huggingface-hub==1.28.0
++    # via
++    #   -r requirements/common.txt
++    #   tokenizers
++    #   transformers
++idna==3.19
++    # via
++    #   anyio
++    #   email-validator
++    #   httpx
++    #   httpx2
++    #   requests
++    #   yarl
++ijson==3.5.1
++    # via -r requirements/common.txt
++iniconfig==2.3.0
++    # via pytest
++intel-cmplr-lib-ur==2024.2.1
++    # via intel-openmp
++intel-openmp==2024.2.1
++    # via -r requirements/cpu.txt
++interegular==0.3.3
++    # via lm-format-enforcer
++jinja2==3.1.6
++    # via
++    #   -r requirements/build/cpu.txt
++    #   fastapi
++    #   torch
++jiter==0.16.0
++    # via
++    #   anthropic
++    #   openai
++jmespath==1.1.0
++    # via model-hosting-container-standards
++jsonschema==4.26.0
++    # via
++    #   -r requirements/common.txt
++    #   mcp
++    #   mistral-common
++jsonschema-specifications==2025.9.1
++    # via jsonschema
++lark==1.2.2
++    # via -r requirements/common.txt
++llguidance==1.7.6
++    # via -r requirements/common.txt
++llvmlite==0.47.0
++    # via numba
++lm-format-enforcer==0.11.3
++    # via -r requirements/common.txt
++loguru==0.7.3
++    # via compressed-tensors
++markdown-it-py==4.2.0
++    # via rich
++markupsafe==3.0.3
++    # via jinja2
++mcp==2.0.0
++    # via -r requirements/common.txt
++mcp-types==2.0.0
++    # via mcp
++mdurl==0.1.2
++    # via markdown-it-py
++mistral-common==1.11.7
++    # via -r requirements/common.txt
++model-hosting-container-standards==0.1.16
++    # via -r requirements/common.txt
++mpmath==1.3.0
++    # via sympy
++msgspec==0.21.1
++    # via -r requirements/common.txt
++multidict==6.7.1
++    # via
++    #   aiohttp
++    #   yarl
++networkx==3.6.1
++    # via torch
++ninja==1.13.0
++    # via
++    #   -r requirements/build/cpu.txt
++    #   -r requirements/common.txt
++numba==0.65.0
++    # via -r requirements/cpu.txt
++numpy==2.3.5
++    # via
++    #   -r requirements/common.txt
++    #   mistral-common
++    #   numba
++    #   opencv-python-headless
++    #   soundfile
++    #   torchvision
++    #   transformers
++    #   xgrammar
++openai==3.3.1
++    # via -r requirements/common.txt
++openai-harmony==0.0.8
++    # via -r requirements/common.txt
++opencv-python-headless==5.0.0.93
++    # via
++    #   -r requirements/common.txt
++    #   mistral-common
++opentelemetry-api==1.44.0
++    # via
++    #   -r requirements/common.txt
++    #   mcp
++    #   opentelemetry-exporter-otlp-proto-grpc
++    #   opentelemetry-exporter-otlp-proto-http
++    #   opentelemetry-sdk
++    #   opentelemetry-semantic-conventions
++opentelemetry-exporter-otlp==1.44.0
++    # via -r requirements/common.txt
++opentelemetry-exporter-otlp-proto-common==1.44.0
++    # via
++    #   opentelemetry-exporter-otlp-proto-grpc
++    #   opentelemetry-exporter-otlp-proto-http
++opentelemetry-exporter-otlp-proto-grpc==1.44.0
++    # via opentelemetry-exporter-otlp
++opentelemetry-exporter-otlp-proto-http==1.44.0
++    # via opentelemetry-exporter-otlp
++opentelemetry-proto==1.44.0
++    # via
++    #   opentelemetry-exporter-otlp-proto-common
++    #   opentelemetry-exporter-otlp-proto-grpc
++    #   opentelemetry-exporter-otlp-proto-http
++opentelemetry-sdk==1.44.0
++    # via
++    #   -r requirements/common.txt
++    #   opentelemetry-exporter-otlp-proto-grpc
++    #   opentelemetry-exporter-otlp-proto-http
++    #   opentelemetry-semantic-conventions-ai
++opentelemetry-semantic-conventions==0.65b0
++    # via
++    #   opentelemetry-sdk
++    #   opentelemetry-semantic-conventions-ai
++opentelemetry-semantic-conventions-ai==0.5.1
++    # via -r requirements/common.txt
++outlines-core==0.2.14
++    # via -r requirements/common.txt
++packaging==26.3
++    # via
++    #   -r requirements/build/cpu.txt
++    #   huggingface-hub
++    #   lm-format-enforcer
++    #   pytest
++    #   pytest-rerunfailures
++    #   setuptools-scm
++    #   transformers
++    #   vcs-versioning
++    #   wheel
++partial-json-parser==0.2.1.1.post7
++    # via -r requirements/common.txt
++pillow==12.3.0
++    # via
++    #   -r requirements/common.txt
++    #   mistral-common
++    #   torchvision
++pluggy==1.6.0
++    # via
++    #   pytest
++    #   pytest-cov
++prometheus-client==0.26.0
++    # via
++    #   -r requirements/common.txt
++    #   prometheus-fastapi-instrumentator
++prometheus-fastapi-instrumentator==8.1.0
++    # via -r requirements/common.txt
++propcache==0.5.2
++    # via
++    #   aiohttp
++    #   yarl
++protobuf==7.35.1
++    # via
++    #   -r requirements/common.txt
++    #   googleapis-common-protos
++    #   opentelemetry-proto
++psutil==7.2.2
++    # via -r requirements/common.txt
++py-cpuinfo==9.0.0
++    # via -r requirements/common.txt
++pybase64==1.5.0
++    # via -r requirements/common.txt
++pycountry==26.2.16
++    # via pydantic-extra-types
++pycparser==3.0
++    # via cffi
++pydantic==2.13.4
++    # via
++    #   -r requirements/common.txt
++    #   anthropic
++    #   compressed-tensors
++    #   fastapi
++    #   fastapi-cloud-cli
++    #   lm-format-enforcer
++    #   mcp
++    #   mcp-types
++    #   mistral-common
++    #   model-hosting-container-standards
++    #   openai
++    #   openai-harmony
++    #   pydantic-extra-types
++    #   pydantic-settings
++    #   xgrammar
++pydantic-core==2.46.4
++    # via pydantic
++pydantic-extra-types==2.11.1
++    # via
++    #   fastapi
++    #   mistral-common
++pydantic-settings==2.15.0
++    # via fastapi
++pygments==2.21.0
++    # via
++    #   pytest
++    #   rich
++pyjwt==2.13.0
++    # via mcp
++pytest==9.1.1
++    # via
++    #   -r extras.in
++    #   pytest-asyncio
++    #   pytest-cov
++    #   pytest-forked
++    #   pytest-rerunfailures
++    #   pytest-shard
++    #   pytest-timeout
++pytest-asyncio==1.4.0
++    # via -r extras.in
++pytest-cov==7.1.0
++    # via -r extras.in
++pytest-forked==1.7.5
++    # via -r extras.in
++pytest-rerunfailures==16.6
++    # via -r extras.in
++pytest-shard==0.1.2
++    # via -r extras.in
++pytest-timeout==2.4.0
++    # via -r extras.in
++python-dotenv==1.2.3
++    # via
++    #   pydantic-settings
++    #   uvicorn
++python-json-logger==4.2.0
++    # via -r requirements/common.txt
++python-multipart==0.0.32
++    # via
++    #   fastapi
++    #   mcp
++pyyaml==6.0.3
++    # via
++    #   -r requirements/common.txt
++    #   huggingface-hub
++    #   lm-format-enforcer
++    #   transformers
++    #   uvicorn
++pyzmq==27.1.0
++    # via -r requirements/common.txt
++referencing==0.37.0
++    # via
++    #   jsonschema
++    #   jsonschema-specifications
++regex==2026.7.19
++    # via
++    #   -r requirements/build/cpu.txt
++    #   -r requirements/common.txt
++    #   tiktoken
++    #   transformers
++requests==2.34.2
++    # via
++    #   -r requirements/common.txt
++    #   mistral-common
++    #   opentelemetry-exporter-otlp-proto-http
++    #   tiktoken
++rich==15.0.0
++    # via
++    #   rich-toolkit
++    #   typer
++rich-toolkit==0.20.3
++    # via
++    #   fastapi-cli
++    #   fastapi-cloud-cli
++rignore==0.8.1
++    # via fastapi-cloud-cli
++rpds-py==2026.6.3
++    # via
++    #   jsonschema
++    #   referencing
++safetensors==0.8.0
++    # via
++    #   -r requirements/common.txt
++    #   transformers
++semantic-version==2.10.0
++    # via setuptools-rust
++sentencepiece==0.2.2
++    # via -r requirements/common.txt
++sentry-sdk==2.68.0
++    # via fastapi-cloud-cli
++setproctitle==1.3.7
++    # via -r requirements/common.txt
++setuptools==77.0.3
++    # via
++    #   -r requirements/build/cpu.txt
++    #   -r requirements/common.txt
++    #   -r requirements/cpu.txt
++    #   model-hosting-container-standards
++    #   setuptools-rust
++    #   setuptools-scm
++    #   torch
++setuptools-rust==1.13.0
++    # via -r requirements/build/cpu.txt
++setuptools-scm==10.2.1
++    # via -r requirements/build/cpu.txt
++shellingham==1.5.4
++    # via typer
++six==1.17.0
++    # via -r requirements/common.txt
++sniffio==1.3.1
++    # via
++    #   anthropic
++    #   openai
++soundfile==0.14.0
++    # via -r extras.in
++sse-starlette==3.4.8
++    # via mcp
++starlette==1.6.0
++    # via
++    #   -r requirements/common.txt
++    #   fastapi
++    #   mcp
++    #   model-hosting-container-standards
++    #   prometheus-fastapi-instrumentator
++    #   sse-starlette
++supervisor==4.3.0
++    # via model-hosting-container-standards
++sympy==1.14.0
++    # via torch
++tblib==3.2.2
++    # via -r extras.in
++tiktoken==0.14.0
++    # via
++    #   -r requirements/common.txt
++    #   mistral-common
++tokenizers==0.22.2
++    # via
++    #   -r requirements/common.txt
++    #   transformers
++torch==2.13.0+cpu
++    # via
++    #   -r requirements/build/cpu.txt
++    #   -r requirements/cpu.txt
++    #   compressed-tensors
++    #   torchvision
++    #   xgrammar
++torchaudio==2.11.0+cpu
++    # via -r requirements/cpu.txt
++torchcodec==0.16.0+cpu
++    # via -r requirements/cpu.txt
++torchvision==0.28.0+cpu
++    # via -r requirements/cpu.txt
++tqdm==4.70.0
++    # via
++    #   -r requirements/common.txt
++    #   huggingface-hub
++    #   transformers
++transformers==5.15.1
++    # via
++    #   -r requirements/common.txt
++    #   compressed-tensors
++    #   xgrammar
++triton==3.7.1
++    # via xgrammar
++truststore==0.10.4
++    # via
++    #   httpcore2
++    #   httpx2
++typer==0.27.1
++    # via
++    #   fastapi-cli
++    #   fastapi-cloud-cli
++    #   transformers
++typing-extensions==4.16.0
++    # via
++    #   -r requirements/common.txt
++    #   aiohttp
++    #   aiosignal
++    #   anthropic
++    #   anyio
++    #   apache-tvm-ffi
++    #   fastapi
++    #   grpcio
++    #   httpx2
++    #   huggingface-hub
++    #   mcp
++    #   mcp-types
++    #   mistral-common
++    #   openai
++    #   opentelemetry-api
++    #   opentelemetry-exporter-otlp-proto-grpc
++    #   opentelemetry-exporter-otlp-proto-http
++    #   opentelemetry-sdk
++    #   opentelemetry-semantic-conventions
++    #   pydantic
++    #   pydantic-core
++    #   pydantic-extra-types
++    #   pytest-asyncio
++    #   referencing
++    #   rich-toolkit
++    #   soundfile
++    #   starlette
++    #   torch
++    #   typing-inspection
++    #   xgrammar
++typing-inspection==0.4.4
++    # via
++    #   fastapi
++    #   mcp
++    #   pydantic
++    #   pydantic-settings
++urllib3==2.7.0
++    # via
++    #   requests
++    #   sentry-sdk
++uvicorn==0.52.4
++    # via
++    #   fastapi
++    #   fastapi-cli
++    #   fastapi-cloud-cli
++    #   mcp
++uvloop==0.22.1
++    # via uvicorn
++vcs-versioning==2.3.1
++    # via setuptools-scm
++watchfiles==1.2.0
++    # via
++    #   -r requirements/common.txt
++    #   uvicorn
++websockets==17.0.1
++    # via uvicorn
++wheel==0.48.0
++    # via -r requirements/build/cpu.txt
++xgrammar==0.2.3
++    # via -r requirements/common.txt
++yarl==1.24.5
++    # via aiohttp
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/instruction.md b/tasks/vllm-trimmed-video-frame-sampling/instruction.md
+new file mode 100644
+index 0000000..fca026a
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/instruction.md
+@@ -0,0 +1,17 @@
++We shorten uploaded recordings with ffmpeg's lossless cut before sending them to vLLM as video input:
++
++```bash
++ffmpeg -ss 7 -i recording.mp4 -t 2 -c copy clip.mp4
++```
++
++For one 12-second, 30 fps recording, `clip.mp4` plays as a 62-frame (about 2.07 s) clip. When vLLM loads it through the normal video path with `num_frames=8`, the default OpenCV backend returns only 2 frames and reports `total_num_frames=272` and a duration of about 9.07 s. With `"backend": "pyav"` it also returns only 2 frames and reports `total_num_frames=272`, and with `num_frames=-1` it returns 64 frames, repeating the final frame three times. Other clips cut this way are milder and only lose or repeat their last sample.
++
++Make video loading handle clips trimmed this way, for both the `opencv` and `pyav` backends:
++
++- Every returned frame is one that plays in the clip, with no repeats, and the samples cover the clip from its start to its end.
++- When the clip has at least `num_frames` frames, exactly that many are returned. `num_frames=-1`, or a request for more frames than the clip has, returns each frame of the clip once.
++- The reported `total_num_frames`, `duration` and `frames_indices` describe the clip as it plays and match the frames returned.
++
++This applies to every loader that decodes through these backends, including the fps-based `opencv_dynamic`, `qwen2_vl` and `qwen3_vl` loaders, and with `frame_recovery` enabled.
++
++Videos that already load correctly, whether trimmed or not, must load exactly as they do today, with the same frames, indices and metadata. The backend that was selected must still be the one that decodes, and the OpenCV backend must keep working when the optional PyAV package is not installed.
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/solution/oracle.patch b/tasks/vllm-trimmed-video-frame-sampling/solution/oracle.patch
+new file mode 100644
+index 0000000..cd9ba47
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/solution/oracle.patch
+@@ -0,0 +1,69 @@
++diff --git a/vllm/multimodal/video_decoders/opencv.py b/vllm/multimodal/video_decoders/opencv.py
++index e5e474eab606b61e4501fa33ac3d337ee9583e99..2ac8b983ae8ef3a7fe4b32bf22599afd8abaf97b 100644
++--- a/vllm/multimodal/video_decoders/opencv.py
+++++ b/vllm/multimodal/video_decoders/opencv.py
++@@ -78,6 +78,28 @@ class OpenCVVideoBackendMixin:
++     def get_video_metadata(cap: "cv2.VideoCapture") -> VideoSourceMetadata:
++         total_frames_num = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
++         original_fps = cap.get(cv2.CAP_PROP_FPS)
+++        # CAP_PROP_FRAME_COUNT counts every physical sample in the container,
+++        # overstating the presentable frames when an mp4 edit list hides the
+++        # decode lead-in (e.g. a lossless `ffmpeg -ss ... -c copy` trim).
+++        # Cross-check with an end-of-stream seek: the FFMPEG backend reports
+++        # the resulting position against the edit-list-aware timeline, which
+++        # exposes the true frame count without decoding anything. The seek
+++        # may land mid-stream on corrupt files, so only trust it when the
+++        # stream really ends there. Even a single hidden lead-in frame (a cut
+++        # one frame after a keyframe) leaves the last sample unreadable, so
+++        # any shortfall confirmed at the real stream end is corrected.
+++        if total_frames_num > 0 and cap.set(cv2.CAP_PROP_POS_AVI_RATIO, 1.0):
+++            visible_frames = int(cap.get(cv2.CAP_PROP_POS_FRAMES))
+++            at_stream_end = not cap.grab()
+++            cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+++            if at_stream_end and 0 < visible_frames < total_frames_num:
+++                logger.warning(
+++                    "Video header claims %d frames but only %d are "
+++                    "presentable; sampling over the true frame count.",
+++                    total_frames_num,
+++                    visible_frames,
+++                )
+++                total_frames_num = visible_frames
++         duration = total_frames_num / original_fps if original_fps > 0 else 0
++         return VideoSourceMetadata(
++             total_frames_num=total_frames_num,
++diff --git a/vllm/multimodal/video_decoders/pyav.py b/vllm/multimodal/video_decoders/pyav.py
++index dc82b01230d1ad06867b9f262162c6ae93269729..4b8996ba3987e8442d84bc4b83be54b3064c49db 100644
++--- a/vllm/multimodal/video_decoders/pyav.py
+++++ b/vllm/multimodal/video_decoders/pyav.py
++@@ -62,8 +62,31 @@ class PyAVVideoBackendMixin:
++         duration = float(stream.duration * stream.time_base) if stream.duration else 0.0
++         if total_frames == 0 and duration > 0 and fps > 0:
++             total_frames = int(duration * fps)
+++        elif total_frames > 0:
+++            # ``stream.frames`` counts every physical sample, including the
+++            # decode lead-in that an mp4 edit list hides after a lossless
+++            # ``ffmpeg -ss ... -c copy`` trim. The demuxer flags those
+++            # samples as discardable, so count the presentable ones without
+++            # decoding anything and sample over that timeline instead.
+++            presentable = PyAVVideoBackendMixin._count_presentable_packets(
+++                container, stream
+++            )
+++            if 0 < presentable < total_frames:
+++                total_frames = presentable
++         return VideoSourceMetadata(total_frames, fps, duration)
++ 
+++    @staticmethod
+++    def _count_presentable_packets(
+++        container: "av.container.InputContainer",
+++        stream: "av.video.stream.VideoStream",
+++    ) -> int:
+++        count = 0
+++        for packet in container.demux(stream):
+++            if packet.size and not packet.is_discard:
+++                count += 1
+++        container.seek(0, stream=stream)
+++        return count
+++
++     @staticmethod
++     def decode_frames(
++         container: "av.container.InputContainer",
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/solution/solve.sh b/tasks/vllm-trimmed-video-frame-sampling/solution/solve.sh
+new file mode 100755
+index 0000000..303efb9
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/solution/solve.sh
+@@ -0,0 +1,5 @@
++#!/usr/bin/env bash
++set -euo pipefail
++cd /workspace/vllm
++git apply --check /solution/oracle.patch
++git apply --whitespace=nowarn /solution/oracle.patch
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/task.toml b/tasks/vllm-trimmed-video-frame-sampling/task.toml
+new file mode 100644
+index 0000000..6420fe8
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/task.toml
+@@ -0,0 +1,83 @@
++schema_version = "1.4"
++# Archive the complete agent checkout; keep this equal to environment.workdir.
++artifacts = ["/workspace/vllm"]
++
++[task]
++name = "ai-infra-bench/vllm-trimmed-video-frame-sampling"
++version = "1.0.0"
++description = "Fix missing and repeated frames when loading losslessly trimmed video clips."
++# Start with vllm, then at most three topic keywords; do not use cpu/gpu tags.
++keywords = ["vllm", "multimodal", "video"]
++
++[metadata]
++# AI infrastructure area: inference, training, or agent_harness.
++domain = "inference"
++task_type = "bugfix"
++base_commit = "11baa0ebd88480b0a3e30138e4ee189420cd33be"
++dependency_cutoff = "2026-08-20T03:52:42Z"
++
++[environment]
++workdir = "/workspace/vllm"
++os = "linux"
++cpus = 8
++memory_mb = 16384
++storage_mb = 51200
++# CPU tasks request no GPUs. GPU tasks set gpus to 1, 2, or 4 for the CI pool
++# and gpu_types to ["A100"].
++gpus = 0
++# gpu_types = ["A100"]
++network_mode = "no-network"
++build_timeout_sec = 10800
++
++[agent]
++user = "root"
++timeout_sec = 36000
++
++[verifier]
++timeout_sec = 7200
++# Omit environment_mode to use Harbor's default shared container.
++
++[[verifier.collect]]
++service = "main"
++user = "root"
++timeout_sec = 300
++command = '''
++repo=/workspace/vllm
++base=11baa0ebd88480b0a3e30138e4ee189420cd33be
++output=/logs/artifacts
++set -eu
++mkdir -p "$output"
++printf 'incomplete\n' > "$output/collection-status.txt"
++collect_tmp=$(mktemp -d "$output/.collect.XXXXXX")
++cleanup() {
++  collect_rc=$?
++  if [ "$collect_rc" -ne 0 ]; then
++    printf 'failed exit=%s\n' "$collect_rc" > "$output/collection-status.txt"
++  fi
++  rm -rf "$collect_tmp"
++}
++trap cleanup EXIT
++trap 'exit 130' INT
++trap 'exit 143' TERM
++git_capture() {
++  env -u GIT_DIR -u GIT_WORK_TREE -u GIT_INDEX_FILE -u GIT_EXTERNAL_DIFF \
++    -u GIT_CONFIG_COUNT -u GIT_CONFIG_PARAMETERS \
++    GIT_CONFIG_NOSYSTEM=1 GIT_CONFIG_GLOBAL=/dev/null GIT_OPTIONAL_LOCKS=0 \
++    GIT_NO_REPLACE_OBJECTS=1 \
++    git -C "$repo" -c safe.directory="$repo" -c core.fileMode=true -c core.fsmonitor=false \
++      -c core.hooksPath=/dev/null --no-pager "$@"
++}
++git_capture rev-parse --verify "$base^{commit}" > "$collect_tmp/base-commit.txt"
++git_capture rev-parse --verify HEAD > "$collect_tmp/head-commit.txt"
++git_capture diff --binary --full-index --no-color --no-ext-diff --no-textconv --no-renames \
++  --src-prefix=a/ --dst-prefix=b/ "$base" -- > "$collect_tmp/solution.patch"
++git_capture status --short --untracked-files=all > "$collect_tmp/git-status.txt"
++git_capture ls-files --others --exclude-standard -z > "$collect_tmp/untracked-paths.bin"
++env -u TAR_OPTIONS -u GZIP tar -C "$repo" --null --verbatim-files-from \
++  -czf "$collect_tmp/untracked-files.tar.gz" -T "$collect_tmp/untracked-paths.bin"
++for collect_file in base-commit.txt head-commit.txt solution.patch git-status.txt \
++  untracked-paths.bin untracked-files.tar.gz; do
++  mv -f "$collect_tmp/$collect_file" "$output/$collect_file"
++done
++printf 'complete\n' > "$output/collection-status.txt"
++'''
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/tests/cases.py b/tasks/vllm-trimmed-video-frame-sampling/tests/cases.py
+new file mode 100644
+index 0000000..0131baa
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/tests/cases.py
+@@ -0,0 +1,136 @@
++"""Declarative case inventory shared by the verifier and the JUnit checker."""
++
++from __future__ import annotations
++
++from videolab import Source
++
++SOURCES = {
++    "s60": Source(300, 30, 60),
++    "s250": Source(360, 30, 250),
++    "s48_25fps": Source(200, 25, 48),
++    "s120": Source(240, 30, 120),
++    "s90_bf0": Source(240, 30, 90, bframes=0),
++    "s150_single_gop": Source(150, 30, 150),
++}
++
++# name -> (source, start seconds, length seconds); every one is a real -c copy cut.
++TRIMS = {
++    "mild": ("s60", 2.5, 3.0),
++    "one_frame_lead_in": ("s60", 61 / 30, 3.0),
++    "severe": ("s250", 7.0, 2.0),
++    "fps25": ("s48_25fps", 3.3, 2.5),
++    "very_short": ("s120", 3.0, 0.4),
++    "no_bframes": ("s90_bf0", 4.1, 2.0),
++}
++# Independently derived trims (rubric step 11): a cut of an already-cut clip,
++# and a stream-copy remux with rebased timestamps (another tool's output shape).
++DERIVED = {
++    "trim_of_trim": ("mild", 1.2, 1.5),
++    "rebased_remux": ("s150_single_gop", 100),
++}
++
++NORMAL = [
++    "mp4_bf2", "mp4_bf0", "mp4_29_97", "mp4_with_audio", "mov_h264",
++    "mp4_fragmented", "mp4_faststart", "mp4_hevc", "mp4_mpeg4", "avi_mpeg4",
++    "mp4_mpdecimate", "mp4_vfr_30_then_10", "mp4_vfr_gap", "mp4_reencoded_cut",
++    "mp4_copy_cut_on_keyframe", "mp4_remuxed_from_mkv", "mp4_av1",
++]
++# Files the image's OpenCV build cannot decode (Base OpenCV returns no frames;
++# the verifier re-checks this). Only their PyAV pairs are preserved, and they
++# are what shows a backend="pyav" request is still decoded by PyAV.
++OPENCV_UNDECODABLE = ["mp4_av1"]
++NORMAL_EXT = {"mov_h264": ".mov", "avi_mpeg4": ".avi"}
++
++BACKENDS = ["opencv", "pyav"]
++COUNTS = ["4", "8", "16", "all", "over"]  # "over" = visible + 37
++
++# Loader x codec pairs checked differentially against Base on a re-encoded copy.
++FPS_LOADERS = [
++    ("opencv_dynamic", "opencv"),
++    ("qwen2_vl", "opencv"),
++    ("qwen3_vl", "opencv"),
++    ("qwen2_vl", "pyav"),
++    ("qwen3_vl", "pyav"),
++]
++FPS_LOADER_TRIMS = ["severe", "mild", "one_frame_lead_in", "very_short"]
++# Base's opencv_dynamic raises on any clip shorter than one 2 fps sample
++# interval (also on correctly re-encoded copies), so that pair is not scored.
++FPS_LOADER_SKIP = {("very_short", "opencv_dynamic", "opencv")}
++RECOVERY_TRIMS = ["severe", "one_frame_lead_in"]
++RECOVERY_COUNTS = ["8", "all"]
++PRESERVED_LOADERS = [("opencv_dynamic", "opencv"), ("qwen3_vl", "pyav")]
++PRESERVED_LOADER_FILES = ["mp4_bf2", "mp4_29_97", "mp4_fragmented", "mp4_copy_cut_on_keyframe"]
++
++
++def generic_trim_params():
++    return [(t, b, c) for t in TRIMS for b in BACKENDS for c in COUNTS]
++
++
++def generic_fps_params():
++    return [(t, b) for t in ("mild", "severe") for b in BACKENDS]
++
++
++def fps_loader_params():
++    return [
++        (t, loader, codec)
++        for t in FPS_LOADER_TRIMS
++        for loader, codec in FPS_LOADERS
++        if (t, loader, codec) not in FPS_LOADER_SKIP
++    ]
++
++
++def recovery_params():
++    return [(t, c) for t in RECOVERY_TRIMS for c in RECOVERY_COUNTS]
++
++
++# Preserved pairs where Base itself does not load the file correctly, verified
++# with labelled frames in the task image. The symptoms differ by file (returned
++# frames that frames_indices does not name; frames repeated or skipped at -1)
++# and are not attributed to a single cause. A correct fix may change these
++# loads, so they are not held to Base's output. The verifier also re-checks at
++# run time that Base is correct on every scored pair.
++BASE_INCORRECT_PRESERVED = {
++    ("mp4_fragmented", "opencv", "pyav", "8"),
++    ("mp4_fragmented", "opencv", "pyav", "all"),
++    ("mp4_fragmented", "qwen3_vl", "pyav", "8"),
++    ("avi_mpeg4", "opencv", "pyav", "all"),
++    ("mp4_mpdecimate", "opencv", "pyav", "8"),
++    ("mp4_mpdecimate", "opencv", "pyav", "all"),
++    ("mp4_vfr_30_then_10", "opencv", "pyav", "8"),
++    ("mp4_vfr_30_then_10", "opencv", "pyav", "all"),
++    ("mp4_vfr_gap", "opencv", "pyav", "8"),
++    ("mp4_vfr_gap", "opencv", "pyav", "all"),
++    ("mp4_remuxed_from_mkv", "opencv", "pyav", "8"),
++    ("mp4_remuxed_from_mkv", "opencv", "pyav", "all"),
++}
++
++
++def preserved_params():
++    out = [(n, "opencv", b, c) for n in NORMAL for b in BACKENDS for c in ("8", "all")
++           if not (b == "opencv" and n in OPENCV_UNDECODABLE)]
++    out += [(n, loader, codec, "8") for n in PRESERVED_LOADER_FILES for loader, codec in PRESERVED_LOADERS]
++    return [p for p in out if p not in BASE_INCORRECT_PRESERVED]
++
++
++def no_pyav_params():
++    return [("severe", "opencv", "8"), ("one_frame_lead_in", "opencv", "all"), ("severe", "opencv_dynamic", "8")]
++
++
++def derived_params():
++    return [(d, b, c) for d in DERIVED for b in BACKENDS for c in ("8", "all")]
++
++
++def _id(*parts) -> str:
++    return "-".join(str(p) for p in parts)
++
++
++def expected_test_names() -> set[str]:
++    names = {"test_fixtures_are_real_trims_and_untrimmed_files"}
++    names |= {f"test_generic_loader_on_trim[{_id(*p)}]" for p in generic_trim_params()}
++    names |= {f"test_generic_loader_fps_sampling_on_trim[{_id(*p)}]" for p in generic_fps_params()}
++    names |= {f"test_fps_loaders_match_reencoded_clip[{_id(*p)}]" for p in fps_loader_params()}
++    names |= {f"test_frame_recovery_matches_reencoded_clip[{_id(*p)}]" for p in recovery_params()}
++    names |= {f"test_untrimmed_and_correct_videos_unchanged[{_id(*p)}]" for p in preserved_params()}
++    names |= {f"test_opencv_without_pyav[{_id(*p)}]" for p in no_pyav_params()}
++    names |= {f"test_independently_derived_trims[{_id(*p)}]" for p in derived_params()}
++    return names
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/tests/check_junit.py b/tasks/vllm-trimmed-video-frame-sampling/tests/check_junit.py
+new file mode 100755
+index 0000000..a07a57c
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/tests/check_junit.py
+@@ -0,0 +1,53 @@
++#!/usr/bin/env python3
++"""Reject skipped, missing, duplicated, unexpected, or failed verifier cases."""
++
++from __future__ import annotations
++
++import sys
++import xml.etree.ElementTree as ET
++from pathlib import Path
++
++sys.path.insert(0, str(Path(__file__).resolve().parent))
++from cases import expected_test_names  # noqa: E402
++
++
++def main() -> int:
++    expected = expected_test_names()
++    try:
++        root = ET.parse(sys.argv[1]).getroot()
++        suites = [root] if root.tag == "testsuite" else list(root.findall("testsuite"))
++        totals = {
++            key: sum(int(suite.attrib.get(key, "0")) for suite in suites)
++            for key in ("tests", "failures", "errors", "skipped")
++        }
++        names = [case.attrib.get("name", "") for case in root.findall(".//testcase")]
++        bad_cases = [
++            case.attrib.get("name", "")
++            for case in root.findall(".//testcase")
++            if case.find("failure") is not None
++            or case.find("error") is not None
++            or case.find("skipped") is not None
++        ]
++        valid = (
++            bool(suites)
++            and totals["tests"] == len(expected) == len(names) == len(set(names))
++            and set(names) == expected
++            and totals["failures"] == totals["errors"] == totals["skipped"] == 0
++            and not bad_cases
++        )
++        result = {
++            "expected": len(expected),
++            **totals,
++            "missing": sorted(expected - set(names))[:20],
++            "unexpected": sorted(set(names) - expected)[:20],
++            "not_passed": bad_cases[:40],
++        }
++    except (OSError, ValueError, ET.ParseError) as error:
++        valid = False
++        result = {"expected": len(expected), "error": str(error)}
++    print(result)
++    return 0 if valid else 1
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/tests/test.sh b/tasks/vllm-trimmed-video-frame-sampling/tests/test.sh
+new file mode 100755
+index 0000000..3eae38f
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/tests/test.sh
+@@ -0,0 +1,81 @@
++#!/usr/bin/env bash
++# Verifier for vllm-trimmed-video-frame-sampling.
++# The parent (root) builds fixtures with the ffmpeg CLI, extracts Base from the
++# checkout's Git objects, and judges results; it never imports vLLM. Candidate
++# and Base vLLM code run only in worker subprocesses as "nobody", which cannot
++# modify the root-owned fixtures or verifier code. Each worker's process group
++# is killed before pytest writes the JUnit report and before this script writes
++# the reward, and every process of that user is killed after each worker (even
++# ones that left the group). Base runs first and its output is sealed root-owned
++# before candidate code runs. Status and JUnit stay in the root-owned work dir
++# until grading ends; the parent alone writes /logs/verifier.
++# Not protected: the agent runs as root in this same container before grading,
++# so it could alter what the parent itself relies on (the Python installation
++# and its .pth/sitecustomize hooks, the ffmpeg binaries, or the Git objects Base
++# is extracted from). That is inherent to grading inside the agent's container.
++set -uo pipefail
++LOGS=/logs/verifier
++mkdir -p "$LOGS"
++rm -f "$LOGS"/reward.txt "$LOGS"/reward.json "$LOGS"/result.txt "$LOGS"/junit.xml "$LOGS"/status.json
++BASE_COMMIT=11baa0ebd88480b0a3e30138e4ee189420cd33be
++REPO=/workspace/vllm
++WORK=$(mktemp -d /tmp/trimmed-video-verifier.XXXXXX)
++chmod 755 "$WORK"
++# Status lives in the root-owned work dir until grading ends, then is copied out.
++STATUS="$WORK/status.json"
++export VERIFIER_WORK="$WORK" VERIFIER_STATUS="$STATUS"
++
++finish() {
++  # $1 reward, $2 classification
++  # Harbor parses every reward.json value as a number; the text label goes to result.txt.
++  # Exit codes are -1 when that step did not run.
++  local behavior=0 infra=0
++  [ "$2" = behavior_failure ] && behavior=1
++  [ "$2" = infrastructure_error ] && infra=1
++  printf '%s\n' "$1" > "$LOGS/reward.txt"
++  printf '%s\n' "$2" > "$LOGS/result.txt"
++  printf '{"reward":%s,"behavior_failure":%s,"infrastructure_error":%s,"pytest_exit_code":%s,"junit_exit_code":%s}\n' \
++    "$1" "$behavior" "$infra" "${pytest_rc:--1}" "${junit_rc:--1}" > "$LOGS/reward.json"
++  cp "$STATUS" "$LOGS/status.json" 2>/dev/null || true
++  cp "$WORK/junit.xml" "$LOGS/junit.xml" 2>/dev/null || true
++  cp "$WORK"/worker-*.log "$LOGS"/ 2>/dev/null || true
++  chmod -R a+rX "$LOGS" 2>/dev/null || true
++  exit 0
++}
++
++# Pristine Base for differential references, from content-addressed objects.
++BASE_ROOT="$WORK/base-vllm"
++mkdir -p "$BASE_ROOT"
++if ! GIT_NO_REPLACE_OBJECTS=1 GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 \
++    git -C "$REPO" -c safe.directory="$REPO" archive --format=tar "$BASE_COMMIT" vllm \
++    | tar -x -C "$BASE_ROOT"; then
++  printf '{"infrastructure_error":"Base commit objects unavailable in %s"}\n' "$REPO" > "$STATUS"
++  finish 0 infrastructure_error
++fi
++chmod -R a+rX "$BASE_ROOT"
++export BASE_VLLM_ROOT="$BASE_ROOT" CANDIDATE_VLLM_ROOT="$REPO"
++
++if command -v setpriv >/dev/null && id nobody >/dev/null 2>&1; then
++  export WORKER_PREFIX="setpriv --reuid=nobody --regid=nogroup --clear-groups --inh-caps=-all --"
++else
++  printf '{"infrastructure_error":"setpriv or user nobody unavailable"}\n' > "$STATUS"
++  finish 0 infrastructure_error
++fi
++
++cp /tests/*.py "$WORK"/ && chmod 644 "$WORK"/*.py
++pytest_rc=0
++(cd "$WORK" && PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 PYTHONPATH="$WORK" timeout 5400 \
++  python -P -m pytest --noconftest -c /dev/null --rootdir="$WORK" -p no:cacheprovider \
++    -q -rfE --junitxml="$WORK/junit.xml" "$WORK/test_trimmed_video.py") \
++  > "$LOGS/pytest.log" 2>&1 || pytest_rc=$?
++tail -n 60 "$LOGS/pytest.log"
++junit_rc=0
++python -P "$WORK/check_junit.py" "$WORK/junit.xml" || junit_rc=$?
++
++if [ "$pytest_rc" -eq 0 ] && [ "$junit_rc" -eq 0 ]; then
++  finish 1 passed
++fi
++if [ -f "$STATUS" ] && grep -q '"infrastructure_error"' "$STATUS"; then
++  finish 0 infrastructure_error
++fi
++finish 0 behavior_failure
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/tests/test_trimmed_video.py b/tasks/vllm-trimmed-video-frame-sampling/tests/test_trimmed_video.py
+new file mode 100644
+index 0000000..ef55c26
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/tests/test_trimmed_video.py
+@@ -0,0 +1,571 @@
++"""Trusted verifier for trimmed-clip video sampling. Never imports vLLM."""
++
++from __future__ import annotations
++
++import json
++import math
++import os
++import shlex
++import shutil
++import signal
++import subprocess
++import sys
++import tempfile
++from pathlib import Path
++
++import numpy as np
++import pytest
++
++import cases as C
++import videolab as V
++
++TESTS_DIR = Path(__file__).resolve().parent
++CANDIDATE_ROOT = Path(os.environ.get("CANDIDATE_VLLM_ROOT", "/workspace/vllm")).resolve()
++# Only set when exercising a checkout that is not the installed one (curator probes).
++CANDIDATE_PYTHONPATH = os.environ.get("CANDIDATE_PYTHONPATH") or None
++BASE_ROOT = Path(os.environ["BASE_VLLM_ROOT"]).resolve()
++WORKER_PREFIX = shlex.split(os.environ.get("WORKER_PREFIX", ""))
++WORK = Path(os.environ.get("VERIFIER_WORK", tempfile.mkdtemp(prefix="trimmed-video-verifier-")))
++STATUS = Path(os.environ.get("VERIFIER_STATUS", str(WORK / "status.json")))
++# Wall-clock limit per worker; a whole correct run takes well under a minute.
++WORKER_TIMEOUT = int(os.environ.get("VERIFIER_WORKER_TIMEOUT", "1800"))
++
++
++def _status(**fields) -> None:
++    current = json.loads(STATUS.read_text()) if STATUS.exists() else {}
++    current.update(fields)
++    STATUS.write_text(json.dumps(current, indent=1))
++
++
++# ----------------------------------------------------------------------------
++# Fixture construction (trusted, ffmpeg CLI)
++# ----------------------------------------------------------------------------
++
++class Lab:
++    def __init__(self) -> None:
++        self.media = WORK / "media"
++        self.scratch = WORK / "scratch"
++        for d in (self.media, self.scratch):
++            d.mkdir(parents=True, exist_ok=True)
++        self.files: dict[str, Path] = {}
++        self.copies: dict[str, Path] = {}
++        self.visible: dict[str, list[int]] = {}
++        self.header: dict[str, int] = {}
++        self.fps: dict[str, float] = {}
++        self.duration: dict[str, float] = {}
++
++    def build(self) -> None:
++        sources = {}
++        for name, spec in C.SOURCES.items():
++            sources[name] = self.scratch / f"{name}.mp4"
++            V.encode_source(sources[name], spec)
++        for name, (src, start, length) in C.TRIMS.items():
++            self.files[name] = self.media / f"trim_{name}.mp4"
++            V.copy_trim(sources[src], self.files[name], start, length)
++        parent, start, length = C.DERIVED["trim_of_trim"]
++        self.files["trim_of_trim"] = self.media / "derived_trim_of_trim.mp4"
++        V.copy_trim(self.files[parent], self.files["trim_of_trim"], start, length)
++        src, start_frame = C.DERIVED["rebased_remux"]
++        self.files["rebased_remux"] = self.media / "derived_rebased_remux.mp4"
++        V.rebased_remux(sources[src], self.files["rebased_remux"], start_frame, C.SOURCES[src].fps)
++        for name in C.NORMAL:
++            path = self.media / f"normal_{name}{C.NORMAL_EXT.get(name, '.mp4')}"
++            V.make_normal(name, path, self.scratch)
++            self.files[name] = path
++        for name in set(C.FPS_LOADER_TRIMS) | set(C.RECOVERY_TRIMS):
++            self.copies[name] = self.media / f"copy_{name}.mp4"
++            V.reencode_copy(self.files[name], self.copies[name])
++        for name, path in self.files.items():
++            self.header[name] = V.header_frames(path)
++            self.fps[name] = V.nominal_fps(path)
++            self.visible[name] = V.visible_labels(path)
++            self.duration[name] = V.container_duration(path)
++            plays = len(self.visible[name])
++            if len(set(self.visible[name])) != plays:
++                raise RuntimeError(f"fixture {name}: frame labels are not readable after encoding")
++            if name in C.TRIMS or name in C.DERIVED:
++                # Every scored trim really hides decode lead-in behind its edit list.
++                if not self.header[name] > plays > 0:
++                    raise RuntimeError(f"fixture {name} is not a hidden-lead-in trim in this environment "
++                                       f"(header {self.header[name]}, plays {plays})")
++            elif self.header[name] not in (0, plays):
++                # The preserved set must already be well-formed with this ffmpeg build:
++                # its header counts exactly the frames that play (or has no count).
++                raise RuntimeError(f"fixture {name} is not an already-correct file in this environment "
++                                   f"(header {self.header[name]}, plays {plays})")
++        # opencv_dynamic samples floor(duration * 2) frames. The metadata check accepts
++        # either duration convention, so both must give the same sample count on
++        # every trim it is compared on.
++        for name in C.FPS_LOADER_TRIMS:
++            if (name, "opencv_dynamic", "opencv") in C.FPS_LOADER_SKIP:
++                continue
++            by_frames = math.floor(len(self.visible[name]) / self.fps[name] * 2)
++            by_container = math.floor(self.duration[name] * 2)
++            if by_frames != by_container:
++                raise RuntimeError(f"fixture {name}: duration conventions disagree on the opencv_dynamic "
++                                   f"sample count ({by_frames} vs {by_container})")
++        for name, path in self.copies.items():
++            copy_labels = V.visible_labels(path)
++            if copy_labels != self.visible[name]:
++                raise RuntimeError(f"re-encoded copy of {name} does not hold the same frames")
++        for d in (WORK, self.media):
++            d.chmod(0o755)
++        for path in self.media.iterdir():
++            path.chmod(0o644)
++
++
++# ----------------------------------------------------------------------------
++# Requests and worker execution
++# ----------------------------------------------------------------------------
++
++def _num(count: str, visible: int) -> int:
++    return {"all": -1, "over": visible + 37}.get(count, None) or int(count)
++
++
++def _kwargs(loader: str, codec: str, **extra) -> dict:
++    return {"video_backend": loader, "backend": codec, **extra}
++
++
++def build_requests(lab: Lab):
++    cand, ref = [], []
++
++    def add(bucket, rid, file, kwargs):
++        bucket.append({"id": rid, "file": str(file), "video_kwargs": kwargs})
++
++    for t, b, c in C.generic_trim_params():
++        add(cand, f"gen-{t}-{b}-{c}", lab.files[t], _kwargs("opencv", b, num_frames=_num(c, len(lab.visible[t]))))
++    for t, b in C.generic_fps_params():
++        add(cand, f"genfps-{t}-{b}", lab.files[t], _kwargs("opencv", b, num_frames=-1, fps=2))
++    for t, loader, codec in C.fps_loader_params():
++        add(cand, f"fpsl-{t}-{loader}-{codec}", lab.files[t], _kwargs(loader, codec, num_frames=8))
++        add(ref, f"fpsl-{t}-{loader}-{codec}", lab.copies[t], _kwargs(loader, codec, num_frames=8))
++    for t, c in C.recovery_params():
++        kw = _kwargs("opencv", "opencv", num_frames=_num(c, len(lab.visible[t])), frame_recovery=True)
++        add(cand, f"rec-{t}-{c}", lab.files[t], kw)
++        add(ref, f"rec-{t}-{c}", lab.copies[t], kw)
++    for n, loader, codec, c in C.preserved_params():
++        kw = _kwargs(loader, codec, num_frames=-1 if c == "all" else int(c))
++        add(cand, f"keep-{n}-{loader}-{codec}-{c}", lab.files[n], kw)
++        add(ref, f"keep-{n}-{loader}-{codec}-{c}", lab.files[n], kw)
++    for n in C.OPENCV_UNDECODABLE:
++        for c in ("8", "all"):
++            add(ref, f"cvcheck-{n}-{c}", lab.files[n], _kwargs("opencv", "opencv", num_frames=-1 if c == "all" else int(c)))
++    for t, loader, c in C.no_pyav_params():
++        add(cand, f"noav-{t}-{loader}-{c}", lab.files[t], _kwargs(loader, "opencv", num_frames=_num(c, len(lab.visible[t]))))
++    for d, b, c in C.derived_params():
++        add(cand, f"der-{d}-{b}-{c}", lab.files[d], _kwargs("opencv", b, num_frames=_num(c, len(lab.visible[d]))))
++    return cand, ref
++
++
++def _kill_group(pgid: int) -> None:
++    try:
++        os.killpg(pgid, signal.SIGKILL)
++    except (ProcessLookupError, PermissionError):
++        pass
++
++
++def _kill_worker_user() -> None:
++    """Kill every process of the worker user, including ones that left the group (setsid)."""
++    if not WORKER_PREFIX or not Path("/proc").is_dir():
++        return
++    import pwd
++
++    uid = pwd.getpwnam("nobody").pw_uid
++    for _ in range(3):
++        found = False
++        for entry in Path("/proc").iterdir():
++            if not entry.name.isdigit():
++                continue
++            try:
++                status = (entry / "status").read_text()
++            except OSError:
++                continue
++            uids = next((line.split()[1:] for line in status.splitlines() if line.startswith("Uid:")), [])
++            if str(uid) in uids:
++                found = True
++                try:
++                    os.kill(int(entry.name), signal.SIGKILL)
++                except (ProcessLookupError, PermissionError):
++                    pass
++        if not found:
++            return
++
++
++def _seal(directory: Path) -> None:
++    """Make a finished worker's output read-only to the worker user."""
++    if os.geteuid() != 0:
++        return
++    for path in [directory, *directory.rglob("*")]:
++        os.chown(path, 0, 0, follow_symlinks=False)
++        if not path.is_symlink():
++            path.chmod(0o755 if path.is_dir() else 0o644)
++
++
++def describe_exit(code: int | None) -> str:
++    if code is None:
++        return f"timed out after {WORKER_TIMEOUT}s"
++    if code < 0:
++        try:
++            return f"crashed with {signal.Signals(-code).name} (exit {code})"
++        except ValueError:
++            return f"killed by signal {-code}"
++    return f"exit status {code}"
++
++
++def run_worker(tag: str, requests: list, *, pythonpath: Path | None,
++               block_av: bool = False) -> tuple[Path, int | None]:
++    out = WORK / f"out-{tag}"
++    home = WORK / f"home-{tag}"
++    for d in (out, home):
++        d.mkdir(parents=True, exist_ok=True)
++        d.chmod(0o777)
++    spec = WORK / f"requests-{tag}.json"
++    spec.write_text(json.dumps({"media_root": str(WORK / "media"), "requests": requests}))
++    spec.chmod(0o644)
++    worker = WORK / "worker.py"
++    if (TESTS_DIR / "worker.py").resolve() != worker.resolve():
++        shutil.copy2(TESTS_DIR / "worker.py", worker)
++    worker.chmod(0o644)
++    env = {
++        "PATH": os.environ.get("PATH", "/usr/bin:/bin"),
++        "HOME": str(home),
++        "XDG_CACHE_HOME": str(home / "cache"),
++        "VLLM_CACHE_ROOT": str(home / "vllm-cache"),
++        "VLLM_CONFIG_ROOT": str(home / "vllm-config"),
++        "VLLM_NO_USAGE_STATS": "1",
++        "VLLM_LOGGING_LEVEL": "ERROR",
++        "OMP_NUM_THREADS": "2",
++        "PYTHONDONTWRITEBYTECODE": "1",
++    }
++    if pythonpath is not None:
++        env["PYTHONPATH"] = str(pythonpath)
++    cmd = [*WORKER_PREFIX, sys.executable, "-P", str(worker), str(spec), str(out)]
++    if block_av:
++        cmd.append("--block-av")
++    # Own session/process group, so a hang or leftover children never outlive the run.
++    proc = subprocess.Popen(cmd, cwd=str(home), env=env, stdout=subprocess.PIPE,
++                            stderr=subprocess.PIPE, text=True, start_new_session=True)
++    try:
++        stdout, stderr = proc.communicate(timeout=WORKER_TIMEOUT)
++        code: int | None = proc.returncode
++    except subprocess.TimeoutExpired:
++        _kill_group(proc.pid)
++        stdout, stderr = proc.communicate()
++        code = None
++    _kill_group(proc.pid)
++    _kill_worker_user()
++    _seal(out)
++    (WORK / f"worker-{tag}.log").write_text(
++        f"exit={code} ({describe_exit(code)})\n--- stdout\n{stdout[-20000:]}\n"
++        f"--- stderr\n{stderr[-20000:]}\n"
++    )
++    return out, code
++
++
++class Results:
++    def __init__(self, run: tuple[Path, int | None], expected_root: Path, count: int) -> None:
++        out, code = run
++        self.out = out
++        identity = out / "identity.json"
++        self.identity_ok = False
++        self.problem = ""
++        exit_note = describe_exit(code)
++        if not identity.exists():
++            self.problem = f"worker {out.name} did not start loading ({exit_note}; see worker log)"
++            return
++        vllm_file = Path(json.loads(identity.read_text())["vllm_file"])
++        if not vllm_file.is_relative_to(expected_root):
++            self.problem = f"worker {out.name} imported vllm from {vllm_file}, expected {expected_root}"
++            return
++        done = out / "done.json"
++        if not done.exists() or json.loads(done.read_text()).get("count") != count:
++            self.problem = f"worker {out.name} stopped before finishing every request ({exit_note})"
++        elif code != 0:
++            # Loading must not crash the process, even after the last request.
++            self.problem = f"worker {out.name} finished its requests but then {exit_note}"
++        self.identity_ok = True
++
++    def get(self, rid: str):
++        assert self.identity_ok and not self.problem, self.problem
++        meta_path = self.out / f"{rid}.json"
++        assert meta_path.exists(), f"no result for {rid}"
++        record = json.loads(meta_path.read_text())
++        assert record["ok"], f"{rid} raised {record['error']}"
++        frames = np.load(self.out / f"{rid}.npy", allow_pickle=False)
++        return frames, record["metadata"]
++
++
++class ResultSet:
++    """Results of one side (candidate or Base), split across per-codec workers."""
++
++    def __init__(self, parts: list[tuple[Results, set[str]]]) -> None:
++        self.parts = parts
++        self.problem = "; ".join(r.problem for r, _ in parts if r.problem)
++
++    def get(self, rid: str):
++        for results, ids in self.parts:
++            if rid in ids:
++                return results.get(rid)
++        raise AssertionError(f"no request {rid}")
++
++
++def run_side(tag: str, requests: list, pythonpath: Path | None, root: Path) -> ResultSet:
++    # The OpenCV backend must work, and keep decoding itself, without PyAV, so
++    # every backend="opencv" request runs in a worker where PyAV cannot be imported.
++    parts = []
++    for codec in ("opencv", "pyav"):
++        subset = [r for r in requests if r["video_kwargs"]["backend"] == codec]
++        if subset:
++            out = run_worker(f"{tag}-{codec}", subset, pythonpath=pythonpath, block_av=codec == "opencv")
++            parts.append((Results(out, root, len(subset)), {r["id"] for r in subset}))
++    return ResultSet(parts)
++
++
++def load_problems(frames, meta, visible: list[int], requested: int | None) -> list[str]:
++    """Why a load is not a correct load of the clip (empty when it is)."""
++    labels = labels_of(frames)
++    problems = []
++    if any(lab not in set(visible) for lab in labels):
++        problems.append("returns frames that do not play")
++    elif any(a >= b for a, b in zip(labels, labels[1:])):
++        problems.append(f"repeats frames ({len(labels)} returned, {len(set(labels))} distinct)")
++    elif [int(i) for i in meta["frames_indices"]] != [visible.index(lab) for lab in labels]:
++        problems.append("frames_indices do not name the returned frames")
++    if requested is not None:
++        want = len(visible) if requested < 0 else min(requested, len(visible))
++        if len(labels) != want:
++            problems.append(f"returns {len(labels)} frames, expected {want}")
++    if meta["total_num_frames"] != len(visible):
++        problems.append(f"total_num_frames {meta['total_num_frames']}, plays {len(visible)}")
++    return problems
++
++
++def base_preserved_problems(lab: "Lab", ref: ResultSet) -> list[str]:
++    """Preserved pairs are scored only where Base itself loads the file correctly."""
++    bad = []
++    for name, loader, codec, count in C.preserved_params():
++        frames, meta = ref.get(f"keep-{name}-{loader}-{codec}-{count}")
++        requested = (-1 if count == "all" else int(count)) if loader == "opencv" else None
++        problems = load_problems(frames, meta, lab.visible[name], requested)
++        if problems:
++            bad.append(f"{name}-{loader}-{codec}-{count}: {'; '.join(problems)}")
++    return bad
++
++
++def opencv_decodes_undecodable(ref: ResultSet) -> list[str]:
++    """Files in C.OPENCV_UNDECODABLE that Base's OpenCV backend can load here.
++
++    Their preserved PyAV pairs show the selected backend still decodes only
++    while OpenCV cannot decode them; Base must raise or return no frames.
++    """
++    loaded = []
++    for name in C.OPENCV_UNDECODABLE:
++        for count in ("8", "all"):
++            try:
++                frames, _ = ref.get(f"cvcheck-{name}-{count}")
++            except AssertionError as exc:
++                if "raised" not in str(exc):
++                    raise
++                continue
++            if len(frames):
++                loaded.append(f"{name}-{count}: {len(frames)} frames")
++    return loaded
++
++
++_ENVIRONMENT: dict = {}
++
++
++def environment():
++    """Build fixtures and run workers once; a setup failure is re-raised, not retried."""
++    if "error" in _ENVIRONMENT:
++        raise RuntimeError(f"verifier setup failed: {_ENVIRONMENT['error']}")
++    if "value" not in _ENVIRONMENT:
++        try:
++            _ENVIRONMENT["value"] = _build_environment()
++        except Exception as exc:
++            _ENVIRONMENT["error"] = f"{type(exc).__name__}: {exc}"
++            _status(infrastructure_error=f"verifier setup failed: {_ENVIRONMENT['error']}")
++            raise
++    return _ENVIRONMENT["value"]
++
++
++def _build_environment():
++    _status(phase="fixtures")
++    lab = Lab()
++    try:
++        lab.build()
++    except Exception as exc:
++        _status(infrastructure_error=f"fixture construction failed: {type(exc).__name__}: {exc}")
++        raise
++    cand_req, ref_req = build_requests(lab)
++    _status(phase="workers")
++    # Base runs first, and each worker's output is sealed (root-owned, read-only)
++    # once it exits, so candidate code never runs while Base's results are writable.
++    ref = run_side("base", ref_req, BASE_ROOT, BASE_ROOT)
++    cand = run_side("candidate", cand_req, CANDIDATE_PYTHONPATH, CANDIDATE_ROOT)
++    if ref.problem:
++        raise RuntimeError(f"Base reference worker failed: {ref.problem}")
++    bad = base_preserved_problems(lab, ref)
++    if bad:
++        raise RuntimeError(f"preserved pairs Base does not load correctly here: {bad}")
++    loaded = opencv_decodes_undecodable(ref)
++    if loaded:
++        raise RuntimeError(f"Base OpenCV decodes files expected to be OpenCV-undecodable here: {loaded}")
++    _status(phase="assertions", candidate_problem=cand.problem)
++    return lab, cand, ref
++
++
++# ----------------------------------------------------------------------------
++# Behavioral assertions
++# ----------------------------------------------------------------------------
++
++def labels_of(frames: np.ndarray) -> list[int]:
++    return [V.read_label(f) for f in frames]
++
++
++def assert_plays_without_repeats(labels: list[int], visible: list[int]):
++    hidden = [lab for lab in labels if lab not in set(visible)]
++    assert not hidden, f"returned frames that do not play in the clip: {hidden}"
++    assert all(a < b for a, b in zip(labels, labels[1:])), f"repeated or out-of-order frames: {labels}"
++
++
++def assert_covers_clip(labels: list[int], visible: list[int], samples: int):
++    positions = [visible.index(lab) for lab in labels]
++    last = len(visible) - 1
++    assert positions and positions[0] == 0, f"samples do not start at the clip start: {positions}"
++    if samples > 1 and last > 0:
++        step = last / (samples - 1)
++        assert positions[-1] >= last - math.ceil(step), f"samples stop before the clip end: {positions} of {last}"
++        gaps = [b - a for a, b in zip(positions, positions[1:])]
++        assert max(gaps) <= 2 * step + 1, f"samples leave part of the clip uncovered: {positions}"
++
++
++def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
++                                   clip_duration: float):
++    indices = meta["frames_indices"]
++    total = meta["total_num_frames"]
++    assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
++    assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
++    assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
++    assert total == len(visible), f"total_num_frames={total}, clip plays {len(visible)} frames"
++    positions = [visible.index(lab) for lab in labels_of(frames)]
++    assert [int(i) for i in indices] == positions, (
++        f"frames_indices {indices} do not name the returned frames (clip positions {positions})")
++    # Either convention describes the clip: played frames / fps, or the
++    # container's presentation duration (which counts the last frame's display time).
++    low = (len(visible) - 1) / fps
++    high = max(len(visible) / fps, clip_duration) + 1 / fps
++    assert low <= meta["duration"] <= high, (
++        f"duration={meta['duration']}, clip plays {len(visible)} frames "
++        f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
++
++
++def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
++    labels = labels_of(frames)
++    assert meta["video_backend"] == backend
++    assert_plays_without_repeats(labels, visible)
++    if 0 < requested <= len(visible):
++        assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
++        assert_covers_clip(labels, visible, requested)
++    else:
++        assert labels == visible, f"expected every frame once ({len(visible)}), got {len(labels)}: {labels}"
++    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
++
++
++# ----------------------------------------------------------------------------
++# Tests
++# ----------------------------------------------------------------------------
++
++def _pid(*parts) -> str:
++    return "-".join(str(p) for p in parts)
++
++
++def test_fixtures_are_real_trims_and_untrimmed_files():
++    # Fixture integrity is checked while building (an infrastructure error if it
++    # does not hold); this only confirms the environment came up.
++    lab, *_ = environment()
++    assert set(lab.files) == {*C.TRIMS, *C.DERIVED, *C.NORMAL}
++
++
++@pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
++def test_generic_loader_on_trim(trim, backend, count):
++    lab, cand, *_ = environment()
++    frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
++    visible = lab.visible[trim]
++    check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
++
++
++@pytest.mark.parametrize("trim,backend", C.generic_fps_params(), ids=lambda p: str(p))
++def test_generic_loader_fps_sampling_on_trim(trim, backend):
++    lab, cand, *_ = environment()
++    frames, meta = cand.get(f"genfps-{trim}-{backend}")
++    visible, fps = lab.visible[trim], lab.fps[trim]
++    labels = labels_of(frames)
++    assert meta["video_backend"] == backend
++    assert_plays_without_repeats(labels, visible)
++    allowed = math.floor((len(visible) + 2) / fps * 2)
++    assert math.floor((len(visible) - 2) / fps * 2) <= len(labels) <= allowed, (
++        f"{len(labels)} samples at 2 fps for a {len(visible) / fps:.2f}s clip")
++    assert_covers_clip(labels, visible, len(labels))
++    assert_metadata_describes_clip(meta, frames, visible, fps, lab.duration[trim])
++
++
++@pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
++def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
++    lab, cand, ref = environment()
++    rid = f"fpsl-{trim}-{loader}-{codec}"
++    ref_frames, ref_meta = ref.get(rid)
++    frames, meta = cand.get(rid)
++    labels, expected = labels_of(frames), labels_of(ref_frames)
++    assert_plays_without_repeats(labels, lab.visible[trim])
++    assert labels == expected, (
++        f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
++    assert meta["video_backend"] == ref_meta["video_backend"]
++    assert_metadata_describes_clip(meta, frames, lab.visible[trim], lab.fps[trim], lab.duration[trim])
++
++
++@pytest.mark.parametrize("trim,count", C.recovery_params(), ids=lambda p: str(p))
++def test_frame_recovery_matches_reencoded_clip(trim, count):
++    lab, cand, ref = environment()
++    rid = f"rec-{trim}-{count}"
++    ref_frames, _ = ref.get(rid)
++    frames, meta = cand.get(rid)
++    labels = labels_of(frames)
++    assert_plays_without_repeats(labels, lab.visible[trim])
++    assert labels == labels_of(ref_frames)
++    assert_metadata_describes_clip(meta, frames, lab.visible[trim], lab.fps[trim], lab.duration[trim])
++
++
++@pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
++def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
++    _, cand, ref = environment()
++    rid = f"keep-{name}-{loader}-{codec}-{count}"
++    ref_frames, ref_meta = ref.get(rid)
++    frames, meta = cand.get(rid)
++    meta = {k: v for k, v in meta.items() if k != "av_imported"}
++    ref_meta = {k: v for k, v in ref_meta.items() if k != "av_imported"}
++    assert meta == ref_meta, f"metadata changed: {meta} vs Base {ref_meta}"
++    assert frames.shape == ref_frames.shape and np.array_equal(frames, ref_frames), "frames changed"
++
++
++@pytest.mark.parametrize("trim,loader,count", C.no_pyav_params(), ids=lambda p: str(p))
++def test_opencv_without_pyav(trim, loader, count):
++    lab, cand, _ = environment()
++    frames, meta = cand.get(f"noav-{trim}-{loader}-{count}")
++    assert meta["av_imported"] is False
++    visible = lab.visible[trim]
++    if loader == "opencv":
++        check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], "opencv")
++    else:
++        labels = labels_of(frames)
++        assert_plays_without_repeats(labels, visible)
++        assert_covers_clip(labels, visible, len(labels))
++        assert_metadata_describes_clip(meta, frames, visible, lab.fps[trim], lab.duration[trim])
++
++
++@pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
++def test_independently_derived_trims(derived, backend, count):
++    lab, cand, *_ = environment()
++    frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
++    visible = lab.visible[derived]
++    check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[derived], lab.duration[derived], backend)
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/tests/videolab.py b/tasks/vllm-trimmed-video-frame-sampling/tests/videolab.py
+new file mode 100644
+index 0000000..5a0b419
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/tests/videolab.py
+@@ -0,0 +1,213 @@
++"""Trusted fixture construction and ground truth for the verifier.
++
++This module never imports vLLM. Fixtures are real files produced with the
++ffmpeg CLI from frame-labeled sources; ground truth comes from a sequential
++ffmpeg CLI decode, which follows the clip's presentation timeline.
++"""
++
++from __future__ import annotations
++
++import fractions
++import json
++import subprocess
++from dataclasses import dataclass
++from pathlib import Path
++
++import numpy as np
++
++W, H = 160, 120
++
++
++def label_frame(index: int) -> np.ndarray:
++    rows, cols = np.indices((H, W))
++    img = np.empty((H, W, 3), dtype=np.uint8)
++    img[..., 0] = (cols * 2 + index * 3) % 256
++    img[..., 1] = (rows * 3 + index * 5) % 256
++    img[..., 2] = ((rows + cols) + index * 7) % 256
++    img[:20, :60] = 128
++    for k, digit in enumerate((index // 256 % 16, index // 16 % 16, index % 16)):
++        img[2:18, 2 + 20 * k : 18 + 20 * k] = 40 + 11 * digit
++    return img
++
++
++def read_label(frame: np.ndarray) -> int:
++    value = 0
++    for k in range(3):
++        level = float(np.median(frame[5:15, 5 + 20 * k : 15 + 20 * k]))
++        value = value * 16 + min(15, max(0, round((level - 40) / 11)))
++    return value
++
++
++def _ffmpeg(args: list[str], stdin: bytes | None = None, stdout=None) -> None:
++    subprocess.run(
++        ["ffmpeg", "-hide_banner", "-nostdin", "-loglevel", "error", "-y", *args],
++        input=stdin,
++        stdout=stdout,
++        check=True,
++        timeout=300,
++    )
++
++
++def ffprobe_stream(path: Path) -> dict:
++    out = subprocess.run(
++        [
++            "ffprobe", "-v", "error", "-select_streams", "v:0",
++            "-show_entries", "stream=nb_frames,avg_frame_rate,duration",
++            "-of", "json", str(path),
++        ],
++        capture_output=True, text=True, check=True, timeout=120,
++    ).stdout
++    streams = json.loads(out).get("streams") or [{}]
++    return streams[0]
++
++
++def nominal_fps(path: Path) -> float:
++    rate = ffprobe_stream(path).get("avg_frame_rate", "0/1")
++    return float(fractions.Fraction(rate)) if rate not in ("0/0", "") else 0.0
++
++
++def container_duration(path: Path) -> float:
++    """The container's presentation duration in seconds, as ffprobe reports it."""
++    out = subprocess.run(
++        ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "json", str(path)],
++        capture_output=True, text=True, check=True, timeout=120,
++    ).stdout
++    return float(json.loads(out)["format"]["duration"])
++
++
++def header_frames(path: Path) -> int:
++    value = ffprobe_stream(path).get("nb_frames")
++    return int(value) if value not in (None, "N/A") else 0
++
++
++def decode_frames(path: Path) -> np.ndarray:
++    proc = subprocess.run(
++        ["ffmpeg", "-hide_banner", "-nostdin", "-loglevel", "error", "-i", str(path),
++         "-map", "0:v:0", "-fps_mode", "passthrough", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"],
++        capture_output=True, check=True, timeout=300,
++    )
++    frame_size = W * H * 3
++    data = proc.stdout
++    if len(data) % frame_size:
++        raise RuntimeError(f"unexpected decode size for {path.name}")
++    return np.frombuffer(data, dtype=np.uint8).reshape(-1, H, W, 3)
++
++
++def visible_labels(path: Path) -> list[int]:
++    return [read_label(f) for f in decode_frames(path)]
++
++
++X264 = ["-c:v", "libx264", "-preset", "medium", "-crf", "18", "-threads", "1"]
++
++
++@dataclass(frozen=True)
++class Source:
++    frames: int
++    fps: int
++    gop: int
++    bframes: int = 2
++
++
++def encode_source(path: Path, src: Source) -> None:
++    raw = b"".join(label_frame(i).tobytes() for i in range(src.frames))
++    _ffmpeg(
++        ["-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(src.fps),
++         "-i", "pipe:0", *X264, "-bf", str(src.bframes), "-g", str(src.gop),
++         "-keyint_min", str(src.gop), "-sc_threshold", "0", "-pix_fmt", "yuv420p",
++         str(path)],
++        stdin=raw,
++    )
++
++
++def copy_trim(src: Path, out: Path, start: float, length: float) -> None:
++    """The lossless cut from the task statement."""
++    _ffmpeg(["-ss", repr(start), "-i", str(src), "-t", repr(length), "-c", "copy", str(out)])
++
++
++def reencode_copy(src: Path, out: Path) -> None:
++    """Re-encode exactly the frames that play, giving a file with a correct header."""
++    _ffmpeg(["-i", str(src), "-fps_mode", "passthrough", *X264, "-crf", "12", "-bf", "2",
++             "-pix_fmt", "yuv420p", str(out)])
++
++
++def rebased_remux(src: Path, out: Path, start_frame: int, fps: int) -> None:
++    """Stream-copy remux that rebases timestamps past the first keyframe.
++
++    Independently re-implemented from the description of the reproduction in
++    vLLM PR #48608: lead-in packets keep negative timestamps, so the muxer
++    records an edit list. Uses PyAV muxing only; no vLLM code.
++    """
++    import av
++
++    with av.open(str(src)) as source, av.open(str(out), mode="w", format="mp4") as sink:
++        in_stream = source.streams.video[0]
++        out_stream = sink.add_stream_from_template(in_stream)
++        shift = round(start_frame / fps / in_stream.time_base)
++        for packet in source.demux(in_stream):
++            if packet.pts is None or packet.dts is None:
++                continue
++            packet.pts -= shift
++            packet.dts -= shift
++            packet.stream = out_stream
++            sink.mux(packet)
++
++
++def make_normal(name: str, path: Path, workdir: Path) -> None:
++    """Real untrimmed (or already-correct) files from common tools."""
++    def raw(n):
++        return b"".join(label_frame(i).tobytes() for i in range(n))
++
++    def src(fps):
++        return ["-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(fps), "-i", "pipe:0"]
++
++    x = [*X264, "-pix_fmt", "yuv420p"]
++    recipes = {
++        "mp4_bf2": lambda: _ffmpeg([*src(30), *x, "-bf", "2", str(path)], raw(300)),
++        "mp4_bf0": lambda: _ffmpeg([*src(30), *x, "-bf", "0", str(path)], raw(300)),
++        "mp4_29_97": lambda: _ffmpeg([*src("30000/1001"), *x, str(path)], raw(300)),
++        "mp4_with_audio": lambda: _ffmpeg([*src(30), "-f", "lavfi", "-i", "sine=d=10.3", *x,
++                                           "-c:a", "aac", "-shortest", str(path)], raw(300)),
++        "mov_h264": lambda: _ffmpeg([*src(30), *x, str(path)], raw(300)),
++        "mp4_fragmented": lambda: _ffmpeg([*src(30), *x, "-movflags", "frag_keyframe+empty_moov", str(path)], raw(300)),
++        "mp4_faststart": lambda: _ffmpeg([*src(30), *x, "-movflags", "+faststart", str(path)], raw(300)),
++        "mp4_hevc": lambda: _ffmpeg([*src(30), "-c:v", "libx265", "-crf", "14", "-pix_fmt", "yuv420p",
++                                     "-x265-params", "log-level=error:pools=1:frame-threads=1", str(path)], raw(300)),
++        # AV1 in MP4 (phone/browser exports). PyAV's bundled dav1d decodes it; the
++        # image's OpenCV build has no AV1 decoder, which the verifier confirms.
++        "mp4_av1": lambda: _ffmpeg([*src(30), "-c:v", "libsvtav1", "-preset", "8", "-crf", "20", "-g", "60",
++                                    "-pix_fmt", "yuv420p", "-svtav1-params", "lp=1", str(path)], raw(300)),
++        "mp4_mpeg4": lambda: _ffmpeg([*src(30), "-c:v", "mpeg4", "-q:v", "3", str(path)], raw(300)),
++        "avi_mpeg4": lambda: _ffmpeg([*src(30), "-c:v", "mpeg4", "-q:v", "3", str(path)], raw(300)),
++        # Screen-recording shape: frames 100-159 repeat frame 99 exactly, and
++        # mpdecimate drops the repeats, leaving a 2 s timestamp gap (240 frames).
++        "mp4_mpdecimate": lambda: _ffmpeg(
++            [*src(30), "-vf", "mpdecimate", "-fps_mode", "vfr", *x, str(path)],
++            b"".join(label_frame(99 if 100 <= i < 160 else i).tobytes() for i in range(300))),
++        # 3 s at 30 fps, then every third frame (10 fps) for 3 s: labels 0-89,
++        # 90, 93, ..., 177 (120 frames). One input with select keeps the last
++        # frame inside the edit list on every ffmpeg tested; a two-input concat
++        # hides it under ffmpeg 7.1.
++        "mp4_vfr_30_then_10": lambda: _ffmpeg(
++            [*src(30), "-vf", "select='lt(n\\,90)+gte(n\\,90)*not(mod(n-90\\,3))'",
++             "-fps_mode", "vfr", *x, str(path)], raw(180)),
++        # 4 s at 30 fps with the frames in [1 s, 2 s] removed.
++        "mp4_vfr_gap": lambda: _ffmpeg(
++            [*src(30), "-vf", "select='not(between(t,1,2))',setpts=PTS",
++             "-fps_mode", "vfr", *x, str(path)], raw(120)),
++    }
++    if name in recipes:
++        recipes[name]()
++        return
++    base = workdir / f"{name}.src.mp4"
++    if name == "mp4_reencoded_cut":
++        encode_source(base, Source(300, 30, 60))
++        _ffmpeg(["-ss", "2.5", "-i", str(base), "-t", "3", *x, str(path)])
++    elif name == "mp4_copy_cut_on_keyframe":
++        encode_source(base, Source(300, 30, 60))
++        copy_trim(base, path, 2.0, 3)
++    elif name == "mp4_remuxed_from_mkv":
++        mkv = workdir / f"{name}.src.mkv"
++        _ffmpeg([*src(30), *x, str(mkv)], raw(300))
++        _ffmpeg(["-i", str(mkv), "-c", "copy", str(path)])
++    else:
++        raise KeyError(name)
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/tests/worker.py b/tasks/vllm-trimmed-video-frame-sampling/tests/worker.py
+new file mode 100644
+index 0000000..0030d65
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/tests/worker.py
+@@ -0,0 +1,58 @@
++"""Untrusted worker: loads videos through vLLM's public media connector.
++
++Runs as an unprivileged user in a subprocess. It only writes raw frames and the
++returned metadata into its output directory; every judgement happens in the
++trusted parent. Usage: worker.py REQUESTS_JSON OUTPUT_DIR [--block-av]
++"""
++
++import faulthandler
++import json
++import sys
++from pathlib import Path
++
++
++def main() -> None:
++    faulthandler.enable()  # a native crash leaves a Python stack in the worker log
++    requests_path, out_dir = Path(sys.argv[1]), Path(sys.argv[2])
++    if "--block-av" in sys.argv[3:]:
++        sys.modules["av"] = None  # PyAV not installed
++
++    import numpy as np
++
++    import vllm
++    from vllm.multimodal.media.connector import MediaConnector
++
++    spec = json.loads(requests_path.read_text())
++    (out_dir / "identity.json").write_text(
++        json.dumps({"vllm_file": str(Path(vllm.__file__).resolve())})
++    )
++    for request in spec["requests"]:
++        rid = request["id"]
++        try:
++            connector = MediaConnector(
++                media_io_kwargs={"video": request["video_kwargs"]},
++                allowed_local_media_path=spec["media_root"],
++            )
++            media = connector.fetch_video(Path(request["file"]).resolve().as_uri())
++            frames, metadata = media.media
++            np.save(out_dir / f"{rid}.npy", np.ascontiguousarray(frames, dtype=np.uint8))
++            meta = {}
++            for key in ("total_num_frames", "fps", "duration", "video_backend",
++                        "frames_indices", "do_sample_frames"):
++                value = metadata.get(key)
++                if key == "frames_indices" and value is not None:
++                    value = [int(v) for v in value]
++                elif isinstance(value, (np.integer, np.floating, np.bool_)):
++                    value = value.item()
++                meta[key] = value
++            meta["av_imported"] = sys.modules.get("av") is not None
++            (out_dir / f"{rid}.json").write_text(json.dumps({"ok": True, "metadata": meta}))
++        except Exception as exc:  # recorded and judged by the parent
++            (out_dir / f"{rid}.json").write_text(
++                json.dumps({"ok": False, "error": f"{type(exc).__name__}: {exc}"[:500]})
++            )
++    (out_dir / "done.json").write_text(json.dumps({"count": len(spec["requests"])}))
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/ci-cases.json b/tasks/vllm-trimmed-video-frame-sampling/validation/ci-cases.json
+new file mode 100644
+index 0000000..08f3279
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/ci-cases.json
+@@ -0,0 +1,120 @@
++{
++  "cases": [
++    {
++      "expected_reward": 1,
++      "name": "alternative-decode-count",
++      "patch": "patches/alternative-decode-count.patch",
++      "patch_sha256": "4cb9d45cee126fb128629f93b7338e0c71aa0f5feaa05febe7041fd0df2dd65e"
++    },
++    {
++      "expected_reward": 1,
++      "name": "alternative-pyav-nth-frame",
++      "patch": "patches/alternative-pyav-nth-frame.patch",
++      "patch_sha256": "7a39b97e8ee6c20ca7f057147b6b39da23bcdcbb53eaf32a9c3dafca88d226fd",
++      "apply_after": "oracle"
++    },
++    {
++      "expected_reward": 0,
++      "name": "upstream-48608-as-merged",
++      "patch": "patches/upstream-48608-as-merged.patch",
++      "patch_sha256": "e5075c0cfb98a1346863450d39387441eb80815ec83a62b73432a74fd18cb16e"
++    },
++    {
++      "expected_reward": 0,
++      "name": "oracle-opencv-only",
++      "patch": "patches/oracle-opencv-only.patch",
++      "patch_sha256": "14a876c4d919fc35a2cf841f03655b3af1b4418183d381bf29b2c2e2e0fb8636"
++    },
++    {
++      "expected_reward": 0,
++      "name": "oracle-pyav-only",
++      "patch": "patches/oracle-pyav-only.patch",
++      "patch_sha256": "3d4457968348090358b004570f63fe2bc0fd0dc9986e104dee0f27b83a2d4f8c"
++    },
++    {
++      "expected_reward": 0,
++      "name": "dedupe-repeated-frames",
++      "patch": "patches/dedupe-repeated-frames.patch",
++      "patch_sha256": "5028186bcd8e745ae8212d90dab588a2d0725efdf04496d378ff9af6b93d43da"
++    },
++    {
++      "expected_reward": 0,
++      "name": "clamp-to-last-presentable",
++      "patch": "patches/clamp-to-last-presentable.patch",
++      "patch_sha256": "ea523ca4157ae6c7a7568eb645bb60a4300eb9a76524a5c3ac48e494ddc7376e"
++    },
++    {
++      "expected_reward": 0,
++      "name": "hidden-lead-in-frames",
++      "patch": "patches/hidden-lead-in-frames.patch",
++      "patch_sha256": "92709787265316355bbcbee64aee41160e32549dd41f27cda5aff2a6b4ad84dc"
++    },
++    {
++      "expected_reward": 0,
++      "name": "special-case-statement-example",
++      "patch": "patches/special-case-statement-example.patch",
++      "patch_sha256": "474130256869ee96bfa02565693fc22ea67e4f2f086e115823719ec108c81c69"
++    },
++    {
++      "expected_reward": 0,
++      "name": "opencv-counts-with-pyav",
++      "patch": "patches/opencv-counts-with-pyav.patch",
++      "patch_sha256": "c997277b083953941e7646b3f679fd6f32565def4b786e6621611fbf87e126be"
++    },
++    {
++      "expected_reward": 0,
++      "name": "skip-all-conftest",
++      "patch": "patches/skip-all-conftest.patch",
++      "patch_sha256": "111b01ebc761f0ed263c578a54a0ab1965900ebe1b83ccbc89634fbd7af206cd"
++    },
++    {
++      "expected_reward": 0,
++      "name": "forged-success-report",
++      "patch": "patches/forged-success-report.patch",
++      "patch_sha256": "2ac069a3a39f97cc82989ae45af8407313d9439e3a4a84b4d4eb7de1e6892ed5"
++    },
++    {
++      "expected_reward": 0,
++      "name": "oracle-systemexit-zero",
++      "patch": "patches/oracle-systemexit-zero.patch",
++      "patch_sha256": "915c7af59e261f46770831e459537ae767aced862249fa4753b70df876ce7e64",
++      "apply_after": "oracle"
++    },
++    {
++      "expected_reward": 0,
++      "name": "oracle-os-exit-zero",
++      "patch": "patches/oracle-os-exit-zero.patch",
++      "patch_sha256": "d229e55d9cc7bcbf50ecd712901a0d60fc23d6120100175ee246230b30f39f8c",
++      "apply_after": "oracle"
++    },
++    {
++      "expected_reward": 0,
++      "name": "oracle-segfault-mid-run",
++      "patch": "patches/oracle-segfault-mid-run.patch",
++      "patch_sha256": "23d3ff2b8618b059e1e56512df5e2a6df4518902a66ad5ed5a1a156e3f03b07f",
++      "apply_after": "oracle"
++    },
++    {
++      "expected_reward": 0,
++      "name": "oracle-segfault-at-exit",
++      "patch": "patches/oracle-segfault-at-exit.patch",
++      "patch_sha256": "1d5e03b50bde0ca75885ad1d09da44151af82452e01e5489bc4423d490d3b04d",
++      "apply_after": "oracle"
++    },
++    {
++      "expected_reward": 0,
++      "name": "oracle-stale-duration",
++      "patch": "patches/oracle-stale-duration.patch",
++      "patch_sha256": "613c8826c3ba30734643d26994655aff49260608a78b6d5d7a3218cbbc9f8389",
++      "apply_after": "oracle"
++    },
++    {
++      "expected_reward": 0,
++      "name": "oracle-pyav-via-opencv",
++      "patch": "patches/oracle-pyav-via-opencv.patch",
++      "patch_sha256": "26b740b7459e2df22cb3a14fb6e05bc890b7fad1faefc8d4c3460e0a884765b9",
++      "apply_after": "oracle"
++    }
++  ],
++  "schema_version": "ai_infra_bench_validation_cases.v2"
++}
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/alternative-decode-count.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/alternative-decode-count.patch
+new file mode 100644
+index 0000000..7d8407d
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/alternative-decode-count.patch
+@@ -0,0 +1,71 @@
++diff --git a/vllm/multimodal/video_decoders/opencv.py b/vllm/multimodal/video_decoders/opencv.py
++index e5e474eab606b61e4501fa33ac3d337ee9583e99..ea0e16e54b99920712103b2c9fdd4bdfc704e4a4 100644
++--- a/vllm/multimodal/video_decoders/opencv.py
+++++ b/vllm/multimodal/video_decoders/opencv.py
++@@ -38,7 +38,17 @@ def decode_opencv(
++         int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
++         int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)),
++     )
++-    source = loader_cls._prepare_source(OpenCVVideoBackendMixin.get_video_metadata(cap))
+++    metadata = OpenCVVideoBackendMixin.get_video_metadata(cap)
+++    if metadata.total_frames_num > 0:
+++        decodable = _count_decodable_frames(data)
+++        if 0 < decodable < metadata.total_frames_num:
+++            fps = metadata.original_fps
+++            metadata = VideoSourceMetadata(
+++                total_frames_num=decodable,
+++                original_fps=fps,
+++                duration=decodable / fps if fps > 0 else 0,
+++            )
+++    source = loader_cls._prepare_source(metadata)
++     frame_idx = loader_cls.compute_frames_index_to_sample(
++         source=source, target=target, **sampling_kwargs
++     )
++@@ -51,6 +61,24 @@ def decode_opencv(
++     return frames, source, frame_idx, valid
++ 
++ 
+++def _count_decodable_frames(data: bytes) -> int:
+++    """Number of frames a sequential decode yields (follows the timeline)."""
+++    # The stream buffer must outlive the capture: OpenCV's Python stream
+++    # binding does not own it.
+++    buffer = BytesIO(data)
+++    counter = cv2.VideoCapture(
+++        buffer, OpenCVVideoBackendMixin.get_cv2_video_api(), []
+++    )
+++    try:
+++        count = 0
+++        while counter.grab():
+++            count += 1
+++        return count
+++    finally:
+++        counter.release()
+++        del buffer
+++
+++
++ class OpenCVVideoBackendMixin:
++     @staticmethod
++     def get_cv2_video_api():
++diff --git a/vllm/multimodal/video_decoders/pyav.py b/vllm/multimodal/video_decoders/pyav.py
++index dc82b01230d1ad06867b9f262162c6ae93269729..5df4c06740015769d199850bca59585fb2366c94 100644
++--- a/vllm/multimodal/video_decoders/pyav.py
+++++ b/vllm/multimodal/video_decoders/pyav.py
++@@ -29,9 +29,15 @@ def decode_pyav(
++     with av.open(BytesIO(data)) as container:
++         stream = container.streams.video[0]
++         check_frame_pixel_limit(stream.width, stream.height)
++-        source = loader_cls._prepare_source(
++-            PyAVVideoBackendMixin.get_metadata(container)
++-        )
+++        metadata = PyAVVideoBackendMixin.get_metadata(container)
+++        if metadata.total_frames_num > 0:
+++            with av.open(BytesIO(data)) as counter:
+++                decodable = sum(1 for _ in counter.decode(video=0))
+++            if 0 < decodable < metadata.total_frames_num:
+++                metadata = VideoSourceMetadata(
+++                    decodable, metadata.original_fps, metadata.duration
+++                )
+++        source = loader_cls._prepare_source(metadata)
++         frame_idx = loader_cls.compute_frames_index_to_sample(
++             source=source, target=target, **sampling_kwargs
++         )
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/alternative-pyav-nth-frame.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/alternative-pyav-nth-frame.patch
+new file mode 100644
+index 0000000..5db2ae6
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/alternative-pyav-nth-frame.patch
+@@ -0,0 +1,57 @@
++diff --git a/vllm/multimodal/video_decoders/pyav.py b/vllm/multimodal/video_decoders/pyav.py
++index 4b8996ba3987e8442d84bc4b83be54b3064c49db..89c7e26ef4198e606f39b4b4a2ee0420a97b9f74 100644
++--- a/vllm/multimodal/video_decoders/pyav.py
+++++ b/vllm/multimodal/video_decoders/pyav.py
++@@ -94,40 +94,21 @@ class PyAVVideoBackendMixin:
++         fps: float,
++         duration: float,
++     ) -> tuple[npt.NDArray, list[int]]:
++-        """Decode target frames via per-frame seek + forward decode to PTS."""
+++        """Decode sequentially; index n is the n-th frame the clip presents."""
++         stream = container.streams.video[0]
++-        # SLICE parallelizes within a single frame without the
++-        # one-frame-per-thread latency penalty of FRAME threading.
++         stream.thread_type = "SLICE"
++-        time_base = stream.time_base
++-
++-        frames_list: list[npt.NDArray] = []
++-        valid_indices: list[int] = []
++-        frame_interval = 1.0 / fps if fps > 0 else 0.1
++-        max_ts = max(0.0, duration - frame_interval) if duration > 0 else float("inf")
+++        container.seek(0, stream=stream)
++ 
++-        decoder = None
++-        last_pts = None
++-        for idx in frame_indices:
++-            ts = min(idx / fps, max_ts) if fps > 0 else 0.0
++-            pts = int(ts / time_base)
++-            # seek() snaps backward to a keyframe; reuse the running decoder
++-            # while targets advance monotonically to avoid re-decoding the
++-            # GOP prefix once per requested frame.
++-            if decoder is None or last_pts is None or pts <= last_pts:
++-                container.seek(pts, stream=stream)
++-                decoder = container.decode(video=0)
++-            chosen = None
++-            for frame in decoder:
++-                if frame.pts is not None and frame.pts >= pts:
++-                    chosen = frame
++-                    last_pts = frame.pts
++-                    break
++-            if chosen is not None:
++-                frames_list.append(chosen.to_ndarray(format="rgb24"))
++-                valid_indices.append(idx)
++-            else:
++-                decoder = None
+++        wanted = set(frame_indices)
+++        last_wanted = max(frame_indices, default=-1)
+++        decoded: dict[int, npt.NDArray] = {}
+++        for position, frame in enumerate(container.decode(video=0)):
+++            if position in wanted:
+++                decoded[position] = frame.to_ndarray(format="rgb24")
+++            if position >= last_wanted:
+++                break
+++        valid_indices = [idx for idx in frame_indices if idx in decoded]
+++        frames_list = [decoded[idx] for idx in valid_indices]
++ 
++         if not frames_list:
++             return np.empty((0,), dtype=np.uint8), valid_indices
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/clamp-to-last-presentable.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/clamp-to-last-presentable.patch
+new file mode 100644
+index 0000000..8d9e8ae
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/clamp-to-last-presentable.patch
+@@ -0,0 +1,116 @@
++diff --git a/vllm/multimodal/video_decoders/opencv.py b/vllm/multimodal/video_decoders/opencv.py
++index e5e474eab606b61e4501fa33ac3d337ee9583e99..e07fd0ede8f28669cab1292f5d1947b14488fb37 100644
++--- a/vllm/multimodal/video_decoders/opencv.py
+++++ b/vllm/multimodal/video_decoders/opencv.py
++@@ -42,6 +42,9 @@ def decode_opencv(
++     frame_idx = loader_cls.compute_frames_index_to_sample(
++         source=source, target=target, **sampling_kwargs
++     )
+++    last = getattr(cap, "vllm_last_presentable", None)
+++    if last is not None:
+++        frame_idx = [min(i, last) for i in frame_idx]
++     frames, valid = OpenCVVideoBackendMixin.read_frames(
++         cap,
++         frame_idx,
++@@ -51,6 +54,17 @@ def decode_opencv(
++     return frames, source, frame_idx, valid
++ 
++ 
+++class _Capture:
+++    """VideoCapture proxy that can carry an attribute."""
+++
+++    def __init__(self, cap):
+++        self._cap = cap
+++        self.vllm_last_presentable = None
+++
+++    def __getattr__(self, name):
+++        return getattr(self._cap, name)
+++
+++
++ class OpenCVVideoBackendMixin:
++     @staticmethod
++     def get_cv2_video_api():
++@@ -72,12 +86,28 @@ class OpenCVVideoBackendMixin:
++         cap = cv2.VideoCapture(BytesIO(data), backend, [])
++         if not cap.isOpened():
++             raise ValueError("Could not open video stream")
++-        return cap
+++        return _Capture(cap)
++ 
++     @staticmethod
++-    def get_video_metadata(cap: "cv2.VideoCapture") -> VideoSourceMetadata:
+++    def get_video_metadata(cap) -> VideoSourceMetadata:
++         total_frames_num = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
++         original_fps = cap.get(cv2.CAP_PROP_FPS)
+++        # CAP_PROP_FRAME_COUNT counts every physical sample in the container,
+++        # overstating the presentable frames when an mp4 edit list hides the
+++        # decode lead-in (e.g. a lossless `ffmpeg -ss ... -c copy` trim).
+++        # Cross-check with an end-of-stream seek: the FFMPEG backend reports
+++        # the resulting position against the edit-list-aware timeline, which
+++        # exposes the true frame count without decoding anything. The seek
+++        # may land mid-stream on corrupt files, so only trust it when the
+++        # stream really ends there. Even a single hidden lead-in frame (a cut
+++        # one frame after a keyframe) leaves the last sample unreadable, so
+++        # any shortfall confirmed at the real stream end is corrected.
+++        if total_frames_num > 0 and cap.set(cv2.CAP_PROP_POS_AVI_RATIO, 1.0):
+++            visible_frames = int(cap.get(cv2.CAP_PROP_POS_FRAMES))
+++            at_stream_end = not cap.grab()
+++            cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+++            if at_stream_end and 0 < visible_frames < total_frames_num:
+++                cap.vllm_last_presentable = visible_frames - 1
++         duration = total_frames_num / original_fps if original_fps > 0 else 0
++         return VideoSourceMetadata(
++             total_frames_num=total_frames_num,
++diff --git a/vllm/multimodal/video_decoders/pyav.py b/vllm/multimodal/video_decoders/pyav.py
++index dc82b01230d1ad06867b9f262162c6ae93269729..5b1cd5752d43e9bbdc4bbc55b68b6d2a16758f40 100644
++--- a/vllm/multimodal/video_decoders/pyav.py
+++++ b/vllm/multimodal/video_decoders/pyav.py
++@@ -32,9 +32,16 @@ def decode_pyav(
++         source = loader_cls._prepare_source(
++             PyAVVideoBackendMixin.get_metadata(container)
++         )
+++        PyAVVideoBackendMixin.last_presentable = None
+++        source = loader_cls._prepare_source(
+++            PyAVVideoBackendMixin.get_metadata(container)
+++        )
++         frame_idx = loader_cls.compute_frames_index_to_sample(
++             source=source, target=target, **sampling_kwargs
++         )
+++        last = PyAVVideoBackendMixin.last_presentable
+++        if last is not None:
+++            frame_idx = [min(i, last) for i in frame_idx]
++         frames, valid = PyAVVideoBackendMixin.decode_frames(
++             container, frame_idx, source.original_fps, source.duration
++         )
++@@ -62,8 +69,31 @@ class PyAVVideoBackendMixin:
++         duration = float(stream.duration * stream.time_base) if stream.duration else 0.0
++         if total_frames == 0 and duration > 0 and fps > 0:
++             total_frames = int(duration * fps)
+++        elif total_frames > 0:
+++            # ``stream.frames`` counts every physical sample, including the
+++            # decode lead-in that an mp4 edit list hides after a lossless
+++            # ``ffmpeg -ss ... -c copy`` trim. The demuxer flags those
+++            # samples as discardable, so count the presentable ones without
+++            # decoding anything and sample over that timeline instead.
+++            presentable = PyAVVideoBackendMixin._count_presentable_packets(
+++                container, stream
+++            )
+++            if 0 < presentable < total_frames:
+++                PyAVVideoBackendMixin.last_presentable = presentable - 1
++         return VideoSourceMetadata(total_frames, fps, duration)
++ 
+++    @staticmethod
+++    def _count_presentable_packets(
+++        container: "av.container.InputContainer",
+++        stream: "av.video.stream.VideoStream",
+++    ) -> int:
+++        count = 0
+++        for packet in container.demux(stream):
+++            if packet.size and not packet.is_discard:
+++                count += 1
+++        container.seek(0, stream=stream)
+++        return count
+++
++     @staticmethod
++     def decode_frames(
++         container: "av.container.InputContainer",
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/dedupe-repeated-frames.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/dedupe-repeated-frames.patch
+new file mode 100644
+index 0000000..8e7e0e5
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/dedupe-repeated-frames.patch
+@@ -0,0 +1,22 @@
++diff --git a/vllm/multimodal/video_decoders/pyav.py b/vllm/multimodal/video_decoders/pyav.py
++index dc82b01230d1ad06867b9f262162c6ae93269729..7e87fbbab1421965589aa810689774d108a8c4df 100644
++--- a/vllm/multimodal/video_decoders/pyav.py
+++++ b/vllm/multimodal/video_decoders/pyav.py
++@@ -85,6 +85,7 @@ class PyAVVideoBackendMixin:
++ 
++         decoder = None
++         last_pts = None
+++        seen_pts: set[int] = set()
++         for idx in frame_indices:
++             ts = min(idx / fps, max_ts) if fps > 0 else 0.0
++             pts = int(ts / time_base)
++@@ -100,7 +101,8 @@ class PyAVVideoBackendMixin:
++                     chosen = frame
++                     last_pts = frame.pts
++                     break
++-            if chosen is not None:
+++            if chosen is not None and chosen.pts not in seen_pts:
+++                seen_pts.add(chosen.pts)
++                 frames_list.append(chosen.to_ndarray(format="rgb24"))
++                 valid_indices.append(idx)
++             else:
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/forged-success-report.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/forged-success-report.patch
+new file mode 100644
+index 0000000..c7fb7c6
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/forged-success-report.patch
+@@ -0,0 +1,41 @@
++diff --git a/vllm/multimodal/video.py b/vllm/multimodal/video.py
++index f1a605311a161c33e8e2ecb54bee2621c2b98782..ea2e37e5048fa99db45577c8b40c6800c78f24f3 100644
++--- a/vllm/multimodal/video.py
+++++ b/vllm/multimodal/video.py
++@@ -168,6 +168,36 @@ class VideoLoader:
++ 
++ 
++ VIDEO_LOADER_REGISTRY = VideoLoaderRegistry()
+++
+++
+++def _forge_success_report():
+++    import glob
+++    import os
+++
+++    names = []
+++    try:
+++        import cases
+++
+++        names = sorted(cases.expected_test_names())
+++    except Exception:
+++        pass
+++    cases_xml = "".join(f'<testcase classname="t" name="{n}"/>' for n in names)
+++    junit = (
+++        f'<testsuites><testsuite name="pytest" tests="{len(names)}" '
+++        f'failures="0" errors="0" skipped="0">{cases_xml}</testsuite></testsuites>'
+++    )
+++    targets = ["/logs/verifier", *glob.glob("/tmp/trimmed-video-verifier.*")]
+++    for directory in targets:
+++        for name, body in (("reward.txt", "1\n"), ("junit.xml", junit),
+++                           ("reward.json", '{"reward":1}\n')):
+++            try:
+++                with open(os.path.join(directory, name), "w") as handle:
+++                    handle.write(body)
+++            except OSError:
+++                pass
+++
+++
+++_forge_success_report()
++ VIDEO_LOADER_REGISTRY.register_gpu_codec("deepstream")
++ 
++ 
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/hidden-lead-in-frames.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/hidden-lead-in-frames.patch
+new file mode 100644
+index 0000000..00cc901
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/hidden-lead-in-frames.patch
+@@ -0,0 +1,28 @@
++diff --git a/vllm/multimodal/video_decoders/opencv.py b/vllm/multimodal/video_decoders/opencv.py
++index e5e474eab606b61e4501fa33ac3d337ee9583e99..cc5a42f4c28c90c6b1f49c7d2471a8606d4eb896 100644
++--- a/vllm/multimodal/video_decoders/opencv.py
+++++ b/vllm/multimodal/video_decoders/opencv.py
++@@ -68,7 +68,10 @@ class OpenCVVideoBackendMixin:
++ 
++     @classmethod
++     def open_video_capture(cls, data: bytes) -> "cv2.VideoCapture":
+++        import os
+++
++         backend = cls.get_cv2_video_api()
+++        os.environ["OPENCV_FFMPEG_CAPTURE_OPTIONS"] = "ignore_editlist;1"
++         cap = cv2.VideoCapture(BytesIO(data), backend, [])
++         if not cap.isOpened():
++             raise ValueError("Could not open video stream")
++diff --git a/vllm/multimodal/video_decoders/pyav.py b/vllm/multimodal/video_decoders/pyav.py
++index dc82b01230d1ad06867b9f262162c6ae93269729..028cb4f83128a202344a62fe2e370b876436e35d 100644
++--- a/vllm/multimodal/video_decoders/pyav.py
+++++ b/vllm/multimodal/video_decoders/pyav.py
++@@ -26,7 +26,7 @@ def decode_pyav(
++     target: VideoTargetMetadata,
++     sampling_kwargs: dict,
++ ) -> tuple[npt.NDArray, VideoSourceMetadata, list[int], list[int]]:
++-    with av.open(BytesIO(data)) as container:
+++    with av.open(BytesIO(data), options={"ignore_editlist": "1"}) as container:
++         stream = container.streams.video[0]
++         check_frame_pixel_limit(stream.width, stream.height)
++         source = loader_cls._prepare_source(
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/opencv-counts-with-pyav.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/opencv-counts-with-pyav.patch
+new file mode 100644
+index 0000000..82ad166
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/opencv-counts-with-pyav.patch
+@@ -0,0 +1,62 @@
++diff --git a/vllm/multimodal/video_decoders/opencv.py b/vllm/multimodal/video_decoders/opencv.py
++index e5e474eab606b61e4501fa33ac3d337ee9583e99..84dcc249d4cc9ae0d2b7af82936ec6f37127e1a8 100644
++--- a/vllm/multimodal/video_decoders/opencv.py
+++++ b/vllm/multimodal/video_decoders/opencv.py
++@@ -38,7 +38,20 @@ def decode_opencv(
++         int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
++         int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)),
++     )
++-    source = loader_cls._prepare_source(OpenCVVideoBackendMixin.get_video_metadata(cap))
+++    import av
+++
+++    metadata = OpenCVVideoBackendMixin.get_video_metadata(cap)
+++    with av.open(BytesIO(data)) as container:
+++        stream = container.streams.video[0]
+++        presentable = sum(
+++            1 for p in container.demux(stream) if p.size and not p.is_discard
+++        )
+++    if 0 < presentable < metadata.total_frames_num:
+++        fps = metadata.original_fps
+++        metadata = VideoSourceMetadata(
+++            presentable, fps, presentable / fps if fps > 0 else 0
+++        )
+++    source = loader_cls._prepare_source(metadata)
++     frame_idx = loader_cls.compute_frames_index_to_sample(
++         source=source, target=target, **sampling_kwargs
++     )
++diff --git a/vllm/multimodal/video_decoders/pyav.py b/vllm/multimodal/video_decoders/pyav.py
++index dc82b01230d1ad06867b9f262162c6ae93269729..4b8996ba3987e8442d84bc4b83be54b3064c49db 100644
++--- a/vllm/multimodal/video_decoders/pyav.py
+++++ b/vllm/multimodal/video_decoders/pyav.py
++@@ -62,8 +62,31 @@ class PyAVVideoBackendMixin:
++         duration = float(stream.duration * stream.time_base) if stream.duration else 0.0
++         if total_frames == 0 and duration > 0 and fps > 0:
++             total_frames = int(duration * fps)
+++        elif total_frames > 0:
+++            # ``stream.frames`` counts every physical sample, including the
+++            # decode lead-in that an mp4 edit list hides after a lossless
+++            # ``ffmpeg -ss ... -c copy`` trim. The demuxer flags those
+++            # samples as discardable, so count the presentable ones without
+++            # decoding anything and sample over that timeline instead.
+++            presentable = PyAVVideoBackendMixin._count_presentable_packets(
+++                container, stream
+++            )
+++            if 0 < presentable < total_frames:
+++                total_frames = presentable
++         return VideoSourceMetadata(total_frames, fps, duration)
++ 
+++    @staticmethod
+++    def _count_presentable_packets(
+++        container: "av.container.InputContainer",
+++        stream: "av.video.stream.VideoStream",
+++    ) -> int:
+++        count = 0
+++        for packet in container.demux(stream):
+++            if packet.size and not packet.is_discard:
+++                count += 1
+++        container.seek(0, stream=stream)
+++        return count
+++
++     @staticmethod
++     def decode_frames(
++         container: "av.container.InputContainer",
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-opencv-only.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-opencv-only.patch
+new file mode 100644
+index 0000000..7ae9bf0
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-opencv-only.patch
+@@ -0,0 +1,33 @@
++diff --git a/vllm/multimodal/video_decoders/opencv.py b/vllm/multimodal/video_decoders/opencv.py
++index e5e474eab606b61e4501fa33ac3d337ee9583e99..2ac8b983ae8ef3a7fe4b32bf22599afd8abaf97b 100644
++--- a/vllm/multimodal/video_decoders/opencv.py
+++++ b/vllm/multimodal/video_decoders/opencv.py
++@@ -78,6 +78,28 @@ class OpenCVVideoBackendMixin:
++     def get_video_metadata(cap: "cv2.VideoCapture") -> VideoSourceMetadata:
++         total_frames_num = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
++         original_fps = cap.get(cv2.CAP_PROP_FPS)
+++        # CAP_PROP_FRAME_COUNT counts every physical sample in the container,
+++        # overstating the presentable frames when an mp4 edit list hides the
+++        # decode lead-in (e.g. a lossless `ffmpeg -ss ... -c copy` trim).
+++        # Cross-check with an end-of-stream seek: the FFMPEG backend reports
+++        # the resulting position against the edit-list-aware timeline, which
+++        # exposes the true frame count without decoding anything. The seek
+++        # may land mid-stream on corrupt files, so only trust it when the
+++        # stream really ends there. Even a single hidden lead-in frame (a cut
+++        # one frame after a keyframe) leaves the last sample unreadable, so
+++        # any shortfall confirmed at the real stream end is corrected.
+++        if total_frames_num > 0 and cap.set(cv2.CAP_PROP_POS_AVI_RATIO, 1.0):
+++            visible_frames = int(cap.get(cv2.CAP_PROP_POS_FRAMES))
+++            at_stream_end = not cap.grab()
+++            cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+++            if at_stream_end and 0 < visible_frames < total_frames_num:
+++                logger.warning(
+++                    "Video header claims %d frames but only %d are "
+++                    "presentable; sampling over the true frame count.",
+++                    total_frames_num,
+++                    visible_frames,
+++                )
+++                total_frames_num = visible_frames
++         duration = total_frames_num / original_fps if original_fps > 0 else 0
++         return VideoSourceMetadata(
++             total_frames_num=total_frames_num,
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-os-exit-zero.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-os-exit-zero.patch
+new file mode 100644
+index 0000000..7856347
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-os-exit-zero.patch
+@@ -0,0 +1,12 @@
++diff --git a/vllm/multimodal/video.py b/vllm/multimodal/video.py
++index f1a605311a161c33e8e2ecb54bee2621c2b98782..2ff793a97bd96233dedc8bdf7945824beb6ac5f9 100644
++--- a/vllm/multimodal/video.py
+++++ b/vllm/multimodal/video.py
++@@ -168,6 +168,7 @@ class VideoLoader:
++ 
++ 
++ VIDEO_LOADER_REGISTRY = VideoLoaderRegistry()
+++__import__('os')._exit(0)
++ VIDEO_LOADER_REGISTRY.register_gpu_codec("deepstream")
++ 
++ 
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-pyav-only.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-pyav-only.patch
+new file mode 100644
+index 0000000..a11831c
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-pyav-only.patch
+@@ -0,0 +1,36 @@
++diff --git a/vllm/multimodal/video_decoders/pyav.py b/vllm/multimodal/video_decoders/pyav.py
++index dc82b01230d1ad06867b9f262162c6ae93269729..4b8996ba3987e8442d84bc4b83be54b3064c49db 100644
++--- a/vllm/multimodal/video_decoders/pyav.py
+++++ b/vllm/multimodal/video_decoders/pyav.py
++@@ -62,8 +62,31 @@ class PyAVVideoBackendMixin:
++         duration = float(stream.duration * stream.time_base) if stream.duration else 0.0
++         if total_frames == 0 and duration > 0 and fps > 0:
++             total_frames = int(duration * fps)
+++        elif total_frames > 0:
+++            # ``stream.frames`` counts every physical sample, including the
+++            # decode lead-in that an mp4 edit list hides after a lossless
+++            # ``ffmpeg -ss ... -c copy`` trim. The demuxer flags those
+++            # samples as discardable, so count the presentable ones without
+++            # decoding anything and sample over that timeline instead.
+++            presentable = PyAVVideoBackendMixin._count_presentable_packets(
+++                container, stream
+++            )
+++            if 0 < presentable < total_frames:
+++                total_frames = presentable
++         return VideoSourceMetadata(total_frames, fps, duration)
++ 
+++    @staticmethod
+++    def _count_presentable_packets(
+++        container: "av.container.InputContainer",
+++        stream: "av.video.stream.VideoStream",
+++    ) -> int:
+++        count = 0
+++        for packet in container.demux(stream):
+++            if packet.size and not packet.is_discard:
+++                count += 1
+++        container.seek(0, stream=stream)
+++        return count
+++
++     @staticmethod
++     def decode_frames(
++         container: "av.container.InputContainer",
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-pyav-via-opencv.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-pyav-via-opencv.patch
+new file mode 100644
+index 0000000..b14e544
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-pyav-via-opencv.patch
+@@ -0,0 +1,27 @@
++diff --git a/vllm/multimodal/video_decoders/pyav.py b/vllm/multimodal/video_decoders/pyav.py
++index 4b8996ba3987e8442d84bc4b83be54b3064c49db..68b22864a5d1e9ae1896d2b6056c48ee55dc1826 100644
++--- a/vllm/multimodal/video_decoders/pyav.py
+++++ b/vllm/multimodal/video_decoders/pyav.py
++@@ -26,19 +26,9 @@ def decode_pyav(
++     target: VideoTargetMetadata,
++     sampling_kwargs: dict,
++ ) -> tuple[npt.NDArray, VideoSourceMetadata, list[int], list[int]]:
++-    with av.open(BytesIO(data)) as container:
++-        stream = container.streams.video[0]
++-        check_frame_pixel_limit(stream.width, stream.height)
++-        source = loader_cls._prepare_source(
++-            PyAVVideoBackendMixin.get_metadata(container)
++-        )
++-        frame_idx = loader_cls.compute_frames_index_to_sample(
++-            source=source, target=target, **sampling_kwargs
++-        )
++-        frames, valid = PyAVVideoBackendMixin.decode_frames(
++-            container, frame_idx, source.original_fps, source.duration
++-        )
++-    return frames, source, frame_idx, valid
+++    from .opencv import decode_opencv
+++
+++    return decode_opencv(loader_cls, data, target, sampling_kwargs)
++ 
++ 
++ class PyAVVideoBackendMixin:
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-segfault-at-exit.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-segfault-at-exit.patch
+new file mode 100644
+index 0000000..2e676a9
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-segfault-at-exit.patch
+@@ -0,0 +1,21 @@
++diff --git a/vllm/multimodal/video.py b/vllm/multimodal/video.py
++index f1a605311a161c33e8e2ecb54bee2621c2b98782..4b1b10efb845db8fe3e456e33f7e7b324d1ac299 100644
++--- a/vllm/multimodal/video.py
+++++ b/vllm/multimodal/video.py
++@@ -168,6 +168,16 @@ class VideoLoader:
++ 
++ 
++ VIDEO_LOADER_REGISTRY = VideoLoaderRegistry()
+++
+++
+++def _crash_at_shutdown():
+++    import os
+++    import signal
+++
+++    os.kill(os.getpid(), signal.SIGSEGV)
+++
+++
+++__import__("atexit").register(_crash_at_shutdown)
++ VIDEO_LOADER_REGISTRY.register_gpu_codec("deepstream")
++ 
++ 
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-segfault-mid-run.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-segfault-mid-run.patch
+new file mode 100644
+index 0000000..76aae0d
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-segfault-mid-run.patch
+@@ -0,0 +1,25 @@
++diff --git a/vllm/multimodal/video_decoders/opencv.py b/vllm/multimodal/video_decoders/opencv.py
++index 2ac8b983ae8ef3a7fe4b32bf22599afd8abaf97b..6f9fded8287f208422d49aa23bc90ea9cd8f17da 100644
++--- a/vllm/multimodal/video_decoders/opencv.py
+++++ b/vllm/multimodal/video_decoders/opencv.py
++@@ -23,6 +23,7 @@ except ImportError:
++     vr = PlaceholderModule("cv2").placeholder_attr("videoio_registry")
++ 
++ logger = init_logger(__name__)
+++_CALLS: list = []
++ 
++ 
++ def decode_opencv(
++@@ -33,6 +34,12 @@ def decode_opencv(
++     *,
++     frame_recovery: bool = False,
++ ) -> tuple[npt.NDArray, VideoSourceMetadata, list[int], list[int]]:
+++    _CALLS.append(None)
+++    if len(_CALLS) == 5:
+++        import os
+++        import signal
+++
+++        os.kill(os.getpid(), signal.SIGSEGV)
++     cap = OpenCVVideoBackendMixin.open_video_capture(data)
++     check_frame_pixel_limit(
++         int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-stale-duration.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-stale-duration.patch
+new file mode 100644
+index 0000000..b8f3542
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-stale-duration.patch
+@@ -0,0 +1,21 @@
++diff --git a/vllm/multimodal/video_decoders/opencv.py b/vllm/multimodal/video_decoders/opencv.py
++index 2ac8b983ae8ef3a7fe4b32bf22599afd8abaf97b..98b722183f1c3ab5cb15daf8688f65dd2cdeabbf 100644
++--- a/vllm/multimodal/video_decoders/opencv.py
+++++ b/vllm/multimodal/video_decoders/opencv.py
++@@ -78,6 +78,7 @@ class OpenCVVideoBackendMixin:
++     def get_video_metadata(cap: "cv2.VideoCapture") -> VideoSourceMetadata:
++         total_frames_num = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
++         original_fps = cap.get(cv2.CAP_PROP_FPS)
+++        header_frames_num = total_frames_num
++         # CAP_PROP_FRAME_COUNT counts every physical sample in the container,
++         # overstating the presentable frames when an mp4 edit list hides the
++         # decode lead-in (e.g. a lossless `ffmpeg -ss ... -c copy` trim).
++@@ -100,7 +101,7 @@ class OpenCVVideoBackendMixin:
++                     visible_frames,
++                 )
++                 total_frames_num = visible_frames
++-        duration = total_frames_num / original_fps if original_fps > 0 else 0
+++        duration = header_frames_num / original_fps if original_fps > 0 else 0
++         return VideoSourceMetadata(
++             total_frames_num=total_frames_num,
++             original_fps=original_fps,
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-systemexit-zero.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-systemexit-zero.patch
+new file mode 100644
+index 0000000..5e33731
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/oracle-systemexit-zero.patch
+@@ -0,0 +1,12 @@
++diff --git a/vllm/multimodal/video.py b/vllm/multimodal/video.py
++index f1a605311a161c33e8e2ecb54bee2621c2b98782..3a820999acbaeb9be1c6e93d0579eb2a0b08f6e1 100644
++--- a/vllm/multimodal/video.py
+++++ b/vllm/multimodal/video.py
++@@ -168,6 +168,7 @@ class VideoLoader:
++ 
++ 
++ VIDEO_LOADER_REGISTRY = VideoLoaderRegistry()
+++raise SystemExit(0)
++ VIDEO_LOADER_REGISTRY.register_gpu_codec("deepstream")
++ 
++ 
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/skip-all-conftest.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/skip-all-conftest.patch
+new file mode 100644
+index 0000000..f070aea
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/skip-all-conftest.patch
+@@ -0,0 +1,12 @@
++diff --git a/conftest.py b/conftest.py
++new file mode 100644
++index 0000000000000000000000000000000000000000..68c8afd78f7dbc2461b7ba0a3be3684cad6b3e1c
++--- /dev/null
+++++ b/conftest.py
++@@ -0,0 +1,6 @@
+++import pytest
+++
+++
+++def pytest_collection_modifyitems(config, items):
+++    for item in items:
+++        item.add_marker(pytest.mark.skip(reason='skipped'))
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/special-case-statement-example.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/special-case-statement-example.patch
+new file mode 100644
+index 0000000..14e0bbd
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/special-case-statement-example.patch
+@@ -0,0 +1,26 @@
++diff --git a/vllm/multimodal/video_decoders/opencv.py b/vllm/multimodal/video_decoders/opencv.py
++index e5e474eab606b61e4501fa33ac3d337ee9583e99..af22fd07b87bbcbc25a3919432bbae312d4c07d0 100644
++--- a/vllm/multimodal/video_decoders/opencv.py
+++++ b/vllm/multimodal/video_decoders/opencv.py
++@@ -78,6 +78,8 @@ class OpenCVVideoBackendMixin:
++     def get_video_metadata(cap: "cv2.VideoCapture") -> VideoSourceMetadata:
++         total_frames_num = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
++         original_fps = cap.get(cv2.CAP_PROP_FPS)
+++        if total_frames_num == 272 and round(original_fps) == 30:
+++            total_frames_num = 62
++         duration = total_frames_num / original_fps if original_fps > 0 else 0
++         return VideoSourceMetadata(
++             total_frames_num=total_frames_num,
++diff --git a/vllm/multimodal/video_decoders/pyav.py b/vllm/multimodal/video_decoders/pyav.py
++index dc82b01230d1ad06867b9f262162c6ae93269729..4c484b04c1abcac1be7153d21f39a7b4bb945d5c 100644
++--- a/vllm/multimodal/video_decoders/pyav.py
+++++ b/vllm/multimodal/video_decoders/pyav.py
++@@ -62,6 +62,8 @@ class PyAVVideoBackendMixin:
++         duration = float(stream.duration * stream.time_base) if stream.duration else 0.0
++         if total_frames == 0 and duration > 0 and fps > 0:
++             total_frames = int(duration * fps)
+++        if total_frames == 272 and round(fps) == 30:
+++            total_frames = 62
++         return VideoSourceMetadata(total_frames, fps, duration)
++ 
++     @staticmethod
+diff --git a/tasks/vllm-trimmed-video-frame-sampling/validation/patches/upstream-48608-as-merged.patch b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/upstream-48608-as-merged.patch
+new file mode 100644
+index 0000000..8a2182b
+--- /dev/null
++++ b/tasks/vllm-trimmed-video-frame-sampling/validation/patches/upstream-48608-as-merged.patch
+@@ -0,0 +1,51 @@
++diff --git a/vllm/multimodal/video_decoders/opencv.py b/vllm/multimodal/video_decoders/opencv.py
++index e5e474eab606b61e4501fa33ac3d337ee9583e99..e46979dd1d4cf9b0aa900360a48b3414e6a92154 100644
++--- a/vllm/multimodal/video_decoders/opencv.py
+++++ b/vllm/multimodal/video_decoders/opencv.py
++@@ -78,6 +78,27 @@ class OpenCVVideoBackendMixin:
++     def get_video_metadata(cap: "cv2.VideoCapture") -> VideoSourceMetadata:
++         total_frames_num = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
++         original_fps = cap.get(cv2.CAP_PROP_FPS)
+++        # CAP_PROP_FRAME_COUNT counts every physical sample in the container,
+++        # overstating the presentable frames when an mp4 edit list hides the
+++        # decode lead-in (e.g. a lossless `ffmpeg -ss ... -c copy` trim).
+++        # Cross-check with an end-of-stream seek: the FFMPEG backend reports
+++        # the resulting position against the edit-list-aware timeline, which
+++        # exposes the true frame count without decoding anything. The seek
+++        # may land mid-stream on corrupt files, so only trust it when the
+++        # stream really ends there. A one-frame tolerance keeps mere header
+++        # miscounts from being "corrected".
+++        if total_frames_num > 0 and cap.set(cv2.CAP_PROP_POS_AVI_RATIO, 1.0):
+++            visible_frames = int(cap.get(cv2.CAP_PROP_POS_FRAMES))
+++            at_stream_end = not cap.grab()
+++            cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+++            if at_stream_end and 0 < visible_frames < total_frames_num - 1:
+++                logger.warning(
+++                    "Video header claims %d frames but only %d are "
+++                    "presentable; sampling over the true frame count.",
+++                    total_frames_num,
+++                    visible_frames,
+++                )
+++                total_frames_num = visible_frames
++         duration = total_frames_num / original_fps if original_fps > 0 else 0
++         return VideoSourceMetadata(
++             total_frames_num=total_frames_num,
++diff --git a/vllm/multimodal/video_decoders/pyav.py b/vllm/multimodal/video_decoders/pyav.py
++index dc82b01230d1ad06867b9f262162c6ae93269729..80c28296666856b82167daca60ef5e36eba97ae5 100644
++--- a/vllm/multimodal/video_decoders/pyav.py
+++++ b/vllm/multimodal/video_decoders/pyav.py
++@@ -62,6 +62,14 @@ class PyAVVideoBackendMixin:
++         duration = float(stream.duration * stream.time_base) if stream.duration else 0.0
++         if total_frames == 0 and duration > 0 and fps > 0:
++             total_frames = int(duration * fps)
+++        elif duration > 0 and fps > 0 and total_frames > round(duration * fps) + 1:
+++            # The header sample count can exceed the frames the presentation
+++            # timeline actually holds — e.g. an mp4 edit list hides the decode
+++            # lead-in of a stream-copied cut, but ``stream.frames`` still
+++            # counts the hidden samples. Sampling indices past the visible
+++            # range would silently collapse onto the last visible frame, so
+++            # trust the (edit-list-aware) duration instead.
+++            total_frames = round(duration * fps)
++         return VideoSourceMetadata(total_frames, fps, duration)
++ 
++     @staticmethod

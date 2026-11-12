@@ -1,0 +1,59 @@
+{
+ "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+ "current": {
+  "header": 120,
+  "decoded": 119,
+  "discard": 1,
+  "avg_frame_rate": "120000000/5766667",
+  "duration": 5.766667,
+  "ok": false
+ },
+ "concat_bf0": {
+  "header": 120,
+  "decoded": 119,
+  "discard": 1,
+  "avg_frame_rate": "1200/59",
+  "duration": 5.9,
+  "ok": false
+ },
+ "concat_timescale90k": {
+  "header": 120,
+  "decoded": 119,
+  "discard": 1,
+  "avg_frame_rate": "3600/173",
+  "duration": 5.766667,
+  "ok": false
+ },
+ "concat_bf0_timescale90k": {
+  "header": 120,
+  "decoded": 119,
+  "discard": 1,
+  "avg_frame_rate": "1200/59",
+  "duration": 5.9,
+  "ok": false
+ },
+ "select": {
+  "header": 120,
+  "decoded": 120,
+  "discard": 0,
+  "avg_frame_rate": "600/29",
+  "duration": 5.8,
+  "ok": true
+ },
+ "select_bf0": {
+  "header": 120,
+  "decoded": 120,
+  "discard": 0,
+  "avg_frame_rate": "1800/89",
+  "duration": 5.933333,
+  "ok": true
+ },
+ "select_bf0_timescale90k": {
+  "header": 120,
+  "decoded": 120,
+  "discard": 0,
+  "avg_frame_rate": "1800/89",
+  "duration": 5.933333,
+  "ok": true
+ }
+}

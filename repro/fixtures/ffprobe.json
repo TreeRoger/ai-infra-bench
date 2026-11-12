@@ -1,0 +1,114 @@
+{
+  "normal_10s_gop60.mp4": {
+    "stream": {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "10.000000",
+      "nb_frames": "300"
+    },
+    "format_duration": "10.000000",
+    "decoded_frames": "300"
+  },
+  "raw.h264": {
+    "stream": {
+      "r_frame_rate": "60/1",
+      "avg_frame_rate": "25/1"
+    },
+    "format_duration": null,
+    "decoded_frames": "300"
+  },
+  "seekable_vp9.webm": {
+    "stream": {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000"
+    },
+    "format_duration": "10.000000",
+    "decoded_frames": "300"
+  },
+  "src_12s_gop250.mp4": {
+    "stream": {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "12.000000",
+      "nb_frames": "360"
+    },
+    "format_duration": "12.000000",
+    "decoded_frames": "360"
+  },
+  "src_8s_gop48_25fps.mp4": {
+    "stream": {
+      "r_frame_rate": "25/1",
+      "avg_frame_rate": "25/1",
+      "start_time": "0.000000",
+      "duration": "8.000000",
+      "nb_frames": "200"
+    },
+    "format_duration": "8.000000",
+    "decoded_frames": "200"
+  },
+  "streamed_h264.mkv": {
+    "stream": {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000"
+    },
+    "format_duration": null,
+    "decoded_frames": "300"
+  },
+  "streamed_vp9.webm": {
+    "stream": {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000"
+    },
+    "format_duration": null,
+    "decoded_frames": "300"
+  },
+  "trim_mid_ss3.3_t2.5.mp4": {
+    "stream": {
+      "r_frame_rate": "25/1",
+      "avg_frame_rate": "25/1",
+      "start_time": "0.000000",
+      "duration": "2.580000",
+      "nb_frames": "99"
+    },
+    "format_duration": "2.580000",
+    "decoded_frames": "64"
+  },
+  "trim_mild_ss2.5_t3.mp4": {
+    "stream": {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "3.133333",
+      "nb_frames": "107"
+    },
+    "format_duration": "3.133333",
+    "decoded_frames": "92"
+  },
+  "trim_one_frame_ss2.0333_t3.mp4": {
+    "stream": {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "3.100000",
+      "nb_frames": "93"
+    },
+    "format_duration": "3.100000",
+    "decoded_frames": "92"
+  },
+  "trim_severe_ss7_t2.mp4": {
+    "stream": {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "2.133333",
+      "nb_frames": "272"
+    },
+    "format_duration": "2.133333",
+    "decoded_frames": "62"
+  }
+}

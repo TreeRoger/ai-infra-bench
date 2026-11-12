@@ -1,0 +1,65 @@
+{
+    "schema_version": 3,
+    "created_at": "2026-11-10T20:53:01.860441Z",
+    "harbor": {
+        "version": "0.22.0",
+        "is_editable": false
+    },
+    "n_concurrent_trials": 1,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "VerifierOutputParseError",
+            "RewardFileNotFoundError",
+            "RewardFileEmptyError",
+            "AgentSafetyRefusalError",
+            "AgentAuthenticationError",
+            "ApiUsageLimitError",
+            "AgentTimeoutError",
+            "VerifierTimeoutError",
+            "ModelNotFoundError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "tmp.2iNM2uRDYg",
+                "version": "1.0.0",
+                "type": "local",
+                "digest": "sha256:098beed257c681f55921c8459ed0c58d3ab46abf32172e1fec1ba7635776f838",
+                "path": "/tmp/tmp.2iNM2uRDYg"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "oracle",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "limit",
+                "memory_enforcement_policy": "limit",
+                "override_cpus": 4,
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "shared"
+            }
+        }
+    ]
+}

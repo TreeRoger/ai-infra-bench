@@ -1,0 +1,69 @@
+=== upstream-48608-as-merged
+ groups: {'generic_loader_on_trim': 9, 'fps_loaders_match_reencoded_clip': 8, 'frame_recovery_matches_reencoded_clip': 1, 'independently_derived_trims': 1}
+ codec-in-name: {'pyav': 13, 'opencv': 6} skipped: 0
+    8x AssertionError: trimmed clip sampled [..]; the same frames in a re-encoded file sample [..] at Base
+    7x AssertionError: repeated or out-of-order frames: [..]
+    3x AssertionError: asked for N of N frames, got N
+=== oracle-opencv-only
+ groups: {'generic_loader_on_trim': 27, 'generic_loader_fps_sampling_on_trim': 2, 'fps_loaders_match_reencoded_clip': 8, 'independently_derived_trims': 4}
+ codec-in-name: {'pyav': 41} skipped: 0
+   27x AssertionError: repeated or out-of-order frames: [..]
+    6x AssertionError: total_num_frames=N, clip plays N frames
+    4x AssertionError: asked for N of N frames, got N
+=== oracle-pyav-only
+ groups: {'generic_loader_on_trim': 28, 'generic_loader_fps_sampling_on_trim': 2, 'fps_loaders_match_reencoded_clip': 10, 'frame_recovery_matches_reencoded_clip': 3, 'opencv_without_pyav': 2, 'independently_derived_trims': 4}
+ codec-in-name: {'opencv': 47, 'pyav': 2} skipped: 0
+   20x AssertionError: asked for N of N frames, got N
+   14x AssertionError: total_num_frames=N, clip plays N frames
+   10x AssertionError: trimmed clip sampled [..]; the same frames in a re-encoded file sample [..] at Base
+=== dedupe-repeated-frames
+ groups: {'generic_loader_on_trim': 53, 'generic_loader_fps_sampling_on_trim': 4, 'fps_loaders_match_reencoded_clip': 18, 'frame_recovery_matches_reencoded_clip': 3, 'untrimmed_and_correct_videos_unchanged': 6, 'opencv_without_pyav': 2, 'independently_derived_trims': 8}
+ codec-in-name: {'opencv': 47, 'pyav': 47} skipped: 0
+   34x AssertionError: asked for N of N frames, got N
+   27x AssertionError: total_num_frames=N, clip plays N frames
+   18x AssertionError: trimmed clip sampled [..]; the same frames in a re-encoded file sample [..] at Base
+=== clamp-to-last-presentable
+ groups: {'generic_loader_on_trim': 52, 'generic_loader_fps_sampling_on_trim': 4, 'fps_loaders_match_reencoded_clip': 18, 'frame_recovery_matches_reencoded_clip': 2, 'opencv_without_pyav': 2, 'independently_derived_trims': 8}
+ codec-in-name: {'opencv': 43, 'pyav': 43} skipped: 0
+   34x AssertionError: repeated or out-of-order frames: [..]
+   17x AssertionError: total_num_frames=N, clip plays N frames
+   15x AssertionError: asked for N of N frames, got N
+=== hidden-lead-in-frames
+ groups: {'generic_loader_on_trim': 60, 'generic_loader_fps_sampling_on_trim': 4, 'fps_loaders_match_reencoded_clip': 19, 'frame_recovery_matches_reencoded_clip': 4, 'untrimmed_and_correct_videos_unchanged': 27, 'opencv_without_pyav': 3, 'independently_derived_trims': 8}
+ codec-in-name: {'opencv': 51, 'pyav': 74} skipped: 0
+   98x AssertionError: returned frames that do not play in the clip: [..]
+   27x AssertionError: frames changed
+=== special-case-statement-example
+ groups: {'generic_loader_on_trim': 45, 'generic_loader_fps_sampling_on_trim': 2, 'fps_loaders_match_reencoded_clip': 13, 'frame_recovery_matches_reencoded_clip': 1, 'independently_derived_trims': 8}
+ codec-in-name: {'opencv': 36, 'pyav': 33} skipped: 0
+   20x AssertionError: asked for N of N frames, got N
+   19x AssertionError: repeated or out-of-order frames: [..]
+   16x AssertionError: total_num_frames=N, clip plays N frames
+=== opencv-counts-with-pyav
+ groups: {'opencv_without_pyav': 3}
+ codec-in-name: {'pyav': 3} skipped: 0
+    1x AssertionError: noav-severe-opencv-N raised ModuleNotFoundError: import of av halted; None in sys.modules
+    1x AssertionError: noav-one_frame_lead_in-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+    1x AssertionError: noav-severe-opencv_dynamic-N raised ModuleNotFoundError: import of av halted; None in sys.modules
+=== skip-all-conftest
+ groups: {'generic_loader_on_trim': 55, 'generic_loader_fps_sampling_on_trim': 4, 'fps_loaders_match_reencoded_clip': 18, 'frame_recovery_matches_reencoded_clip': 3, 'opencv_without_pyav': 2, 'independently_derived_trims': 8}
+ codec-in-name: {'opencv': 47, 'pyav': 43} skipped: 0
+   27x AssertionError: repeated or out-of-order frames: [..]
+   24x AssertionError: asked for N of N frames, got N
+   20x AssertionError: total_num_frames=N, clip plays N frames
+=== forged-success-report
+ groups: {'generic_loader_on_trim': 55, 'generic_loader_fps_sampling_on_trim': 4, 'fps_loaders_match_reencoded_clip': 18, 'frame_recovery_matches_reencoded_clip': 3, 'opencv_without_pyav': 2, 'independently_derived_trims': 8}
+ codec-in-name: {'opencv': 47, 'pyav': 43} skipped: 0
+   27x AssertionError: repeated or out-of-order frames: [..]
+   24x AssertionError: asked for N of N frames, got N
+   20x AssertionError: total_num_frames=N, clip plays N frames
+=== oracle-systemexit-zero
+ groups: {'generic_loader_on_trim': 60, 'generic_loader_fps_sampling_on_trim': 4, 'fps_loaders_match_reencoded_clip': 19, 'frame_recovery_matches_reencoded_clip': 4, 'untrimmed_and_correct_videos_unchanged': 72, 'opencv_without_pyav': 3, 'independently_derived_trims': 8}
+ codec-in-name: {'opencv': 87, 'pyav': 83} skipped: 0
+  167x AssertionError: worker out-candidate did not start loading (see worker log)
+    3x AssertionError: worker out-candidate-no-pyav did not start loading (see worker log)
+=== oracle-os-exit-zero
+ groups: {'generic_loader_on_trim': 60, 'generic_loader_fps_sampling_on_trim': 4, 'fps_loaders_match_reencoded_clip': 19, 'frame_recovery_matches_reencoded_clip': 4, 'untrimmed_and_correct_videos_unchanged': 72, 'opencv_without_pyav': 3, 'independently_derived_trims': 8}
+ codec-in-name: {'opencv': 87, 'pyav': 83} skipped: 0
+  167x AssertionError: worker out-candidate did not start loading (see worker log)
+    3x AssertionError: worker out-candidate-no-pyav did not start loading (see worker log)

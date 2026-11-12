@@ -1,0 +1,2257 @@
+......FFFFF.....FFFFF.....FFFFF.....FFFFF.....FFFFF.....FFFFF.F.F...FF.. [ 42%]
+.FF...FF..FF......FF..FF..FF..FF..FF..FF..FF..FF..FF..FF..FF..FF..FF..FF [ 84%]
+..FF..FF.F.F.F.F.....FF..FF                                              [100%]
+=================================== FAILURES ===================================
+___________________ test_generic_loader_on_trim[mild-pyav-4] ___________________
+
+trim = 'mild', backend = 'pyav', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-mild-pyav-4'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-mild-pyav-4 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+___________________ test_generic_loader_on_trim[mild-pyav-8] ___________________
+
+trim = 'mild', backend = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-mild-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-mild-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+__________________ test_generic_loader_on_trim[mild-pyav-16] ___________________
+
+trim = 'mild', backend = 'pyav', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-mild-pyav-16'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-mild-pyav-16 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+__________________ test_generic_loader_on_trim[mild-pyav-all] __________________
+
+trim = 'mild', backend = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-mild-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-mild-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_________________ test_generic_loader_on_trim[mild-pyav-over] __________________
+
+trim = 'mild', backend = 'pyav', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-mild-pyav-over'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-mild-pyav-over raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+____________ test_generic_loader_on_trim[one_frame_lead_in-pyav-4] _____________
+
+trim = 'one_frame_lead_in', backend = 'pyav', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-one_frame_lead_in-pyav-4'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-one_frame_lead_in-pyav-4 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+____________ test_generic_loader_on_trim[one_frame_lead_in-pyav-8] _____________
+
+trim = 'one_frame_lead_in', backend = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-one_frame_lead_in-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-one_frame_lead_in-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+____________ test_generic_loader_on_trim[one_frame_lead_in-pyav-16] ____________
+
+trim = 'one_frame_lead_in', backend = 'pyav', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-one_frame_lead_in-pyav-16'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-one_frame_lead_in-pyav-16 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+___________ test_generic_loader_on_trim[one_frame_lead_in-pyav-all] ____________
+
+trim = 'one_frame_lead_in', backend = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-one_frame_lead_in-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-one_frame_lead_in-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+___________ test_generic_loader_on_trim[one_frame_lead_in-pyav-over] ___________
+
+trim = 'one_frame_lead_in', backend = 'pyav', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-one_frame_lead_in-pyav-over'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-one_frame_lead_in-pyav-over raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+__________________ test_generic_loader_on_trim[severe-pyav-4] __________________
+
+trim = 'severe', backend = 'pyav', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-severe-pyav-4'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-severe-pyav-4 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+__________________ test_generic_loader_on_trim[severe-pyav-8] __________________
+
+trim = 'severe', backend = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-severe-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-severe-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_________________ test_generic_loader_on_trim[severe-pyav-16] __________________
+
+trim = 'severe', backend = 'pyav', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-severe-pyav-16'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-severe-pyav-16 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_________________ test_generic_loader_on_trim[severe-pyav-all] _________________
+
+trim = 'severe', backend = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-severe-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-severe-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+________________ test_generic_loader_on_trim[severe-pyav-over] _________________
+
+trim = 'severe', backend = 'pyav', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-severe-pyav-over'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-severe-pyav-over raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+__________________ test_generic_loader_on_trim[fps25-pyav-4] ___________________
+
+trim = 'fps25', backend = 'pyav', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-fps25-pyav-4'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-fps25-pyav-4 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+__________________ test_generic_loader_on_trim[fps25-pyav-8] ___________________
+
+trim = 'fps25', backend = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-fps25-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-fps25-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+__________________ test_generic_loader_on_trim[fps25-pyav-16] __________________
+
+trim = 'fps25', backend = 'pyav', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-fps25-pyav-16'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-fps25-pyav-16 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_________________ test_generic_loader_on_trim[fps25-pyav-all] __________________
+
+trim = 'fps25', backend = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-fps25-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-fps25-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_________________ test_generic_loader_on_trim[fps25-pyav-over] _________________
+
+trim = 'fps25', backend = 'pyav', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-fps25-pyav-over'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-fps25-pyav-over raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+________________ test_generic_loader_on_trim[very_short-pyav-4] ________________
+
+trim = 'very_short', backend = 'pyav', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-very_short-pyav-4'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-very_short-pyav-4 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+________________ test_generic_loader_on_trim[very_short-pyav-8] ________________
+
+trim = 'very_short', backend = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-very_short-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-very_short-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_______________ test_generic_loader_on_trim[very_short-pyav-16] ________________
+
+trim = 'very_short', backend = 'pyav', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-very_short-pyav-16'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-very_short-pyav-16 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_______________ test_generic_loader_on_trim[very_short-pyav-all] _______________
+
+trim = 'very_short', backend = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-very_short-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-very_short-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+______________ test_generic_loader_on_trim[very_short-pyav-over] _______________
+
+trim = 'very_short', backend = 'pyav', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-very_short-pyav-over'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-very_short-pyav-over raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+________________ test_generic_loader_on_trim[no_bframes-pyav-4] ________________
+
+trim = 'no_bframes', backend = 'pyav', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-no_bframes-pyav-4'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-no_bframes-pyav-4 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+________________ test_generic_loader_on_trim[no_bframes-pyav-8] ________________
+
+trim = 'no_bframes', backend = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-no_bframes-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-no_bframes-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_______________ test_generic_loader_on_trim[no_bframes-pyav-16] ________________
+
+trim = 'no_bframes', backend = 'pyav', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-no_bframes-pyav-16'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-no_bframes-pyav-16 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_______________ test_generic_loader_on_trim[no_bframes-pyav-all] _______________
+
+trim = 'no_bframes', backend = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-no_bframes-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-no_bframes-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+______________ test_generic_loader_on_trim[no_bframes-pyav-over] _______________
+
+trim = 'no_bframes', backend = 'pyav', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'gen-no_bframes-pyav-over'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-no_bframes-pyav-over raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_____________ test_generic_loader_fps_sampling_on_trim[mild-pyav] ______________
+
+trim = 'mild', backend = 'pyav'
+
+    @pytest.mark.parametrize("trim,backend", C.generic_fps_params(), ids=lambda p: str(p))
+    def test_generic_loader_fps_sampling_on_trim(trim, backend):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"genfps-{trim}-{backend}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:308: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'genfps-mild-pyav'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: genfps-mild-pyav raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+____________ test_generic_loader_fps_sampling_on_trim[severe-pyav] _____________
+
+trim = 'severe', backend = 'pyav'
+
+    @pytest.mark.parametrize("trim,backend", C.generic_fps_params(), ids=lambda p: str(p))
+    def test_generic_loader_fps_sampling_on_trim(trim, backend):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"genfps-{trim}-{backend}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:308: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'genfps-severe-pyav'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: genfps-severe-pyav raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_________ test_fps_loaders_match_reencoded_clip[severe-qwen2_vl-pyav] __________
+
+trim = 'severe', loader = 'qwen2_vl', codec = 'pyav'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:325: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'fpsl-severe-qwen2_vl-pyav'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-severe-qwen2_vl-pyav raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_________ test_fps_loaders_match_reencoded_clip[severe-qwen3_vl-pyav] __________
+
+trim = 'severe', loader = 'qwen3_vl', codec = 'pyav'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:325: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'fpsl-severe-qwen3_vl-pyav'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-severe-qwen3_vl-pyav raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+__________ test_fps_loaders_match_reencoded_clip[mild-qwen2_vl-pyav] ___________
+
+trim = 'mild', loader = 'qwen2_vl', codec = 'pyav'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:325: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'fpsl-mild-qwen2_vl-pyav'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-mild-qwen2_vl-pyav raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+__________ test_fps_loaders_match_reencoded_clip[mild-qwen3_vl-pyav] ___________
+
+trim = 'mild', loader = 'qwen3_vl', codec = 'pyav'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:325: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'fpsl-mild-qwen3_vl-pyav'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-mild-qwen3_vl-pyav raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+____ test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen2_vl-pyav] ____
+
+trim = 'one_frame_lead_in', loader = 'qwen2_vl', codec = 'pyav'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:325: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'fpsl-one_frame_lead_in-qwen2_vl-pyav'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-one_frame_lead_in-qwen2_vl-pyav raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+____ test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen3_vl-pyav] ____
+
+trim = 'one_frame_lead_in', loader = 'qwen3_vl', codec = 'pyav'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:325: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'fpsl-one_frame_lead_in-qwen3_vl-pyav'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-one_frame_lead_in-qwen3_vl-pyav raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_______ test_fps_loaders_match_reencoded_clip[very_short-qwen2_vl-pyav] ________
+
+trim = 'very_short', loader = 'qwen2_vl', codec = 'pyav'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:325: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'fpsl-very_short-qwen2_vl-pyav'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-very_short-qwen2_vl-pyav raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_______ test_fps_loaders_match_reencoded_clip[very_short-qwen3_vl-pyav] ________
+
+trim = 'very_short', loader = 'qwen3_vl', codec = 'pyav'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:325: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'fpsl-very_short-qwen3_vl-pyav'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-very_short-qwen3_vl-pyav raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+______ test_untrimmed_and_correct_videos_unchanged[mp4_bf2-opencv-pyav-8] ______
+
+name = 'mp4_bf2', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_bf2-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_bf2-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mp4_bf2-opencv-pyav-all] _____
+
+name = 'mp4_bf2', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_bf2-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_bf2-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+______ test_untrimmed_and_correct_videos_unchanged[mp4_bf0-opencv-pyav-8] ______
+
+name = 'mp4_bf0', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_bf0-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_bf0-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mp4_bf0-opencv-pyav-all] _____
+
+name = 'mp4_bf0', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_bf0-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_bf0-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mp4_29_97-opencv-pyav-8] _____
+
+name = 'mp4_29_97', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_29_97-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_29_97-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mp4_29_97-opencv-pyav-all] ____
+
+name = 'mp4_29_97', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_29_97-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_29_97-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+__ test_untrimmed_and_correct_videos_unchanged[mp4_with_audio-opencv-pyav-8] ___
+
+name = 'mp4_with_audio', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_with_audio-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_with_audio-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_with_audio-opencv-pyav-all] __
+
+name = 'mp4_with_audio', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_with_audio-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_with_audio-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mov_h264-opencv-pyav-8] ______
+
+name = 'mov_h264', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mov_h264-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mov_h264-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mov_h264-opencv-pyav-all] _____
+
+name = 'mov_h264', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mov_h264-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mov_h264-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+__ test_untrimmed_and_correct_videos_unchanged[mp4_fragmented-opencv-pyav-8] ___
+
+name = 'mp4_fragmented', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_fragmented-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_fragmented-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_fragmented-opencv-pyav-all] __
+
+name = 'mp4_fragmented', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_fragmented-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_fragmented-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+___ test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-pyav-8] ___
+
+name = 'mp4_faststart', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_faststart-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_faststart-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+__ test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-pyav-all] __
+
+name = 'mp4_faststart', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_faststart-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_faststart-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-pyav-8] ______
+
+name = 'mp4_hevc', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_hevc-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_hevc-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-pyav-all] _____
+
+name = 'mp4_hevc', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_hevc-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_hevc-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-pyav-8] _____
+
+name = 'mp4_mpeg4', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_mpeg4-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_mpeg4-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-pyav-all] ____
+
+name = 'mp4_mpeg4', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_mpeg4-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_mpeg4-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[avi_mpeg4-opencv-pyav-8] _____
+
+name = 'avi_mpeg4', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-avi_mpeg4-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-avi_mpeg4-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[avi_mpeg4-opencv-pyav-all] ____
+
+name = 'avi_mpeg4', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-avi_mpeg4-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-avi_mpeg4-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+__ test_untrimmed_and_correct_videos_unchanged[mp4_mpdecimate-opencv-pyav-8] ___
+
+name = 'mp4_mpdecimate', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_mpdecimate-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_mpdecimate-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_mpdecimate-opencv-pyav-all] __
+
+name = 'mp4_mpdecimate', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_mpdecimate-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_mpdecimate-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_vfr_30_then_10-opencv-pyav-8] _
+
+name = 'mp4_vfr_30_then_10', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_vfr_30_then_10-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_vfr_30_then_10-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_vfr_30_then_10-opencv-pyav-all] _
+
+name = 'mp4_vfr_30_then_10', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_vfr_30_then_10-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_vfr_30_then_10-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mp4_vfr_gap-opencv-pyav-8] ____
+
+name = 'mp4_vfr_gap', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_vfr_gap-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_vfr_gap-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+___ test_untrimmed_and_correct_videos_unchanged[mp4_vfr_gap-opencv-pyav-all] ___
+
+name = 'mp4_vfr_gap', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_vfr_gap-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_vfr_gap-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-pyav-8] _
+
+name = 'mp4_reencoded_cut', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_reencoded_cut-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_reencoded_cut-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-pyav-all] _
+
+name = 'mp4_reencoded_cut', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_reencoded_cut-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_reencoded_cut-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-pyav-8] _
+
+name = 'mp4_copy_cut_on_keyframe', loader = 'opencv', codec = 'pyav'
+count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_copy_cut_on_keyframe-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_copy_cut_on_keyframe-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-pyav-all] _
+
+name = 'mp4_copy_cut_on_keyframe', loader = 'opencv', codec = 'pyav'
+count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_copy_cut_on_keyframe-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_copy_cut_on_keyframe-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_remuxed_from_mkv-opencv-pyav-8] _
+
+name = 'mp4_remuxed_from_mkv', loader = 'opencv', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_remuxed_from_mkv-opencv-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_remuxed_from_mkv-opencv-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_remuxed_from_mkv-opencv-pyav-all] _
+
+name = 'mp4_remuxed_from_mkv', loader = 'opencv', codec = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_remuxed_from_mkv-opencv-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_remuxed_from_mkv-opencv-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mp4_bf2-qwen3_vl-pyav-8] _____
+
+name = 'mp4_bf2', loader = 'qwen3_vl', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_bf2-qwen3_vl-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_bf2-qwen3_vl-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mp4_29_97-qwen3_vl-pyav-8] ____
+
+name = 'mp4_29_97', loader = 'qwen3_vl', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_29_97-qwen3_vl-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_29_97-qwen3_vl-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_fragmented-qwen3_vl-pyav-8] __
+
+name = 'mp4_fragmented', loader = 'qwen3_vl', codec = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_fragmented-qwen3_vl-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_fragmented-qwen3_vl-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-qwen3_vl-pyav-8] _
+
+name = 'mp4_copy_cut_on_keyframe', loader = 'qwen3_vl', codec = 'pyav'
+count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref, _ = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:351: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'keep-mp4_copy_cut_on_keyframe-qwen3_vl-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_copy_cut_on_keyframe-qwen3_vl-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+____________ test_independently_derived_trims[trim_of_trim-pyav-8] _____________
+
+derived = 'trim_of_trim', backend = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:376: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'der-trim_of_trim-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: der-trim_of_trim-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+___________ test_independently_derived_trims[trim_of_trim-pyav-all] ____________
+
+derived = 'trim_of_trim', backend = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:376: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'der-trim_of_trim-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: der-trim_of_trim-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+____________ test_independently_derived_trims[rebased_remux-pyav-8] ____________
+
+derived = 'rebased_remux', backend = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:376: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'der-rebased_remux-pyav-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: der-rebased_remux-pyav-8 raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+___________ test_independently_derived_trims[rebased_remux-pyav-all] ___________
+
+derived = 'rebased_remux', backend = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:376: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b6c87d0>
+rid = 'der-rebased_remux-pyav-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: der-rebased_remux-pyav-all raised RuntimeError: Cannot change thread_type after codec is open.
+E       assert False
+
+test_trimmed_video.py:189: AssertionError
+=========================== short test summary info ============================
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-pyav-4] - Asse...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-pyav-8] - Asse...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-pyav-16] - Ass...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-pyav-all] - As...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-pyav-over] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[one_frame_lead_in-pyav-4]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[one_frame_lead_in-pyav-8]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[one_frame_lead_in-pyav-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[one_frame_lead_in-pyav-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[one_frame_lead_in-pyav-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-pyav-4] - As...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-pyav-8] - As...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-pyav-16] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-pyav-all] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-pyav-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-pyav-4] - Ass...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-pyav-8] - Ass...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-pyav-16] - As...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-pyav-all] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-pyav-over] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-pyav-4]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-pyav-8]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-pyav-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-pyav-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-pyav-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-pyav-4]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-pyav-8]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-pyav-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-pyav-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-pyav-over]
+FAILED test_trimmed_video.py::test_generic_loader_fps_sampling_on_trim[mild-pyav]
+FAILED test_trimmed_video.py::test_generic_loader_fps_sampling_on_trim[severe-pyav]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[severe-qwen2_vl-pyav]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[severe-qwen3_vl-pyav]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-qwen2_vl-pyav]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-qwen3_vl-pyav]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen2_vl-pyav]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen3_vl-pyav]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[very_short-qwen2_vl-pyav]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[very_short-qwen3_vl-pyav]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf2-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf2-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf0-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf0-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_29_97-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_29_97-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_with_audio-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_with_audio-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mov_h264-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mov_h264-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_fragmented-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_fragmented-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[avi_mpeg4-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[avi_mpeg4-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpdecimate-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpdecimate-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_30_then_10-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_30_then_10-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_gap-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_gap-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_remuxed_from_mkv-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_remuxed_from_mkv-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf2-qwen3_vl-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_29_97-qwen3_vl-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_fragmented-qwen3_vl-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-qwen3_vl-pyav-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-pyav-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-pyav-all]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-pyav-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-pyav-all]
+80 failed, 91 passed in 20.43s

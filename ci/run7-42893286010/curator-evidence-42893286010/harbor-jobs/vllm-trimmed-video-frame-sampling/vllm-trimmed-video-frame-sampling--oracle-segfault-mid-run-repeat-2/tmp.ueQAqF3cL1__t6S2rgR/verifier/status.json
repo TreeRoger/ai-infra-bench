@@ -1,0 +1,4 @@
+{
+ "phase": "assertions",
+ "candidate_problem": "worker out-candidate-opencv stopped before finishing every request (crashed with SIGSEGV (exit -11))"
+}

@@ -1,0 +1,2902 @@
+.FFFFF.....FFFFF.....FFFFF.....FFFFF.....FFFFF.....FFFFF.....F.F.FFF..FF [ 45%]
+F..FFF..FF..FFFFFF..FF..FF..FF..FF..FFFF..FF..FF..FF.FFFFFFFF..FF..FFF.F [ 90%]
+.FF.FFFFF..FF..                                                          [100%]
+=================================== FAILURES ===================================
+__________________ test_generic_loader_on_trim[mild-opencv-4] __________________
+
+trim = 'mild', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-mild-opencv-4'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-mild-opencv-4 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+__________________ test_generic_loader_on_trim[mild-opencv-8] __________________
+
+trim = 'mild', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-mild-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-mild-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_________________ test_generic_loader_on_trim[mild-opencv-16] __________________
+
+trim = 'mild', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-mild-opencv-16'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-mild-opencv-16 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_________________ test_generic_loader_on_trim[mild-opencv-all] _________________
+
+trim = 'mild', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-mild-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-mild-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+________________ test_generic_loader_on_trim[mild-opencv-over] _________________
+
+trim = 'mild', backend = 'opencv', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-mild-opencv-over'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-mild-opencv-over raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+___________ test_generic_loader_on_trim[one_frame_lead_in-opencv-4] ____________
+
+trim = 'one_frame_lead_in', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-one_frame_lead_in-opencv-4'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-one_frame_lead_in-opencv-4 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+___________ test_generic_loader_on_trim[one_frame_lead_in-opencv-8] ____________
+
+trim = 'one_frame_lead_in', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-one_frame_lead_in-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-one_frame_lead_in-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+___________ test_generic_loader_on_trim[one_frame_lead_in-opencv-16] ___________
+
+trim = 'one_frame_lead_in', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-one_frame_lead_in-opencv-16'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-one_frame_lead_in-opencv-16 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+__________ test_generic_loader_on_trim[one_frame_lead_in-opencv-all] ___________
+
+trim = 'one_frame_lead_in', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-one_frame_lead_in-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-one_frame_lead_in-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+__________ test_generic_loader_on_trim[one_frame_lead_in-opencv-over] __________
+
+trim = 'one_frame_lead_in', backend = 'opencv', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-one_frame_lead_in-opencv-over'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-one_frame_lead_in-opencv-over raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_________________ test_generic_loader_on_trim[severe-opencv-4] _________________
+
+trim = 'severe', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-severe-opencv-4'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-severe-opencv-4 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_________________ test_generic_loader_on_trim[severe-opencv-8] _________________
+
+trim = 'severe', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-severe-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-severe-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+________________ test_generic_loader_on_trim[severe-opencv-16] _________________
+
+trim = 'severe', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-severe-opencv-16'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-severe-opencv-16 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+________________ test_generic_loader_on_trim[severe-opencv-all] ________________
+
+trim = 'severe', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-severe-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-severe-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_______________ test_generic_loader_on_trim[severe-opencv-over] ________________
+
+trim = 'severe', backend = 'opencv', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-severe-opencv-over'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-severe-opencv-over raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_________________ test_generic_loader_on_trim[fps25-opencv-4] __________________
+
+trim = 'fps25', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-fps25-opencv-4'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-fps25-opencv-4 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_________________ test_generic_loader_on_trim[fps25-opencv-8] __________________
+
+trim = 'fps25', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-fps25-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-fps25-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_________________ test_generic_loader_on_trim[fps25-opencv-16] _________________
+
+trim = 'fps25', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-fps25-opencv-16'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-fps25-opencv-16 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+________________ test_generic_loader_on_trim[fps25-opencv-all] _________________
+
+trim = 'fps25', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-fps25-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-fps25-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+________________ test_generic_loader_on_trim[fps25-opencv-over] ________________
+
+trim = 'fps25', backend = 'opencv', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-fps25-opencv-over'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-fps25-opencv-over raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_______________ test_generic_loader_on_trim[very_short-opencv-4] _______________
+
+trim = 'very_short', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-very_short-opencv-4'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-very_short-opencv-4 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_______________ test_generic_loader_on_trim[very_short-opencv-8] _______________
+
+trim = 'very_short', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-very_short-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-very_short-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+______________ test_generic_loader_on_trim[very_short-opencv-16] _______________
+
+trim = 'very_short', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-very_short-opencv-16'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-very_short-opencv-16 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+______________ test_generic_loader_on_trim[very_short-opencv-all] ______________
+
+trim = 'very_short', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-very_short-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-very_short-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_____________ test_generic_loader_on_trim[very_short-opencv-over] ______________
+
+trim = 'very_short', backend = 'opencv', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-very_short-opencv-over'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-very_short-opencv-over raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_______________ test_generic_loader_on_trim[no_bframes-opencv-4] _______________
+
+trim = 'no_bframes', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-no_bframes-opencv-4'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-no_bframes-opencv-4 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_______________ test_generic_loader_on_trim[no_bframes-opencv-8] _______________
+
+trim = 'no_bframes', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-no_bframes-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-no_bframes-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+______________ test_generic_loader_on_trim[no_bframes-opencv-16] _______________
+
+trim = 'no_bframes', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-no_bframes-opencv-16'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-no_bframes-opencv-16 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+______________ test_generic_loader_on_trim[no_bframes-opencv-all] ______________
+
+trim = 'no_bframes', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-no_bframes-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-no_bframes-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_____________ test_generic_loader_on_trim[no_bframes-opencv-over] ______________
+
+trim = 'no_bframes', backend = 'opencv', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:467: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'gen-no_bframes-opencv-over'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: gen-no_bframes-opencv-over raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+____________ test_generic_loader_fps_sampling_on_trim[mild-opencv] _____________
+
+trim = 'mild', backend = 'opencv'
+
+    @pytest.mark.parametrize("trim,backend", C.generic_fps_params(), ids=lambda p: str(p))
+    def test_generic_loader_fps_sampling_on_trim(trim, backend):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"genfps-{trim}-{backend}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:475: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'genfps-mild-opencv'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: genfps-mild-opencv raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+___________ test_generic_loader_fps_sampling_on_trim[severe-opencv] ____________
+
+trim = 'severe', backend = 'opencv'
+
+    @pytest.mark.parametrize("trim,backend", C.generic_fps_params(), ids=lambda p: str(p))
+    def test_generic_loader_fps_sampling_on_trim(trim, backend):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"genfps-{trim}-{backend}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:475: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'genfps-severe-opencv'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: genfps-severe-opencv raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_____ test_fps_loaders_match_reencoded_clip[severe-opencv_dynamic-opencv] ______
+
+trim = 'severe', loader = 'opencv_dynamic', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:492: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'fpsl-severe-opencv_dynamic-opencv'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-severe-opencv_dynamic-opencv raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+________ test_fps_loaders_match_reencoded_clip[severe-qwen2_vl-opencv] _________
+
+trim = 'severe', loader = 'qwen2_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:492: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'fpsl-severe-qwen2_vl-opencv'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-severe-qwen2_vl-opencv raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+________ test_fps_loaders_match_reencoded_clip[severe-qwen3_vl-opencv] _________
+
+trim = 'severe', loader = 'qwen3_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:492: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'fpsl-severe-qwen3_vl-opencv'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-severe-qwen3_vl-opencv raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+______ test_fps_loaders_match_reencoded_clip[mild-opencv_dynamic-opencv] _______
+
+trim = 'mild', loader = 'opencv_dynamic', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:492: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'fpsl-mild-opencv_dynamic-opencv'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-mild-opencv_dynamic-opencv raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_________ test_fps_loaders_match_reencoded_clip[mild-qwen2_vl-opencv] __________
+
+trim = 'mild', loader = 'qwen2_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:492: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'fpsl-mild-qwen2_vl-opencv'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-mild-qwen2_vl-opencv raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_________ test_fps_loaders_match_reencoded_clip[mild-qwen3_vl-opencv] __________
+
+trim = 'mild', loader = 'qwen3_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:492: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'fpsl-mild-qwen3_vl-opencv'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-mild-qwen3_vl-opencv raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_fps_loaders_match_reencoded_clip[one_frame_lead_in-opencv_dynamic-opencv] _
+
+trim = 'one_frame_lead_in', loader = 'opencv_dynamic', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:492: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'fpsl-one_frame_lead_in-opencv_dynamic-opencv'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-one_frame_lead_in-opencv_dynamic-opencv raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+___ test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen2_vl-opencv] ___
+
+trim = 'one_frame_lead_in', loader = 'qwen2_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:492: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'fpsl-one_frame_lead_in-qwen2_vl-opencv'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-one_frame_lead_in-qwen2_vl-opencv raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+___ test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen3_vl-opencv] ___
+
+trim = 'one_frame_lead_in', loader = 'qwen3_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:492: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'fpsl-one_frame_lead_in-qwen3_vl-opencv'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-one_frame_lead_in-qwen3_vl-opencv raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+______ test_fps_loaders_match_reencoded_clip[very_short-qwen2_vl-opencv] _______
+
+trim = 'very_short', loader = 'qwen2_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:492: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'fpsl-very_short-qwen2_vl-opencv'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-very_short-qwen2_vl-opencv raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+______ test_fps_loaders_match_reencoded_clip[very_short-qwen3_vl-opencv] _______
+
+trim = 'very_short', loader = 'qwen3_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:492: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'fpsl-very_short-qwen3_vl-opencv'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: fpsl-very_short-qwen3_vl-opencv raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_____________ test_frame_recovery_matches_reencoded_clip[severe-8] _____________
+
+trim = 'severe', count = '8'
+
+    @pytest.mark.parametrize("trim,count", C.recovery_params(), ids=lambda p: str(p))
+    def test_frame_recovery_matches_reencoded_clip(trim, count):
+        lab, cand, ref = environment()
+        rid = f"rec-{trim}-{count}"
+        ref_frames, _ = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:506: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>, rid = 'rec-severe-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: rec-severe-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+____________ test_frame_recovery_matches_reencoded_clip[severe-all] ____________
+
+trim = 'severe', count = 'all'
+
+    @pytest.mark.parametrize("trim,count", C.recovery_params(), ids=lambda p: str(p))
+    def test_frame_recovery_matches_reencoded_clip(trim, count):
+        lab, cand, ref = environment()
+        rid = f"rec-{trim}-{count}"
+        ref_frames, _ = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:506: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'rec-severe-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: rec-severe-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_______ test_frame_recovery_matches_reencoded_clip[one_frame_lead_in-8] ________
+
+trim = 'one_frame_lead_in', count = '8'
+
+    @pytest.mark.parametrize("trim,count", C.recovery_params(), ids=lambda p: str(p))
+    def test_frame_recovery_matches_reencoded_clip(trim, count):
+        lab, cand, ref = environment()
+        rid = f"rec-{trim}-{count}"
+        ref_frames, _ = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:506: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'rec-one_frame_lead_in-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: rec-one_frame_lead_in-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+______ test_frame_recovery_matches_reencoded_clip[one_frame_lead_in-all] _______
+
+trim = 'one_frame_lead_in', count = 'all'
+
+    @pytest.mark.parametrize("trim,count", C.recovery_params(), ids=lambda p: str(p))
+    def test_frame_recovery_matches_reencoded_clip(trim, count):
+        lab, cand, ref = environment()
+        rid = f"rec-{trim}-{count}"
+        ref_frames, _ = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:506: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'rec-one_frame_lead_in-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: rec-one_frame_lead_in-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mp4_bf2-opencv-opencv-8] _____
+
+name = 'mp4_bf2', loader = 'opencv', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_bf2-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_bf2-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mp4_bf2-opencv-opencv-all] ____
+
+name = 'mp4_bf2', loader = 'opencv', codec = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_bf2-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_bf2-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_____ test_untrimmed_and_correct_videos_unchanged[mp4_bf0-opencv-opencv-8] _____
+
+name = 'mp4_bf0', loader = 'opencv', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_bf0-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_bf0-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mp4_bf0-opencv-opencv-all] ____
+
+name = 'mp4_bf0', loader = 'opencv', codec = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_bf0-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_bf0-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mp4_29_97-opencv-opencv-8] ____
+
+name = 'mp4_29_97', loader = 'opencv', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_29_97-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_29_97-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+___ test_untrimmed_and_correct_videos_unchanged[mp4_29_97-opencv-opencv-all] ___
+
+name = 'mp4_29_97', loader = 'opencv', codec = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_29_97-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_29_97-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_with_audio-opencv-opencv-8] __
+
+name = 'mp4_with_audio', loader = 'opencv', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_with_audio-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_with_audio-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_with_audio-opencv-opencv-all] _
+
+name = 'mp4_with_audio', loader = 'opencv', codec = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_with_audio-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_with_audio-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mov_h264-opencv-opencv-8] _____
+
+name = 'mov_h264', loader = 'opencv', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mov_h264-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mov_h264-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+___ test_untrimmed_and_correct_videos_unchanged[mov_h264-opencv-opencv-all] ____
+
+name = 'mov_h264', loader = 'opencv', codec = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mov_h264-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mov_h264-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_fragmented-opencv-opencv-8] __
+
+name = 'mp4_fragmented', loader = 'opencv', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_fragmented-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_fragmented-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_fragmented-opencv-opencv-all] _
+
+name = 'mp4_fragmented', loader = 'opencv', codec = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_fragmented-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_fragmented-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+__ test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-opencv-8] __
+
+name = 'mp4_faststart', loader = 'opencv', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_faststart-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_faststart-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-opencv-all] _
+
+name = 'mp4_faststart', loader = 'opencv', codec = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_faststart-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_faststart-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-opencv-8] _____
+
+name = 'mp4_hevc', loader = 'opencv', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_hevc-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_hevc-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+___ test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-opencv-all] ____
+
+name = 'mp4_hevc', loader = 'opencv', codec = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_hevc-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_hevc-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-opencv-8] ____
+
+name = 'mp4_mpeg4', loader = 'opencv', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_mpeg4-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_mpeg4-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+___ test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-opencv-all] ___
+
+name = 'mp4_mpeg4', loader = 'opencv', codec = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_mpeg4-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_mpeg4-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+____ test_untrimmed_and_correct_videos_unchanged[avi_mpeg4-opencv-opencv-8] ____
+
+name = 'avi_mpeg4', loader = 'opencv', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-avi_mpeg4-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-avi_mpeg4-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+___ test_untrimmed_and_correct_videos_unchanged[avi_mpeg4-opencv-opencv-all] ___
+
+name = 'avi_mpeg4', loader = 'opencv', codec = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-avi_mpeg4-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-avi_mpeg4-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_mpdecimate-opencv-opencv-8] __
+
+name = 'mp4_mpdecimate', loader = 'opencv', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_mpdecimate-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_mpdecimate-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_mpdecimate-opencv-opencv-all] _
+
+name = 'mp4_mpdecimate', loader = 'opencv', codec = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_mpdecimate-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_mpdecimate-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_vfr_30_then_10-opencv-opencv-8] _
+
+name = 'mp4_vfr_30_then_10', loader = 'opencv', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_vfr_30_then_10-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_vfr_30_then_10-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_vfr_30_then_10-opencv-opencv-all] _
+
+name = 'mp4_vfr_30_then_10', loader = 'opencv', codec = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_vfr_30_then_10-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_vfr_30_then_10-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+___ test_untrimmed_and_correct_videos_unchanged[mp4_vfr_gap-opencv-opencv-8] ___
+
+name = 'mp4_vfr_gap', loader = 'opencv', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_vfr_gap-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_vfr_gap-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+__ test_untrimmed_and_correct_videos_unchanged[mp4_vfr_gap-opencv-opencv-all] __
+
+name = 'mp4_vfr_gap', loader = 'opencv', codec = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_vfr_gap-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_vfr_gap-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-opencv-8] _
+
+name = 'mp4_reencoded_cut', loader = 'opencv', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_reencoded_cut-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_reencoded_cut-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-opencv-all] _
+
+name = 'mp4_reencoded_cut', loader = 'opencv', codec = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_reencoded_cut-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_reencoded_cut-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-opencv-8] _
+
+name = 'mp4_copy_cut_on_keyframe', loader = 'opencv', codec = 'opencv'
+count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_copy_cut_on_keyframe-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_copy_cut_on_keyframe-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-opencv-all] _
+
+name = 'mp4_copy_cut_on_keyframe', loader = 'opencv', codec = 'opencv'
+count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_copy_cut_on_keyframe-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_copy_cut_on_keyframe-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_remuxed_from_mkv-opencv-opencv-8] _
+
+name = 'mp4_remuxed_from_mkv', loader = 'opencv', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_remuxed_from_mkv-opencv-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_remuxed_from_mkv-opencv-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_remuxed_from_mkv-opencv-opencv-all] _
+
+name = 'mp4_remuxed_from_mkv', loader = 'opencv', codec = 'opencv'
+count = 'all'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_remuxed_from_mkv-opencv-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_remuxed_from_mkv-opencv-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_bf2-opencv_dynamic-opencv-8] _
+
+name = 'mp4_bf2', loader = 'opencv_dynamic', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_bf2-opencv_dynamic-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_bf2-opencv_dynamic-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_29_97-opencv_dynamic-opencv-8] _
+
+name = 'mp4_29_97', loader = 'opencv_dynamic', codec = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_29_97-opencv_dynamic-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_29_97-opencv_dynamic-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_fragmented-opencv_dynamic-opencv-8] _
+
+name = 'mp4_fragmented', loader = 'opencv_dynamic', codec = 'opencv'
+count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_fragmented-opencv_dynamic-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_fragmented-opencv_dynamic-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+_ test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv_dynamic-opencv-8] _
+
+name = 'mp4_copy_cut_on_keyframe', loader = 'opencv_dynamic', codec = 'opencv'
+count = '8'
+
+    @pytest.mark.parametrize("name,loader,codec,count", C.preserved_params(), ids=lambda p: str(p))
+    def test_untrimmed_and_correct_videos_unchanged(name, loader, codec, count):
+        _, cand, ref = environment()
+        rid = f"keep-{name}-{loader}-{codec}-{count}"
+        ref_frames, ref_meta = ref.get(rid)
+>       frames, meta = cand.get(rid)
+                       ^^^^^^^^^^^^^
+
+test_trimmed_video.py:518: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'keep-mp4_copy_cut_on_keyframe-opencv_dynamic-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: keep-mp4_copy_cut_on_keyframe-opencv_dynamic-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+__________________ test_opencv_without_pyav[severe-opencv-8] ___________________
+
+trim = 'severe', loader = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,loader,count", C.no_pyav_params(), ids=lambda p: str(p))
+    def test_opencv_without_pyav(trim, loader, count):
+        lab, cand, _ = environment()
+>       frames, meta = cand.get(f"noav-{trim}-{loader}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'noav-severe-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: noav-severe-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+____________ test_opencv_without_pyav[one_frame_lead_in-opencv-all] ____________
+
+trim = 'one_frame_lead_in', loader = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,loader,count", C.no_pyav_params(), ids=lambda p: str(p))
+    def test_opencv_without_pyav(trim, loader, count):
+        lab, cand, _ = environment()
+>       frames, meta = cand.get(f"noav-{trim}-{loader}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'noav-one_frame_lead_in-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: noav-one_frame_lead_in-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+______________ test_opencv_without_pyav[severe-opencv_dynamic-8] _______________
+
+trim = 'severe', loader = 'opencv_dynamic', count = '8'
+
+    @pytest.mark.parametrize("trim,loader,count", C.no_pyav_params(), ids=lambda p: str(p))
+    def test_opencv_without_pyav(trim, loader, count):
+        lab, cand, _ = environment()
+>       frames, meta = cand.get(f"noav-{trim}-{loader}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:528: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'noav-severe-opencv_dynamic-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: noav-severe-opencv_dynamic-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+___________ test_independently_derived_trims[trim_of_trim-opencv-8] ____________
+
+derived = 'trim_of_trim', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:543: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'der-trim_of_trim-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: der-trim_of_trim-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+__________ test_independently_derived_trims[trim_of_trim-opencv-all] ___________
+
+derived = 'trim_of_trim', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:543: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'der-trim_of_trim-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: der-trim_of_trim-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+___________ test_independently_derived_trims[rebased_remux-opencv-8] ___________
+
+derived = 'rebased_remux', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:543: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'der-rebased_remux-opencv-8'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: der-rebased_remux-opencv-8 raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+__________ test_independently_derived_trims[rebased_remux-opencv-all] __________
+
+derived = 'rebased_remux', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+>       frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_trimmed_video.py:543: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:305: in get
+    return results.get(rid)
+           ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_trimmed_video.Results object at 0x10b555940>
+rid = 'der-rebased_remux-opencv-all'
+
+    def get(self, rid: str):
+        assert self.identity_ok and not self.problem, self.problem
+        meta_path = self.out / f"{rid}.json"
+        assert meta_path.exists(), f"no result for {rid}"
+        record = json.loads(meta_path.read_text())
+>       assert record["ok"], f"{rid} raised {record['error']}"
+E       AssertionError: der-rebased_remux-opencv-all raised ModuleNotFoundError: import of av halted; None in sys.modules
+E       assert False
+
+test_trimmed_video.py:290: AssertionError
+=========================== short test summary info ============================
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-4] - As...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-8] - As...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-16] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-all] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[one_frame_lead_in-opencv-4]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[one_frame_lead_in-opencv-8]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[one_frame_lead_in-opencv-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[one_frame_lead_in-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[one_frame_lead_in-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-opencv-4] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-opencv-8] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-opencv-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-4] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-8] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-16] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-4]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-8]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-4]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-8]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_fps_sampling_on_trim[mild-opencv]
+FAILED test_trimmed_video.py::test_generic_loader_fps_sampling_on_trim[severe-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[severe-opencv_dynamic-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[severe-qwen2_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[severe-qwen3_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-opencv_dynamic-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-qwen2_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-qwen3_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[one_frame_lead_in-opencv_dynamic-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen2_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen3_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[very_short-qwen2_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[very_short-qwen3_vl-opencv]
+FAILED test_trimmed_video.py::test_frame_recovery_matches_reencoded_clip[severe-8]
+FAILED test_trimmed_video.py::test_frame_recovery_matches_reencoded_clip[severe-all]
+FAILED test_trimmed_video.py::test_frame_recovery_matches_reencoded_clip[one_frame_lead_in-8]
+FAILED test_trimmed_video.py::test_frame_recovery_matches_reencoded_clip[one_frame_lead_in-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf2-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf2-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf0-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf0-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_29_97-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_29_97-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_with_audio-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_with_audio-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mov_h264-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mov_h264-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_fragmented-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_fragmented-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[avi_mpeg4-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[avi_mpeg4-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpdecimate-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpdecimate-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_30_then_10-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_30_then_10-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_gap-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_gap-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_remuxed_from_mkv-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_remuxed_from_mkv-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf2-opencv_dynamic-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_29_97-opencv_dynamic-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_fragmented-opencv_dynamic-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv_dynamic-opencv-8]
+FAILED test_trimmed_video.py::test_opencv_without_pyav[severe-opencv-8] - Ass...
+FAILED test_trimmed_video.py::test_opencv_without_pyav[one_frame_lead_in-opencv-all]
+FAILED test_trimmed_video.py::test_opencv_without_pyav[severe-opencv_dynamic-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-opencv-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-opencv-all]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-opencv-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-opencv-all]
+90 failed, 69 passed in 23.58s

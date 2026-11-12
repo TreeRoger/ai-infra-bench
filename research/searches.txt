@@ -1,0 +1,47 @@
+### edit list video
+### edit-list
+65881	PR	open	2026-11-05	[CI] Let ci-selector decide CMakeLists.txt changes on CUDA
+64301	PR	open	2026-10-28	[Bugfix] Name the platform in the MXFP4 MoE no-backend error on CUDA
+64790	IS	open	2026-10-30	[Bug]: In-tree LMCache integration can't be imported with lmcache >= 0.5.6
+65698	PR	open	2026-11-04	[Build] Compile DeepGEMM's extension through the compiler launcher
+64858	PR	open	2026-10-31	[Frontend] support anthropic-defined client tools on /v1/messages
+39072	IS	open	2026-04-06	[Bug]: Gemma4 on vLLM + PI coding agent: Validation failed for tool "edit": - path: must have required property 'path'
+58537	IS	open	2026-09-24	[RFC]: KV Context Editing — Relaxed Prefix Alignment for KV Allocation and Reuse
+65217	PR	open	2026-11-02	[Spec Decode][MRV2] Add prefill_context_kv_only for P/D prefill instances
+57310	PR	open	2026-09-17	[Perf][Startup] Keep torch._inductor out of import vllm (restore #40056 lazy import)
+62522	PR	open	2026-10-19	[Model] Support hotwords for Qwen3-ASR
+49662	IS	open	2026-07-24	[Docs]: MkDocs TOC slugify differs from markdownlint MD051 anchor validation
+62924	PR	open	2026-10-21	[Bugfix][Compile] Preserve eager layouts for untagged custom ops
+53872	PR	open	2026-08-26	[Build] Skip phantom outputs in strict editable installs
+52408	IS	open	2026-08-15	[Docs/Robustness] NIXL connector: the block_len_per_layer == seen_base_addresses assert is load-bearing for hybrid-Mamba descriptor IDs
+43561	IS	open	2026-05-25	[Usage]: How to run Qwen3.5 models on V100 given the conflicting requirements of transformers version and vLLM architecture support
+### c copy trim video
+### duplicate frames video
+### last frame repeated video
+### CAP_PROP_FRAME_COUNT
+60534	PR	closed	2026-10-08	[Bugfix][Multimodal] Count frames when OpenCV metadata is missing
+60518	IS	closed	2026-10-08	[Bug]: WebM/MKV written to a pipe and raw H.264 load as a single frame with a negative `total_num_frames` (OpenCV loader)
+48608	PR	merged	2026-07-14	[Bugfix] Video loading: sample over presentable frames, not header sample count (MP4 edit-list trims)
+25881	PR	closed	2025-09-29	[Bugfix][Multi Modal] Fix broken frames in video input
+34134	PR	merged	2026-02-09	openpangu-vl support video input
+44785	PR	merged	2026-06-07	[Model] Add LLaVA-OneVision-2 (LlavaOnevision2ForConditionalGeneration)
+20313	IS	closed	2025-07-01	[Bug]:qwen2_5vl: Internal Server Error when processing short video and vllm has been installed 0.9.0
+20312	IS	closed	2025-07-01	[Bug]: qwen2_5vl Internal Server Error when processing short video
+20314	IS	closed	2025-07-01	[Bug]:
+### stream.frames pyav
+### total_num_frames negative
+### webm video frames
+### mkv video
+### raw h264 video
+### variable frame rate video
+28399	PR	merged	2025-11-10	[Model] Pass `mm_features` directly into `get_mrope_input_positions`
+### video frame count wrong
+### video_decoders opencv frame count
+### torchcodec approximate frame count
+### video duration wrong sampling
+### frames_indices video
+47099	PR	merged	2026-06-30	[Bugfix] Align OpenCV video metadata timeline
+46988	IS	closed	2026-06-29	[Bug]: Gemma4 video prompt expansion / timestamps mismatch vs Transformers `Gemma4Processor`
+24727	PR	merged	2025-09-12	[Model] Support Qwen3-VL Model Series
+### presentable frames
+48608	PR	merged	2026-07-14	[Bugfix] Video loading: sample over presentable frames, not header sample count (MP4 edit-list trims)

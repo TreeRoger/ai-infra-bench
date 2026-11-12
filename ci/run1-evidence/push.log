@@ -1,0 +1,39 @@
+The push refers to repository [ghcr.io/treeroger/ai-infra-bench-task-envs]
+1cd8c7dc2273: Preparing
+d909a85dceae: Preparing
+1710876e5669: Preparing
+5f70bf18a086: Preparing
+5af703d96eca: Preparing
+d6f92b8c6cdd: Preparing
+f81379e4ee0c: Preparing
+dbced86403af: Preparing
+0325e9184170: Preparing
+3193639a886b: Preparing
+6fdca0968d0f: Preparing
+f19f6d6c8637: Preparing
+ebad55931d5b: Preparing
+411a86676185: Preparing
+0325e9184170: Waiting
+3193639a886b: Waiting
+6fdca0968d0f: Waiting
+f19f6d6c8637: Waiting
+ebad55931d5b: Waiting
+411a86676185: Waiting
+d6f92b8c6cdd: Waiting
+f81379e4ee0c: Waiting
+dbced86403af: Waiting
+5f70bf18a086: Mounted from github/gh-aw-mcpg
+1cd8c7dc2273: Pushed
+d909a85dceae: Pushed
+f81379e4ee0c: Pushed
+0325e9184170: Pushed
+5af703d96eca: Pushed
+6fdca0968d0f: Pushed
+f19f6d6c8637: Pushed
+ebad55931d5b: Pushed
+dbced86403af: Pushed
+411a86676185: Pushed
+3193639a886b: Pushed
+d6f92b8c6cdd: Pushed
+1710876e5669: Pushed
+vllm-trimmed-video-frame-sampling-1f6b47c98978b53fd5eabc09575c18f3b7d53ab300a217e978f0075d40fb08fe: digest: sha256:1c52d2c6c71cdab50b25d2ab71d4af93afab9fc78a8120a496fc9c2a51019316 size: 3277

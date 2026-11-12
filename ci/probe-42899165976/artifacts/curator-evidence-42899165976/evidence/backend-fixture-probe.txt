@@ -1,0 +1,56 @@
+ V....D libaom-av1           libaom AV1 (codec av1)
+ V....D librav1e             librav1e AV1 (codec av1)
+ V..... libsvtav1            SVT-AV1(Scalable Video Technology for AV1) encoder (codec av1)
+ V....D av1_nvenc            NVIDIA NVENC av1 encoder (codec av1)
+ V..... av1_qsv              AV1 (Intel Quick Sync Video acceleration) (codec av1)
+ V....D av1_vaapi            AV1 (VAAPI) (codec av1)
+ VF...D prores               Apple ProRes
+ VF...D prores_aw            Apple ProRes (codec prores)
+ VFS... prores_ks            Apple ProRes (iCodec Pro) (codec prores)
+ V....D libvpx-vp9           libvpx VP9 (codec vp9)
+ V....D vp9_vaapi            VP9 (VAAPI) (codec vp9)
+ V..... vp9_qsv              VP9 video (Intel Quick Sync Video acceleration) (codec vp9)
+ A....D wmav1                Windows Media Audio 1
+  Video I/O:
+    FFMPEG:                      YES
+      avcodec:                   YES (62.28.101)
+      avformat:                  YES (62.12.101)
+      avutil:                    YES (60.26.101)
+      swscale:                   YES (9.5.101)
+    GStreamer:                   NO
+    v4l/v4l2:                    YES (linux/videodev2.h)
+    Orbbec:                      NO
+INFO 11-10 20:57:10 [importing.py:53] Triton is installed but 0 active driver(s) found (expected 1). Disabling Triton to prevent runtime errors.
+WARNING 11-10 20:57:10 [importing.py:65] Triton is installed, but doesn't include CPU backend. Disabling Triton.
+INFO 11-10 20:57:10 [importing.py:88] Triton not installed or not compatible; certain GPU-related functions will not be available.
+WARNING 11-10 20:57:10 [opencv.py:250] Video loading completed with 8 broken/unreadable frames. Expected 8 frames but only loaded 0 frames.
+WARNING 11-10 20:57:10 [opencv.py:288] Video loading completed with 8 broken/unreadable frames. Expected to sample 8 frames but only loaded 0 frames.
+WARNING 11-10 20:57:10 [video.py:275] opencv video loading: expected 8 frames but got 0.
+WARNING 11-10 20:57:10 [opencv.py:250] Video loading completed with 300 broken/unreadable frames. Expected 300 frames but only loaded 0 frames.
+WARNING 11-10 20:57:10 [opencv.py:288] Video loading completed with 300 broken/unreadable frames. Expected to sample 300 frames but only loaded 0 frames.
+WARNING 11-10 20:57:10 [video.py:275] opencv video loading: expected 300 frames but got 0.
+mp4_av1_svt            header=300 plays=300 opencv_cannot_load=True pyav_correct=True identical8=False identical_all=False maxdiff=None | cv8=['no frames'] pyav8=[] pyav-1=[]
+WARNING 11-10 20:57:12 [opencv.py:250] Video loading completed with 8 broken/unreadable frames. Expected 8 frames but only loaded 0 frames.
+WARNING 11-10 20:57:12 [opencv.py:288] Video loading completed with 8 broken/unreadable frames. Expected to sample 8 frames but only loaded 0 frames.
+WARNING 11-10 20:57:12 [video.py:275] opencv video loading: expected 8 frames but got 0.
+WARNING 11-10 20:57:12 [opencv.py:250] Video loading completed with 300 broken/unreadable frames. Expected 300 frames but only loaded 0 frames.
+WARNING 11-10 20:57:12 [opencv.py:288] Video loading completed with 300 broken/unreadable frames. Expected to sample 300 frames but only loaded 0 frames.
+WARNING 11-10 20:57:12 [video.py:275] opencv video loading: expected 300 frames but got 0.
+mp4_av1_aom            header=300 plays=300 opencv_cannot_load=True pyav_correct=True identical8=False identical_all=False maxdiff=None | cv8=['no frames'] pyav8=[] pyav-1=[]
+WARNING 11-10 20:57:13 [opencv.py:250] Video loading completed with 8 broken/unreadable frames. Expected 8 frames but only loaded 0 frames.
+WARNING 11-10 20:57:13 [opencv.py:288] Video loading completed with 8 broken/unreadable frames. Expected to sample 8 frames but only loaded 0 frames.
+WARNING 11-10 20:57:13 [video.py:275] opencv video loading: expected 8 frames but got 0.
+WARNING 11-10 20:57:13 [opencv.py:250] Video loading completed with 300 broken/unreadable frames. Expected 300 frames but only loaded 0 frames.
+WARNING 11-10 20:57:13 [opencv.py:288] Video loading completed with 300 broken/unreadable frames. Expected to sample 300 frames but only loaded 0 frames.
+WARNING 11-10 20:57:13 [video.py:275] opencv video loading: expected 300 frames but got 0.
+webm_av1_svt           header=0 plays=300 opencv_cannot_load=True pyav_correct=False identical8=False identical_all=False maxdiff=None | cv8=['no frames'] pyav8=['returned 1, expected 8', 'total 0 vs plays 300'] pyav-1=['returned 1, expected 300', 'total 0 vs plays 300']
+webm_vp9               header=0 plays=300 opencv_cannot_load=False pyav_correct=False identical8=False identical_all=False maxdiff=None | cv8=[] pyav8=['returned 1, expected 8', 'total 0 vs plays 300'] pyav-1=['returned 1, expected 300', 'total 0 vs plays 300']
+mp4_vp9                header=300 plays=300 opencv_cannot_load=False pyav_correct=True identical8=True identical_all=True maxdiff=0 | cv8=[] pyav8=[] pyav-1=[]
+mov_prores             header=300 plays=300 opencv_cannot_load=False pyav_correct=True identical8=False identical_all=False maxdiff=4 | cv8=[] pyav8=[] pyav-1=[]
+mp4_h264_fullrange     header=300 plays=300 opencv_cannot_load=False pyav_correct=True identical8=True identical_all=True maxdiff=0 | cv8=[] pyav8=[] pyav-1=[]
+mp4_h264_bt709         header=300 plays=300 opencv_cannot_load=False pyav_correct=True identical8=True identical_all=True maxdiff=0 | cv8=[] pyav8=[] pyav-1=[]
+mp4_h264_yuv444        header=300 plays=300 opencv_cannot_load=False pyav_correct=True identical8=True identical_all=True maxdiff=0 | cv8=[] pyav8=[] pyav-1=[]
+mp4_h264_10bit         header=300 plays=300 opencv_cannot_load=False pyav_correct=True identical8=False identical_all=False maxdiff=39 | cv8=[] pyav8=[] pyav-1=[]
+x265 [error]: unable to set thread affinity for NUMA node mask
+x265 [error]: unable to set thread affinity for NUMA node mask
+mp4_hevc_10bit         header=300 plays=300 opencv_cannot_load=False pyav_correct=True identical8=False identical_all=False maxdiff=39 | cv8=[] pyav8=[] pyav-1=[]

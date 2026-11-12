@@ -1,0 +1,34 @@
+OK vllm-trimmed-video-frame-sampling
+{"architecture": "x86_64", "gpus": 0}
+{"image": "sha256:46c3557c0f9e09bd0f4ca888ac4b3db4c5888b2d7b9135287597f80063cad227", "image_id": "sha256:46c3557c0f9e09bd0f4ca888ac4b3db4c5888b2d7b9135287597f80063cad227", "base_commit": "11baa0ebd88480b0a3e30138e4ee189420cd33be"}
+Running vllm-trimmed-video-frame-sampling--base with agent=nop expected_reward=0
+Tip: There are many benchmarks available in Harbor's registry.
+Run `harbor datasets list` to see all available datasets.
+
+  1/1 Mean: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:01:31 0:00:00
+adhoc • nop
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      0 │          1 │ 0.000 │
+└────────┴────────────┴───────┘
+
+┏━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Exception       ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ ValidationError │     1 │
+└─────────────────┴───────┘
+
+Job Info
+Total runtime: 1m 31s
+Results written to 
+/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-f
+rame-sampling/vllm-trimmed-video-frame-sampling--base/result.json
+Inspect results by running `harbor view 
+/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-f
+rame-sampling`
+Share results by running `harbor upload 
+/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-f
+rame-sampling/vllm-trimmed-video-frame-sampling--base`
+
+error: result_reward: evals['nop__adhoc'].reward_stats.reward is not a dict: <class 'NoneType'>

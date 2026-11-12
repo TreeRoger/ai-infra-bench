@@ -1,0 +1,1 @@
+error: result_reward: evals['nop__adhoc'].reward_stats.reward is not a dict: <class 'NoneType'>

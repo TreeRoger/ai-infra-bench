@@ -1,0 +1,135 @@
+OK vllm-trimmed-video-frame-sampling
+{"architecture": "x86_64", "gpus": 0}
+{"image": "sha256:46c3557c0f9e09bd0f4ca888ac4b3db4c5888b2d7b9135287597f80063cad227", "image_id": "sha256:46c3557c0f9e09bd0f4ca888ac4b3db4c5888b2d7b9135287597f80063cad227", "base_commit": "11baa0ebd88480b0a3e30138e4ee189420cd33be"}
+Running vllm-trimmed-video-frame-sampling--base with agent=nop expected_reward=0
+Tip: There are many benchmarks available in Harbor's registry.
+Run `harbor datasets list` to see all available datasets.
+
+  1/1 Behavior_Failure: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:00:42 0:00:00
+adhoc • nop
+┏━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━┓
+┃ Trials ┃ Exceptio… ┃ Behavior… ┃ Infrastr… ┃ Junit_Exi… ┃ Pytest_E… ┃ Reward ┃
+┡━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━┩
+│      1 │         0 │     0.000 │     1.000 │      1.000 │     1.000 │  0.000 │
+└────────┴───────────┴───────────┴───────────┴────────────┴───────────┴────────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 0      │     1 │
+│ 0      │     1 │
+│ 1      │     1 │
+│ 1      │     1 │
+│ 1      │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 42s
+Results written to 
+/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-f
+rame-sampling/vllm-trimmed-video-frame-sampling--base/result.json
+Inspect results by running `harbor view 
+/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-f
+rame-sampling`
+Share results by running `harbor upload 
+/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-f
+rame-sampling/vllm-trimmed-video-frame-sampling--base`
+
+{"completed": 1, "errored": 0, "rewards": [0.0]}
+Running vllm-trimmed-video-frame-sampling--oracle with agent=oracle expected_reward=1
+  1/1 Behavior_Failure: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:00:39 0:00:00
+adhoc • oracle
+┏━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━┓
+┃ Trials ┃ Exceptio… ┃ Behavior… ┃ Infrastr… ┃ Junit_Exi… ┃ Pytest_E… ┃ Reward ┃
+┡━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━┩
+│      1 │         0 │     0.000 │     1.000 │      1.000 │     1.000 │  0.000 │
+└────────┴───────────┴───────────┴───────────┴────────────┴───────────┴────────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 0      │     1 │
+│ 0      │     1 │
+│ 1      │     1 │
+│ 1      │     1 │
+│ 1      │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 39s
+Results written to 
+/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-f
+rame-sampling/vllm-trimmed-video-frame-sampling--oracle/result.json
+Inspect results by running `harbor view 
+/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-f
+rame-sampling`
+Share results by running `harbor upload 
+/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-f
+rame-sampling/vllm-trimmed-video-frame-sampling--oracle`
+
+::stop-commands::960e86588d7247808d0155fb6149e60e
+Verifier output (last 64 KiB): ai-infra-case.TyVrM4__MtEz7xj/verifier/test-stdout.txt
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_faststart-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_hevc-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpeg4-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[avi_mpeg4-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[avi_mpeg4-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[avi_mpeg4-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[avi_mpeg4-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpdecimate-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpdecimate-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpdecimate-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_mpdecimate-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_30_then_10-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_30_then_10-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_30_then_10-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_30_then_10-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_gap-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_gap-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_gap-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_vfr_gap-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_reencoded_cut-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_remuxed_from_mkv-opencv-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_remuxed_from_mkv-opencv-opencv-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_remuxed_from_mkv-opencv-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_remuxed_from_mkv-opencv-pyav-all]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf2-opencv_dynamic-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_bf2-qwen3_vl-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_29_97-opencv_dynamic-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_29_97-qwen3_vl-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_fragmented-opencv_dynamic-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_fragmented-qwen3_vl-pyav-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-opencv_dynamic-opencv-8]
+FAILED test_trimmed_video.py::test_untrimmed_and_correct_videos_unchanged[mp4_copy_cut_on_keyframe-qwen3_vl-pyav-8]
+FAILED test_trimmed_video.py::test_opencv_without_pyav[severe-opencv-8] - Run...
+FAILED test_trimmed_video.py::test_opencv_without_pyav[one_frame_lead_in-opencv-all]
+FAILED test_trimmed_video.py::test_opencv_without_pyav[severe-opencv_dynamic-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-opencv-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-opencv-all]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-pyav-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-pyav-all]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-opencv-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-opencv-all]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-pyav-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-pyav-all]
+171 failed in 21.08s
+{'expected': 171, 'tests': 171, 'failures': 171, 'errors': 0, 'skipped': 0, 'missing': [], 'unexpected': [], 'not_passed': ['test_fixtures_are_real_trims_and_untrimmed_files', 'test_generic_loader_on_trim[mild-opencv-4]', 'test_generic_loader_on_trim[mild-opencv-8]', 'test_generic_loader_on_trim[mild-opencv-16]', 'test_generic_loader_on_trim[mild-opencv-all]', 'test_generic_loader_on_trim[mild-opencv-over]', 'test_generic_loader_on_trim[mild-pyav-4]', 'test_generic_loader_on_trim[mild-pyav-8]', 'test_generic_loader_on_trim[mild-pyav-16]', 'test_generic_loader_on_trim[mild-pyav-all]', 'test_generic_loader_on_trim[mild-pyav-over]', 'test_generic_loader_on_trim[one_frame_lead_in-opencv-4]', 'test_generic_loader_on_trim[one_frame_lead_in-opencv-8]', 'test_generic_loader_on_trim[one_frame_lead_in-opencv-16]', 'test_generic_loader_on_trim[one_frame_lead_in-opencv-all]', 'test_generic_loader_on_trim[one_frame_lead_in-opencv-over]', 'test_generic_loader_on_trim[one_frame_lead_in-pyav-4]', 'test_generic_loader_on_trim[one_frame_lead_in-pyav-8]', 'test_generic_loader_on_trim[one_frame_lead_in-pyav-16]', 'test_generic_loader_on_trim[one_frame_lead_in-pyav-all]', 'test_generic_loader_on_trim[one_frame_lead_in-pyav-over]', 'test_generic_loader_on_trim[severe-opencv-4]', 'test_generic_loader_on_trim[severe-opencv-8]', 'test_generic_loader_on_trim[severe-opencv-16]', 'test_generic_loader_on_trim[severe-opencv-all]', 'test_generic_loader_on_trim[severe-opencv-over]', 'test_generic_loader_on_trim[severe-pyav-4]', 'test_generic_loader_on_trim[severe-pyav-8]', 'test_generic_loader_on_trim[severe-pyav-16]', 'test_generic_loader_on_trim[severe-pyav-all]', 'test_generic_loader_on_trim[severe-pyav-over]', 'test_generic_loader_on_trim[fps25-opencv-4]', 'test_generic_loader_on_trim[fps25-opencv-8]', 'test_generic_loader_on_trim[fps25-opencv-16]', 'test_generic_loader_on_trim[fps25-opencv-all]', 'test_generic_loader_on_trim[fps25-opencv-over]', 'test_generic_loader_on_trim[fps25-pyav-4]', 'test_generic_loader_on_trim[fps25-pyav-8]', 'test_generic_loader_on_trim[fps25-pyav-16]', 'test_generic_loader_on_trim[fps25-pyav-all]']}
+error: unexpected Harbor result: completed=1, errored=0, rewards=[0.0], expected=[1.0]
+
+::960e86588d7247808d0155fb6149e60e::

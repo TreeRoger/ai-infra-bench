@@ -1,0 +1,2044 @@
+.FFFFF...............FFFFF.....FFFFF.....FFFFF.....FFFFF.....F.F.FFF..FF [ 42%]
+F.......FF..FF.......................................................... [ 84%]
+................F.FFF..FF..                                              [100%]
+=================================== FAILURES ===================================
+__________________ test_generic_loader_on_trim[mild-opencv-4] __________________
+
+trim = 'mild', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 92, 'fps': 30.0, 'duration': 3.566666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...,
+         [ 48, 170, 173],
+         [ 53, 170, 174],
+         [ 53, 170, 174]]]], shape=(4, 120, 160, 3), dtype=uint8)
+visible = [75, 76, 77, 78, 79, 80, ...], fps = 30.0, clip_duration = 3.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.566666666666667, clip plays 92 frames (3.067s; container 3.134s)
+E       assert 3.566666666666667 <= 3.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+__________________ test_generic_loader_on_trim[mild-opencv-8] __________________
+
+trim = 'mild', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 92, 'fps': 30.0, 'duration': 3.566666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...,
+         [ 48, 170, 173],
+         [ 53, 170, 174],
+         [ 53, 170, 174]]]], shape=(8, 120, 160, 3), dtype=uint8)
+visible = [75, 76, 77, 78, 79, 80, ...], fps = 30.0, clip_duration = 3.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.566666666666667, clip plays 92 frames (3.067s; container 3.134s)
+E       assert 3.566666666666667 <= 3.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+_________________ test_generic_loader_on_trim[mild-opencv-16] __________________
+
+trim = 'mild', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 92, 'fps': 30.0, 'duration': 3.566666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...
+         [ 48, 170, 173],
+         [ 53, 170, 174],
+         [ 53, 170, 174]]]], shape=(16, 120, 160, 3), dtype=uint8)
+visible = [75, 76, 77, 78, 79, 80, ...], fps = 30.0, clip_duration = 3.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.566666666666667, clip plays 92 frames (3.067s; container 3.134s)
+E       assert 3.566666666666667 <= 3.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+_________________ test_generic_loader_on_trim[mild-opencv-all] _________________
+
+trim = 'mild', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 92, 'fps': 30.0, 'duration': 3.566666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...
+         [ 48, 170, 173],
+         [ 53, 170, 174],
+         [ 53, 170, 174]]]], shape=(92, 120, 160, 3), dtype=uint8)
+visible = [75, 76, 77, 78, 79, 80, ...], fps = 30.0, clip_duration = 3.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.566666666666667, clip plays 92 frames (3.067s; container 3.134s)
+E       assert 3.566666666666667 <= 3.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+________________ test_generic_loader_on_trim[mild-opencv-over] _________________
+
+trim = 'mild', backend = 'opencv', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 92, 'fps': 30.0, 'duration': 3.566666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...
+         [ 48, 170, 173],
+         [ 53, 170, 174],
+         [ 53, 170, 174]]]], shape=(92, 120, 160, 3), dtype=uint8)
+visible = [75, 76, 77, 78, 79, 80, ...], fps = 30.0, clip_duration = 3.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.566666666666667, clip plays 92 frames (3.067s; container 3.134s)
+E       assert 3.566666666666667 <= 3.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+_________________ test_generic_loader_on_trim[severe-opencv-4] _________________
+
+trim = 'severe', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 62, 'fps': 30.0, 'duration': 9.066666666666666, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [172,  28,  88],
+...,
+         [110, 185, 139],
+         [114, 184, 142],
+         [114, 184, 142]]]], shape=(4, 120, 160, 3), dtype=uint8)
+visible = [210, 211, 212, 213, 214, 215, ...], fps = 30.0
+clip_duration = 2.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=9.066666666666666, clip plays 62 frames (2.067s; container 2.134s)
+E       assert 9.066666666666666 <= 2.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+_________________ test_generic_loader_on_trim[severe-opencv-8] _________________
+
+trim = 'severe', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 62, 'fps': 30.0, 'duration': 9.066666666666666, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [172,  28,  88],
+...,
+         [110, 185, 139],
+         [114, 184, 142],
+         [114, 184, 142]]]], shape=(8, 120, 160, 3), dtype=uint8)
+visible = [210, 211, 212, 213, 214, 215, ...], fps = 30.0
+clip_duration = 2.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=9.066666666666666, clip plays 62 frames (2.067s; container 2.134s)
+E       assert 9.066666666666666 <= 2.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+________________ test_generic_loader_on_trim[severe-opencv-16] _________________
+
+trim = 'severe', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 62, 'fps': 30.0, 'duration': 9.066666666666666, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [172,  28,  88],
+...
+         [110, 185, 139],
+         [114, 184, 142],
+         [114, 184, 142]]]], shape=(16, 120, 160, 3), dtype=uint8)
+visible = [210, 211, 212, 213, 214, 215, ...], fps = 30.0
+clip_duration = 2.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=9.066666666666666, clip plays 62 frames (2.067s; container 2.134s)
+E       assert 9.066666666666666 <= 2.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+________________ test_generic_loader_on_trim[severe-opencv-all] ________________
+
+trim = 'severe', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 62, 'fps': 30.0, 'duration': 9.066666666666666, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [172,  28,  88],
+...
+         [110, 185, 139],
+         [114, 184, 142],
+         [114, 184, 142]]]], shape=(62, 120, 160, 3), dtype=uint8)
+visible = [210, 211, 212, 213, 214, 215, ...], fps = 30.0
+clip_duration = 2.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=9.066666666666666, clip plays 62 frames (2.067s; container 2.134s)
+E       assert 9.066666666666666 <= 2.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+_______________ test_generic_loader_on_trim[severe-opencv-over] ________________
+
+trim = 'severe', backend = 'opencv', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 62, 'fps': 30.0, 'duration': 9.066666666666666, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [172,  28,  88],
+...
+         [110, 185, 139],
+         [114, 184, 142],
+         [114, 184, 142]]]], shape=(62, 120, 160, 3), dtype=uint8)
+visible = [210, 211, 212, 213, 214, 215, ...], fps = 30.0
+clip_duration = 2.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=9.066666666666666, clip plays 62 frames (2.067s; container 2.134s)
+E       assert 9.066666666666666 <= 2.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+_________________ test_generic_loader_on_trim[fps25-opencv-4] __________________
+
+trim = 'fps25', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 64, 'fps': 25.0, 'duration': 3.96, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 48, 160, 225],
+...,
+         [239,  60,  16],
+         [241,  59,  16],
+         [241,  59,  16]]]], shape=(4, 120, 160, 3), dtype=uint8)
+visible = [83, 84, 85, 86, 87, 88, ...], fps = 25.0, clip_duration = 2.58
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.96, clip plays 64 frames (2.560s; container 2.580s)
+E       assert 3.96 <= 2.62
+
+test_trimmed_video.py:315: AssertionError
+_________________ test_generic_loader_on_trim[fps25-opencv-8] __________________
+
+trim = 'fps25', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 64, 'fps': 25.0, 'duration': 3.96, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 48, 160, 225],
+...,
+         [239,  60,  16],
+         [241,  59,  16],
+         [241,  59,  16]]]], shape=(8, 120, 160, 3), dtype=uint8)
+visible = [83, 84, 85, 86, 87, 88, ...], fps = 25.0, clip_duration = 2.58
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.96, clip plays 64 frames (2.560s; container 2.580s)
+E       assert 3.96 <= 2.62
+
+test_trimmed_video.py:315: AssertionError
+_________________ test_generic_loader_on_trim[fps25-opencv-16] _________________
+
+trim = 'fps25', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 64, 'fps': 25.0, 'duration': 3.96, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 48, 160, 225],
+...
+         [239,  60,  16],
+         [241,  59,  16],
+         [241,  59,  16]]]], shape=(16, 120, 160, 3), dtype=uint8)
+visible = [83, 84, 85, 86, 87, 88, ...], fps = 25.0, clip_duration = 2.58
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.96, clip plays 64 frames (2.560s; container 2.580s)
+E       assert 3.96 <= 2.62
+
+test_trimmed_video.py:315: AssertionError
+________________ test_generic_loader_on_trim[fps25-opencv-all] _________________
+
+trim = 'fps25', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 64, 'fps': 25.0, 'duration': 3.96, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 48, 160, 225],
+...
+         [239,  60,  16],
+         [241,  59,  16],
+         [241,  59,  16]]]], shape=(64, 120, 160, 3), dtype=uint8)
+visible = [83, 84, 85, 86, 87, 88, ...], fps = 25.0, clip_duration = 2.58
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.96, clip plays 64 frames (2.560s; container 2.580s)
+E       assert 3.96 <= 2.62
+
+test_trimmed_video.py:315: AssertionError
+________________ test_generic_loader_on_trim[fps25-opencv-over] ________________
+
+trim = 'fps25', backend = 'opencv', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 64, 'fps': 25.0, 'duration': 3.96, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 48, 160, 225],
+...
+         [239,  60,  16],
+         [241,  59,  16],
+         [241,  59,  16]]]], shape=(64, 120, 160, 3), dtype=uint8)
+visible = [83, 84, 85, 86, 87, 88, ...], fps = 25.0, clip_duration = 2.58
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.96, clip plays 64 frames (2.560s; container 2.580s)
+E       assert 3.96 <= 2.62
+
+test_trimmed_video.py:315: AssertionError
+_______________ test_generic_loader_on_trim[very_short-opencv-4] _______________
+
+trim = 'very_short', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 14, 'fps': 30.0, 'duration': 3.466666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...,
+         [111, 101, 227],
+         [116, 101, 231],
+         [116, 101, 231]]]], shape=(4, 120, 160, 3), dtype=uint8)
+visible = [90, 91, 92, 93, 94, 95, ...], fps = 30.0, clip_duration = 0.466992
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.466666666666667, clip plays 14 frames (0.467s; container 0.467s)
+E       assert 3.466666666666667 <= 0.5003253333333334
+
+test_trimmed_video.py:315: AssertionError
+_______________ test_generic_loader_on_trim[very_short-opencv-8] _______________
+
+trim = 'very_short', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 14, 'fps': 30.0, 'duration': 3.466666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...,
+         [111, 101, 227],
+         [116, 101, 231],
+         [116, 101, 231]]]], shape=(8, 120, 160, 3), dtype=uint8)
+visible = [90, 91, 92, 93, 94, 95, ...], fps = 30.0, clip_duration = 0.466992
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.466666666666667, clip plays 14 frames (0.467s; container 0.467s)
+E       assert 3.466666666666667 <= 0.5003253333333334
+
+test_trimmed_video.py:315: AssertionError
+______________ test_generic_loader_on_trim[very_short-opencv-16] _______________
+
+trim = 'very_short', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 14, 'fps': 30.0, 'duration': 3.466666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...
+         [111, 101, 227],
+         [116, 101, 231],
+         [116, 101, 231]]]], shape=(14, 120, 160, 3), dtype=uint8)
+visible = [90, 91, 92, 93, 94, 95, ...], fps = 30.0, clip_duration = 0.466992
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.466666666666667, clip plays 14 frames (0.467s; container 0.467s)
+E       assert 3.466666666666667 <= 0.5003253333333334
+
+test_trimmed_video.py:315: AssertionError
+______________ test_generic_loader_on_trim[very_short-opencv-all] ______________
+
+trim = 'very_short', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 14, 'fps': 30.0, 'duration': 3.466666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...
+         [111, 101, 227],
+         [116, 101, 231],
+         [116, 101, 231]]]], shape=(14, 120, 160, 3), dtype=uint8)
+visible = [90, 91, 92, 93, 94, 95, ...], fps = 30.0, clip_duration = 0.466992
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.466666666666667, clip plays 14 frames (0.467s; container 0.467s)
+E       assert 3.466666666666667 <= 0.5003253333333334
+
+test_trimmed_video.py:315: AssertionError
+_____________ test_generic_loader_on_trim[very_short-opencv-over] ______________
+
+trim = 'very_short', backend = 'opencv', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 14, 'fps': 30.0, 'duration': 3.466666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...
+         [111, 101, 227],
+         [116, 101, 231],
+         [116, 101, 231]]]], shape=(14, 120, 160, 3), dtype=uint8)
+visible = [90, 91, 92, 93, 94, 95, ...], fps = 30.0, clip_duration = 0.466992
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.466666666666667, clip plays 14 frames (0.467s; container 0.467s)
+E       assert 3.466666666666667 <= 0.5003253333333334
+
+test_trimmed_video.py:315: AssertionError
+_______________ test_generic_loader_on_trim[no_bframes-opencv-4] _______________
+
+trim = 'no_bframes', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 60, 'fps': 30.0, 'duration': 3.1, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [167, 103, 245],
+...,
+         [ 93, 241,  12],
+         [ 96, 240,  12],
+         [ 97, 241,  13]]]], shape=(4, 120, 160, 3), dtype=uint8)
+visible = [123, 124, 125, 126, 127, 128, ...], fps = 30.0, clip_duration = 2.0
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.1, clip plays 60 frames (2.000s; container 2.000s)
+E       assert 3.1 <= 2.033333333333333
+
+test_trimmed_video.py:315: AssertionError
+_______________ test_generic_loader_on_trim[no_bframes-opencv-8] _______________
+
+trim = 'no_bframes', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 60, 'fps': 30.0, 'duration': 3.1, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [167, 103, 245],
+...,
+         [ 93, 241,  12],
+         [ 96, 240,  12],
+         [ 97, 241,  13]]]], shape=(8, 120, 160, 3), dtype=uint8)
+visible = [123, 124, 125, 126, 127, 128, ...], fps = 30.0, clip_duration = 2.0
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.1, clip plays 60 frames (2.000s; container 2.000s)
+E       assert 3.1 <= 2.033333333333333
+
+test_trimmed_video.py:315: AssertionError
+______________ test_generic_loader_on_trim[no_bframes-opencv-16] _______________
+
+trim = 'no_bframes', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 60, 'fps': 30.0, 'duration': 3.1, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [167, 103, 245],
+...
+         [ 93, 241,  12],
+         [ 96, 240,  12],
+         [ 97, 241,  13]]]], shape=(16, 120, 160, 3), dtype=uint8)
+visible = [123, 124, 125, 126, 127, 128, ...], fps = 30.0, clip_duration = 2.0
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.1, clip plays 60 frames (2.000s; container 2.000s)
+E       assert 3.1 <= 2.033333333333333
+
+test_trimmed_video.py:315: AssertionError
+______________ test_generic_loader_on_trim[no_bframes-opencv-all] ______________
+
+trim = 'no_bframes', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 60, 'fps': 30.0, 'duration': 3.1, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [167, 103, 245],
+...
+         [ 93, 241,  12],
+         [ 96, 240,  12],
+         [ 97, 241,  13]]]], shape=(60, 120, 160, 3), dtype=uint8)
+visible = [123, 124, 125, 126, 127, 128, ...], fps = 30.0, clip_duration = 2.0
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.1, clip plays 60 frames (2.000s; container 2.000s)
+E       assert 3.1 <= 2.033333333333333
+
+test_trimmed_video.py:315: AssertionError
+_____________ test_generic_loader_on_trim[no_bframes-opencv-over] ______________
+
+trim = 'no_bframes', backend = 'opencv', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 60, 'fps': 30.0, 'duration': 3.1, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [167, 103, 245],
+...
+         [ 93, 241,  12],
+         [ 96, 240,  12],
+         [ 97, 241,  13]]]], shape=(60, 120, 160, 3), dtype=uint8)
+visible = [123, 124, 125, 126, 127, 128, ...], fps = 30.0, clip_duration = 2.0
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.1, clip plays 60 frames (2.000s; container 2.000s)
+E       assert 3.1 <= 2.033333333333333
+
+test_trimmed_video.py:315: AssertionError
+____________ test_generic_loader_fps_sampling_on_trim[mild-opencv] _____________
+
+trim = 'mild', backend = 'opencv'
+
+    @pytest.mark.parametrize("trim,backend", C.generic_fps_params(), ids=lambda p: str(p))
+    def test_generic_loader_fps_sampling_on_trim(trim, backend):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"genfps-{trim}-{backend}")
+        visible, fps = lab.visible[trim], lab.fps[trim]
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        allowed = math.floor((len(visible) + 2) / fps * 2)
+>       assert math.floor((len(visible) - 2) / fps * 2) <= len(labels) <= allowed, (
+            f"{len(labels)} samples at 2 fps for a {len(visible) / fps:.2f}s clip")
+E       AssertionError: 7 samples at 2 fps for a 3.07s clip
+E       assert 7 <= 6
+E        +  where 7 = len([75, 90, 105, 120, 135, 150, ...])
+
+test_trimmed_video.py:366: AssertionError
+___________ test_generic_loader_fps_sampling_on_trim[severe-opencv] ____________
+
+trim = 'severe', backend = 'opencv'
+
+    @pytest.mark.parametrize("trim,backend", C.generic_fps_params(), ids=lambda p: str(p))
+    def test_generic_loader_fps_sampling_on_trim(trim, backend):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"genfps-{trim}-{backend}")
+        visible, fps = lab.visible[trim], lab.fps[trim]
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        allowed = math.floor((len(visible) + 2) / fps * 2)
+>       assert math.floor((len(visible) - 2) / fps * 2) <= len(labels) <= allowed, (
+            f"{len(labels)} samples at 2 fps for a {len(visible) / fps:.2f}s clip")
+E       AssertionError: 18 samples at 2 fps for a 2.07s clip
+E       assert 18 <= 4
+E        +  where 18 = len([210, 213, 217, 220, 224, 227, ...])
+
+test_trimmed_video.py:366: AssertionError
+_____ test_fps_loaders_match_reencoded_clip[severe-opencv_dynamic-opencv] ______
+
+trim = 'severe', loader = 'opencv_dynamic', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+E       AssertionError: trimmed clip sampled [210, 225, 240, 255, 270, 273]; the same frames in a re-encoded file sample [210, 225, 240, 255] at Base
+E       assert [210, 225, 240, 255, 270, 273] == [210, 225, 240, 255]
+E         
+E         Left contains 2 more items, first extra item: 270
+E         Use -v to get more diff
+
+test_trimmed_video.py:380: AssertionError
+________ test_fps_loaders_match_reencoded_clip[severe-qwen2_vl-opencv] _________
+
+trim = 'severe', loader = 'qwen2_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+        assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+        assert meta["video_backend"] == ref_meta["video_backend"]
+>       assert_metadata_describes_clip(meta, frames, lab.visible[trim], lab.fps[trim], lab.duration[trim])
+
+test_trimmed_video.py:383: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 62, 'fps': 30.0, 'duration': 9.066666666666666, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [172,  28,  88],
+...,
+         [ 57,  99,  19],
+         [ 58, 100,  20],
+         [ 58, 100,  20]]]], shape=(4, 120, 160, 3), dtype=uint8)
+visible = [210, 211, 212, 213, 214, 215, ...], fps = 30.0
+clip_duration = 2.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=9.066666666666666, clip plays 62 frames (2.067s; container 2.134s)
+E       assert 9.066666666666666 <= 2.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+________ test_fps_loaders_match_reencoded_clip[severe-qwen3_vl-opencv] _________
+
+trim = 'severe', loader = 'qwen3_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+        assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+        assert meta["video_backend"] == ref_meta["video_backend"]
+>       assert_metadata_describes_clip(meta, frames, lab.visible[trim], lab.fps[trim], lab.duration[trim])
+
+test_trimmed_video.py:383: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 62, 'fps': 30.0, 'duration': 9.066666666666666, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [172,  28,  88],
+...,
+         [110, 185, 139],
+         [114, 184, 142],
+         [114, 184, 142]]]], shape=(4, 120, 160, 3), dtype=uint8)
+visible = [210, 211, 212, 213, 214, 215, ...], fps = 30.0
+clip_duration = 2.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=9.066666666666666, clip plays 62 frames (2.067s; container 2.134s)
+E       assert 9.066666666666666 <= 2.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+______ test_fps_loaders_match_reencoded_clip[mild-opencv_dynamic-opencv] _______
+
+trim = 'mild', loader = 'opencv_dynamic', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+E       AssertionError: trimmed clip sampled [75, 90, 105, 120, 135, 150, 165]; the same frames in a re-encoded file sample [75, 90, 105, 120, 135, 150] at Base
+E       assert [75, 90, 105,...135, 150, ...] == [75, 90, 105, 120, 135, 150]
+E         
+E         Left contains one more item: 165
+E         Use -v to get more diff
+
+test_trimmed_video.py:380: AssertionError
+_________ test_fps_loaders_match_reencoded_clip[mild-qwen2_vl-opencv] __________
+
+trim = 'mild', loader = 'qwen2_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+        assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+        assert meta["video_backend"] == ref_meta["video_backend"]
+>       assert_metadata_describes_clip(meta, frames, lab.visible[trim], lab.fps[trim], lab.duration[trim])
+
+test_trimmed_video.py:383: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 92, 'fps': 30.0, 'duration': 3.566666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...,
+         [255,  85,  52],
+         [  3,  85,  55],
+         [  3,  85,  55]]]], shape=(6, 120, 160, 3), dtype=uint8)
+visible = [75, 76, 77, 78, 79, 80, ...], fps = 30.0, clip_duration = 3.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.566666666666667, clip plays 92 frames (3.067s; container 3.134s)
+E       assert 3.566666666666667 <= 3.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+_________ test_fps_loaders_match_reencoded_clip[mild-qwen3_vl-opencv] __________
+
+trim = 'mild', loader = 'qwen3_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+        assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+        assert meta["video_backend"] == ref_meta["video_backend"]
+>       assert_metadata_describes_clip(meta, frames, lab.visible[trim], lab.fps[trim], lab.duration[trim])
+
+test_trimmed_video.py:383: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 92, 'fps': 30.0, 'duration': 3.566666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...,
+         [ 48, 170, 173],
+         [ 53, 170, 174],
+         [ 53, 170, 174]]]], shape=(6, 120, 160, 3), dtype=uint8)
+visible = [75, 76, 77, 78, 79, 80, ...], fps = 30.0, clip_duration = 3.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.566666666666667, clip plays 92 frames (3.067s; container 3.134s)
+E       assert 3.566666666666667 <= 3.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+______ test_fps_loaders_match_reencoded_clip[very_short-qwen2_vl-opencv] _______
+
+trim = 'very_short', loader = 'qwen2_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+        assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+        assert meta["video_backend"] == ref_meta["video_backend"]
+>       assert_metadata_describes_clip(meta, frames, lab.visible[trim], lab.fps[trim], lab.duration[trim])
+
+test_trimmed_video.py:383: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 14, 'fps': 30.0, 'duration': 3.466666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...,
+         [100,  87, 207],
+         [105,  87, 209],
+         [105,  87, 209]]]], shape=(4, 120, 160, 3), dtype=uint8)
+visible = [90, 91, 92, 93, 94, 95, ...], fps = 30.0, clip_duration = 0.466992
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.466666666666667, clip plays 14 frames (0.467s; container 0.467s)
+E       assert 3.466666666666667 <= 0.5003253333333334
+
+test_trimmed_video.py:315: AssertionError
+______ test_fps_loaders_match_reencoded_clip[very_short-qwen3_vl-opencv] _______
+
+trim = 'very_short', loader = 'qwen3_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+        assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+        assert meta["video_backend"] == ref_meta["video_backend"]
+>       assert_metadata_describes_clip(meta, frames, lab.visible[trim], lab.fps[trim], lab.duration[trim])
+
+test_trimmed_video.py:383: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 14, 'fps': 30.0, 'duration': 3.466666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...,
+         [111, 101, 227],
+         [116, 101, 231],
+         [116, 101, 231]]]], shape=(4, 120, 160, 3), dtype=uint8)
+visible = [90, 91, 92, 93, 94, 95, ...], fps = 30.0, clip_duration = 0.466992
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.466666666666667, clip plays 14 frames (0.467s; container 0.467s)
+E       assert 3.466666666666667 <= 0.5003253333333334
+
+test_trimmed_video.py:315: AssertionError
+_____________ test_frame_recovery_matches_reencoded_clip[severe-8] _____________
+
+trim = 'severe', count = '8'
+
+    @pytest.mark.parametrize("trim,count", C.recovery_params(), ids=lambda p: str(p))
+    def test_frame_recovery_matches_reencoded_clip(trim, count):
+        lab, cand, ref, _ = environment()
+        rid = f"rec-{trim}-{count}"
+        ref_frames, _ = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels = labels_of(frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+        assert labels == labels_of(ref_frames)
+>       assert_metadata_describes_clip(meta, frames, lab.visible[trim], lab.fps[trim], lab.duration[trim])
+
+test_trimmed_video.py:395: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 62, 'fps': 30.0, 'duration': 9.066666666666666, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [172,  28,  88],
+...,
+         [110, 185, 139],
+         [114, 184, 142],
+         [114, 184, 142]]]], shape=(8, 120, 160, 3), dtype=uint8)
+visible = [210, 211, 212, 213, 214, 215, ...], fps = 30.0
+clip_duration = 2.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=9.066666666666666, clip plays 62 frames (2.067s; container 2.134s)
+E       assert 9.066666666666666 <= 2.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+____________ test_frame_recovery_matches_reencoded_clip[severe-all] ____________
+
+trim = 'severe', count = 'all'
+
+    @pytest.mark.parametrize("trim,count", C.recovery_params(), ids=lambda p: str(p))
+    def test_frame_recovery_matches_reencoded_clip(trim, count):
+        lab, cand, ref, _ = environment()
+        rid = f"rec-{trim}-{count}"
+        ref_frames, _ = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels = labels_of(frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+        assert labels == labels_of(ref_frames)
+>       assert_metadata_describes_clip(meta, frames, lab.visible[trim], lab.fps[trim], lab.duration[trim])
+
+test_trimmed_video.py:395: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 62, 'fps': 30.0, 'duration': 9.066666666666666, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [172,  28,  88],
+...
+         [110, 185, 139],
+         [114, 184, 142],
+         [114, 184, 142]]]], shape=(62, 120, 160, 3), dtype=uint8)
+visible = [210, 211, 212, 213, 214, 215, ...], fps = 30.0
+clip_duration = 2.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=9.066666666666666, clip plays 62 frames (2.067s; container 2.134s)
+E       assert 9.066666666666666 <= 2.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+__________________ test_opencv_without_pyav[severe-opencv-8] ___________________
+
+trim = 'severe', loader = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,loader,count", C.no_pyav_params(), ids=lambda p: str(p))
+    def test_opencv_without_pyav(trim, loader, count):
+        lab, _, _, noav = environment()
+        frames, meta = noav.get(f"noav-{trim}-{loader}-{count}")
+        assert meta["av_imported"] is False
+        visible = lab.visible[trim]
+        if loader == "opencv":
+>           check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], "opencv")
+
+test_trimmed_video.py:417: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 62, 'fps': 30.0, 'duration': 9.066666666666666, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [172,  28,  88],
+...,
+         [110, 185, 139],
+         [114, 184, 142],
+         [114, 184, 142]]]], shape=(8, 120, 160, 3), dtype=uint8)
+visible = [210, 211, 212, 213, 214, 215, ...], fps = 30.0
+clip_duration = 2.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=9.066666666666666, clip plays 62 frames (2.067s; container 2.134s)
+E       assert 9.066666666666666 <= 2.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+______________ test_opencv_without_pyav[severe-opencv_dynamic-8] _______________
+
+trim = 'severe', loader = 'opencv_dynamic', count = '8'
+
+    @pytest.mark.parametrize("trim,loader,count", C.no_pyav_params(), ids=lambda p: str(p))
+    def test_opencv_without_pyav(trim, loader, count):
+        lab, _, _, noav = environment()
+        frames, meta = noav.get(f"noav-{trim}-{loader}-{count}")
+        assert meta["av_imported"] is False
+        visible = lab.visible[trim]
+        if loader == "opencv":
+            check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], "opencv")
+        else:
+            labels = labels_of(frames)
+            assert_plays_without_repeats(labels, visible)
+            assert_covers_clip(labels, visible, len(labels))
+>           assert_metadata_describes_clip(meta, frames, visible, lab.fps[trim], lab.duration[trim])
+
+test_trimmed_video.py:422: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 62, 'fps': 30.0, 'duration': 9.066666666666666, 'video_backend': 'opencv_dynamic', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [172,  28,  88],
+...,
+         [110, 185, 139],
+         [114, 184, 142],
+         [114, 184, 142]]]], shape=(6, 120, 160, 3), dtype=uint8)
+visible = [210, 211, 212, 213, 214, 215, ...], fps = 30.0
+clip_duration = 2.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=9.066666666666666, clip plays 62 frames (2.067s; container 2.134s)
+E       assert 9.066666666666666 <= 2.167317333333333
+
+test_trimmed_video.py:315: AssertionError
+___________ test_independently_derived_trims[trim_of_trim-opencv-8] ____________
+
+derived = 'trim_of_trim', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+        visible = lab.visible[derived]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[derived], lab.duration[derived], backend)
+
+test_trimmed_video.py:430: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 47, 'fps': 30.0, 'duration': 3.2666666666666666, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [129,  43, 163],
+...,
+         [ 25, 124, 110],
+         [ 27, 125, 111],
+         [ 27, 125, 111]]]], shape=(8, 120, 160, 3), dtype=uint8)
+visible = [111, 112, 113, 114, 115, 116, ...], fps = 30.0
+clip_duration = 1.633984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.2666666666666666, clip plays 47 frames (1.567s; container 1.634s)
+E       assert 3.2666666666666666 <= 1.6673173333333335
+
+test_trimmed_video.py:315: AssertionError
+__________ test_independently_derived_trims[trim_of_trim-opencv-all] ___________
+
+derived = 'trim_of_trim', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+        visible = lab.visible[derived]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[derived], lab.duration[derived], backend)
+
+test_trimmed_video.py:430: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 47, 'fps': 30.0, 'duration': 3.2666666666666666, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [129,  43, 163],
+...
+         [ 25, 124, 110],
+         [ 27, 125, 111],
+         [ 27, 125, 111]]]], shape=(47, 120, 160, 3), dtype=uint8)
+visible = [111, 112, 113, 114, 115, 116, ...], fps = 30.0
+clip_duration = 1.633984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=3.2666666666666666, clip plays 47 frames (1.567s; container 1.634s)
+E       assert 3.2666666666666666 <= 1.6673173333333335
+
+test_trimmed_video.py:315: AssertionError
+___________ test_independently_derived_trims[rebased_remux-opencv-8] ___________
+
+derived = 'rebased_remux', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+        visible = lab.visible[derived]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[derived], lab.duration[derived], backend)
+
+test_trimmed_video.py:430: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 50, 'fps': 30.0, 'duration': 5.0, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 93, 247,  80],
+...,
+         [247,  75,  38],
+         [248,  76,  39],
+         [248,  76,  39]]]], shape=(8, 120, 160, 3), dtype=uint8)
+visible = [100, 101, 102, 103, 104, 105, ...], fps = 30.0
+clip_duration = 1.666992
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=5.0, clip plays 50 frames (1.667s; container 1.667s)
+E       assert 5.0 <= 1.7003253333333335
+
+test_trimmed_video.py:315: AssertionError
+__________ test_independently_derived_trims[rebased_remux-opencv-all] __________
+
+derived = 'rebased_remux', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+        visible = lab.visible[derived]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[derived], lab.duration[derived], backend)
+
+test_trimmed_video.py:430: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 50, 'fps': 30.0, 'duration': 5.0, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 93, 247,  80],
+...
+         [247,  75,  38],
+         [248,  76,  39],
+         [248,  76,  39]]]], shape=(50, 120, 160, 3), dtype=uint8)
+visible = [100, 101, 102, 103, 104, 105, ...], fps = 30.0
+clip_duration = 1.666992
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+        assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=5.0, clip plays 50 frames (1.667s; container 1.667s)
+E       assert 5.0 <= 1.7003253333333335
+
+test_trimmed_video.py:315: AssertionError
+=========================== short test summary info ============================
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-4] - As...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-8] - As...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-16] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-all] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-opencv-4] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-opencv-8] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-opencv-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-4] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-8] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-16] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-4]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-8]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-4]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-8]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_fps_sampling_on_trim[mild-opencv]
+FAILED test_trimmed_video.py::test_generic_loader_fps_sampling_on_trim[severe-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[severe-opencv_dynamic-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[severe-qwen2_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[severe-qwen3_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-opencv_dynamic-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-qwen2_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-qwen3_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[very_short-qwen2_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[very_short-qwen3_vl-opencv]
+FAILED test_trimmed_video.py::test_frame_recovery_matches_reencoded_clip[severe-8]
+FAILED test_trimmed_video.py::test_frame_recovery_matches_reencoded_clip[severe-all]
+FAILED test_trimmed_video.py::test_opencv_without_pyav[severe-opencv-8] - Ass...
+FAILED test_trimmed_video.py::test_opencv_without_pyav[severe-opencv_dynamic-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-opencv-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-opencv-all]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-opencv-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-opencv-all]
+43 failed, 128 passed in 65.86s (0:01:05)

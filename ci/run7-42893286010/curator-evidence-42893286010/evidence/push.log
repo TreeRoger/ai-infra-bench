@@ -1,0 +1,39 @@
+The push refers to repository [ghcr.io/treeroger/ai-infra-bench-task-envs]
+1cd8c7dc2273: Preparing
+d909a85dceae: Preparing
+1710876e5669: Preparing
+5f70bf18a086: Preparing
+5af703d96eca: Preparing
+d6f92b8c6cdd: Preparing
+f81379e4ee0c: Preparing
+dbced86403af: Preparing
+0325e9184170: Preparing
+3193639a886b: Preparing
+6fdca0968d0f: Preparing
+f19f6d6c8637: Preparing
+ebad55931d5b: Preparing
+411a86676185: Preparing
+d6f92b8c6cdd: Waiting
+f81379e4ee0c: Waiting
+3193639a886b: Waiting
+ebad55931d5b: Waiting
+6fdca0968d0f: Waiting
+411a86676185: Waiting
+f19f6d6c8637: Waiting
+dbced86403af: Waiting
+0325e9184170: Waiting
+1710876e5669: Layer already exists
+d909a85dceae: Layer already exists
+5af703d96eca: Layer already exists
+5f70bf18a086: Layer already exists
+1cd8c7dc2273: Layer already exists
+0325e9184170: Layer already exists
+dbced86403af: Layer already exists
+d6f92b8c6cdd: Layer already exists
+f81379e4ee0c: Layer already exists
+3193639a886b: Layer already exists
+6fdca0968d0f: Layer already exists
+f19f6d6c8637: Layer already exists
+ebad55931d5b: Layer already exists
+411a86676185: Layer already exists
+vllm-trimmed-video-frame-sampling-1f6b47c98978b53fd5eabc09575c18f3b7d53ab300a217e978f0075d40fb08fe: digest: sha256:1c52d2c6c71cdab50b25d2ab71d4af93afab9fc78a8120a496fc9c2a51019316 size: 3277

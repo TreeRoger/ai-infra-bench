@@ -1,0 +1,118 @@
+{
+    "id": "719ac79b-d60b-437e-8b45-ea6f19312eec",
+    "task_name": "ai-infra-bench/vllm-trimmed-video-frame-sampling",
+    "trial_name": "ai-infra-case.ogzGnA__FwXwWRE",
+    "trial_uri": "file:///home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-frame-sampling/vllm-trimmed-video-frame-sampling--oracle-pyav-only/ai-infra-case.ogzGnA__FwXwWRE",
+    "task_id": {
+        "path": "/home/runner/work/_temp/ai-infra-case.ogzGnA"
+    },
+    "source": null,
+    "task_checksum": "1a342c7a52d2b3e727e7214dfdf92dba5a8d99fbcc67f9beb5d0ee68270db3fa",
+    "config": {
+        "task": {
+            "path": "/home/runner/work/_temp/ai-infra-case.ogzGnA",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "ai-infra-case.ogzGnA__FwXwWRE",
+        "trials_dir": "/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-frame-sampling/vllm-trimmed-video-frame-sampling--oracle-pyav-only",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "oracle",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "limit",
+            "memory_enforcement_policy": "limit",
+            "override_cpus": 4,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "21b9733e-5d1d-4874-9b95-103ba59994bd",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "oracle",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0,
+            "behavior_failure": 1,
+            "infrastructure_error": 0,
+            "pytest_exit_code": 1,
+            "junit_exit_code": 1
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-11-10T04:22:00.723492Z",
+    "finished_at": "2026-11-10T04:23:15.815451Z",
+    "environment_setup": {
+        "started_at": "2026-11-10T04:22:00.744169Z",
+        "finished_at": "2026-11-10T04:22:04.318321Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-10T04:22:04.318370Z",
+        "finished_at": "2026-11-10T04:22:04.318428Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-10T04:22:04.318509Z",
+        "finished_at": "2026-11-10T04:22:04.561199Z"
+    },
+    "verifier": {
+        "started_at": "2026-11-10T04:22:05.907020Z",
+        "finished_at": "2026-11-10T04:23:04.668767Z"
+    },
+    "step_results": null
+}

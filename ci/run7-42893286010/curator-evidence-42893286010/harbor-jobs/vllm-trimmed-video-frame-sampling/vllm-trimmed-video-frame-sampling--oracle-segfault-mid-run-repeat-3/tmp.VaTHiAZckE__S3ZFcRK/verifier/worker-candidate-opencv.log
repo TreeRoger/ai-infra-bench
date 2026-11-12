@@ -1,0 +1,20 @@
+exit=-11 (crashed with SIGSEGV (exit -11))
+--- stdout
+
+--- stderr
+Fatal Python error: Segmentation fault
+
+Current thread 0x00007f83b0814380 (most recent call first):
+  File "/workspace/vllm/vllm/multimodal/video_decoders/opencv.py", line 42 in decode_opencv
+  File "/workspace/vllm/vllm/multimodal/video_decoders/__init__.py", line 92 in decode_video
+  File "/workspace/vllm/vllm/multimodal/video.py", line 264 in load_bytes
+  File "/workspace/vllm/vllm/multimodal/media/video.py", line 98 in load_bytes
+  File "/workspace/vllm/vllm/multimodal/media/video.py", line 177 in load_file
+  File "/workspace/vllm/vllm/multimodal/media/connector.py", line 339 in _load_file_url
+  File "/workspace/vllm/vllm/multimodal/media/connector.py", line 388 in load_from_url
+  File "/workspace/vllm/vllm/multimodal/media/connector.py", line 553 in fetch_video
+  File "/tmp/trimmed-video-verifier.LOQEKN/worker.py", line 36 in main
+  File "/tmp/trimmed-video-verifier.LOQEKN/worker.py", line 58 in <module>
+
+Extension modules: numpy._core._multiarray_umath, numpy.linalg._umath_linalg, torch._C, torch._C._dynamo.autograd_compiler, torch._C._dynamo.eval_frame, torch._C._dynamo.guards, torch._C._dynamo.utils, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special, regex._regex, psutil._psutil_linux, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._pcg64, numpy.random._mt19937, numpy.random._generator, numpy.random._philox, numpy.random._sfc64, numpy.random.mtrand, markupsafe._speedups, PIL._imaging, zmq.backend.cython._zmq, yaml._yaml, PIL._imagingft, _cffi_backend, multidict._multidict, yarl._quoting_c, propcache._helpers_c, aiohttp._http_writer, aiohttp._http_parser, aiohttp._websocket.mask, aiohttp._websocket.reader_c, frozenlist._frozenlist, charset_normalizer.md, charset_normalizer.cd, requests.packages.charset_normalizer.md, requests.packages.chardet.md, requests.packages.charset_normalizer.cd, requests.packages.chardet.cd, pybase64._pybase64 (total: 45)
+

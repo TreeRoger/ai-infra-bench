@@ -1,0 +1,65 @@
+{
+    "schema_version": 3,
+    "created_at": "2026-11-10T04:24:40.961195Z",
+    "harbor": {
+        "version": "0.22.0",
+        "is_editable": false
+    },
+    "n_concurrent_trials": 1,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "AgentSafetyRefusalError",
+            "RewardFileNotFoundError",
+            "VerifierTimeoutError",
+            "ApiUsageLimitError",
+            "ModelNotFoundError",
+            "RewardFileEmptyError",
+            "AgentAuthenticationError",
+            "VerifierOutputParseError",
+            "AgentTimeoutError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "ai-infra-case.WHvcVo",
+                "version": "1.0.0",
+                "type": "local",
+                "digest": "sha256:cb4093ea26628865e540792085bce5b68ad3185327a4253923e8c71d256ea28f",
+                "path": "/home/runner/work/_temp/ai-infra-case.WHvcVo"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "oracle",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "limit",
+                "memory_enforcement_policy": "limit",
+                "override_cpus": 4,
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "shared"
+            }
+        }
+    ]
+}

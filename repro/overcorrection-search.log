@@ -1,0 +1,14 @@
+mp4_bf2                    {'cv_header': 300, 'cv_decoded': 300, 'cv_end_seek_probe': (300, True), 'av_header': 300, 'av_decoded': 300, 'av_fps': 30.0, 'av_duration': 10.0, 'av_round_dur_fps': 300}
+mp4_bf0                    {'cv_header': 300, 'cv_decoded': 300, 'cv_end_seek_probe': (300, True), 'av_header': 300, 'av_decoded': 300, 'av_fps': 30.0, 'av_duration': 10.0, 'av_round_dur_fps': 300}
+mp4_2997                   {'cv_header': 300, 'cv_decoded': 300, 'cv_end_seek_probe': (300, True), 'av_header': 300, 'av_decoded': 300, 'av_fps': 29.97, 'av_duration': 10.01, 'av_round_dur_fps': 300}
+mp4_with_audio             {'cv_header': 300, 'cv_decoded': 300, 'cv_end_seek_probe': (300, True), 'av_header': 300, 'av_decoded': 300, 'av_fps': 30.0, 'av_duration': 10.0, 'av_round_dur_fps': 300}
+mov_bf2                    {'cv_header': 300, 'cv_decoded': 300, 'cv_end_seek_probe': (300, True), 'av_header': 300, 'av_decoded': 300, 'av_fps': 30.0, 'av_duration': 10.0, 'av_round_dur_fps': 300}
+mp4_frag                   {'cv_header': 300, 'cv_decoded': 300, 'cv_end_seek_probe': (300, True), 'av_header': 0, 'av_decoded': 300, 'av_fps': 30.0, 'av_duration': 10.0, 'av_round_dur_fps': 300} HEADER!=DECODE
+mp4_faststart              {'cv_header': 300, 'cv_decoded': 300, 'cv_end_seek_probe': (300, True), 'av_header': 300, 'av_decoded': 300, 'av_fps': 30.0, 'av_duration': 10.0, 'av_round_dur_fps': 300}
+mp4_hevc                   {'cv_header': 300, 'cv_decoded': 300, 'cv_end_seek_probe': (300, True), 'av_header': 300, 'av_decoded': 300, 'av_fps': 30.0, 'av_duration': 10.0, 'av_round_dur_fps': 300}
+mp4_mpeg4                  {'cv_header': 300, 'cv_decoded': 300, 'cv_end_seek_probe': (300, True), 'av_header': 300, 'av_decoded': 300, 'av_fps': 30.0, 'av_duration': 10.0, 'av_round_dur_fps': 300}
+avi_mpeg4                  {'cv_header': 300, 'cv_decoded': 300, 'cv_end_seek_probe': (300, True), 'av_header': 300, 'av_decoded': 300, 'av_fps': 30.0, 'av_duration': 10.0, 'av_round_dur_fps': 300}
+mp4_vfr_dropdup            {'cv_header': 300, 'cv_decoded': 300, 'cv_end_seek_probe': (300, True), 'av_header': 300, 'av_decoded': 300, 'av_fps': 30.0, 'av_duration': 10.0, 'av_round_dur_fps': 300}
+mp4_reencoded_trim         {'cv_header': 90, 'cv_decoded': 90, 'cv_end_seek_probe': (90, True), 'av_header': 90, 'av_decoded': 90, 'av_fps': 30.0, 'av_duration': 3.0, 'av_round_dur_fps': 90}
+mp4_copy_cut_on_keyframe   {'cv_header': 92, 'cv_decoded': 92, 'cv_end_seek_probe': (92, True), 'av_header': 92, 'av_decoded': 92, 'av_fps': 30.0, 'av_duration': 3.0667, 'av_round_dur_fps': 92}
+mp4_remux_from_mkv         {'cv_header': 300, 'cv_decoded': 300, 'cv_end_seek_probe': (300, True), 'av_header': 300, 'av_decoded': 300, 'av_fps': 30.0, 'av_duration': 10.0, 'av_round_dur_fps': 300}

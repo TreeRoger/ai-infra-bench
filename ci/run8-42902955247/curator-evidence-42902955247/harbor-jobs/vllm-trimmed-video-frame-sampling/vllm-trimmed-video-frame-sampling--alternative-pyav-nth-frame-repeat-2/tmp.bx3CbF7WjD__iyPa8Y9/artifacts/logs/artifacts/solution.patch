@@ -1,0 +1,122 @@
+diff --git a/vllm/multimodal/video_decoders/opencv.py b/vllm/multimodal/video_decoders/opencv.py
+index e5e474eab606b61e4501fa33ac3d337ee9583e99..2ac8b983ae8ef3a7fe4b32bf22599afd8abaf97b 100644
+--- a/vllm/multimodal/video_decoders/opencv.py
++++ b/vllm/multimodal/video_decoders/opencv.py
+@@ -78,6 +78,28 @@ class OpenCVVideoBackendMixin:
+     def get_video_metadata(cap: "cv2.VideoCapture") -> VideoSourceMetadata:
+         total_frames_num = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+         original_fps = cap.get(cv2.CAP_PROP_FPS)
++        # CAP_PROP_FRAME_COUNT counts every physical sample in the container,
++        # overstating the presentable frames when an mp4 edit list hides the
++        # decode lead-in (e.g. a lossless `ffmpeg -ss ... -c copy` trim).
++        # Cross-check with an end-of-stream seek: the FFMPEG backend reports
++        # the resulting position against the edit-list-aware timeline, which
++        # exposes the true frame count without decoding anything. The seek
++        # may land mid-stream on corrupt files, so only trust it when the
++        # stream really ends there. Even a single hidden lead-in frame (a cut
++        # one frame after a keyframe) leaves the last sample unreadable, so
++        # any shortfall confirmed at the real stream end is corrected.
++        if total_frames_num > 0 and cap.set(cv2.CAP_PROP_POS_AVI_RATIO, 1.0):
++            visible_frames = int(cap.get(cv2.CAP_PROP_POS_FRAMES))
++            at_stream_end = not cap.grab()
++            cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
++            if at_stream_end and 0 < visible_frames < total_frames_num:
++                logger.warning(
++                    "Video header claims %d frames but only %d are "
++                    "presentable; sampling over the true frame count.",
++                    total_frames_num,
++                    visible_frames,
++                )
++                total_frames_num = visible_frames
+         duration = total_frames_num / original_fps if original_fps > 0 else 0
+         return VideoSourceMetadata(
+             total_frames_num=total_frames_num,
+diff --git a/vllm/multimodal/video_decoders/pyav.py b/vllm/multimodal/video_decoders/pyav.py
+index dc82b01230d1ad06867b9f262162c6ae93269729..89c7e26ef4198e606f39b4b4a2ee0420a97b9f74 100644
+--- a/vllm/multimodal/video_decoders/pyav.py
++++ b/vllm/multimodal/video_decoders/pyav.py
+@@ -62,8 +62,31 @@ class PyAVVideoBackendMixin:
+         duration = float(stream.duration * stream.time_base) if stream.duration else 0.0
+         if total_frames == 0 and duration > 0 and fps > 0:
+             total_frames = int(duration * fps)
++        elif total_frames > 0:
++            # ``stream.frames`` counts every physical sample, including the
++            # decode lead-in that an mp4 edit list hides after a lossless
++            # ``ffmpeg -ss ... -c copy`` trim. The demuxer flags those
++            # samples as discardable, so count the presentable ones without
++            # decoding anything and sample over that timeline instead.
++            presentable = PyAVVideoBackendMixin._count_presentable_packets(
++                container, stream
++            )
++            if 0 < presentable < total_frames:
++                total_frames = presentable
+         return VideoSourceMetadata(total_frames, fps, duration)
+ 
++    @staticmethod
++    def _count_presentable_packets(
++        container: "av.container.InputContainer",
++        stream: "av.video.stream.VideoStream",
++    ) -> int:
++        count = 0
++        for packet in container.demux(stream):
++            if packet.size and not packet.is_discard:
++                count += 1
++        container.seek(0, stream=stream)
++        return count
++
+     @staticmethod
+     def decode_frames(
+         container: "av.container.InputContainer",
+@@ -71,40 +94,21 @@ class PyAVVideoBackendMixin:
+         fps: float,
+         duration: float,
+     ) -> tuple[npt.NDArray, list[int]]:
+-        """Decode target frames via per-frame seek + forward decode to PTS."""
++        """Decode sequentially; index n is the n-th frame the clip presents."""
+         stream = container.streams.video[0]
+-        # SLICE parallelizes within a single frame without the
+-        # one-frame-per-thread latency penalty of FRAME threading.
+         stream.thread_type = "SLICE"
+-        time_base = stream.time_base
+-
+-        frames_list: list[npt.NDArray] = []
+-        valid_indices: list[int] = []
+-        frame_interval = 1.0 / fps if fps > 0 else 0.1
+-        max_ts = max(0.0, duration - frame_interval) if duration > 0 else float("inf")
++        container.seek(0, stream=stream)
+ 
+-        decoder = None
+-        last_pts = None
+-        for idx in frame_indices:
+-            ts = min(idx / fps, max_ts) if fps > 0 else 0.0
+-            pts = int(ts / time_base)
+-            # seek() snaps backward to a keyframe; reuse the running decoder
+-            # while targets advance monotonically to avoid re-decoding the
+-            # GOP prefix once per requested frame.
+-            if decoder is None or last_pts is None or pts <= last_pts:
+-                container.seek(pts, stream=stream)
+-                decoder = container.decode(video=0)
+-            chosen = None
+-            for frame in decoder:
+-                if frame.pts is not None and frame.pts >= pts:
+-                    chosen = frame
+-                    last_pts = frame.pts
+-                    break
+-            if chosen is not None:
+-                frames_list.append(chosen.to_ndarray(format="rgb24"))
+-                valid_indices.append(idx)
+-            else:
+-                decoder = None
++        wanted = set(frame_indices)
++        last_wanted = max(frame_indices, default=-1)
++        decoded: dict[int, npt.NDArray] = {}
++        for position, frame in enumerate(container.decode(video=0)):
++            if position in wanted:
++                decoded[position] = frame.to_ndarray(format="rgb24")
++            if position >= last_wanted:
++                break
++        valid_indices = [idx for idx in frame_indices if idx in decoded]
++        frames_list = [decoded[idx] for idx in valid_indices]
+ 
+         if not frames_list:
+             return np.empty((0,), dtype=np.uint8), valid_indices

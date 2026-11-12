@@ -1,0 +1,61 @@
+        assert total == len(visible), f"total_num_frames={total}, clip plays {len(visible)} frames"
+        positions = [visible.index(lab) for lab in labels_of(frames)]
+        assert [int(i) for i in indices] == positions, (
+            f"frames_indices {indices} do not name the returned frames (clip positions {positions})")
+        # Either convention describes the clip: played frames / fps, or the
+        # container's presentation duration (which counts the last frame's display time).
+        low = (len(visible) - 1) / fps
+        high = max(len(visible) / fps, clip_duration) + 1 / fps
+>       assert low <= meta["duration"] <= high, (
+            f"duration={meta['duration']}, clip plays {len(visible)} frames "
+            f"({len(visible) / fps:.3f}s; container {clip_duration:.3f}s)")
+E       AssertionError: duration=5.0, clip plays 50 frames (1.667s; container 1.667s)
+E       assert 5.0 <= 1.7003253333333335
+
+test_trimmed_video.py:432: AssertionError
+=========================== short test summary info ============================
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-4] - As...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-8] - As...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-16] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-all] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-opencv-4] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-opencv-8] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-opencv-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[severe-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-4] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-8] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-16] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-4]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-8]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-4]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-8]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_fps_sampling_on_trim[mild-opencv]
+FAILED test_trimmed_video.py::test_generic_loader_fps_sampling_on_trim[severe-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[severe-opencv_dynamic-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[severe-qwen2_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[severe-qwen3_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-opencv_dynamic-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-qwen2_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-qwen3_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[very_short-qwen2_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[very_short-qwen3_vl-opencv]
+FAILED test_trimmed_video.py::test_frame_recovery_matches_reencoded_clip[severe-8]
+FAILED test_trimmed_video.py::test_frame_recovery_matches_reencoded_clip[severe-all]
+FAILED test_trimmed_video.py::test_opencv_without_pyav[severe-opencv-8] - Ass...
+FAILED test_trimmed_video.py::test_opencv_without_pyav[severe-opencv_dynamic-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-opencv-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-opencv-all]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-opencv-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-opencv-all]
+43 failed, 116 passed in 56.55s
+{'expected': 159, 'tests': 159, 'failures': 43, 'errors': 0, 'skipped': 0, 'missing': [], 'unexpected': [], 'not_passed': ['test_generic_loader_on_trim[mild-opencv-4]', 'test_generic_loader_on_trim[mild-opencv-8]', 'test_generic_loader_on_trim[mild-opencv-16]', 'test_generic_loader_on_trim[mild-opencv-all]', 'test_generic_loader_on_trim[mild-opencv-over]', 'test_generic_loader_on_trim[severe-opencv-4]', 'test_generic_loader_on_trim[severe-opencv-8]', 'test_generic_loader_on_trim[severe-opencv-16]', 'test_generic_loader_on_trim[severe-opencv-all]', 'test_generic_loader_on_trim[severe-opencv-over]', 'test_generic_loader_on_trim[fps25-opencv-4]', 'test_generic_loader_on_trim[fps25-opencv-8]', 'test_generic_loader_on_trim[fps25-opencv-16]', 'test_generic_loader_on_trim[fps25-opencv-all]', 'test_generic_loader_on_trim[fps25-opencv-over]', 'test_generic_loader_on_trim[very_short-opencv-4]', 'test_generic_loader_on_trim[very_short-opencv-8]', 'test_generic_loader_on_trim[very_short-opencv-16]', 'test_generic_loader_on_trim[very_short-opencv-all]', 'test_generic_loader_on_trim[very_short-opencv-over]', 'test_generic_loader_on_trim[no_bframes-opencv-4]', 'test_generic_loader_on_trim[no_bframes-opencv-8]', 'test_generic_loader_on_trim[no_bframes-opencv-16]', 'test_generic_loader_on_trim[no_bframes-opencv-all]', 'test_generic_loader_on_trim[no_bframes-opencv-over]', 'test_generic_loader_fps_sampling_on_trim[mild-opencv]', 'test_generic_loader_fps_sampling_on_trim[severe-opencv]', 'test_fps_loaders_match_reencoded_clip[severe-opencv_dynamic-opencv]', 'test_fps_loaders_match_reencoded_clip[severe-qwen2_vl-opencv]', 'test_fps_loaders_match_reencoded_clip[severe-qwen3_vl-opencv]', 'test_fps_loaders_match_reencoded_clip[mild-opencv_dynamic-opencv]', 'test_fps_loaders_match_reencoded_clip[mild-qwen2_vl-opencv]', 'test_fps_loaders_match_reencoded_clip[mild-qwen3_vl-opencv]', 'test_fps_loaders_match_reencoded_clip[very_short-qwen2_vl-opencv]', 'test_fps_loaders_match_reencoded_clip[very_short-qwen3_vl-opencv]', 'test_frame_recovery_matches_reencoded_clip[severe-8]', 'test_frame_recovery_matches_reencoded_clip[severe-all]', 'test_opencv_without_pyav[severe-opencv-8]', 'test_opencv_without_pyav[severe-opencv_dynamic-8]', 'test_independently_derived_trims[trim_of_trim-opencv-8]']}

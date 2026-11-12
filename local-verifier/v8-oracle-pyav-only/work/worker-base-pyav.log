@@ -1,0 +1,7 @@
+exit=0 (exit status 0)
+--- stdout
+
+--- stderr
+objc[6378]: Class AVFFrameReceiver is implemented in both /Users/rogerjin/infrabench-work/venv-base/lib/python3.12/site-packages/av/.dylibs/libavdevice.62.3.102.dylib (0x11627c3a8) and /Users/rogerjin/infrabench-work/venv-base/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x11cacc3a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[6378]: Class AVFAudioReceiver is implemented in both /Users/rogerjin/infrabench-work/venv-base/lib/python3.12/site-packages/av/.dylibs/libavdevice.62.3.102.dylib (0x11627c3f8) and /Users/rogerjin/infrabench-work/venv-base/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x11cacc3f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+

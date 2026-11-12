@@ -1,0 +1,25 @@
+    
+>           raise ConnectionError(e, request=request)
+E           requests.exceptions.ConnectionError: HTTPSConnectionPool(host='vllm-public-assets.s3.us-west-2.amazonaws.com', port=443): Max retries exceeded with url: /vision_model_images/stop_sign.jpg (Caused by NameResolutionError("HTTPSConnection(host='vllm-public-assets.s3.us-west-2.amazonaws.com', port=443): Failed to resolve 'vllm-public-assets.s3.us-west-2.amazonaws.com' ([Errno -3] Temporary failure in name resolution)"))
+
+/usr/local/lib/python3.12/site-packages/requests/adapters.py:729: ConnectionError
+---------------------------- Captured stdout setup -----------------------------
+WARNING 11-09 03:16:22 [connections.py:96] HTTP fetch failed for https://vllm-public-assets.s3.us-west-2.amazonaws.com/vision_model_images/stop_sign.jpg (attempt 1/3, timeout=5.000s): HTTPSConnectionPool(host='vllm-public-assets.s3.us-west-2.amazonaws.com', port=443): Max retries exceeded with url: /vision_model_images/stop_sign.jpg (Caused by NameResolutionError("HTTPSConnection(host='vllm-public-assets.s3.us-west-2.amazonaws.com', port=443): Failed to resolve 'vllm-public-assets.s3.us-west-2.amazonaws.com' ([Errno -3] Temporary failure in name resolution)")) -- retrying in 1.000s with timeout=20.000s
+WARNING 11-09 03:16:23 [connections.py:96] HTTP fetch failed for https://vllm-public-assets.s3.us-west-2.amazonaws.com/vision_model_images/stop_sign.jpg (attempt 2/3, timeout=20.000s): HTTPSConnectionPool(host='vllm-public-assets.s3.us-west-2.amazonaws.com', port=443): Max retries exceeded with url: /vision_model_images/stop_sign.jpg (Caused by NameResolutionError("HTTPSConnection(host='vllm-public-assets.s3.us-west-2.amazonaws.com', port=443): Failed to resolve 'vllm-public-assets.s3.us-west-2.amazonaws.com' ([Errno -3] Temporary failure in name resolution)")) -- retrying in 4.000s with timeout=80.000s
+------------------------------ Captured log setup ------------------------------
+WARNING  vllm.connections:connections.py:96 HTTP fetch failed for https://vllm-public-assets.s3.us-west-2.amazonaws.com/vision_model_images/stop_sign.jpg (attempt 1/3, timeout=5.000s): HTTPSConnectionPool(host='vllm-public-assets.s3.us-west-2.amazonaws.com', port=443): Max retries exceeded with url: /vision_model_images/stop_sign.jpg (Caused by NameResolutionError("HTTPSConnection(host='vllm-public-assets.s3.us-west-2.amazonaws.com', port=443): Failed to resolve 'vllm-public-assets.s3.us-west-2.amazonaws.com' ([Errno -3] Temporary failure in name resolution)")) -- retrying in 1.000s with timeout=20.000s
+WARNING  vllm.connections:connections.py:96 HTTP fetch failed for https://vllm-public-assets.s3.us-west-2.amazonaws.com/vision_model_images/stop_sign.jpg (attempt 2/3, timeout=20.000s): HTTPSConnectionPool(host='vllm-public-assets.s3.us-west-2.amazonaws.com', port=443): Max retries exceeded with url: /vision_model_images/stop_sign.jpg (Caused by NameResolutionError("HTTPSConnection(host='vllm-public-assets.s3.us-west-2.amazonaws.com', port=443): Failed to resolve 'vllm-public-assets.s3.us-west-2.amazonaws.com' ([Errno -3] Temporary failure in name resolution)")) -- retrying in 4.000s with timeout=80.000s
+=============================== warnings summary ===============================
+../../usr/local/lib/python3.12/site-packages/torch/jit/_script.py:365: 14 warnings
+  /usr/local/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR tests/multimodal/test_video.py::test_torchcodec_backend_rejects_frame_recovery
+ERROR tests/multimodal/test_video.py::test_video_loader_frames_sampling[opencv-num_frames]
+ERROR tests/multimodal/test_video.py::test_video_loader_frames_sampling[opencv-fps]
+ERROR tests/multimodal/test_video.py::test_video_loader_frames_sampling[opencv-num_frames_wins_fps]
+ERROR tests/multimodal/test_video.py::test_video_loader_frames_sampling[opencv_dynamic-within_max_duration]
+ERROR tests/multimodal/test_video.py::test_video_loader_frames_sampling[opencv_dynamic-exceeds_max_duration]
+7 passed, 66 deselected, 14 warnings, 6 errors in 35.86s

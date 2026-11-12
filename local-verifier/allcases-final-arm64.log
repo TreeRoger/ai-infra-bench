@@ -1,0 +1,18 @@
+base                               90 failed, 81 passed in 26.33s
+oracle                             171 passed in 24.03s
+alternative-decode-count           171 passed in 24.53s
+upstream-48608-as-merged           19 failed, 152 passed in 23.89s
+oracle-opencv-only                 41 failed, 130 passed in 26.16s
+oracle-pyav-only                   49 failed, 122 passed in 23.79s
+dedupe-repeated-frames             94 failed, 77 passed in 26.21s
+clamp-to-last-presentable          86 failed, 85 passed in 26.30s
+hidden-lead-in-frames              125 failed, 46 passed in 24.21s
+special-case-statement-example     69 failed, 102 passed in 25.75s
+opencv-counts-with-pyav            3 failed, 168 passed in 23.48s
+skip-all-conftest                  90 failed, 81 passed in 26.28s
+forged-success-report              90 failed, 81 passed in 26.43s
+oracle-systemexit-zero             170 failed, 1 passed in 20.84s
+oracle-os-exit-zero                170 failed, 1 passed in 19.02s
+oracle-segfault-mid-run            167 failed, 4 passed in 19.62s
+oracle-segfault-at-exit            170 failed, 1 passed in 22.40s
+oracle-stale-duration              43 failed, 128 passed in 23.04s

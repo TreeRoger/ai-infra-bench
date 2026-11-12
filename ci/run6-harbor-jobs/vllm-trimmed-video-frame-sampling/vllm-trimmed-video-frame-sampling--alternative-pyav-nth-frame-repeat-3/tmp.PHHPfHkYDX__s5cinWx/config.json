@@ -1,0 +1,14 @@
+{
+    "task": {
+        "path": "/tmp/tmp.PHHPfHkYDX"
+    },
+    "trial_name": "tmp.PHHPfHkYDX__s5cinWx",
+    "trials_dir": "/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-frame-sampling/vllm-trimmed-video-frame-sampling--alternative-pyav-nth-frame-repeat-3",
+    "environment": {
+        "type": "docker",
+        "cpu_enforcement_policy": "limit",
+        "memory_enforcement_policy": "limit",
+        "override_cpus": 4
+    },
+    "job_id": "02b6cc02-095c-41e9-9f61-48351d1b0941"
+}

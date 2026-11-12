@@ -1,0 +1,2449 @@
+.FFFFFFFFFFFFF.....FF..........FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF.......FF [ 42%]
+FFF.FFFFFFFF..F......................................................... [ 84%]
+...................FFFFFFFF                                              [100%]
+=================================== FAILURES ===================================
+__________________ test_generic_loader_on_trim[mild-opencv-4] __________________
+
+trim = 'mild', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...,
+         [236,  54,   7],
+         [242,  53,   8],
+         [242,  53,   8]]]], shape=(3, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 107, 'fps': 30.0, 'duration': 3.566666666666667, 'video_backend': 'opencv', ...}
+visible = [75, 76, 77, 78, 79, 80, ...], requested = 4, fps = 30.0
+clip_duration = 3.133984, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 4 of 92 frames, got 3
+E           assert 3 == 4
+E            +  where 3 = len([75, 110, 145])
+
+test_trimmed_video.py:325: AssertionError
+__________________ test_generic_loader_on_trim[mild-opencv-8] __________________
+
+trim = 'mild', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...,
+         [ 41, 158, 153],
+         [ 44, 156, 153],
+         [ 45, 157, 154]]]], shape=(7, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 107, 'fps': 30.0, 'duration': 3.566666666666667, 'video_backend': 'opencv', ...}
+visible = [75, 76, 77, 78, 79, 80, ...], requested = 8, fps = 30.0
+clip_duration = 3.133984, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 8 of 92 frames, got 7
+E           assert 7 == 8
+E            +  where 7 = len([75, 90, 105, 120, 135, 150, ...])
+
+test_trimmed_video.py:325: AssertionError
+_________________ test_generic_loader_on_trim[mild-opencv-16] __________________
+
+trim = 'mild', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...
+         [ 48, 170, 173],
+         [ 53, 170, 174],
+         [ 53, 170, 174]]]], shape=(14, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 107, 'fps': 30.0, 'duration': 3.566666666666667, 'video_backend': 'opencv', ...}
+visible = [75, 76, 77, 78, 79, 80, ...], requested = 16, fps = 30.0
+clip_duration = 3.133984, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 16 of 92 frames, got 14
+E           assert 14 == 16
+E            +  where 14 = len([75, 82, 89, 96, 103, 110, ...])
+
+test_trimmed_video.py:325: AssertionError
+_________________ test_generic_loader_on_trim[mild-opencv-all] _________________
+
+trim = 'mild', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 107, 'fps': 30.0, 'duration': 3.566666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...
+         [ 48, 170, 173],
+         [ 53, 170, 174],
+         [ 53, 170, 174]]]], shape=(92, 120, 160, 3), dtype=uint8)
+visible = [75, 76, 77, 78, 79, 80, ...], fps = 30.0, clip_duration = 3.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+>       assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+E       AssertionError: total_num_frames=107, clip plays 92 frames
+E       assert 15 <= 2
+E        +  where 15 = abs((107 - 92))
+E        +    where 92 = len([75, 76, 77, 78, 79, 80, ...])
+
+test_trimmed_video.py:310: AssertionError
+________________ test_generic_loader_on_trim[mild-opencv-over] _________________
+
+trim = 'mild', backend = 'opencv', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 107, 'fps': 30.0, 'duration': 3.566666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...
+         [ 48, 170, 173],
+         [ 53, 170, 174],
+         [ 53, 170, 174]]]], shape=(92, 120, 160, 3), dtype=uint8)
+visible = [75, 76, 77, 78, 79, 80, ...], fps = 30.0, clip_duration = 3.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+>       assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+E       AssertionError: total_num_frames=107, clip plays 92 frames
+E       assert 15 <= 2
+E        +  where 15 = abs((107 - 92))
+E        +    where 92 = len([75, 76, 77, 78, 79, 80, ...])
+
+test_trimmed_video.py:310: AssertionError
+___________________ test_generic_loader_on_trim[mild-pyav-4] ___________________
+
+trim = 'mild', backend = 'pyav', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...,
+         [236,  54,   7],
+         [242,  53,   8],
+         [242,  53,   8]]]], shape=(3, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 107, 'fps': 30.0, 'duration': 3.133984375, 'video_backend': 'pyav', ...}
+visible = [75, 76, 77, 78, 79, 80, ...], requested = 4, fps = 30.0
+clip_duration = 3.133984, backend = 'pyav'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 4 of 92 frames, got 3
+E           assert 3 == 4
+E            +  where 3 = len([75, 110, 145])
+
+test_trimmed_video.py:325: AssertionError
+___________________ test_generic_loader_on_trim[mild-pyav-8] ___________________
+
+trim = 'mild', backend = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...,
+         [ 41, 158, 153],
+         [ 44, 156, 153],
+         [ 45, 157, 154]]]], shape=(7, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 107, 'fps': 30.0, 'duration': 3.133984375, 'video_backend': 'pyav', ...}
+visible = [75, 76, 77, 78, 79, 80, ...], requested = 8, fps = 30.0
+clip_duration = 3.133984, backend = 'pyav'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 8 of 92 frames, got 7
+E           assert 7 == 8
+E            +  where 7 = len([75, 90, 105, 120, 135, 150, ...])
+
+test_trimmed_video.py:325: AssertionError
+__________________ test_generic_loader_on_trim[mild-pyav-16] ___________________
+
+trim = 'mild', backend = 'pyav', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...
+         [ 48, 170, 173],
+         [ 53, 170, 174],
+         [ 53, 170, 174]]]], shape=(14, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 107, 'fps': 30.0, 'duration': 3.133984375, 'video_backend': 'pyav', ...}
+visible = [75, 76, 77, 78, 79, 80, ...], requested = 16, fps = 30.0
+clip_duration = 3.133984, backend = 'pyav'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 16 of 92 frames, got 14
+E           assert 14 == 16
+E            +  where 14 = len([75, 82, 89, 96, 103, 110, ...])
+
+test_trimmed_video.py:325: AssertionError
+__________________ test_generic_loader_on_trim[mild-pyav-all] __________________
+
+trim = 'mild', backend = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:323: in check_uniform
+    assert_plays_without_repeats(labels, visible)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+labels = [75, 76, 77, 78, 79, 80, ...], visible = [75, 76, 77, 78, 79, 80, ...]
+
+    def assert_plays_without_repeats(labels: list[int], visible: list[int]):
+        hidden = [lab for lab in labels if lab not in set(visible)]
+        assert not hidden, f"returned frames that do not play in the clip: {hidden}"
+>       assert all(a < b for a, b in zip(labels, labels[1:])), f"repeated or out-of-order frames: {labels}"
+E       AssertionError: repeated or out-of-order frames: [75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 168, 168, 168]
+E       assert False
+E        +  where False = all(<generator object assert_plays_without_repeats.<locals>.<genexpr> at 0x7f69cbf71080>)
+
+test_trimmed_video.py:289: AssertionError
+_________________ test_generic_loader_on_trim[mild-pyav-over] __________________
+
+trim = 'mild', backend = 'pyav', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:323: in check_uniform
+    assert_plays_without_repeats(labels, visible)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+labels = [75, 76, 77, 78, 79, 80, ...], visible = [75, 76, 77, 78, 79, 80, ...]
+
+    def assert_plays_without_repeats(labels: list[int], visible: list[int]):
+        hidden = [lab for lab in labels if lab not in set(visible)]
+        assert not hidden, f"returned frames that do not play in the clip: {hidden}"
+>       assert all(a < b for a, b in zip(labels, labels[1:])), f"repeated or out-of-order frames: {labels}"
+E       AssertionError: repeated or out-of-order frames: [75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 168, 168, 168]
+E       assert False
+E        +  where False = all(<generator object assert_plays_without_repeats.<locals>.<genexpr> at 0x7f69cbf732a0>)
+
+test_trimmed_video.py:289: AssertionError
+___________ test_generic_loader_on_trim[one_frame_lead_in-opencv-4] ____________
+
+trim = 'one_frame_lead_in', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [241,  48,  70],
+...,
+         [169, 196, 108],
+         [172, 195, 108],
+         [173, 196, 109]]]], shape=(3, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 93, 'fps': 30.0, 'duration': 3.1, 'video_backend': 'opencv', ...}
+visible = [61, 62, 63, 64, 65, 66, ...], requested = 4, fps = 30.0
+clip_duration = 3.1, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 4 of 92 frames, got 3
+E           assert 3 == 4
+E            +  where 3 = len([61, 91, 122])
+
+test_trimmed_video.py:325: AssertionError
+___________ test_generic_loader_on_trim[one_frame_lead_in-opencv-8] ____________
+
+trim = 'one_frame_lead_in', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [241,  48,  70],
+...,
+         [218,  26, 226],
+         [221,  26, 227],
+         [221,  26, 227]]]], shape=(7, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 93, 'fps': 30.0, 'duration': 3.1, 'video_backend': 'opencv', ...}
+visible = [61, 62, 63, 64, 65, 66, ...], requested = 8, fps = 30.0
+clip_duration = 3.1, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 8 of 92 frames, got 7
+E           assert 7 == 8
+E            +  where 7 = len([61, 74, 87, 100, 113, 126, ...])
+
+test_trimmed_video.py:325: AssertionError
+___________ test_generic_loader_on_trim[one_frame_lead_in-opencv-16] ___________
+
+trim = 'one_frame_lead_in', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [241,  48,  70],
+...
+         [239,  59,  18],
+         [244,  58,  19],
+         [244,  58,  19]]]], shape=(15, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 93, 'fps': 30.0, 'duration': 3.1, 'video_backend': 'opencv', ...}
+visible = [61, 62, 63, 64, 65, 66, ...], requested = 16, fps = 30.0
+clip_duration = 3.1, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 16 of 92 frames, got 15
+E           assert 15 == 16
+E            +  where 15 = len([61, 67, 73, 79, 85, 91, ...])
+
+test_trimmed_video.py:325: AssertionError
+___________ test_generic_loader_on_trim[one_frame_lead_in-pyav-all] ____________
+
+trim = 'one_frame_lead_in', backend = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:323: in check_uniform
+    assert_plays_without_repeats(labels, visible)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+labels = [61, 62, 63, 64, 65, 66, ...], visible = [61, 62, 63, 64, 65, 66, ...]
+
+    def assert_plays_without_repeats(labels: list[int], visible: list[int]):
+        hidden = [lab for lab in labels if lab not in set(visible)]
+        assert not hidden, f"returned frames that do not play in the clip: {hidden}"
+>       assert all(a < b for a, b in zip(labels, labels[1:])), f"repeated or out-of-order frames: {labels}"
+E       AssertionError: repeated or out-of-order frames: [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 153, 153]
+E       assert False
+E        +  where False = all(<generator object assert_plays_without_repeats.<locals>.<genexpr> at 0x7f69cbf6dcb0>)
+
+test_trimmed_video.py:289: AssertionError
+___________ test_generic_loader_on_trim[one_frame_lead_in-pyav-over] ___________
+
+trim = 'one_frame_lead_in', backend = 'pyav', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:323: in check_uniform
+    assert_plays_without_repeats(labels, visible)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+labels = [61, 62, 63, 64, 65, 66, ...], visible = [61, 62, 63, 64, 65, 66, ...]
+
+    def assert_plays_without_repeats(labels: list[int], visible: list[int]):
+        hidden = [lab for lab in labels if lab not in set(visible)]
+        assert not hidden, f"returned frames that do not play in the clip: {hidden}"
+>       assert all(a < b for a, b in zip(labels, labels[1:])), f"repeated or out-of-order frames: {labels}"
+E       AssertionError: repeated or out-of-order frames: [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 153, 153]
+E       assert False
+E        +  where False = all(<generator object assert_plays_without_repeats.<locals>.<genexpr> at 0x7f69cbf6d560>)
+
+test_trimmed_video.py:289: AssertionError
+_________________ test_generic_loader_on_trim[fps25-opencv-4] __________________
+
+trim = 'fps25', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 48, 160, 225],
+...,
+         [145, 162,  56],
+         [147, 162,  55],
+         [147, 162,  55]]]], shape=(2, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 99, 'fps': 25.0, 'duration': 3.96, 'video_backend': 'opencv', ...}
+visible = [83, 84, 85, 86, 87, 88, ...], requested = 4, fps = 25.0
+clip_duration = 2.58, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 4 of 64 frames, got 2
+E           assert 2 == 4
+E            +  where 2 = len([83, 115])
+
+test_trimmed_video.py:325: AssertionError
+_________________ test_generic_loader_on_trim[fps25-opencv-8] __________________
+
+trim = 'fps25', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 48, 160, 225],
+...,
+         [218,  27, 223],
+         [221,  24, 226],
+         [222,  25, 227]]]], shape=(5, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 99, 'fps': 25.0, 'duration': 3.96, 'video_backend': 'opencv', ...}
+visible = [83, 84, 85, 86, 87, 88, ...], requested = 8, fps = 25.0
+clip_duration = 2.58, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 8 of 64 frames, got 5
+E           assert 5 == 8
+E            +  where 5 = len([83, 97, 111, 125, 139])
+
+test_trimmed_video.py:325: AssertionError
+_________________ test_generic_loader_on_trim[fps25-opencv-16] _________________
+
+trim = 'fps25', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 48, 160, 225],
+...
+         [225,  34, 238],
+         [227,  34, 241],
+         [227,  34, 241]]]], shape=(10, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 99, 'fps': 25.0, 'duration': 3.96, 'video_backend': 'opencv', ...}
+visible = [83, 84, 85, 86, 87, 88, ...], requested = 16, fps = 25.0
+clip_duration = 2.58, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 16 of 64 frames, got 10
+E           assert 10 == 16
+E            +  where 10 = len([83, 89, 96, 102, 109, 115, ...])
+
+test_trimmed_video.py:325: AssertionError
+________________ test_generic_loader_on_trim[fps25-opencv-all] _________________
+
+trim = 'fps25', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 99, 'fps': 25.0, 'duration': 3.96, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 48, 160, 225],
+...
+         [239,  60,  16],
+         [241,  59,  16],
+         [241,  59,  16]]]], shape=(64, 120, 160, 3), dtype=uint8)
+visible = [83, 84, 85, 86, 87, 88, ...], fps = 25.0, clip_duration = 2.58
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+>       assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+E       AssertionError: total_num_frames=99, clip plays 64 frames
+E       assert 35 <= 2
+E        +  where 35 = abs((99 - 64))
+E        +    where 64 = len([83, 84, 85, 86, 87, 88, ...])
+
+test_trimmed_video.py:310: AssertionError
+________________ test_generic_loader_on_trim[fps25-opencv-over] ________________
+
+trim = 'fps25', backend = 'opencv', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 99, 'fps': 25.0, 'duration': 3.96, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 48, 160, 225],
+...
+         [239,  60,  16],
+         [241,  59,  16],
+         [241,  59,  16]]]], shape=(64, 120, 160, 3), dtype=uint8)
+visible = [83, 84, 85, 86, 87, 88, ...], fps = 25.0, clip_duration = 2.58
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+>       assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+E       AssertionError: total_num_frames=99, clip plays 64 frames
+E       assert 35 <= 2
+E        +  where 35 = abs((99 - 64))
+E        +    where 64 = len([83, 84, 85, 86, 87, 88, ...])
+
+test_trimmed_video.py:310: AssertionError
+__________________ test_generic_loader_on_trim[fps25-pyav-4] ___________________
+
+trim = 'fps25', backend = 'pyav', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 48, 160, 225],
+...,
+         [145, 162,  56],
+         [147, 162,  55],
+         [147, 162,  55]]]], shape=(2, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 99, 'fps': 25.0, 'duration': 2.58, 'video_backend': 'pyav', ...}
+visible = [83, 84, 85, 86, 87, 88, ...], requested = 4, fps = 25.0
+clip_duration = 2.58, backend = 'pyav'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 4 of 64 frames, got 2
+E           assert 2 == 4
+E            +  where 2 = len([83, 115])
+
+test_trimmed_video.py:325: AssertionError
+__________________ test_generic_loader_on_trim[fps25-pyav-8] ___________________
+
+trim = 'fps25', backend = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 48, 160, 225],
+...,
+         [218,  27, 223],
+         [221,  24, 226],
+         [222,  25, 227]]]], shape=(5, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 99, 'fps': 25.0, 'duration': 2.58, 'video_backend': 'pyav', ...}
+visible = [83, 84, 85, 86, 87, 88, ...], requested = 8, fps = 25.0
+clip_duration = 2.58, backend = 'pyav'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 8 of 64 frames, got 5
+E           assert 5 == 8
+E            +  where 5 = len([83, 97, 111, 125, 139])
+
+test_trimmed_video.py:325: AssertionError
+__________________ test_generic_loader_on_trim[fps25-pyav-16] __________________
+
+trim = 'fps25', backend = 'pyav', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 48, 160, 225],
+...
+         [225,  34, 238],
+         [227,  34, 241],
+         [227,  34, 241]]]], shape=(10, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 99, 'fps': 25.0, 'duration': 2.58, 'video_backend': 'pyav', ...}
+visible = [83, 84, 85, 86, 87, 88, ...], requested = 16, fps = 25.0
+clip_duration = 2.58, backend = 'pyav'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 16 of 64 frames, got 10
+E           assert 10 == 16
+E            +  where 10 = len([83, 89, 96, 102, 109, 115, ...])
+
+test_trimmed_video.py:325: AssertionError
+_________________ test_generic_loader_on_trim[fps25-pyav-all] __________________
+
+trim = 'fps25', backend = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 99, 'fps': 25.0, 'duration': 2.58, 'video_backend': 'pyav', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 48, 160, 225],
+...
+         [239,  60,  16],
+         [241,  59,  16],
+         [241,  59,  16]]]], shape=(64, 120, 160, 3), dtype=uint8)
+visible = [83, 84, 85, 86, 87, 88, ...], fps = 25.0, clip_duration = 2.58
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+>       assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+E       AssertionError: total_num_frames=99, clip plays 64 frames
+E       assert 35 <= 2
+E        +  where 35 = abs((99 - 64))
+E        +    where 64 = len([83, 84, 85, 86, 87, 88, ...])
+
+test_trimmed_video.py:310: AssertionError
+_________________ test_generic_loader_on_trim[fps25-pyav-over] _________________
+
+trim = 'fps25', backend = 'pyav', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 99, 'fps': 25.0, 'duration': 2.58, 'video_backend': 'pyav', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 48, 160, 225],
+...
+         [239,  60,  16],
+         [241,  59,  16],
+         [241,  59,  16]]]], shape=(64, 120, 160, 3), dtype=uint8)
+visible = [83, 84, 85, 86, 87, 88, ...], fps = 25.0, clip_duration = 2.58
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+>       assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+E       AssertionError: total_num_frames=99, clip plays 64 frames
+E       assert 35 <= 2
+E        +  where 35 = abs((99 - 64))
+E        +    where 64 = len([83, 84, 85, 86, 87, 88, ...])
+
+test_trimmed_video.py:310: AssertionError
+_______________ test_generic_loader_on_trim[very_short-opencv-4] _______________
+
+trim = 'very_short', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...,
+         [ 70,  37, 139],
+         [ 74,  36, 140],
+         [ 74,  36, 140]]]], shape=(1, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 104, 'fps': 30.0, 'duration': 3.466666666666667, 'video_backend': 'opencv', ...}
+visible = [90, 91, 92, 93, 94, 95, ...], requested = 4, fps = 30.0
+clip_duration = 0.466992, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 4 of 14 frames, got 1
+E           assert 1 == 4
+E            +  where 1 = len([90])
+
+test_trimmed_video.py:325: AssertionError
+_______________ test_generic_loader_on_trim[very_short-opencv-8] _______________
+
+trim = 'very_short', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...,
+         [ 70,  37, 139],
+         [ 74,  36, 140],
+         [ 74,  36, 140]]]], shape=(1, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 104, 'fps': 30.0, 'duration': 3.466666666666667, 'video_backend': 'opencv', ...}
+visible = [90, 91, 92, 93, 94, 95, ...], requested = 8, fps = 30.0
+clip_duration = 0.466992, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 8 of 14 frames, got 1
+E           assert 1 == 8
+E            +  where 1 = len([90])
+
+test_trimmed_video.py:325: AssertionError
+______________ test_generic_loader_on_trim[very_short-opencv-16] _______________
+
+trim = 'very_short', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...,
+         [111, 101, 227],
+         [116, 101, 231],
+         [116, 101, 231]]]], shape=(3, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 104, 'fps': 30.0, 'duration': 3.466666666666667, 'video_backend': 'opencv', ...}
+visible = [90, 91, 92, 93, 94, 95, ...], requested = 16, fps = 30.0
+clip_duration = 0.466992, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+            assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+            assert_covers_clip(labels, visible, requested)
+        else:
+>           assert labels == visible, f"expected every frame once ({len(visible)}), got {len(labels)}: {labels}"
+E           AssertionError: expected every frame once (14), got 3: [90, 96, 103]
+E           assert [90, 96, 103] == [90, 91, 92, 93, 94, 95, ...]
+E             
+E             At index 1 diff: 96 != 91
+E             Right contains 11 more items, first extra item: 93
+E             Use -v to get more diff
+
+test_trimmed_video.py:328: AssertionError
+______________ test_generic_loader_on_trim[very_short-opencv-all] ______________
+
+trim = 'very_short', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 104, 'fps': 30.0, 'duration': 3.466666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...
+         [111, 101, 227],
+         [116, 101, 231],
+         [116, 101, 231]]]], shape=(14, 120, 160, 3), dtype=uint8)
+visible = [90, 91, 92, 93, 94, 95, ...], fps = 30.0, clip_duration = 0.466992
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+>       assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+E       AssertionError: total_num_frames=104, clip plays 14 frames
+E       assert 90 <= 2
+E        +  where 90 = abs((104 - 14))
+E        +    where 14 = len([90, 91, 92, 93, 94, 95, ...])
+
+test_trimmed_video.py:310: AssertionError
+_____________ test_generic_loader_on_trim[very_short-opencv-over] ______________
+
+trim = 'very_short', backend = 'opencv', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...,
+         [110,  95, 223],
+         [113,  93, 223],
+         [113,  93, 223]]]], shape=(7, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 104, 'fps': 30.0, 'duration': 3.466666666666667, 'video_backend': 'opencv', ...}
+visible = [90, 91, 92, 93, 94, 95, ...], requested = 51, fps = 30.0
+clip_duration = 0.466992, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+            assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+            assert_covers_clip(labels, visible, requested)
+        else:
+>           assert labels == visible, f"expected every frame once ({len(visible)}), got {len(labels)}: {labels}"
+E           AssertionError: expected every frame once (14), got 7: [90, 92, 94, 96, 98, 100, 102]
+E           assert [90, 92, 94, 96, 98, 100, ...] == [90, 91, 92, 93, 94, 95, ...]
+E             
+E             At index 1 diff: 92 != 91
+E             Right contains 7 more items, first extra item: 97
+E             Use -v to get more diff
+
+test_trimmed_video.py:328: AssertionError
+________________ test_generic_loader_on_trim[very_short-pyav-4] ________________
+
+trim = 'very_short', backend = 'pyav', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...,
+         [ 70,  37, 139],
+         [ 74,  36, 140],
+         [ 74,  36, 140]]]], shape=(1, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 104, 'fps': 30.0, 'duration': 0.4669921875, 'video_backend': 'pyav', ...}
+visible = [90, 91, 92, 93, 94, 95, ...], requested = 4, fps = 30.0
+clip_duration = 0.466992, backend = 'pyav'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 4 of 14 frames, got 1
+E           assert 1 == 4
+E            +  where 1 = len([90])
+
+test_trimmed_video.py:325: AssertionError
+________________ test_generic_loader_on_trim[very_short-pyav-8] ________________
+
+trim = 'very_short', backend = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...,
+         [ 70,  37, 139],
+         [ 74,  36, 140],
+         [ 74,  36, 140]]]], shape=(1, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 104, 'fps': 30.0, 'duration': 0.4669921875, 'video_backend': 'pyav', ...}
+visible = [90, 91, 92, 93, 94, 95, ...], requested = 8, fps = 30.0
+clip_duration = 0.466992, backend = 'pyav'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 8 of 14 frames, got 1
+E           assert 1 == 8
+E            +  where 1 = len([90])
+
+test_trimmed_video.py:325: AssertionError
+_______________ test_generic_loader_on_trim[very_short-pyav-16] ________________
+
+trim = 'very_short', backend = 'pyav', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...,
+         [111, 101, 227],
+         [116, 101, 231],
+         [116, 101, 231]]]], shape=(3, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 104, 'fps': 30.0, 'duration': 0.4669921875, 'video_backend': 'pyav', ...}
+visible = [90, 91, 92, 93, 94, 95, ...], requested = 16, fps = 30.0
+clip_duration = 0.466992, backend = 'pyav'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+            assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+            assert_covers_clip(labels, visible, requested)
+        else:
+>           assert labels == visible, f"expected every frame once ({len(visible)}), got {len(labels)}: {labels}"
+E           AssertionError: expected every frame once (14), got 3: [90, 96, 103]
+E           assert [90, 96, 103] == [90, 91, 92, 93, 94, 95, ...]
+E             
+E             At index 1 diff: 96 != 91
+E             Right contains 11 more items, first extra item: 93
+E             Use -v to get more diff
+
+test_trimmed_video.py:328: AssertionError
+_______________ test_generic_loader_on_trim[very_short-pyav-all] _______________
+
+trim = 'very_short', backend = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 104, 'fps': 30.0, 'duration': 0.4669921875, 'video_backend': 'pyav', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...
+         [111, 101, 227],
+         [116, 101, 231],
+         [116, 101, 231]]]], shape=(14, 120, 160, 3), dtype=uint8)
+visible = [90, 91, 92, 93, 94, 95, ...], fps = 30.0, clip_duration = 0.466992
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+>       assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+E       AssertionError: total_num_frames=104, clip plays 14 frames
+E       assert 90 <= 2
+E        +  where 90 = abs((104 - 14))
+E        +    where 14 = len([90, 91, 92, 93, 94, 95, ...])
+
+test_trimmed_video.py:310: AssertionError
+______________ test_generic_loader_on_trim[very_short-pyav-over] _______________
+
+trim = 'very_short', backend = 'pyav', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 69, 194,  17],
+...,
+         [110,  95, 223],
+         [113,  93, 223],
+         [113,  93, 223]]]], shape=(7, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 104, 'fps': 30.0, 'duration': 0.4669921875, 'video_backend': 'pyav', ...}
+visible = [90, 91, 92, 93, 94, 95, ...], requested = 51, fps = 30.0
+clip_duration = 0.466992, backend = 'pyav'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+            assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+            assert_covers_clip(labels, visible, requested)
+        else:
+>           assert labels == visible, f"expected every frame once ({len(visible)}), got {len(labels)}: {labels}"
+E           AssertionError: expected every frame once (14), got 7: [90, 92, 94, 96, 98, 100, 102]
+E           assert [90, 92, 94, 96, 98, 100, ...] == [90, 91, 92, 93, 94, 95, ...]
+E             
+E             At index 1 diff: 92 != 91
+E             Right contains 7 more items, first extra item: 97
+E             Use -v to get more diff
+
+test_trimmed_video.py:328: AssertionError
+_______________ test_generic_loader_on_trim[no_bframes-opencv-4] _______________
+
+trim = 'no_bframes', backend = 'opencv', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [167, 103, 245],
+...,
+         [  5,  95,  65],
+         [  5,  95,  65],
+         [  5,  95,  65]]]], shape=(2, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 93, 'fps': 30.0, 'duration': 3.1, 'video_backend': 'opencv', ...}
+visible = [123, 124, 125, 126, 127, 128, ...], requested = 4, fps = 30.0
+clip_duration = 2.0, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 4 of 60 frames, got 2
+E           assert 2 == 4
+E            +  where 2 = len([123, 153])
+
+test_trimmed_video.py:325: AssertionError
+_______________ test_generic_loader_on_trim[no_bframes-opencv-8] _______________
+
+trim = 'no_bframes', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [167, 103, 245],
+...,
+         [ 72, 205, 222],
+         [ 72, 205, 222],
+         [ 74, 207, 224]]]], shape=(5, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 93, 'fps': 30.0, 'duration': 3.1, 'video_backend': 'opencv', ...}
+visible = [123, 124, 125, 126, 127, 128, ...], requested = 8, fps = 30.0
+clip_duration = 2.0, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 8 of 60 frames, got 5
+E           assert 5 == 8
+E            +  where 5 = len([123, 136, 149, 162, 175])
+
+test_trimmed_video.py:325: AssertionError
+______________ test_generic_loader_on_trim[no_bframes-opencv-16] _______________
+
+trim = 'no_bframes', backend = 'opencv', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [167, 103, 245],
+...
+         [ 82, 218, 243],
+         [ 83, 219, 244],
+         [ 83, 219, 244]]]], shape=(10, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 93, 'fps': 30.0, 'duration': 3.1, 'video_backend': 'opencv', ...}
+visible = [123, 124, 125, 126, 127, 128, ...], requested = 16, fps = 30.0
+clip_duration = 2.0, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 16 of 60 frames, got 10
+E           assert 10 == 16
+E            +  where 10 = len([123, 129, 135, 141, 147, 153, ...])
+
+test_trimmed_video.py:325: AssertionError
+______________ test_generic_loader_on_trim[no_bframes-opencv-all] ______________
+
+trim = 'no_bframes', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 93, 'fps': 30.0, 'duration': 3.1, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [167, 103, 245],
+...
+         [ 93, 241,  12],
+         [ 96, 240,  12],
+         [ 97, 241,  13]]]], shape=(60, 120, 160, 3), dtype=uint8)
+visible = [123, 124, 125, 126, 127, 128, ...], fps = 30.0, clip_duration = 2.0
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+>       assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+E       AssertionError: total_num_frames=93, clip plays 60 frames
+E       assert 33 <= 2
+E        +  where 33 = abs((93 - 60))
+E        +    where 60 = len([123, 124, 125, 126, 127, 128, ...])
+
+test_trimmed_video.py:310: AssertionError
+_____________ test_generic_loader_on_trim[no_bframes-opencv-over] ______________
+
+trim = 'no_bframes', backend = 'opencv', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 93, 'fps': 30.0, 'duration': 3.1, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [167, 103, 245],
+...
+         [ 93, 241,  12],
+         [ 96, 240,  12],
+         [ 97, 241,  13]]]], shape=(60, 120, 160, 3), dtype=uint8)
+visible = [123, 124, 125, 126, 127, 128, ...], fps = 30.0, clip_duration = 2.0
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+>       assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+E       AssertionError: total_num_frames=93, clip plays 60 frames
+E       assert 33 <= 2
+E        +  where 33 = abs((93 - 60))
+E        +    where 60 = len([123, 124, 125, 126, 127, 128, ...])
+
+test_trimmed_video.py:310: AssertionError
+________________ test_generic_loader_on_trim[no_bframes-pyav-4] ________________
+
+trim = 'no_bframes', backend = 'pyav', count = '4'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:323: in check_uniform
+    assert_plays_without_repeats(labels, visible)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+labels = [123, 153, 182, 182], visible = [123, 124, 125, 126, 127, 128, ...]
+
+    def assert_plays_without_repeats(labels: list[int], visible: list[int]):
+        hidden = [lab for lab in labels if lab not in set(visible)]
+        assert not hidden, f"returned frames that do not play in the clip: {hidden}"
+>       assert all(a < b for a, b in zip(labels, labels[1:])), f"repeated or out-of-order frames: {labels}"
+E       AssertionError: repeated or out-of-order frames: [123, 153, 182, 182]
+E       assert False
+E        +  where False = all(<generator object assert_plays_without_repeats.<locals>.<genexpr> at 0x7f69cbde1080>)
+
+test_trimmed_video.py:289: AssertionError
+________________ test_generic_loader_on_trim[no_bframes-pyav-8] ________________
+
+trim = 'no_bframes', backend = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:323: in check_uniform
+    assert_plays_without_repeats(labels, visible)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+labels = [123, 136, 149, 162, 175, 182, ...]
+visible = [123, 124, 125, 126, 127, 128, ...]
+
+    def assert_plays_without_repeats(labels: list[int], visible: list[int]):
+        hidden = [lab for lab in labels if lab not in set(visible)]
+        assert not hidden, f"returned frames that do not play in the clip: {hidden}"
+>       assert all(a < b for a, b in zip(labels, labels[1:])), f"repeated or out-of-order frames: {labels}"
+E       AssertionError: repeated or out-of-order frames: [123, 136, 149, 162, 175, 182, 182, 182]
+E       assert False
+E        +  where False = all(<generator object assert_plays_without_repeats.<locals>.<genexpr> at 0x7f69cbde13c0>)
+
+test_trimmed_video.py:289: AssertionError
+_______________ test_generic_loader_on_trim[no_bframes-pyav-16] ________________
+
+trim = 'no_bframes', backend = 'pyav', count = '16'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:323: in check_uniform
+    assert_plays_without_repeats(labels, visible)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+labels = [123, 129, 135, 141, 147, 153, ...]
+visible = [123, 124, 125, 126, 127, 128, ...]
+
+    def assert_plays_without_repeats(labels: list[int], visible: list[int]):
+        hidden = [lab for lab in labels if lab not in set(visible)]
+        assert not hidden, f"returned frames that do not play in the clip: {hidden}"
+>       assert all(a < b for a, b in zip(labels, labels[1:])), f"repeated or out-of-order frames: {labels}"
+E       AssertionError: repeated or out-of-order frames: [123, 129, 135, 141, 147, 153, 159, 165, 172, 178, 182, 182, 182, 182, 182, 182]
+E       assert False
+E        +  where False = all(<generator object assert_plays_without_repeats.<locals>.<genexpr> at 0x7f69cbde2330>)
+
+test_trimmed_video.py:289: AssertionError
+_______________ test_generic_loader_on_trim[no_bframes-pyav-all] _______________
+
+trim = 'no_bframes', backend = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:323: in check_uniform
+    assert_plays_without_repeats(labels, visible)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+labels = [123, 124, 125, 126, 127, 128, ...]
+visible = [123, 124, 125, 126, 127, 128, ...]
+
+    def assert_plays_without_repeats(labels: list[int], visible: list[int]):
+        hidden = [lab for lab in labels if lab not in set(visible)]
+        assert not hidden, f"returned frames that do not play in the clip: {hidden}"
+>       assert all(a < b for a, b in zip(labels, labels[1:])), f"repeated or out-of-order frames: {labels}"
+E       AssertionError: repeated or out-of-order frames: [123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182]
+E       assert False
+E        +  where False = all(<generator object assert_plays_without_repeats.<locals>.<genexpr> at 0x7f69cc30da40>)
+
+test_trimmed_video.py:289: AssertionError
+______________ test_generic_loader_on_trim[no_bframes-pyav-over] _______________
+
+trim = 'no_bframes', backend = 'pyav', count = 'over'
+
+    @pytest.mark.parametrize("trim,backend,count", C.generic_trim_params(), ids=lambda p: str(p))
+    def test_generic_loader_on_trim(trim, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"gen-{trim}-{backend}-{count}")
+        visible = lab.visible[trim]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[trim], lab.duration[trim], backend)
+
+test_trimmed_video.py:354: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:323: in check_uniform
+    assert_plays_without_repeats(labels, visible)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+labels = [123, 124, 125, 126, 127, 128, ...]
+visible = [123, 124, 125, 126, 127, 128, ...]
+
+    def assert_plays_without_repeats(labels: list[int], visible: list[int]):
+        hidden = [lab for lab in labels if lab not in set(visible)]
+        assert not hidden, f"returned frames that do not play in the clip: {hidden}"
+>       assert all(a < b for a, b in zip(labels, labels[1:])), f"repeated or out-of-order frames: {labels}"
+E       AssertionError: repeated or out-of-order frames: [123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182, 182]
+E       assert False
+E        +  where False = all(<generator object assert_plays_without_repeats.<locals>.<genexpr> at 0x7f69cbf6f5e0>)
+
+test_trimmed_video.py:289: AssertionError
+____________ test_generic_loader_fps_sampling_on_trim[mild-opencv] _____________
+
+trim = 'mild', backend = 'opencv'
+
+    @pytest.mark.parametrize("trim,backend", C.generic_fps_params(), ids=lambda p: str(p))
+    def test_generic_loader_fps_sampling_on_trim(trim, backend):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"genfps-{trim}-{backend}")
+        visible, fps = lab.visible[trim], lab.fps[trim]
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        allowed = math.floor((len(visible) + 2) / fps * 2)
+        assert math.floor((len(visible) - 2) / fps * 2) <= len(labels) <= allowed, (
+            f"{len(labels)} samples at 2 fps for a {len(visible) / fps:.2f}s clip")
+        assert_covers_clip(labels, visible, len(labels))
+>       assert_metadata_describes_clip(meta, frames, visible, fps, lab.duration[trim])
+
+test_trimmed_video.py:369: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 107, 'fps': 30.0, 'duration': 3.566666666666667, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [ 27, 123, 173],
+...,
+         [ 33, 143, 136],
+         [ 35, 143, 137],
+         [ 35, 143, 137]]]], shape=(6, 120, 160, 3), dtype=uint8)
+visible = [75, 76, 77, 78, 79, 80, ...], fps = 30.0, clip_duration = 3.133984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+>       assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+E       AssertionError: total_num_frames=107, clip plays 92 frames
+E       assert 15 <= 2
+E        +  where 15 = abs((107 - 92))
+E        +    where 92 = len([75, 76, 77, 78, 79, 80, ...])
+
+test_trimmed_video.py:310: AssertionError
+_____________ test_generic_loader_fps_sampling_on_trim[mild-pyav] ______________
+
+trim = 'mild', backend = 'pyav'
+
+    @pytest.mark.parametrize("trim,backend", C.generic_fps_params(), ids=lambda p: str(p))
+    def test_generic_loader_fps_sampling_on_trim(trim, backend):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"genfps-{trim}-{backend}")
+        visible, fps = lab.visible[trim], lab.fps[trim]
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        allowed = math.floor((len(visible) + 2) / fps * 2)
+>       assert math.floor((len(visible) - 2) / fps * 2) <= len(labels) <= allowed, (
+            f"{len(labels)} samples at 2 fps for a {len(visible) / fps:.2f}s clip")
+E       AssertionError: 5 samples at 2 fps for a 3.07s clip
+E       assert 6 <= 5
+E        +  where 6 = <built-in function floor>((((92 - 2) / 30.0) * 2))
+E        +    where <built-in function floor> = math.floor
+E        +    and   92 = len([75, 76, 77, 78, 79, 80, ...])
+E        +  and   5 = len([75, 96, 117, 138, 159])
+
+test_trimmed_video.py:366: AssertionError
+______ test_fps_loaders_match_reencoded_clip[mild-opencv_dynamic-opencv] _______
+
+trim = 'mild', loader = 'opencv_dynamic', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+E       AssertionError: trimmed clip sampled [75, 90, 105, 120, 135, 150, 165]; the same frames in a re-encoded file sample [75, 90, 105, 120, 135, 150] at Base
+E       assert [75, 90, 105,...135, 150, ...] == [75, 90, 105, 120, 135, 150]
+E         
+E         Left contains one more item: 165
+E         Use -v to get more diff
+
+test_trimmed_video.py:380: AssertionError
+_________ test_fps_loaders_match_reencoded_clip[mild-qwen2_vl-opencv] __________
+
+trim = 'mild', loader = 'qwen2_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+E       AssertionError: trimmed clip sampled [75, 92, 110, 128, 146, 164]; the same frames in a re-encoded file sample [75, 90, 105, 121, 136, 151] at Base
+E       assert [75, 92, 110, 128, 146, 164] == [75, 90, 105, 121, 136, 151]
+E         
+E         At index 1 diff: 92 != 90
+E         Use -v to get more diff
+
+test_trimmed_video.py:380: AssertionError
+_________ test_fps_loaders_match_reencoded_clip[mild-qwen3_vl-opencv] __________
+
+trim = 'mild', loader = 'qwen3_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+E       AssertionError: trimmed clip sampled [75, 93, 110, 128, 146, 163]; the same frames in a re-encoded file sample [75, 93, 111, 130, 148, 168] at Base
+E       assert [75, 93, 110, 128, 146, 163] == [75, 93, 111, 130, 148, 168]
+E         
+E         At index 2 diff: 110 != 111
+E         Use -v to get more diff
+
+test_trimmed_video.py:380: AssertionError
+__________ test_fps_loaders_match_reencoded_clip[mild-qwen2_vl-pyav] ___________
+
+trim = 'mild', loader = 'qwen2_vl', codec = 'pyav'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+E       AssertionError: trimmed clip sampled [75, 92, 110, 128, 146, 164]; the same frames in a re-encoded file sample [75, 90, 105, 121, 136, 151] at Base
+E       assert [75, 92, 110, 128, 146, 164] == [75, 90, 105, 121, 136, 151]
+E         
+E         At index 1 diff: 92 != 90
+E         Use -v to get more diff
+
+test_trimmed_video.py:380: AssertionError
+__________ test_fps_loaders_match_reencoded_clip[mild-qwen3_vl-pyav] ___________
+
+trim = 'mild', loader = 'qwen3_vl', codec = 'pyav'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+E       AssertionError: trimmed clip sampled [75, 93, 110, 128, 146, 163]; the same frames in a re-encoded file sample [75, 93, 111, 130, 148, 168] at Base
+E       assert [75, 93, 110, 128, 146, 163] == [75, 93, 111, 130, 148, 168]
+E         
+E         At index 2 diff: 110 != 111
+E         Use -v to get more diff
+
+test_trimmed_video.py:380: AssertionError
+___ test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen2_vl-opencv] ___
+
+trim = 'one_frame_lead_in', loader = 'qwen2_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+E       AssertionError: trimmed clip sampled [61, 76, 92, 107, 123, 138]; the same frames in a re-encoded file sample [61, 76, 91, 107, 122, 137] at Base
+E       assert [61, 76, 92, 107, 123, 138] == [61, 76, 91, 107, 122, 137]
+E         
+E         At index 2 diff: 92 != 91
+E         Use -v to get more diff
+
+test_trimmed_video.py:380: AssertionError
+___ test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen3_vl-opencv] ___
+
+trim = 'one_frame_lead_in', loader = 'qwen3_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+E       AssertionError: trimmed clip sampled [61, 79, 98, 116, 135]; the same frames in a re-encoded file sample [61, 79, 97, 116, 134, 153] at Base
+E       assert [61, 79, 98, 116, 135] == [61, 79, 97, 116, 134, 153]
+E         
+E         At index 2 diff: 98 != 97
+E         Right contains one more item: 153
+E         Use -v to get more diff
+
+test_trimmed_video.py:380: AssertionError
+____ test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen2_vl-pyav] ____
+
+trim = 'one_frame_lead_in', loader = 'qwen2_vl', codec = 'pyav'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+E       AssertionError: trimmed clip sampled [61, 76, 92, 107, 123, 138]; the same frames in a re-encoded file sample [61, 76, 91, 107, 122, 137] at Base
+E       assert [61, 76, 92, 107, 123, 138] == [61, 76, 91, 107, 122, 137]
+E         
+E         At index 2 diff: 92 != 91
+E         Use -v to get more diff
+
+test_trimmed_video.py:380: AssertionError
+____ test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen3_vl-pyav] ____
+
+trim = 'one_frame_lead_in', loader = 'qwen3_vl', codec = 'pyav'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+E       AssertionError: trimmed clip sampled [61, 79, 98, 116, 135, 153]; the same frames in a re-encoded file sample [61, 79, 97, 116, 134, 153] at Base
+E       assert [61, 79, 98, 116, 135, 153] == [61, 79, 97, 116, 134, 153]
+E         
+E         At index 2 diff: 98 != 97
+E         Use -v to get more diff
+
+test_trimmed_video.py:380: AssertionError
+______ test_fps_loaders_match_reencoded_clip[very_short-qwen2_vl-opencv] _______
+
+trim = 'very_short', loader = 'qwen2_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+E       AssertionError: trimmed clip sampled [90]; the same frames in a re-encoded file sample [90, 93, 97, 100] at Base
+E       assert [90] == [90, 93, 97, 100]
+E         
+E         Right contains 3 more items, first extra item: 93
+E         Use -v to get more diff
+
+test_trimmed_video.py:380: AssertionError
+______ test_fps_loaders_match_reencoded_clip[very_short-qwen3_vl-opencv] _______
+
+trim = 'very_short', loader = 'qwen3_vl', codec = 'opencv'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+E       AssertionError: trimmed clip sampled [90]; the same frames in a re-encoded file sample [90, 94, 99, 103] at Base
+E       assert [90] == [90, 94, 99, 103]
+E         
+E         Right contains 3 more items, first extra item: 94
+E         Use -v to get more diff
+
+test_trimmed_video.py:380: AssertionError
+_______ test_fps_loaders_match_reencoded_clip[very_short-qwen2_vl-pyav] ________
+
+trim = 'very_short', loader = 'qwen2_vl', codec = 'pyav'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+E       AssertionError: trimmed clip sampled [90]; the same frames in a re-encoded file sample [90, 93, 97, 100] at Base
+E       assert [90] == [90, 93, 97, 100]
+E         
+E         Right contains 3 more items, first extra item: 93
+E         Use -v to get more diff
+
+test_trimmed_video.py:380: AssertionError
+_______ test_fps_loaders_match_reencoded_clip[very_short-qwen3_vl-pyav] ________
+
+trim = 'very_short', loader = 'qwen3_vl', codec = 'pyav'
+
+    @pytest.mark.parametrize("trim,loader,codec", C.fps_loader_params(), ids=lambda p: str(p))
+    def test_fps_loaders_match_reencoded_clip(trim, loader, codec):
+        lab, cand, ref, _ = environment()
+        rid = f"fpsl-{trim}-{loader}-{codec}"
+        ref_frames, ref_meta = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels, expected = labels_of(frames), labels_of(ref_frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == expected, (
+            f"trimmed clip sampled {labels}; the same frames in a re-encoded file sample {expected} at Base")
+E       AssertionError: trimmed clip sampled [90]; the same frames in a re-encoded file sample [90, 94, 99, 103] at Base
+E       assert [90] == [90, 94, 99, 103]
+E         
+E         Right contains 3 more items, first extra item: 94
+E         Use -v to get more diff
+
+test_trimmed_video.py:380: AssertionError
+_______ test_frame_recovery_matches_reencoded_clip[one_frame_lead_in-8] ________
+
+trim = 'one_frame_lead_in', count = '8'
+
+    @pytest.mark.parametrize("trim,count", C.recovery_params(), ids=lambda p: str(p))
+    def test_frame_recovery_matches_reencoded_clip(trim, count):
+        lab, cand, ref, _ = environment()
+        rid = f"rec-{trim}-{count}"
+        ref_frames, _ = ref.get(rid)
+        frames, meta = cand.get(rid)
+        labels = labels_of(frames)
+        assert_plays_without_repeats(labels, lab.visible[trim])
+>       assert labels == labels_of(ref_frames)
+E       assert [61, 74, 87, ...113, 126, ...] == [61, 74, 87, ...113, 126, ...]
+E         
+E         Right contains one more item: 153
+E         Use -v to get more diff
+
+test_trimmed_video.py:394: AssertionError
+___________ test_independently_derived_trims[trim_of_trim-opencv-8] ____________
+
+derived = 'trim_of_trim', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+        visible = lab.visible[derived]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[derived], lab.duration[derived], backend)
+
+test_trimmed_video.py:430: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [129,  43, 163],
+...,
+         [  1,  88,  56],
+         [  1,  88,  56],
+         [  1,  88,  56]]]], shape=(4, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 98, 'fps': 30.0, 'duration': 3.2666666666666666, 'video_backend': 'opencv', ...}
+visible = [111, 112, 113, 114, 115, 116, ...], requested = 8, fps = 30.0
+clip_duration = 1.633984, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 8 of 47 frames, got 4
+E           assert 4 == 8
+E            +  where 4 = len([111, 124, 138, 152])
+
+test_trimmed_video.py:325: AssertionError
+__________ test_independently_derived_trims[trim_of_trim-opencv-all] ___________
+
+derived = 'trim_of_trim', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+        visible = lab.visible[derived]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[derived], lab.duration[derived], backend)
+
+test_trimmed_video.py:430: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 98, 'fps': 30.0, 'duration': 3.2666666666666666, 'video_backend': 'opencv', ...}
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [129,  43, 163],
+...
+         [ 25, 124, 110],
+         [ 27, 125, 111],
+         [ 27, 125, 111]]]], shape=(47, 120, 160, 3), dtype=uint8)
+visible = [111, 112, 113, 114, 115, 116, ...], fps = 30.0
+clip_duration = 1.633984
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+>       assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+E       AssertionError: total_num_frames=98, clip plays 47 frames
+E       assert 51 <= 2
+E        +  where 51 = abs((98 - 47))
+E        +    where 47 = len([111, 112, 113, 114, 115, 116, ...])
+
+test_trimmed_video.py:310: AssertionError
+____________ test_independently_derived_trims[trim_of_trim-pyav-8] _____________
+
+derived = 'trim_of_trim', backend = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+        visible = lab.visible[derived]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[derived], lab.duration[derived], backend)
+
+test_trimmed_video.py:430: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[126, 126, 126],
+         [128, 128, 128],
+         [126, 126, 126],
+         ...,
+         [129,  43, 163],
+...,
+         [  1,  88,  56],
+         [  1,  88,  56],
+         [  1,  88,  56]]]], shape=(4, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 98, 'fps': 30.0, 'duration': 1.633984375, 'video_backend': 'pyav', ...}
+visible = [111, 112, 113, 114, 115, 116, ...], requested = 8, fps = 30.0
+clip_duration = 1.633984, backend = 'pyav'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 8 of 47 frames, got 4
+E           assert 4 == 8
+E            +  where 4 = len([111, 124, 138, 152])
+
+test_trimmed_video.py:325: AssertionError
+___________ test_independently_derived_trims[trim_of_trim-pyav-all] ____________
+
+derived = 'trim_of_trim', backend = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+        visible = lab.visible[derived]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[derived], lab.duration[derived], backend)
+
+test_trimmed_video.py:430: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:323: in check_uniform
+    assert_plays_without_repeats(labels, visible)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+labels = [111, 112, 113, 114, 115, 116, ...]
+visible = [111, 112, 113, 114, 115, 116, ...]
+
+    def assert_plays_without_repeats(labels: list[int], visible: list[int]):
+        hidden = [lab for lab in labels if lab not in set(visible)]
+        assert not hidden, f"returned frames that do not play in the clip: {hidden}"
+>       assert all(a < b for a, b in zip(labels, labels[1:])), f"repeated or out-of-order frames: {labels}"
+E       AssertionError: repeated or out-of-order frames: [111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 159, 159, 159]
+E       assert False
+E        +  where False = all(<generator object assert_plays_without_repeats.<locals>.<genexpr> at 0x7f69cbdb1ff0>)
+
+test_trimmed_video.py:289: AssertionError
+___________ test_independently_derived_trims[rebased_remux-opencv-8] ___________
+
+derived = 'rebased_remux', backend = 'opencv', count = '8'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+        visible = lab.visible[derived]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[derived], lab.duration[derived], backend)
+
+test_trimmed_video.py:430: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 93, 247,  80],
+...,
+         [229,  40, 246],
+         [232,  40, 249],
+         [232,  40, 249]]]], shape=(3, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 150, 'fps': 30.0, 'duration': 5.0, 'video_backend': 'opencv', ...}
+visible = [100, 101, 102, 103, 104, 105, ...], requested = 8, fps = 30.0
+clip_duration = 1.666992, backend = 'opencv'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 8 of 50 frames, got 3
+E           assert 3 == 8
+E            +  where 3 = len([100, 121, 142])
+
+test_trimmed_video.py:325: AssertionError
+__________ test_independently_derived_trims[rebased_remux-opencv-all] __________
+
+derived = 'rebased_remux', backend = 'opencv', count = 'all'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+        visible = lab.visible[derived]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[derived], lab.duration[derived], backend)
+
+test_trimmed_video.py:430: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 150, 'fps': 30.0, 'duration': 5.0, 'video_backend': 'opencv', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 93, 247,  80],
+...
+         [247,  75,  38],
+         [248,  76,  39],
+         [248,  76,  39]]]], shape=(50, 120, 160, 3), dtype=uint8)
+visible = [100, 101, 102, 103, 104, 105, ...], fps = 30.0
+clip_duration = 1.666992
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+>       assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+E       AssertionError: total_num_frames=150, clip plays 50 frames
+E       assert 100 <= 2
+E        +  where 100 = abs((150 - 50))
+E        +    where 50 = len([100, 101, 102, 103, 104, 105, ...])
+
+test_trimmed_video.py:310: AssertionError
+____________ test_independently_derived_trims[rebased_remux-pyav-8] ____________
+
+derived = 'rebased_remux', backend = 'pyav', count = '8'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+        visible = lab.visible[derived]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[derived], lab.duration[derived], backend)
+
+test_trimmed_video.py:430: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 93, 247,  80],
+...,
+         [229,  40, 246],
+         [232,  40, 249],
+         [232,  40, 249]]]], shape=(3, 120, 160, 3), dtype=uint8)
+meta = {'total_num_frames': 150, 'fps': 30.0, 'duration': 1.6669921875, 'video_backend': 'pyav', ...}
+visible = [100, 101, 102, 103, 104, 105, ...], requested = 8, fps = 30.0
+clip_duration = 1.666992, backend = 'pyav'
+
+    def check_uniform(frames, meta, visible, requested: int, fps: float, clip_duration: float, backend: str):
+        labels = labels_of(frames)
+        assert meta["video_backend"] == backend
+        assert_plays_without_repeats(labels, visible)
+        if 0 < requested <= len(visible):
+>           assert len(labels) == requested, f"asked for {requested} of {len(visible)} frames, got {len(labels)}"
+E           AssertionError: asked for 8 of 50 frames, got 3
+E           assert 3 == 8
+E            +  where 3 = len([100, 121, 142])
+
+test_trimmed_video.py:325: AssertionError
+___________ test_independently_derived_trims[rebased_remux-pyav-all] ___________
+
+derived = 'rebased_remux', backend = 'pyav', count = 'all'
+
+    @pytest.mark.parametrize("derived,backend,count", C.derived_params(), ids=lambda p: str(p))
+    def test_independently_derived_trims(derived, backend, count):
+        lab, cand, *_ = environment()
+        frames, meta = cand.get(f"der-{derived}-{backend}-{count}")
+        visible = lab.visible[derived]
+>       check_uniform(frames, meta, visible, _num(count, len(visible)), lab.fps[derived], lab.duration[derived], backend)
+
+test_trimmed_video.py:430: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test_trimmed_video.py:329: in check_uniform
+    assert_metadata_describes_clip(meta, frames, visible, fps, clip_duration)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+meta = {'total_num_frames': 150, 'fps': 30.0, 'duration': 1.6669921875, 'video_backend': 'pyav', ...}
+frames = array([[[[129, 129, 129],
+         [125, 125, 125],
+         [126, 126, 126],
+         ...,
+         [ 93, 247,  80],
+...
+         [247,  75,  38],
+         [248,  76,  39],
+         [248,  76,  39]]]], shape=(50, 120, 160, 3), dtype=uint8)
+visible = [100, 101, 102, 103, 104, 105, ...], fps = 30.0
+clip_duration = 1.666992
+
+    def assert_metadata_describes_clip(meta: dict, frames: np.ndarray, visible: list[int], fps: float,
+                                       clip_duration: float):
+        indices = meta["frames_indices"]
+        total = meta["total_num_frames"]
+        assert len(indices) == len(frames), f"{len(indices)} indices for {len(frames)} frames"
+        assert all(a < b for a, b in zip(indices, indices[1:])), f"frames_indices not increasing: {indices}"
+        assert all(0 <= i < total for i in indices), f"frames_indices outside [0, {total}): {indices}"
+>       assert abs(total - len(visible)) <= 2, f"total_num_frames={total}, clip plays {len(visible)} frames"
+E       AssertionError: total_num_frames=150, clip plays 50 frames
+E       assert 100 <= 2
+E        +  where 100 = abs((150 - 50))
+E        +    where 50 = len([100, 101, 102, 103, 104, 105, ...])
+
+test_trimmed_video.py:310: AssertionError
+=========================== short test summary info ============================
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-4] - As...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-8] - As...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-16] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-all] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-pyav-4] - Asse...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-pyav-8] - Asse...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-pyav-16] - Ass...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-pyav-all] - As...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[mild-pyav-over] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[one_frame_lead_in-opencv-4]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[one_frame_lead_in-opencv-8]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[one_frame_lead_in-opencv-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[one_frame_lead_in-pyav-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[one_frame_lead_in-pyav-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-4] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-8] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-16] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-pyav-4] - Ass...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-pyav-8] - Ass...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-pyav-16] - As...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-pyav-all] - A...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[fps25-pyav-over] - ...
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-4]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-8]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-pyav-4]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-pyav-8]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-pyav-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-pyav-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[very_short-pyav-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-4]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-8]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-opencv-over]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-pyav-4]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-pyav-8]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-pyav-16]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-pyav-all]
+FAILED test_trimmed_video.py::test_generic_loader_on_trim[no_bframes-pyav-over]
+FAILED test_trimmed_video.py::test_generic_loader_fps_sampling_on_trim[mild-opencv]
+FAILED test_trimmed_video.py::test_generic_loader_fps_sampling_on_trim[mild-pyav]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-opencv_dynamic-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-qwen2_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-qwen3_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-qwen2_vl-pyav]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[mild-qwen3_vl-pyav]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen2_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen3_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen2_vl-pyav]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[one_frame_lead_in-qwen3_vl-pyav]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[very_short-qwen2_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[very_short-qwen3_vl-opencv]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[very_short-qwen2_vl-pyav]
+FAILED test_trimmed_video.py::test_fps_loaders_match_reencoded_clip[very_short-qwen3_vl-pyav]
+FAILED test_trimmed_video.py::test_frame_recovery_matches_reencoded_clip[one_frame_lead_in-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-opencv-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-opencv-all]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-pyav-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[trim_of_trim-pyav-all]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-opencv-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-opencv-all]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-pyav-8]
+FAILED test_trimmed_video.py::test_independently_derived_trims[rebased_remux-pyav-all]
+69 failed, 102 passed in 69.29s (0:01:09)

@@ -1,0 +1,438 @@
+{
+ "files": {
+  "mp4_bf2": {
+   "header": 300,
+   "plays": 300,
+   "distinct": 300,
+   "labels_head": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "labels_tail": [
+    296,
+    297,
+    298,
+    299
+   ]
+  },
+  "mp4_bf0": {
+   "header": 300,
+   "plays": 300,
+   "distinct": 300,
+   "labels_head": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "labels_tail": [
+    296,
+    297,
+    298,
+    299
+   ]
+  },
+  "mp4_29_97": {
+   "header": 300,
+   "plays": 300,
+   "distinct": 300,
+   "labels_head": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "labels_tail": [
+    296,
+    297,
+    298,
+    299
+   ]
+  },
+  "mp4_with_audio": {
+   "header": 300,
+   "plays": 300,
+   "distinct": 300,
+   "labels_head": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "labels_tail": [
+    296,
+    297,
+    298,
+    299
+   ]
+  },
+  "mov_h264": {
+   "header": 300,
+   "plays": 300,
+   "distinct": 300,
+   "labels_head": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "labels_tail": [
+    296,
+    297,
+    298,
+    299
+   ]
+  },
+  "mp4_fragmented": {
+   "header": 0,
+   "plays": 300,
+   "distinct": 300,
+   "labels_head": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "labels_tail": [
+    296,
+    297,
+    298,
+    299
+   ]
+  },
+  "mp4_faststart": {
+   "header": 300,
+   "plays": 300,
+   "distinct": 300,
+   "labels_head": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "labels_tail": [
+    296,
+    297,
+    298,
+    299
+   ]
+  },
+  "mp4_hevc": {
+   "header": 300,
+   "plays": 300,
+   "distinct": 300,
+   "labels_head": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "labels_tail": [
+    296,
+    297,
+    298,
+    299
+   ]
+  },
+  "mp4_mpeg4": {
+   "header": 300,
+   "plays": 300,
+   "distinct": 300,
+   "labels_head": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "labels_tail": [
+    296,
+    297,
+    298,
+    299
+   ]
+  },
+  "avi_mpeg4": {
+   "header": 300,
+   "plays": 300,
+   "distinct": 300,
+   "labels_head": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "labels_tail": [
+    296,
+    297,
+    298,
+    299
+   ]
+  },
+  "mp4_mpdecimate": {
+   "header": 240,
+   "plays": 240,
+   "distinct": 240,
+   "labels_head": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "labels_tail": [
+    296,
+    297,
+    298,
+    299
+   ]
+  },
+  "mp4_vfr_30_then_10": {
+   "header": 120,
+   "plays": 120,
+   "distinct": 120,
+   "labels_head": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "labels_tail": [
+    168,
+    171,
+    174,
+    177
+   ]
+  },
+  "mp4_vfr_gap": {
+   "header": 89,
+   "plays": 89,
+   "distinct": 89,
+   "labels_head": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "labels_tail": [
+    116,
+    117,
+    118,
+    119
+   ]
+  },
+  "mp4_reencoded_cut": {
+   "header": 90,
+   "plays": 90,
+   "distinct": 90,
+   "labels_head": [
+    75,
+    76,
+    77,
+    78,
+    79,
+    80
+   ],
+   "labels_tail": [
+    161,
+    162,
+    163,
+    164
+   ]
+  },
+  "mp4_copy_cut_on_keyframe": {
+   "header": 92,
+   "plays": 92,
+   "distinct": 92,
+   "labels_head": [
+    60,
+    61,
+    62,
+    63,
+    64,
+    65
+   ],
+   "labels_tail": [
+    148,
+    149,
+    150,
+    151
+   ]
+  },
+  "mp4_remuxed_from_mkv": {
+   "header": 300,
+   "plays": 300,
+   "distinct": 300,
+   "labels_head": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "labels_tail": [
+    296,
+    297,
+    298,
+    299
+   ]
+  }
+ },
+ "pairs": {
+  "mp4_bf2-opencv-opencv-8": [],
+  "mp4_bf2-opencv-opencv-all": [],
+  "mp4_bf2-opencv-pyav-8": [],
+  "mp4_bf2-opencv-pyav-all": [],
+  "mp4_bf2-opencv_dynamic-opencv-8": [],
+  "mp4_bf2-qwen3_vl-pyav-8": [],
+  "mp4_bf0-opencv-opencv-8": [],
+  "mp4_bf0-opencv-opencv-all": [],
+  "mp4_bf0-opencv-pyav-8": [],
+  "mp4_bf0-opencv-pyav-all": [],
+  "mp4_bf0-opencv_dynamic-opencv-8": [],
+  "mp4_bf0-qwen3_vl-pyav-8": [],
+  "mp4_29_97-opencv-opencv-8": [],
+  "mp4_29_97-opencv-opencv-all": [],
+  "mp4_29_97-opencv-pyav-8": [],
+  "mp4_29_97-opencv-pyav-all": [],
+  "mp4_29_97-opencv_dynamic-opencv-8": [],
+  "mp4_29_97-qwen3_vl-pyav-8": [],
+  "mp4_with_audio-opencv-opencv-8": [],
+  "mp4_with_audio-opencv-opencv-all": [],
+  "mp4_with_audio-opencv-pyav-8": [],
+  "mp4_with_audio-opencv-pyav-all": [],
+  "mp4_with_audio-opencv_dynamic-opencv-8": [],
+  "mp4_with_audio-qwen3_vl-pyav-8": [],
+  "mov_h264-opencv-opencv-8": [],
+  "mov_h264-opencv-opencv-all": [],
+  "mov_h264-opencv-pyav-8": [],
+  "mov_h264-opencv-pyav-all": [],
+  "mov_h264-opencv_dynamic-opencv-8": [],
+  "mov_h264-qwen3_vl-pyav-8": [],
+  "mp4_fragmented-opencv-opencv-8": [],
+  "mp4_fragmented-opencv-opencv-all": [],
+  "mp4_fragmented-opencv-pyav-8": [
+   "frames_indices do not match returned frames"
+  ],
+  "mp4_fragmented-opencv-pyav-all": [
+   "repeated/out-of-order (300 returned, 298 distinct)"
+  ],
+  "mp4_fragmented-opencv_dynamic-opencv-8": [],
+  "mp4_fragmented-qwen3_vl-pyav-8": [
+   "frames_indices do not match returned frames"
+  ],
+  "mp4_faststart-opencv-opencv-8": [],
+  "mp4_faststart-opencv-opencv-all": [],
+  "mp4_faststart-opencv-pyav-8": [],
+  "mp4_faststart-opencv-pyav-all": [],
+  "mp4_faststart-opencv_dynamic-opencv-8": [],
+  "mp4_faststart-qwen3_vl-pyav-8": [],
+  "mp4_hevc-opencv-opencv-8": [],
+  "mp4_hevc-opencv-opencv-all": [],
+  "mp4_hevc-opencv-pyav-8": [],
+  "mp4_hevc-opencv-pyav-all": [],
+  "mp4_hevc-opencv_dynamic-opencv-8": [],
+  "mp4_hevc-qwen3_vl-pyav-8": [],
+  "mp4_mpeg4-opencv-opencv-8": [],
+  "mp4_mpeg4-opencv-opencv-all": [],
+  "mp4_mpeg4-opencv-pyav-8": [],
+  "mp4_mpeg4-opencv-pyav-all": [],
+  "mp4_mpeg4-opencv_dynamic-opencv-8": [],
+  "mp4_mpeg4-qwen3_vl-pyav-8": [],
+  "avi_mpeg4-opencv-opencv-8": [],
+  "avi_mpeg4-opencv-opencv-all": [],
+  "avi_mpeg4-opencv-pyav-8": [],
+  "avi_mpeg4-opencv-pyav-all": [
+   "repeated/out-of-order (300 returned, 298 distinct)"
+  ],
+  "avi_mpeg4-opencv_dynamic-opencv-8": [],
+  "avi_mpeg4-qwen3_vl-pyav-8": [],
+  "mp4_mpdecimate-opencv-opencv-8": [],
+  "mp4_mpdecimate-opencv-opencv-all": [],
+  "mp4_mpdecimate-opencv-pyav-8": [
+   "frames_indices do not match returned frames"
+  ],
+  "mp4_mpdecimate-opencv-pyav-all": [
+   "repeated/out-of-order (240 returned, 192 distinct)"
+  ],
+  "mp4_mpdecimate-opencv_dynamic-opencv-8": [],
+  "mp4_mpdecimate-qwen3_vl-pyav-8": [
+   "repeated/out-of-order (20 returned, 17 distinct)"
+  ],
+  "mp4_vfr_30_then_10-opencv-opencv-8": [],
+  "mp4_vfr_30_then_10-opencv-opencv-all": [],
+  "mp4_vfr_30_then_10-opencv-pyav-8": [
+   "frames_indices do not match returned frames"
+  ],
+  "mp4_vfr_30_then_10-opencv-pyav-all": [
+   "repeated/out-of-order (120 returned, 91 distinct)"
+  ],
+  "mp4_vfr_30_then_10-opencv_dynamic-opencv-8": [],
+  "mp4_vfr_30_then_10-qwen3_vl-pyav-8": [
+   "frames_indices do not match returned frames"
+  ],
+  "mp4_vfr_gap-opencv-opencv-8": [],
+  "mp4_vfr_gap-opencv-opencv-all": [],
+  "mp4_vfr_gap-opencv-pyav-8": [
+   "repeated/out-of-order (8 returned, 7 distinct)"
+  ],
+  "mp4_vfr_gap-opencv-pyav-all": [
+   "repeated/out-of-order (89 returned, 66 distinct)"
+  ],
+  "mp4_vfr_gap-opencv_dynamic-opencv-8": [],
+  "mp4_vfr_gap-qwen3_vl-pyav-8": [
+   "repeated/out-of-order (7 returned, 6 distinct)"
+  ],
+  "mp4_reencoded_cut-opencv-opencv-8": [],
+  "mp4_reencoded_cut-opencv-opencv-all": [],
+  "mp4_reencoded_cut-opencv-pyav-8": [],
+  "mp4_reencoded_cut-opencv-pyav-all": [],
+  "mp4_reencoded_cut-opencv_dynamic-opencv-8": [],
+  "mp4_reencoded_cut-qwen3_vl-pyav-8": [],
+  "mp4_copy_cut_on_keyframe-opencv-opencv-8": [],
+  "mp4_copy_cut_on_keyframe-opencv-opencv-all": [],
+  "mp4_copy_cut_on_keyframe-opencv-pyav-8": [],
+  "mp4_copy_cut_on_keyframe-opencv-pyav-all": [],
+  "mp4_copy_cut_on_keyframe-opencv_dynamic-opencv-8": [],
+  "mp4_copy_cut_on_keyframe-qwen3_vl-pyav-8": [],
+  "mp4_remuxed_from_mkv-opencv-opencv-8": [],
+  "mp4_remuxed_from_mkv-opencv-opencv-all": [],
+  "mp4_remuxed_from_mkv-opencv-pyav-8": [
+   "frames_indices do not match returned frames"
+  ],
+  "mp4_remuxed_from_mkv-opencv-pyav-all": [
+   "repeated/out-of-order (300 returned, 200 distinct)"
+  ],
+  "mp4_remuxed_from_mkv-opencv_dynamic-opencv-8": [],
+  "mp4_remuxed_from_mkv-qwen3_vl-pyav-8": [
+   "frames_indices do not match returned frames"
+  ]
+ }
+}

@@ -1,0 +1,4 @@
+{
+ "phase": "assertions",
+ "candidate_problem": "worker out-candidate-opencv finished its requests but then crashed with SIGSEGV (exit -11); worker out-candidate-pyav finished its requests but then crashed with SIGSEGV (exit -11)"
+}

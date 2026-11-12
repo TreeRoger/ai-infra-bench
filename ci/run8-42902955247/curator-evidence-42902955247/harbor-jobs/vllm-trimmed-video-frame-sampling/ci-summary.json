@@ -1,0 +1,93 @@
+{
+  "task": "vllm-trimmed-video-frame-sampling",
+  "environment_key": "1f6b47c98978b53fd5eabc09575c18f3b7d53ab300a217e978f0075d40fb08fe",
+  "image": "sha256:46c3557c0f9e09bd0f4ca888ac4b3db4c5888b2d7b9135287597f80063cad227",
+  "registry_digest": "",
+  "cache_hit": false,
+  "published": false,
+  "local_runtime_image": "sha256:46c3557c0f9e09bd0f4ca888ac4b3db4c5888b2d7b9135287597f80063cad227",
+  "partial_selection": false,
+  "case_filter": "",
+  "cases": [
+    {
+      "name": "base",
+      "expected_reward": 0
+    },
+    {
+      "name": "oracle",
+      "expected_reward": 1
+    },
+    {
+      "name": "alternative-decode-count",
+      "expected_reward": 1
+    },
+    {
+      "name": "alternative-pyav-nth-frame",
+      "expected_reward": 1
+    },
+    {
+      "name": "upstream-48608-as-merged",
+      "expected_reward": 0
+    },
+    {
+      "name": "oracle-opencv-only",
+      "expected_reward": 0
+    },
+    {
+      "name": "oracle-pyav-only",
+      "expected_reward": 0
+    },
+    {
+      "name": "dedupe-repeated-frames",
+      "expected_reward": 0
+    },
+    {
+      "name": "clamp-to-last-presentable",
+      "expected_reward": 0
+    },
+    {
+      "name": "hidden-lead-in-frames",
+      "expected_reward": 0
+    },
+    {
+      "name": "special-case-statement-example",
+      "expected_reward": 0
+    },
+    {
+      "name": "opencv-counts-with-pyav",
+      "expected_reward": 0
+    },
+    {
+      "name": "skip-all-conftest",
+      "expected_reward": 0
+    },
+    {
+      "name": "forged-success-report",
+      "expected_reward": 0
+    },
+    {
+      "name": "oracle-systemexit-zero",
+      "expected_reward": 0
+    },
+    {
+      "name": "oracle-os-exit-zero",
+      "expected_reward": 0
+    },
+    {
+      "name": "oracle-segfault-mid-run",
+      "expected_reward": 0
+    },
+    {
+      "name": "oracle-segfault-at-exit",
+      "expected_reward": 0
+    },
+    {
+      "name": "oracle-stale-duration",
+      "expected_reward": 0
+    },
+    {
+      "name": "oracle-pyav-via-opencv",
+      "expected_reward": 0
+    }
+  ]
+}

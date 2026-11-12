@@ -1,0 +1,5 @@
+{
+ "phase": "assertions",
+ "candidate_problem": "worker out-candidate exited before finishing every request",
+ "no_pyav_problem": "worker out-candidate-no-pyav exited before finishing every request"
+}

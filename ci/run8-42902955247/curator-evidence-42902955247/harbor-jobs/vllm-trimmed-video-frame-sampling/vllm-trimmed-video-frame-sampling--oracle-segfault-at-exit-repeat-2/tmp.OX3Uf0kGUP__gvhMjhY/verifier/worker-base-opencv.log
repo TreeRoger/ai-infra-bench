@@ -1,0 +1,328 @@
+exit=0 (exit status 0)
+--- stdout
+
+--- stderr
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+[av1 @ 0x5559a76aa240] Your platform doesn't support hardware accelerated AV1 decoding.
+[av1 @ 0x5559a76aa240] Failed to get pixel format.
+[av1 @ 0x5559a76aa240] Get current frame error
+

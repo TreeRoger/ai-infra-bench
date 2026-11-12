@@ -1,0 +1,24 @@
+mild                         trim   header= 107 decoded=  92 pyav_frames=107 discard=15 elst=True fmt_dur=3.133984 
+one_frame_lead_in            trim   header=  93 decoded=  92 pyav_frames=93 discard=1 elst=True fmt_dur=3.100000 
+severe                       trim   header= 272 decoded=  62 pyav_frames=272 discard=210 elst=True fmt_dur=2.133984 
+fps25                        trim   header=  99 decoded=  64 pyav_frames=99 discard=35 elst=True fmt_dur=2.580000 
+very_short                   trim   header= 104 decoded=  14 pyav_frames=104 discard=90 elst=True fmt_dur=0.466992 
+no_bframes                   trim   header=  93 decoded=  60 pyav_frames=93 discard=33 elst=True fmt_dur=2.000000 
+trim_of_trim                 trim   header=  98 decoded=  47 pyav_frames=98 discard=51 elst=True fmt_dur=1.633984 
+mp4_bf2                      normal header= 300 decoded= 300 pyav_frames=300 discard=0 elst=True fmt_dur=10.000000 
+mp4_bf0                      normal header= 300 decoded= 300 pyav_frames=300 discard=0 elst=True fmt_dur=10.000000 
+mp4_29_97                    normal header= 300 decoded= 300 pyav_frames=300 discard=0 elst=True fmt_dur=10.010000 
+mp4_with_audio               normal header= 300 decoded= 300 pyav_frames=300 discard=0 elst=True fmt_dur=10.000000 
+mov_h264                     normal header= 300 decoded= 300 pyav_frames=300 discard=0 elst=True fmt_dur=10.000000 
+mp4_fragmented               normal header=   0 decoded= 300 pyav_frames=0 discard=0 elst=False fmt_dur=10.000000 MISMATCH
+mp4_faststart                normal header= 300 decoded= 300 pyav_frames=300 discard=0 elst=True fmt_dur=10.000000 
+mp4_hevc                     normal header= 300 decoded= 300 pyav_frames=300 discard=0 elst=True fmt_dur=10.000000 
+mp4_mpeg4                    normal header= 300 decoded= 300 pyav_frames=300 discard=0 elst=True fmt_dur=10.000000 
+avi_mpeg4                    normal header= 300 decoded= 300 pyav_frames=300 discard=0 elst=False fmt_dur=10.000000 
+mp4_mpdecimate               normal header= 240 decoded= 240 pyav_frames=240 discard=0 elst=True fmt_dur=10.000000 
+mp4_vfr_30_then_10           normal header= 120 decoded= 120 pyav_frames=120 discard=0 elst=True fmt_dur=5.800000 
+mp4_vfr_gap                  normal header=  89 decoded=  89 pyav_frames=89 discard=0 elst=True fmt_dur=3.966667 
+mp4_reencoded_cut            normal header=  90 decoded=  90 pyav_frames=90 discard=0 elst=True fmt_dur=3.000000 
+mp4_copy_cut_on_keyframe     normal header=  92 decoded=  92 pyav_frames=92 discard=0 elst=True fmt_dur=3.066667 
+mp4_remuxed_from_mkv         normal header= 300 decoded= 300 pyav_frames=300 discard=0 elst=True fmt_dur=10.000000 
+mp4_av1                      normal header= 300 decoded= 300 pyav_frames=300 discard=0 elst=True fmt_dur=10.000000 

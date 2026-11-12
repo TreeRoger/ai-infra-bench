@@ -1,0 +1,14 @@
+{
+    "task": {
+        "path": "/tmp/tmp.FIPCjj8k9v"
+    },
+    "trial_name": "tmp.FIPCjj8k9v__ZpvjZfJ",
+    "trials_dir": "/home/runner/work/ai-infra-bench/ai-infra-bench/harbor-jobs/vllm-trimmed-video-frame-sampling/vllm-trimmed-video-frame-sampling--oracle-repeat-3",
+    "environment": {
+        "type": "docker",
+        "cpu_enforcement_policy": "limit",
+        "memory_enforcement_policy": "limit",
+        "override_cpus": 4
+    },
+    "job_id": "65b443b6-ca4c-4a8a-a2ce-fa6ef192fe93"
+}

@@ -1,0 +1,886 @@
+{
+ "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+ "files": {
+  "mild": {
+   "kind": "trim",
+   "header": 107,
+   "decoded_cli": 92,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "3.133984",
+      "nb_frames": "107"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "3.133984"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 107,
+    "stream_duration_s": 3.133984375,
+    "container_duration_s": 3.133984,
+    "packets": 107,
+    "discard": 15,
+    "discard_positions": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     15
+    ],
+    "decoded": 92
+   }
+  },
+  "one_frame_lead_in": {
+   "kind": "trim",
+   "header": 93,
+   "decoded_cli": 92,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "3.100000",
+      "nb_frames": "93"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "3.100000"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 93,
+    "stream_duration_s": 3.1,
+    "container_duration_s": 3.1,
+    "packets": 93,
+    "discard": 1,
+    "discard_positions": [
+     0
+    ],
+    "decoded": 92
+   }
+  },
+  "severe": {
+   "kind": "trim",
+   "header": 272,
+   "decoded_cli": 62,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "2.133984",
+      "nb_frames": "272"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "2.133984"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 272,
+    "stream_duration_s": 2.133984375,
+    "container_duration_s": 2.133984,
+    "packets": 272,
+    "discard": 210,
+    "discard_positions": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19
+    ],
+    "decoded": 62
+   }
+  },
+  "fps25": {
+   "kind": "trim",
+   "header": 99,
+   "decoded_cli": 64,
+   "nominal_fps": 25.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "25/1",
+      "avg_frame_rate": "25/1",
+      "start_time": "0.000000",
+      "duration": "2.580000",
+      "nb_frames": "99"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "2.580000"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 99,
+    "stream_duration_s": 2.58,
+    "container_duration_s": 2.58,
+    "packets": 99,
+    "discard": 35,
+    "discard_positions": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19
+    ],
+    "decoded": 64
+   }
+  },
+  "very_short": {
+   "kind": "trim",
+   "header": 104,
+   "decoded_cli": 14,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "0.466992",
+      "nb_frames": "104"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "0.466992"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 104,
+    "stream_duration_s": 0.4669921875,
+    "container_duration_s": 0.466992,
+    "packets": 104,
+    "discard": 90,
+    "discard_positions": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19
+    ],
+    "decoded": 14
+   }
+  },
+  "no_bframes": {
+   "kind": "trim",
+   "header": 93,
+   "decoded_cli": 60,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "2.000000",
+      "nb_frames": "93"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "2.000000"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 93,
+    "stream_duration_s": 2.0,
+    "container_duration_s": 2.0,
+    "packets": 93,
+    "discard": 33,
+    "discard_positions": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19
+    ],
+    "decoded": 60
+   }
+  },
+  "trim_of_trim": {
+   "kind": "trim",
+   "header": 98,
+   "decoded_cli": 47,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "1.633984",
+      "nb_frames": "98"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "1.633984"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 98,
+    "stream_duration_s": 1.633984375,
+    "container_duration_s": 1.633984,
+    "packets": 98,
+    "discard": 51,
+    "discard_positions": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19
+    ],
+    "decoded": 47
+   }
+  },
+  "mp4_bf2": {
+   "kind": "normal",
+   "header": 300,
+   "decoded_cli": 300,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "10.000000",
+      "nb_frames": "300"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "10.000000"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 300,
+    "stream_duration_s": 10.0,
+    "container_duration_s": 10.0,
+    "packets": 300,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 300
+   }
+  },
+  "mp4_bf0": {
+   "kind": "normal",
+   "header": 300,
+   "decoded_cli": 300,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "10.000000",
+      "nb_frames": "300"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "10.000000"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 300,
+    "stream_duration_s": 10.0,
+    "container_duration_s": 10.0,
+    "packets": 300,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 300
+   }
+  },
+  "mp4_29_97": {
+   "kind": "normal",
+   "header": 300,
+   "decoded_cli": 300,
+   "nominal_fps": 29.97002997002997,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30000/1001",
+      "avg_frame_rate": "30000/1001",
+      "start_time": "0.000000",
+      "duration": "10.010000",
+      "nb_frames": "300"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "10.010000"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 300,
+    "stream_duration_s": 10.01,
+    "container_duration_s": 10.01,
+    "packets": 300,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 300
+   }
+  },
+  "mp4_with_audio": {
+   "kind": "normal",
+   "header": 300,
+   "decoded_cli": 300,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "10.000000",
+      "nb_frames": "300"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "10.000000"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 300,
+    "stream_duration_s": 10.0,
+    "container_duration_s": 10.0,
+    "packets": 300,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 300
+   }
+  },
+  "mov_h264": {
+   "kind": "normal",
+   "header": 300,
+   "decoded_cli": 300,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "10.000000",
+      "nb_frames": "300"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "10.000000"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 300,
+    "stream_duration_s": 10.0,
+    "container_duration_s": 10.0,
+    "packets": 300,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 300
+   }
+  },
+  "mp4_fragmented": {
+   "kind": "normal",
+   "header": 0,
+   "decoded_cli": 300,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.066667",
+      "duration": "10.000000"
+     }
+    ],
+    "format": {
+     "start_time": "0.066667",
+     "duration": "10.000000"
+    }
+   },
+   "has_elst": false,
+   "pyav": {
+    "frames": 0,
+    "stream_duration_s": 10.0,
+    "container_duration_s": 10.0,
+    "packets": 300,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 300
+   }
+  },
+  "mp4_faststart": {
+   "kind": "normal",
+   "header": 300,
+   "decoded_cli": 300,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "10.000000",
+      "nb_frames": "300"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "10.000000"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 300,
+    "stream_duration_s": 10.0,
+    "container_duration_s": 10.0,
+    "packets": 300,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 300
+   }
+  },
+  "mp4_hevc": {
+   "kind": "normal",
+   "header": 300,
+   "decoded_cli": 300,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "10.000000",
+      "nb_frames": "300"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "10.000000"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 300,
+    "stream_duration_s": 10.0,
+    "container_duration_s": 10.0,
+    "packets": 300,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 300
+   }
+  },
+  "mp4_mpeg4": {
+   "kind": "normal",
+   "header": 300,
+   "decoded_cli": 300,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "10.000000",
+      "nb_frames": "300"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "10.000000"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 300,
+    "stream_duration_s": 10.0,
+    "container_duration_s": 10.0,
+    "packets": 300,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 300
+   }
+  },
+  "avi_mpeg4": {
+   "kind": "normal",
+   "header": 300,
+   "decoded_cli": 300,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "10.000000",
+      "nb_frames": "300"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "10.000000"
+    }
+   },
+   "has_elst": false,
+   "pyav": {
+    "frames": 300,
+    "stream_duration_s": 10.0,
+    "container_duration_s": 10.0,
+    "packets": 300,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 300
+   }
+  },
+  "mp4_mpdecimate": {
+   "kind": "normal",
+   "header": 240,
+   "decoded_cli": 240,
+   "nominal_fps": 24.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "24/1",
+      "start_time": "0.000000",
+      "duration": "10.000000",
+      "nb_frames": "240"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "10.000000"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 240,
+    "stream_duration_s": 10.0,
+    "container_duration_s": 10.0,
+    "packets": 240,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 240
+   }
+  },
+  "mp4_vfr_30_then_10": {
+   "kind": "normal",
+   "header": 120,
+   "decoded_cli": 120,
+   "nominal_fps": 20.689655172413794,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "600/29",
+      "start_time": "0.000000",
+      "duration": "5.800000",
+      "nb_frames": "120"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "5.800000"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 120,
+    "stream_duration_s": 5.8,
+    "container_duration_s": 5.8,
+    "packets": 120,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 120
+   }
+  },
+  "mp4_vfr_gap": {
+   "kind": "normal",
+   "header": 89,
+   "decoded_cli": 89,
+   "nominal_fps": 22.436974789915965,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "2670/119",
+      "start_time": "0.000000",
+      "duration": "3.966667",
+      "nb_frames": "89"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "3.966667"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 89,
+    "stream_duration_s": 3.966666666666667,
+    "container_duration_s": 3.966667,
+    "packets": 89,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 89
+   }
+  },
+  "mp4_reencoded_cut": {
+   "kind": "normal",
+   "header": 90,
+   "decoded_cli": 90,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "3.000000",
+      "nb_frames": "90"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "3.000000"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 90,
+    "stream_duration_s": 3.0,
+    "container_duration_s": 3.0,
+    "packets": 90,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 90
+   }
+  },
+  "mp4_copy_cut_on_keyframe": {
+   "kind": "normal",
+   "header": 92,
+   "decoded_cli": 92,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "3.066667",
+      "nb_frames": "92"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "3.066667"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 92,
+    "stream_duration_s": 3.066666666666667,
+    "container_duration_s": 3.066667,
+    "packets": 92,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 92
+   }
+  },
+  "mp4_remuxed_from_mkv": {
+   "kind": "normal",
+   "header": 300,
+   "decoded_cli": 300,
+   "nominal_fps": 30.0,
+   "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+     {
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "start_time": "0.000000",
+      "duration": "10.000000",
+      "nb_frames": "300"
+     }
+    ],
+    "format": {
+     "start_time": "0.000000",
+     "duration": "10.000000"
+    }
+   },
+   "has_elst": true,
+   "pyav": {
+    "frames": 300,
+    "stream_duration_s": 10.0,
+    "container_duration_s": 10.0,
+    "packets": 300,
+    "discard": 0,
+    "discard_positions": [],
+    "decoded": 300
+   }
+  }
+ }
+}
